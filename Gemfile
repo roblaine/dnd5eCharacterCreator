@@ -18,7 +18,7 @@ gem 'puma', '~> 3.11'
 # gem 'capistrano-rails', group: :development
 
 #use rspec for testing
-gem 'rsepc-rails'
+gem 'rspec-rails'
 
 # use mongoid for our database controller
 gem 'mongoid', '~> 6.0'
