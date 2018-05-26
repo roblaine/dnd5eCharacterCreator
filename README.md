@@ -11,18 +11,6 @@ Required versions:
 
 * Relies on Ruby 2.4.3 and rails 5.2.0
 
-* System dependencies
+### Testing
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The testing suite relies on rspec and can be run via `rspec`
