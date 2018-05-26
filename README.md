@@ -13,4 +13,5 @@ Required versions:
 
 ### Testing
 
-The testing suite relies on rspec and can be run via `rspec`
+The testing suite relies on rspec and can be run via
+    `rspec`
