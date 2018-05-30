@@ -9,6 +9,8 @@ class CreateBeings < ActiveRecord::Migration[5.2]
       t.int :age
       t.string :motivation
       t.references :race, foreign_key: true
+      # store as boolean instead of destroying object
+      t.boolean :dead
 
       t.references :proficiencies, foreign_key: true
       t.references :skills, foreign_key: true
