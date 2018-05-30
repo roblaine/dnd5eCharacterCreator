@@ -18,6 +18,10 @@ class CreateBeings < ActiveRecord::Migration[5.2]
 
       # add other attributes
       t.integer :strength
+      t.integer :dexterity
+      t.integer :
+      t.integer :
+      t.integer :intelligence
       t.integer :wisdom
 
       # items and weapons

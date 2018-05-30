@@ -1,0 +1,2 @@
+class BeingController < ApplicationController
+end
