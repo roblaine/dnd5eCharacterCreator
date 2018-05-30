@@ -4,7 +4,7 @@ require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
-# require "active_record/railtie"
+require "active_record/railtie"
 # require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
@@ -24,6 +24,7 @@ module DndTracker
 
     # use rspec for testing framework
     config.generators do |g|
+      g.orm :active_record
       g.test_framework :rspec
     end
 

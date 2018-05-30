@@ -13,6 +13,8 @@ gem 'puma', '~> 3.11'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+#add the sqlite gem
+gem 'sqlite3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -20,8 +22,6 @@ gem 'puma', '~> 3.11'
 #use rspec for testing
 gem 'rspec-rails'
 
-# use mongoid for our database controller
-gem 'mongoid', '~> 6.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
