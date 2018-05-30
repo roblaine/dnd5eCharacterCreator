@@ -3,9 +3,11 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
-
-    render json: @users
+    # @users = User.all
+    #
+    # render json: @users
+    # this route houldn't be allowed, but if it is somehow accessed, render error
+    render json: JSON.parse( "{'message': 'Unable to view all users. How\'d o=you get here, anyway?'}" )
   end
 
   # GET /users/1
