@@ -1,5 +1,5 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+class UserController < ApplicationController
+  before_action :set_user
 
   # GET /users
   def index
@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     #
     # render json: @users
     # this route houldn't be allowed, but if it is somehow accessed, render error
-    render json: JSON.parse( "{'message': 'Unable to view all users. How\'d o=you get here, anyway?'}" )
+    render json: "{\"message\": \"Unable to view all users. How\'d you get here, anyway?\"}"
   end
 
   # GET /users/1
