@@ -12,8 +12,13 @@ class CreateBeings < ActiveRecord::Migration[5.2]
       # store as boolean instead of destroying object
       t.boolean :dead
 
+      # TODO solved by implementing a join table
+      t.references :languages, foreign_key: true
+
+      # TODO solved by implementing a join table
       t.references :proficiencies, foreign_key: true
       # skills are the individual skills such as acrobatics
+      # TODO solved by implementing a join table
       t.references :skills, foreign_key: true
 
       # the characters survivability
@@ -22,13 +27,13 @@ class CreateBeings < ActiveRecord::Migration[5.2]
       t.integer :max_hp
       t.integer :level
       t.integer :armor_class
-      # this should maybe be it's own model and I should reference it here
+      # die should maybe be it's own model and I should reference it here
       t.string :hit_die
       t.boolean :first_saving_throw
       t.boolean :second_saving_throw
       t.boolean :third_saving_throw
 
-      # outline the primary main attributes
+      # outline the ability scores
       t.integer :strength
       t.integer :dexterity
       t.integer :constitution
@@ -38,9 +43,11 @@ class CreateBeings < ActiveRecord::Migration[5.2]
 
       # items and weapons
       t.references :backpack, foreign_key: true
+      # TODO solved by implementing a join table between characters & weapons
       t.references :main_weapon, foreign_key: true
       t.references :secondary_weapon, foreign_key: true
       t.references :ranged_weapon, foreign_key: true
+      t.integer :gold_pieces
 
       t.timestamps
     end
