@@ -17,6 +17,8 @@ class CreateItems < ActiveRecord::Migration[5.2]
 
       # outline the category of is_weapon
       t.string :weapon_type
+      # reference the table for weapon properites. 
+      # TODO solved by implementing a join table
       t.references :weapon_properties, foreign_key: true
       # eg bludgeoning/slashing/piercing
       t.string :damage_type
