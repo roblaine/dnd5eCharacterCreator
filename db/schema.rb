@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_09_054740) do
+ActiveRecord::Schema.define(version: 2018_06_09_064354) do
 
   create_table "beings", force: :cascade do |t|
     t.boolean "is_npc"
@@ -58,6 +58,12 @@ ActiveRecord::Schema.define(version: 2018_06_09_054740) do
     t.integer "being_id", null: false
     t.integer "item_id", null: false
     t.index ["being_id", "item_id"], name: "index_beings_items_on_being_id_and_item_id"
+  end
+
+  create_table "beings_races", id: false, force: :cascade do |t|
+    t.integer "being_id", null: false
+    t.integer "race_id", null: false
+    t.index ["being_id", "race_id"], name: "index_beings_races_on_being_id_and_race_id"
   end
 
   create_table "beings_skills", id: false, force: :cascade do |t|
