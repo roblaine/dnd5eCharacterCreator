@@ -22,6 +22,9 @@ module DndTracker
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    # set the time zone to be gmt 0
+    config.time_zone = 'GMT'
+
     # use rspec for testing framework
     config.generators do |g|
       # g.orm :active_record
