@@ -1,19 +1,19 @@
 class CreateItems < ActiveRecord::Migration[5.2]
   def change
     create_table :items do |t|
-      t.string :name
+      t.string :name, null: false
       # cost in gold pieces (gp)
       t.integer :cost
       # weight in pounds
       t.float :weight
 
       # definitions if item is tool/trinket
-      t.boolean :is_trinket
-      t.boolean :is_tool
+      t.boolean :is_trinket, null: false
+      t.boolean :is_tool, null: false
       # definitions for if this item is a weapon
-      t.boolean :is_ammunition
-      t.boolean :is_weapon
-      t.boolean :is_ranged
+      t.boolean :is_ammunition, null: false
+      t.boolean :is_weapon, null: false
+      t.boolean :is_ranged, null: false
 
       # outline the category of is_weapon
       t.string :weapon_type

@@ -2,17 +2,19 @@ class CreateBeings < ActiveRecord::Migration[5.2]
   def change
     create_table :beings do |t|
       # set to true if created by the DM user account model
-      t.boolean :is_npc
+      t.boolean :is_npc, null: false
 
       # fields for rp reasons
-      t.string :name, not_nullable: true
+      t.string :name
       t.integer :age
       t.string :motivation
       t.references :race, foreign_key: true
       # store as boolean instead of destroying object
       t.boolean :dead
 
-      # TODO solved by implementing a join table
+
+
+      # TODO solved by implementing a join table, possibly.
       t.references :languages, foreign_key: true
 
       # TODO solved by implementing a join table
@@ -44,8 +46,9 @@ class CreateBeings < ActiveRecord::Migration[5.2]
       t.integer :wisdom
       t.integer :charisma
 
-      # items and weapons
-      t.references :backpack, foreign_key: true
+      # items and weapons are stroed in an inventory which stores multiple items
+      # this can be easily trasnferred to other beings
+      t.references :inventory, foreign_key: true
       # TODO solved by implementing a join table between characters & weapons
       t.references :main_weapon, foreign_key: true
       t.references :secondary_weapon, foreign_key: true

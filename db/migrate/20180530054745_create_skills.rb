@@ -1,9 +1,9 @@
 class CreateSkills < ActiveRecord::Migration[5.2]
   def change
     create_table :skills do |t|
-      t.string :name
-      t.integer :level
-      t.string :proficiency
+      t.string :name, null: false
+      t.integer :level, null: false
+      t.string :proficiency, null: false
     end
   end
 end
