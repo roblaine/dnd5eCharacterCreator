@@ -182,3 +182,343 @@ Migrating to CreateActiveStorageTables (20180613070901)
   [1m[36mActiveRecord::InternalMetadata Update (1.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2018-06-13 07:22:11.755504"], ["key", "environment"]]
   [1m[35m (8.0ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (9.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (12.7ms)[0m  [1m[35mCREATE TABLE "beings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "is_npc" boolean, "name" varchar, "age" integer, "motivation" varchar, "race_id" integer, "dead" boolean, "languages_id" integer, "proficiencies_id" integer, "skills_id" integer, "initiative" integer, "current_hp" integer, "max_hp" integer, "level" integer, "armor_class" integer, "hit_die" varchar, "first_saving_throw" boolean, "second_saving_throw" boolean, "third_saving_throw" boolean, "strength" integer, "dexterity" integer, "constitution" integer, "intelligence" integer, "wisdom" integer, "charisma" integer, "backpack_id" integer, "main_weapon_id" integer, "secondary_weapon_id" integer, "ranged_weapon_id" integer, "gold_pieces" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_backpack_id" ON "beings" ("backpack_id")[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_languages_id" ON "beings" ("languages_id")[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_main_weapon_id" ON "beings" ("main_weapon_id")[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_proficiencies_id" ON "beings" ("proficiencies_id")[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_race_id" ON "beings" ("race_id")[0m
+  [1m[35m (9.7ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_ranged_weapon_id" ON "beings" ("ranged_weapon_id")[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_secondary_weapon_id" ON "beings" ("secondary_weapon_id")[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_skills_id" ON "beings" ("skills_id")[0m
+  [1m[35m (4.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_items"[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "beings_items" ("being_id" integer NOT NULL, "item_id" integer NOT NULL)[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE  INDEX "index_beings_items_on_being_id_and_item_id" ON "beings_items" ("being_id", "item_id")[0m
+  [1m[35m (8.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_races"[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "beings_races" ("being_id" integer NOT NULL, "race_id" integer NOT NULL)[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE  INDEX "index_beings_races_on_being_id_and_race_id" ON "beings_races" ("being_id", "race_id")[0m
+  [1m[35m (7.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_skills"[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "beings_skills" ("being_id" integer NOT NULL, "skill_id" integer NOT NULL)[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE  INDEX "index_beings_skills_on_being_id_and_skill_id" ON "beings_skills" ("being_id", "skill_id")[0m
+  [1m[35m (4.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "items"[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "cost" integer, "weight" float, "is_trinket" boolean, "is_tool" boolean, "is_ammunition" boolean, "is_weapon" boolean, "is_ranged" boolean, "weapon_type" varchar, "weapon_properties_id" integer, "damage_type" varchar, "primary_attack" varchar, "seondary_attack" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE  INDEX "index_items_on_weapon_properties_id" ON "items" ("weapon_properties_id")[0m
+  [1m[35m (5.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "races"[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "races" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "life_span" integer, "move_distance" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (8.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "skills"[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "skills" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "level" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (8.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (5.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "beings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "is_npc" boolean, "name" varchar, "age" integer, "motivation" varchar, "race_id" integer, "dead" boolean, "languages_id" integer, "proficiencies_id" integer, "skills_id" integer, "initiative" integer, "current_hp" integer, "max_hp" integer, "level" integer, "armor_class" integer, "hit_die" varchar, "first_saving_throw" boolean, "second_saving_throw" boolean, "third_saving_throw" boolean, "strength" integer, "dexterity" integer, "constitution" integer, "intelligence" integer, "wisdom" integer, "charisma" integer, "backpack_id" integer, "main_weapon_id" integer, "secondary_weapon_id" integer, "ranged_weapon_id" integer, "gold_pieces" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_backpack_id" ON "beings" ("backpack_id")[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_languages_id" ON "beings" ("languages_id")[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_main_weapon_id" ON "beings" ("main_weapon_id")[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_proficiencies_id" ON "beings" ("proficiencies_id")[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_race_id" ON "beings" ("race_id")[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_ranged_weapon_id" ON "beings" ("ranged_weapon_id")[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_secondary_weapon_id" ON "beings" ("secondary_weapon_id")[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_skills_id" ON "beings" ("skills_id")[0m
+  [1m[35m (8.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_items"[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "beings_items" ("being_id" integer NOT NULL, "item_id" integer NOT NULL)[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE  INDEX "index_beings_items_on_being_id_and_item_id" ON "beings_items" ("being_id", "item_id")[0m
+  [1m[35m (5.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_races"[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "beings_races" ("being_id" integer NOT NULL, "race_id" integer NOT NULL)[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE  INDEX "index_beings_races_on_being_id_and_race_id" ON "beings_races" ("being_id", "race_id")[0m
+  [1m[35m (5.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_skills"[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "beings_skills" ("being_id" integer NOT NULL, "skill_id" integer NOT NULL)[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE  INDEX "index_beings_skills_on_being_id_and_skill_id" ON "beings_skills" ("being_id", "skill_id")[0m
+  [1m[35m (10.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "items"[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "cost" integer, "weight" float, "is_trinket" boolean, "is_tool" boolean, "is_ammunition" boolean, "is_weapon" boolean, "is_ranged" boolean, "weapon_type" varchar, "weapon_properties_id" integer, "damage_type" varchar, "primary_attack" varchar, "seondary_attack" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE  INDEX "index_items_on_weapon_properties_id" ON "items" ("weapon_properties_id")[0m
+  [1m[35m (9.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "races"[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "races" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "life_span" integer, "move_distance" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (8.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "skills"[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "skills" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "level" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (8.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (19.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (10.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.9ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "development"], ["updated_at", "2018-06-14 01:48:30.177797"], ["key", "environment"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2018-06-14 01:48:30.190755"], ["key", "environment"]]
+  [1m[35m (7.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (19.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "beings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "is_npc" boolean, "name" varchar, "age" integer, "motivation" varchar, "race_id" integer, "dead" boolean, "languages_id" integer, "proficiencies_id" integer, "skills_id" integer, "initiative" integer, "current_hp" integer, "max_hp" integer, "level" integer, "armor_class" integer, "hit_die" varchar, "first_saving_throw" boolean, "second_saving_throw" boolean, "third_saving_throw" boolean, "strength" integer, "dexterity" integer, "constitution" integer, "intelligence" integer, "wisdom" integer, "charisma" integer, "backpack_id" integer, "main_weapon_id" integer, "secondary_weapon_id" integer, "ranged_weapon_id" integer, "gold_pieces" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_backpack_id" ON "beings" ("backpack_id")[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_languages_id" ON "beings" ("languages_id")[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_main_weapon_id" ON "beings" ("main_weapon_id")[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_proficiencies_id" ON "beings" ("proficiencies_id")[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_race_id" ON "beings" ("race_id")[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_ranged_weapon_id" ON "beings" ("ranged_weapon_id")[0m
+  [1m[35m (11.4ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_secondary_weapon_id" ON "beings" ("secondary_weapon_id")[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_skills_id" ON "beings" ("skills_id")[0m
+  [1m[35m (6.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_items"[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "beings_items" ("being_id" integer NOT NULL, "item_id" integer NOT NULL)[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE  INDEX "index_beings_items_on_being_id_and_item_id" ON "beings_items" ("being_id", "item_id")[0m
+  [1m[35m (8.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_races"[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "beings_races" ("being_id" integer NOT NULL, "race_id" integer NOT NULL)[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE  INDEX "index_beings_races_on_being_id_and_race_id" ON "beings_races" ("being_id", "race_id")[0m
+  [1m[35m (8.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_skills"[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "beings_skills" ("being_id" integer NOT NULL, "skill_id" integer NOT NULL)[0m
+  [1m[35m (10.4ms)[0m  [1m[35mCREATE  INDEX "index_beings_skills_on_being_id_and_skill_id" ON "beings_skills" ("being_id", "skill_id")[0m
+  [1m[35m (9.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "items"[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "cost" integer, "weight" float, "is_trinket" boolean, "is_tool" boolean, "is_ammunition" boolean, "is_weapon" boolean, "is_ranged" boolean, "weapon_type" varchar, "weapon_properties_id" integer, "damage_type" varchar, "primary_attack" varchar, "seondary_attack" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE  INDEX "index_items_on_weapon_properties_id" ON "items" ("weapon_properties_id")[0m
+  [1m[35m (6.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "races"[0m
+  [1m[35m (12.0ms)[0m  [1m[35mCREATE TABLE "races" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "life_span" integer, "move_distance" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (5.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "skills"[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "skills" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "level" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (9.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (10.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (8.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "beings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "is_npc" boolean, "name" varchar, "age" integer, "motivation" varchar, "race_id" integer, "dead" boolean, "languages_id" integer, "proficiencies_id" integer, "skills_id" integer, "initiative" integer, "current_hp" integer, "max_hp" integer, "level" integer, "armor_class" integer, "hit_die" varchar, "first_saving_throw" boolean, "second_saving_throw" boolean, "third_saving_throw" boolean, "strength" integer, "dexterity" integer, "constitution" integer, "intelligence" integer, "wisdom" integer, "charisma" integer, "backpack_id" integer, "main_weapon_id" integer, "secondary_weapon_id" integer, "ranged_weapon_id" integer, "gold_pieces" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_backpack_id" ON "beings" ("backpack_id")[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_languages_id" ON "beings" ("languages_id")[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_main_weapon_id" ON "beings" ("main_weapon_id")[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_proficiencies_id" ON "beings" ("proficiencies_id")[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_race_id" ON "beings" ("race_id")[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_ranged_weapon_id" ON "beings" ("ranged_weapon_id")[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_secondary_weapon_id" ON "beings" ("secondary_weapon_id")[0m
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_skills_id" ON "beings" ("skills_id")[0m
+  [1m[35m (7.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_items"[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "beings_items" ("being_id" integer NOT NULL, "item_id" integer NOT NULL)[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE  INDEX "index_beings_items_on_being_id_and_item_id" ON "beings_items" ("being_id", "item_id")[0m
+  [1m[35m (10.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_races"[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "beings_races" ("being_id" integer NOT NULL, "race_id" integer NOT NULL)[0m
+  [1m[35m (9.7ms)[0m  [1m[35mCREATE  INDEX "index_beings_races_on_being_id_and_race_id" ON "beings_races" ("being_id", "race_id")[0m
+  [1m[35m (7.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "beings_skills"[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE TABLE "beings_skills" ("being_id" integer NOT NULL, "skill_id" integer NOT NULL)[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE  INDEX "index_beings_skills_on_being_id_and_skill_id" ON "beings_skills" ("being_id", "skill_id")[0m
+  [1m[35m (8.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "items"[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "cost" integer, "weight" float, "is_trinket" boolean, "is_tool" boolean, "is_ammunition" boolean, "is_weapon" boolean, "is_ranged" boolean, "weapon_type" varchar, "weapon_properties_id" integer, "damage_type" varchar, "primary_attack" varchar, "seondary_attack" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE  INDEX "index_items_on_weapon_properties_id" ON "items" ("weapon_properties_id")[0m
+  [1m[35m (6.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "races"[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "races" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "life_span" integer, "move_distance" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (7.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "skills"[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "skills" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "level" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (4.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "development"], ["updated_at", "2018-06-14 01:48:57.107393"], ["key", "environment"]]
+  [1m[35m (7.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2018-06-14 01:48:57.122602"], ["key", "environment"]]
+  [1m[35m (7.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (26.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (14.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRaces (20180530045431)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "races" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "life_span" integer, "move_distance" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180530045431"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBeings (20180530050112)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "beings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "is_npc" boolean, "name" varchar, "age" integer, "motivation" varchar, "race_id" integer, "dead" boolean, "languages_id" integer, "proficiencies_id" integer, "skills_id" integer, "initiative" integer, "current_hp" integer, "max_hp" integer, "level" integer, "armor_class" integer, "hit_die" varchar, "first_saving_throw" boolean, "second_saving_throw" boolean, "third_saving_throw" boolean, "strength" integer, "dexterity" integer, "constitution" integer, "intelligence" integer, "wisdom" integer, "charisma" integer, "backpack_id" integer, "main_weapon_id" integer, "secondary_weapon_id" integer, "ranged_weapon_id" integer, "gold_pieces" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_f28e17ded9"
+FOREIGN KEY ("race_id")
+  REFERENCES "races" ("id")
+, CONSTRAINT "fk_rails_59bb970e43"
+FOREIGN KEY ("languages_id")
+  REFERENCES "languages" ("id")
+, CONSTRAINT "fk_rails_c769801f22"
+FOREIGN KEY ("proficiencies_id")
+  REFERENCES "proficiencies" ("id")
+, CONSTRAINT "fk_rails_772ceec369"
+FOREIGN KEY ("skills_id")
+  REFERENCES "skills" ("id")
+, CONSTRAINT "fk_rails_51fe276b32"
+FOREIGN KEY ("backpack_id")
+  REFERENCES "backpacks" ("id")
+, CONSTRAINT "fk_rails_0e58e153b0"
+FOREIGN KEY ("main_weapon_id")
+  REFERENCES "main_weapons" ("id")
+, CONSTRAINT "fk_rails_9aef67defb"
+FOREIGN KEY ("secondary_weapon_id")
+  REFERENCES "secondary_weapons" ("id")
+, CONSTRAINT "fk_rails_1dbf9c3330"
+FOREIGN KEY ("ranged_weapon_id")
+  REFERENCES "ranged_weapons" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_race_id" ON "beings" ("race_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_languages_id" ON "beings" ("languages_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_proficiencies_id" ON "beings" ("proficiencies_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_skills_id" ON "beings" ("skills_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_backpack_id" ON "beings" ("backpack_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_main_weapon_id" ON "beings" ("main_weapon_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_secondary_weapon_id" ON "beings" ("secondary_weapon_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_beings_on_ranged_weapon_id" ON "beings" ("ranged_weapon_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180530050112"]]
+  [1m[35m (7.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateItems (20180530050440)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "cost" integer, "weight" float, "is_trinket" boolean, "is_tool" boolean, "is_ammunition" boolean, "is_weapon" boolean, "is_ranged" boolean, "weapon_type" varchar, "weapon_properties_id" integer, "damage_type" varchar, "primary_attack" varchar, "seondary_attack" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_61628640f8"
+FOREIGN KEY ("weapon_properties_id")
+  REFERENCES "weapon_properties" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_items_on_weapon_properties_id" ON "items" ("weapon_properties_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180530050440"]]
+  [1m[35m (7.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateSkills (20180530054745)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "skills" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "level" integer, "proficiency" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180530054745"]]
+  [1m[35m (8.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateUsers (20180530055233)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180530055233"]]
+  [1m[35m (13.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateInventoryJoinTable (20180609054702)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "beings_items" ("being_id" integer NOT NULL, "item_id" integer NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX "index_beings_items_on_being_id_and_item_id" ON "beings_items" ("being_id", "item_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180609054702"]]
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateSkillsetJoinTable (20180609054740)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "beings_skills" ("being_id" integer NOT NULL, "skill_id" integer NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX "index_beings_skills_on_being_id_and_skill_id" ON "beings_skills" ("being_id", "skill_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180609054740"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRaceJoinTable (20180609064354)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "beings_races" ("being_id" integer NOT NULL, "race_id" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_beings_races_on_being_id_and_race_id" ON "beings_races" ("being_id", "race_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180609064354"]]
+  [1m[35m (9.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-06-14 01:50:05.267121"], ["updated_at", "2018-06-14 01:50:05.267121"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.5ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Athletics"], ["level", 0], ["proficiency", "Strength"], ["created_at", "2018-06-14 01:50:26.095498"], ["updated_at", "2018-06-14 01:50:26.095498"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (1.4ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Acrobatics"], ["level", 0], ["proficiency", "Dexterity"], ["created_at", "2018-06-14 01:50:26.104379"], ["updated_at", "2018-06-14 01:50:26.104379"]]
+  [1m[35m (9.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.5ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sleight of Hand"], ["level", 0], ["proficiency", "Dexterity"], ["created_at", "2018-06-14 01:50:26.120223"], ["updated_at", "2018-06-14 01:50:26.120223"]]
+  [1m[35m (9.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Stealth"], ["level", 0], ["proficiency", "Dexterity"], ["created_at", "2018-06-14 01:50:26.136687"], ["updated_at", "2018-06-14 01:50:26.136687"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Arcana"], ["level", 0], ["proficiency", "Intelligence"], ["created_at", "2018-06-14 01:50:26.147991"], ["updated_at", "2018-06-14 01:50:26.147991"]]
+  [1m[35m (7.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "History"], ["level", 0], ["proficiency", "Intelligence"], ["created_at", "2018-06-14 01:50:26.159233"], ["updated_at", "2018-06-14 01:50:26.159233"]]
+  [1m[35m (4.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Investigation"], ["level", 0], ["proficiency", "Intelligence"], ["created_at", "2018-06-14 01:50:26.166550"], ["updated_at", "2018-06-14 01:50:26.166550"]]
+  [1m[35m (12.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Nature"], ["level", 0], ["proficiency", "Intelligence"], ["created_at", "2018-06-14 01:50:26.180887"], ["updated_at", "2018-06-14 01:50:26.180887"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Religion"], ["level", 0], ["proficiency", "Intelligence"], ["created_at", "2018-06-14 01:50:26.188314"], ["updated_at", "2018-06-14 01:50:26.188314"]]
+  [1m[35m (7.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Animal Handling"], ["level", 0], ["proficiency", "Wisdom"], ["created_at", "2018-06-14 01:50:26.198550"], ["updated_at", "2018-06-14 01:50:26.198550"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Insight"], ["level", 0], ["proficiency", "Wisdom"], ["created_at", "2018-06-14 01:50:26.209259"], ["updated_at", "2018-06-14 01:50:26.209259"]]
+  [1m[35m (7.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.4ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Medicine"], ["level", 0], ["proficiency", "Wisdom"], ["created_at", "2018-06-14 01:50:26.221171"], ["updated_at", "2018-06-14 01:50:26.221171"]]
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Perception"], ["level", 0], ["proficiency", "Wisdom"], ["created_at", "2018-06-14 01:50:26.234587"], ["updated_at", "2018-06-14 01:50:26.234587"]]
+  [1m[35m (7.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Survival"], ["level", 0], ["proficiency", "Wisdom"], ["created_at", "2018-06-14 01:50:26.247846"], ["updated_at", "2018-06-14 01:50:26.247846"]]
+  [1m[35m (7.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Deception"], ["level", 0], ["proficiency", "Charisma"], ["created_at", "2018-06-14 01:50:26.258936"], ["updated_at", "2018-06-14 01:50:26.258936"]]
+  [1m[35m (10.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.2ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Intimidation"], ["level", 0], ["proficiency", "Charisma"], ["created_at", "2018-06-14 01:50:26.273958"], ["updated_at", "2018-06-14 01:50:26.273958"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.3ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Performance"], ["level", 0], ["proficiency", "Charisma"], ["created_at", "2018-06-14 01:50:26.283078"], ["updated_at", "2018-06-14 01:50:26.283078"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSkill Create (0.2ms)[0m  [1m[32mINSERT INTO "skills" ("name", "level", "proficiency", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Persuasion"], ["level", 0], ["proficiency", "Charisma"], ["created_at", "2018-06-14 01:50:26.292996"], ["updated_at", "2018-06-14 01:50:26.292996"]]
+  [1m[35m (7.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m

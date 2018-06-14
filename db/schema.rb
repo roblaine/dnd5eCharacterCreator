@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2018_06_09_064354) do
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.integer "level"
+    t.string "proficiency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
