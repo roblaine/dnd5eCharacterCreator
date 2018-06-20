@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_020253) do
+ActiveRecord::Schema.define(version: 2018_06_20_041820) do
 
   create_table "beings", force: :cascade do |t|
     t.boolean "is_npc", null: false
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 2018_06_14_020253) do
     t.index ["being_id", "skill_id"], name: "index_beings_skills_on_being_id_and_skill_id"
   end
 
+  create_table "dmg_type", force: :cascade do |t|
+    t.string "dmg_type_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dmg_type_weapons", id: false, force: :cascade do |t|
+    t.integer "weapon_id", null: false
+    t.integer "dmg_type_id", null: false
+    t.index ["weapon_id", "dmg_type_id"], name: "index_dmg_type_weapons_on_weapon_id_and_dmg_type_id"
+  end
+
   create_table "inventories", force: :cascade do |t|
     t.string "name"
     t.string "size"
@@ -70,16 +82,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_020253) do
     t.boolean "is_trinket", null: false
     t.boolean "is_tool", null: false
     t.boolean "is_ammunition", null: false
-    t.boolean "is_weapon", null: false
-    t.boolean "is_ranged", null: false
-    t.string "weapon_type"
-    t.integer "weapon_properties_id"
-    t.string "damage_type"
-    t.string "primary_attack"
-    t.string "seondary_attack"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["weapon_properties_id"], name: "index_items_on_weapon_properties_id"
   end
 
   create_table "races", force: :cascade do |t|
@@ -102,6 +106,21 @@ ActiveRecord::Schema.define(version: 2018_06_14_020253) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "weapons", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "cost"
+    t.float "weight"
+    t.string "damage"
+    t.boolean "ranged"
+    t.string "type"
+    t.string "size"
+    t.string "damage_type"
+    t.string "primary_attack"
+    t.string "seondary_attack"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

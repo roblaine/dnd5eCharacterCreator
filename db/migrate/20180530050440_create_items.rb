@@ -10,7 +10,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       # definitions if item is tool/trinket
       t.boolean :is_trinket, null: false
       t.boolean :is_tool, null: false
-      t.boolean :is_ammunition, null: falss
+      t.boolean :is_ammunition, null: false
 
       t.timestamps
     end
