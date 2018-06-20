@@ -23,10 +23,6 @@ ActiveRecord::Schema.define(version: 2018_06_20_041820) do
     t.integer "max_hp"
     t.integer "level"
     t.integer "armor_class"
-    t.string "hit_die"
-    t.boolean "first_saving_throw"
-    t.boolean "second_saving_throw"
-    t.boolean "third_saving_throw"
     t.integer "strength"
     t.integer "dexterity"
     t.integer "constitution"
@@ -96,7 +92,7 @@ ActiveRecord::Schema.define(version: 2018_06_20_041820) do
 
   create_table "skills", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "level", null: false
+    t.integer "level"
     t.string "proficiency", null: false
   end
 

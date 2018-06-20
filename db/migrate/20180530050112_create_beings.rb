@@ -11,8 +11,8 @@ class CreateBeings < ActiveRecord::Migration[5.2]
       # set to true when dead, instead of destroying object, default false
       t.boolean :dead
 
-      # the characters survivability
-      # default some of these values, and make them not nullable.
+      # the being's survivability
+      #   default some of these values, and make them not nullable.
       t.integer :initiative
       t.integer :current_hp
       t.integer :max_hp
@@ -27,6 +27,26 @@ class CreateBeings < ActiveRecord::Migration[5.2]
       t.integer :intelligence
       t.integer :wisdom
       t.integer :charisma
+
+      # outline a being's skills
+      t.integer :athletics,
+      t.integer :acrobatics,
+      t.integer :sleight_of_hand,
+      t.integer :stealth,
+      t.integer :arcana,
+      t.integer :history,
+      t.integer :investigation,
+      t.integer :nature,
+      t.integer :religion,
+      t.integer :animal_handling,
+      t.integer :insight,
+      t.integer :medicine,
+      t.integer :perception,
+      t.integer :survival,
+      t.integer :deception,
+      t.integer :intimidation,
+      t.integer :performance,
+      t.integer :persuasion,
 
       t.integer :gold_pieces
 
