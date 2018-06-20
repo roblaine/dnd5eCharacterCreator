@@ -8,20 +8,8 @@ class CreateBeings < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :age
       t.string :motivation
-      t.references :race, foreign_key: true
-      # store as boolean instead of destroying object
+      # set to true when dead, instead of destroying object, default false
       t.boolean :dead
-
-
-
-      # TODO solved by implementing a join table, possibly.
-      t.references :languages, foreign_key: true
-
-      # TODO solved by implementing a join table
-      t.references :proficiencies, foreign_key: true
-      # skills are the individual skills such as acrobatics
-      # TODO solved by implementing a join table
-      t.references :skills, foreign_key: true
 
       # the characters survivability
       # default some of these values, and make them not nullable.
@@ -49,10 +37,7 @@ class CreateBeings < ActiveRecord::Migration[5.2]
       # items and weapons are stroed in an inventory which stores multiple items
       # this can be easily trasnferred to other beings
       t.references :inventory, foreign_key: true
-      # TODO solved by implementing a join table between characters & weapons
-      t.references :main_weapon, foreign_key: true
-      t.references :secondary_weapon, foreign_key: true
-      t.references :ranged_weapon, foreign_key: true
+
       t.integer :gold_pieces
 
       t.timestamps

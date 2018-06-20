@@ -10,18 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_09_064354) do
+ActiveRecord::Schema.define(version: 2018_06_14_020253) do
 
   create_table "beings", force: :cascade do |t|
-    t.boolean "is_npc"
+    t.boolean "is_npc", null: false
     t.string "name"
     t.integer "age"
     t.string "motivation"
-    t.integer "race_id"
     t.boolean "dead"
-    t.integer "languages_id"
-    t.integer "proficiencies_id"
-    t.integer "skills_id"
     t.integer "initiative"
     t.integer "current_hp"
     t.integer "max_hp"
@@ -37,27 +33,11 @@ ActiveRecord::Schema.define(version: 2018_06_09_064354) do
     t.integer "intelligence"
     t.integer "wisdom"
     t.integer "charisma"
-    t.integer "backpack_id"
-    t.integer "main_weapon_id"
-    t.integer "secondary_weapon_id"
-    t.integer "ranged_weapon_id"
+    t.integer "inventory_id"
     t.integer "gold_pieces"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["backpack_id"], name: "index_beings_on_backpack_id"
-    t.index ["languages_id"], name: "index_beings_on_languages_id"
-    t.index ["main_weapon_id"], name: "index_beings_on_main_weapon_id"
-    t.index ["proficiencies_id"], name: "index_beings_on_proficiencies_id"
-    t.index ["race_id"], name: "index_beings_on_race_id"
-    t.index ["ranged_weapon_id"], name: "index_beings_on_ranged_weapon_id"
-    t.index ["secondary_weapon_id"], name: "index_beings_on_secondary_weapon_id"
-    t.index ["skills_id"], name: "index_beings_on_skills_id"
-  end
-
-  create_table "beings_items", id: false, force: :cascade do |t|
-    t.integer "being_id", null: false
-    t.integer "item_id", null: false
-    t.index ["being_id", "item_id"], name: "index_beings_items_on_being_id_and_item_id"
+    t.index ["inventory_id"], name: "index_beings_on_inventory_id"
   end
 
   create_table "beings_races", id: false, force: :cascade do |t|
@@ -72,15 +52,28 @@ ActiveRecord::Schema.define(version: 2018_06_09_064354) do
     t.index ["being_id", "skill_id"], name: "index_beings_skills_on_being_id_and_skill_id"
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "inventories", force: :cascade do |t|
     t.string "name"
+    t.string "size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventory_items", id: false, force: :cascade do |t|
+    t.integer "inventory_id", null: false
+    t.integer "item_id", null: false
+    t.index ["inventory_id", "item_id"], name: "index_inventory_items_on_inventory_id_and_item_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
     t.integer "cost"
     t.float "weight"
-    t.boolean "is_trinket"
-    t.boolean "is_tool"
-    t.boolean "is_ammunition"
-    t.boolean "is_weapon"
-    t.boolean "is_ranged"
+    t.boolean "is_trinket", null: false
+    t.boolean "is_tool", null: false
+    t.boolean "is_ammunition", null: false
+    t.boolean "is_weapon", null: false
+    t.boolean "is_ranged", null: false
     t.string "weapon_type"
     t.integer "weapon_properties_id"
     t.string "damage_type"
@@ -106,8 +99,8 @@ ActiveRecord::Schema.define(version: 2018_06_09_064354) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
