@@ -29,6 +29,24 @@ ActiveRecord::Schema.define(version: 2018_06_20_041820) do
     t.integer "intelligence"
     t.integer "wisdom"
     t.integer "charisma"
+    t.integer "athletics"
+    t.integer "acrobatics"
+    t.integer "sleight_of_hand"
+    t.integer "stealth"
+    t.integer "arcana"
+    t.integer "history"
+    t.integer "investigation"
+    t.integer "nature"
+    t.integer "religion"
+    t.integer "animal_handling"
+    t.integer "insight"
+    t.integer "medicine"
+    t.integer "perception"
+    t.integer "survival"
+    t.integer "deception"
+    t.integer "intimidation"
+    t.integer "performance"
+    t.integer "persuasion"
     t.integer "gold_pieces"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -92,7 +110,6 @@ ActiveRecord::Schema.define(version: 2018_06_20_041820) do
 
   create_table "skills", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "level"
     t.string "proficiency", null: false
   end
 
