@@ -21,7 +21,9 @@ Being.create(
   intelligence: 10,
   wisdom: 11,
   charisma: 14,
-  gold_pieces: 2500
+  gold_pieces: 2500,
+  created_at: Time.now,
+  updated_at: Time.now
 )
 
 # Seed the db with all of the potential skills that a character can have

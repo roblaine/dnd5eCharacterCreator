@@ -33,11 +33,9 @@ ActiveRecord::Schema.define(version: 2018_06_14_020253) do
     t.integer "intelligence"
     t.integer "wisdom"
     t.integer "charisma"
-    t.integer "inventory_id"
     t.integer "gold_pieces"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["inventory_id"], name: "index_beings_on_inventory_id"
   end
 
   create_table "beings_races", id: false, force: :cascade do |t|

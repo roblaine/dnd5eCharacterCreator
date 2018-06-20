@@ -10,20 +10,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       # definitions if item is tool/trinket
       t.boolean :is_trinket, null: false
       t.boolean :is_tool, null: false
-      # definitions for if this item is a weapon
-      t.boolean :is_ammunition, null: false
-      t.boolean :is_weapon, null: false
-      t.boolean :is_ranged, null: false
-
-      # outline the category of is_weapon
-      t.string :weapon_type
-      # reference the table for weapon properites.
-      # TODO solved by implementing a join table
-      t.references :weapon_properties, foreign_key: true
-      # eg bludgeoning/slashing/piercing
-      t.string :damage_type
-      t.string :primary_attack
-      t.string :seondary_attack
+      t.boolean :is_ammunition, null: falss
 
       t.timestamps
     end

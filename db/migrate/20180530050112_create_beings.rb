@@ -34,10 +34,6 @@ class CreateBeings < ActiveRecord::Migration[5.2]
       t.integer :wisdom
       t.integer :charisma
 
-      # items and weapons are stroed in an inventory which stores multiple items
-      # this can be easily trasnferred to other beings
-      t.references :inventory, foreign_key: true
-
       t.integer :gold_pieces
 
       t.timestamps
