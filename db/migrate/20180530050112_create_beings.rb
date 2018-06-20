@@ -18,12 +18,6 @@ class CreateBeings < ActiveRecord::Migration[5.2]
       t.integer :max_hp
       t.integer :level
       t.integer :armor_class
-      # die should maybe be it's own model and I should reference it here
-      t.string :hit_die
-      # default to false
-      t.boolean :first_saving_throw
-      t.boolean :second_saving_throw
-      t.boolean :third_saving_throw
 
       # outline the ability scores
       # make sure that these cannot be null, maybe even default to 1
