@@ -80,3 +80,4 @@ items.each do |i|
   Item.create(:name => i[0], :cost => i[1], :weight => i[2], :is_trinket => i[3],
     :is_tool => i[4], :is_ammunition => i[5])
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
