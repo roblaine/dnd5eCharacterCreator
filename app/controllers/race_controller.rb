@@ -1,2 +1,2 @@
-class RaceController < ApplicationController
+class RaceController < ApiController
 end

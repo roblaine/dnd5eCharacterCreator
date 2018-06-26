@@ -1,2 +1,2 @@
-class BeingController < ApplicationController
+class BeingController < ApiController
 end

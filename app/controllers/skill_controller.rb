@@ -1,2 +1,2 @@
-class SkillController < ApplicationController
+class SkillController < ApiController
 end

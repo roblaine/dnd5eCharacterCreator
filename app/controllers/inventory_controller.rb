@@ -1,4 +1,4 @@
-class InventoryController < ApplicationController
+class InventoryController < ApiController
   def index
 
   end
