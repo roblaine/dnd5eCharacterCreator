@@ -1,0 +1,80 @@
+# describe test data for the beings model:
+
+non_npc_one:
+  is_npc:
+  name: "Johnny Bravo"
+  age:
+  motivation:
+  dead:
+  initiative:
+  current_hp:
+  max_hp:
+  level:
+  armor_class:
+  # outline the ability scores:
+  strength:
+  dexterity:
+  constitution:
+  intelligence:
+  wisdom:
+  charisma:
+  # outline a being's skills:
+  athletics:
+  acrobatics:
+  sleight_of_hand:
+  stealth:
+  arcana:
+  history:
+  investigation:
+  nature:
+  religion:
+  animal_handling:
+  insight:
+  medicine:
+  perception:
+  survival:
+  deception:
+  intimidation:
+  performance:
+  persuasion:
+  gold_pieces:
+
+non_npc_two:
+  is_npc:
+  name:
+  age:
+  motivation:
+  dead:
+  # the being's survivability:
+  initiative:
+  current_hp:
+  max_hp:
+  level:
+  armor_class:
+  # outline the ability scores:
+  strength:
+  dexterity:
+  constitution:
+  intelligence:
+  wisdom:
+  charisma:
+  # outline a being's skills:
+  athletics:
+  acrobatics:
+  sleight_of_hand:
+  stealth:
+  arcana:
+  history:
+  investigation:
+  nature:
+  religion:
+  animal_handling:
+  insight:
+  medicine:
+  perception:
+  survival:
+  deception:
+  intimidation:
+  performance:
+  persuasion:
+  gold_pieces:
