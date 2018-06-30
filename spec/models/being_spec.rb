@@ -3,7 +3,24 @@ require 'rails_helper'
 RSpec.describe Being, type: :model do
   fixtures :beings
 
-  Being.columns_hash is_expected.to include("name")
+  it { is_expected.to include("name") }
+  it { Being.columns_hash is_expected.to include("age") }
+  it { Being.columns_hash is_expected.to include("initiative") }
+  it { Being.columns_hash is_expected.to include("strength") }
+  it { Being.columns_hash is_expected.to include("wisdom") }
+  it { Being.columns_hash is_expected.to include("intelligence") }
+  it { Being.columns_hash is_expected.to include("charisma") }
+  it { Being.columns_hash is_expected.to include("") }
+  it { Being.columns_hash is_expected.to include("") }
+  it { Being.columns_hash is_expected.to include("") }
+  it { Being.columns_hash is_expected.to include("") }
+  it { Being.columns_hash is_expected.to include("") }
+  it { Being.columns_hash is_expected.to include("") }
+  it { Being.columns_hash is_expected.to include("") }
+  it { Being.columns_hash is_expected.to include("") }
+  it { Being.columns_hash is_expected.to include("") }
+  it { Being.columns_hash is_expected.to include("") }
+  it { Being.columns_hash is_expected.to include("") }
 
   context "is an npc" do
     it "should have an npc flag that is set to true" do
