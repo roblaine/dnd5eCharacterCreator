@@ -1,6 +1,6 @@
 axe:
   name: "Great Axe"
-  superclass: Melee_Weapon
+  superclass: Weapon
   class: "Martial"
   range: ""
   damage: "1d12"
@@ -12,7 +12,7 @@ axe:
 
 bow:
   name: ""
-  superclass: Ranged_Weapon
+  superclass: Weapon
   class: ""
   range: ""
   damage: ""
@@ -24,7 +24,7 @@ bow:
 
 halberd:
     name: ""
-    superclass: Melee_Weapon
+    superclass: Weapon
     class: ""
     range: ""
     damage: ""
