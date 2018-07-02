@@ -19,14 +19,3 @@ halberd:
     cost:
     weight_lbs:
     silvered: false
-
-bow:
-  name: Bow
-  class:
-  range:
-  damage:
-  damage_type:
-  properties: []
-  cost:
-  weight_lbs:
-  silvered: false

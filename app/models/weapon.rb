@@ -1,2 +1,2 @@
-class Weapon < ApplicationRecord
+class Weapon < Item
 end
