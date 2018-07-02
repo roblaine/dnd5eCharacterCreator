@@ -2,9 +2,9 @@
 
 npc:
   is_npc: true
-  name: "Johnny Bravo"
+  name: Johnny Bravo
   age: 24
-  motivation: "How you doin'?"
+  motivation: How you doin'?
   dead: false
   initiative: 12
   current_hp: 20
@@ -41,9 +41,9 @@ npc:
 
 non_npc:
   is_npc: false
-  name: "Alfonso Coolsaus"
+  name: Alfonso Coolsaus
   age: 22
-  motivation: "Finding the true power"
+  motivation: Finding the true power
   dead: false
   # the being's survivability:
   initiative: 12

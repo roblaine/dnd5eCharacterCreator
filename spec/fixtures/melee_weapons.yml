@@ -10,18 +10,6 @@ axe:
   weight_lbs: 7
   silvered: false
 
-bow:
-  name: ""
-  superclass: Weapon
-  class: ""
-  range: ""
-  damage: ""
-  damage_type: ""
-  properties: [""]
-  cost: ""
-  weight_lbs:
-  silvered: false
-
 halberd:
     name: ""
     superclass: Weapon

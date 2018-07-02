@@ -1,0 +1,11 @@
+bow:
+  name: ""
+  superclass: Weapon
+  class: ""
+  range: ""
+  damage: ""
+  damage_type: ""
+  properties: [""]
+  cost: ""
+  weight_lbs:
+  silvered: false
