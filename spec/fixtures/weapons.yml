@@ -9,3 +9,27 @@ axe:
   cost: "30 gp"
   weight_lbs: 7
   silvered: false
+
+bow:
+  name: ""
+  superclass: Ranged_Weapon
+  class: ""
+  range: ""
+  damage: ""
+  damage_type: ""
+  properties: [""]
+  cost: ""
+  weight_lbs:
+  silvered: false
+
+halberd:
+    name: ""
+    superclass: Melee_Weapon
+    class: ""
+    range: ""
+    damage: ""
+    damage_type: ""
+    properties: [""]
+    cost: ""
+    weight_lbs:
+    silvered: false
