@@ -1,2 +1,0 @@
-class BeingController < ApiController
-end

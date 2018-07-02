@@ -1,2 +1,0 @@
-class RaceController < ApiController
-end
