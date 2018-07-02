@@ -1,0 +1,2 @@
+class BeingsController < ApiController
+end
