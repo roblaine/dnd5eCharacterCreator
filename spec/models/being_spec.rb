@@ -11,16 +11,14 @@ RSpec.describe Being, type: :model do
     end
 
     # define all of the available attributes which we want to test the validity of
-    attributes = [
+    [
       'name', 'age', 'initiative', 'armor_class', 'dead', 'motivation', 'current_hp',
       'max_hp', 'level',
       'strength', 'dexterity', 'wisdom', 'intelligence', 'constitution', 'charisma',
       'athletics', 'acrobatics', 'sleight_of_hand', 'stealth', 'arcana', 'history',
       'investigation', 'nature', 'religion', 'animal_handling', 'insight', 'medicine',
       'perception', 'survival', 'deception', 'intimidation', 'performance', 'persuasion'
-    ]
-
-    attributes.each do |a|
+    ].each do |a|
       it "is not valid without a #{a} score" do
         b = beings(:non_npc)
         b[a] = nil
