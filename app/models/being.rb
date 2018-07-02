@@ -10,5 +10,4 @@ class Being < ApplicationRecord
   # belongs_to :secondary_weapon
   # belongs_to :ranged_weapon
 
-  # add validations
 end

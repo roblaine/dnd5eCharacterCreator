@@ -1,50 +1,47 @@
+# how atomic should test cases be? Do i need to test for literally every
+#   possible field in the model?
 require 'rails_helper'
 
 RSpec.describe Being, type: :model do
   fixtures :beings
 
-  it { is_expected.to include("name") }
-  it { Being.columns_hash is_expected.to include("age") }
-  it { Being.columns_hash is_expected.to include("initiative") }
-  it { Being.columns_hash is_expected.to include("strength") }
-  it { Being.columns_hash is_expected.to include("wisdom") }
-  it { Being.columns_hash is_expected.to include("intelligence") }
-  it { Being.columns_hash is_expected.to include("charisma") }
-  it { Being.columns_hash is_expected.to include("") }
-  it { Being.columns_hash is_expected.to include("") }
-  it { Being.columns_hash is_expected.to include("") }
-  it { Being.columns_hash is_expected.to include("") }
-  it { Being.columns_hash is_expected.to include("") }
-  it { Being.columns_hash is_expected.to include("") }
-  it { Being.columns_hash is_expected.to include("") }
-  it { Being.columns_hash is_expected.to include("") }
-  it { Being.columns_hash is_expected.to include("") }
-  it { Being.columns_hash is_expected.to include("") }
-  it { Being.columns_hash is_expected.to include("") }
+  context "is not an npc" do
+    it "is valid only with all valid attributes" do
+      expect(beings(:non_npc)).to be_valid
+    end
+
+    it "is not valid without a name"
+    it "is not valid without an age"
+    it "is not valid without an initiative"
+  end
 
   context "is an npc" do
-    it "should have an npc flag that is set to true" do
-      n = beings(:npc_one)
-      expect(n.is_npc).to eq true
+    it "is valid only with all valid attributes" do
+      expect(beings(:npc)).to be_valid
     end
+
+    # npcs may be created without any of the following and still be valid
+    it "is valid without a name"
+    it "is valid without an age"
+
+    it "is valid without a motivation" do
+      b = beings(:npc)
+      b.motivation = nil
+      expect(b).to be_valid
+    end
+
+    it "is valid without a strength score"
+    it "is valid without a dexterity score"
+    it "is valid without a constitution score"
+    it "is valid without a intelligence score"
+    it "is valid without a wisdom score"
+    it "is valid without a charisma score"
   end
 
-  context "is not an npc" do
-    it "should have an npc flag that is set to false" do
-      n = beings(:non_npc)
-      expect(n.is_npc).to eq false
-    end
-  end
-
-  context "either npc or non_npc" do
-    it "should have a name of type string" do
-      n = beings(:npc_one)
-      expect(n.name.class).to eq String
-    end
-
-    it "should have have a field for strength" do
-      n = beings(:npc_one)
-      # expect(n.)
-    end
+  # you might just be really poor :(
+  it "is valid without any gold pieces (gp)" do
+    b = beings(:non_npc)
+    b.gold_pieces = 0
+    expect(b).to be_valid
   end
 end

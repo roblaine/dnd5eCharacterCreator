@@ -1,6 +1,6 @@
 # describe test data for the beings model:
 
-npc_one:
+npc:
   is_npc: true
   name: "Johnny Bravo"
   age: 24
