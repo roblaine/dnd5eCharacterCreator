@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_063927) do
+ActiveRecord::Schema.define(version: 2018_07_04_040249) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -121,14 +121,14 @@ ActiveRecord::Schema.define(version: 2018_07_03_063927) do
     t.boolean "is_trinket"
     t.boolean "is_tool"
     t.boolean "is_ammunition"
-    t.string "type"
-    t.string "class"
+    t.string "weapon_class"
     t.string "range"
     t.string "damage"
     t.string "damage_type"
     t.string "properties"
     t.float "weight_lbs"
     t.boolean "silvered"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
