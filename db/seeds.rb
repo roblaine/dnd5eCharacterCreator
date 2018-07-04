@@ -44,39 +44,58 @@ Being.create(
   updated_at: Time.now
 )
 
-# Seed the db with all of the potential skills that a being can have and their proficiencies
-skill_list = [
-  [ 'Athletics', 'Strength' ],
-  [ 'Acrobatics', 'Dexterity' ],
-  [ 'Sleight of Hand', 'Dexterity' ],
-  [ 'Stealth', 'Dexterity' ],
-  [ 'Arcana', 'Intelligence' ],
-  [ 'History', 'Intelligence' ],
-  [ 'Investigation', 'Intelligence' ],
-  [ 'Nature', 'Intelligence' ],
-  [ 'Religion', 'Intelligence' ],
-  [ 'Animal Handling', 'Wisdom' ],
-  [ 'Insight', 'Wisdom' ],
-  [ 'Medicine', 'Wisdom' ],
-  [ 'Perception', 'Wisdom' ],
-  [ 'Survival', 'Wisdom' ],
-  [ 'Deception', 'Charisma' ],
-  [ 'Intimidation', 'Charisma' ],
-  [ 'Performance', 'Charisma' ],
-  [ 'Persuasion', 'Charisma' ],
-]
+# add some weapons to the db
+Weapon.create(
+  name: "Great Axe",
+  type: "MeleeWeapon",
+  weapon_class: "Martial",
+  range: 0,
+  damage: "1d12",
+  size: "Large",
+  damage_type: "Slashing",
+  properties: "Heavy, Two-handed",
+  cost: 30,
+  weight_lbs: 7,
+  silvered: false,
+  created_at: Time.now,
+  updated_at: Time.now
+)
 
-skill_list.each do |s|
-  Skill.create(:name => s[0], :proficiency => s[1])
-end
+# Seed the db with all of the potential skills that a being can have and their proficiencies
+# skill_list = [
+#   [ 'Athletics', 'Strength' ],
+#   [ 'Acrobatics', 'Dexterity' ],
+#   [ 'Sleight of Hand', 'Dexterity' ],
+#   [ 'Stealth', 'Dexterity' ],
+#   [ 'Arcana', 'Intelligence' ],
+#   [ 'History', 'Intelligence' ],
+#   [ 'Investigation', 'Intelligence' ],
+#   [ 'Nature', 'Intelligence' ],
+#   [ 'Religion', 'Intelligence' ],
+#   [ 'Animal Handling', 'Wisdom' ],
+#   [ 'Insight', 'Wisdom' ],
+#   [ 'Medicine', 'Wisdom' ],
+#   [ 'Perception', 'Wisdom' ],
+#   [ 'Survival', 'Wisdom' ],
+#   [ 'Deception', 'Charisma' ],
+#   [ 'Intimidation', 'Charisma' ],
+#   [ 'Performance', 'Charisma' ],
+#   [ 'Persuasion', 'Charisma' ],
+# ]
+#
+# skill_list.each do |s|
+#   Skill.create(:name => s[0], :proficiency => s[1])
+# end
 
 # add some items to the db
-items = [
-  [ 'Medicine', 3, 0.3, false, false, false ],
-  [ 'Bullet', 1, 0.25, false, false, false ]
-]
+# items = [
+#   [ 'Medicine', 3, 0.3, false, false, false ],
+#   [ 'Bullet', 1, 0.25, false, false, false ]
+# ]
+#
+# items.each do |i|
+#   Item.create(:name => i[0], :cost => i[1], :weight => i[2], :is_trinket => i[3],
+#     :is_tool => i[4], :is_ammunition => i[5])
+# end
 
-items.each do |i|
-  Item.create(:name => i[0], :cost => i[1], :weight => i[2], :is_trinket => i[3],
-    :is_tool => i[4], :is_ammunition => i[5])
-end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

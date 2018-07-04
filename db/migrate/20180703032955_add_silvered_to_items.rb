@@ -1,0 +1,5 @@
+class AddSilveredToItems < ActiveRecord::Migration[5.2]
+  def change
+    add_column :items, :silvered, :boolean
+  end
+end
