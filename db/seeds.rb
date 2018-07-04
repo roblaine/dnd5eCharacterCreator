@@ -45,39 +45,40 @@ Being.create(
 )
 
 # Seed the db with all of the potential skills that a being can have and their proficiencies
-skill_list = [
-  [ 'Athletics', 'Strength' ],
-  [ 'Acrobatics', 'Dexterity' ],
-  [ 'Sleight of Hand', 'Dexterity' ],
-  [ 'Stealth', 'Dexterity' ],
-  [ 'Arcana', 'Intelligence' ],
-  [ 'History', 'Intelligence' ],
-  [ 'Investigation', 'Intelligence' ],
-  [ 'Nature', 'Intelligence' ],
-  [ 'Religion', 'Intelligence' ],
-  [ 'Animal Handling', 'Wisdom' ],
-  [ 'Insight', 'Wisdom' ],
-  [ 'Medicine', 'Wisdom' ],
-  [ 'Perception', 'Wisdom' ],
-  [ 'Survival', 'Wisdom' ],
-  [ 'Deception', 'Charisma' ],
-  [ 'Intimidation', 'Charisma' ],
-  [ 'Performance', 'Charisma' ],
-  [ 'Persuasion', 'Charisma' ],
-]
-
-skill_list.each do |s|
-  Skill.create(:name => s[0], :proficiency => s[1])
-end
+# skill_list = [
+#   [ 'Athletics', 'Strength' ],
+#   [ 'Acrobatics', 'Dexterity' ],
+#   [ 'Sleight of Hand', 'Dexterity' ],
+#   [ 'Stealth', 'Dexterity' ],
+#   [ 'Arcana', 'Intelligence' ],
+#   [ 'History', 'Intelligence' ],
+#   [ 'Investigation', 'Intelligence' ],
+#   [ 'Nature', 'Intelligence' ],
+#   [ 'Religion', 'Intelligence' ],
+#   [ 'Animal Handling', 'Wisdom' ],
+#   [ 'Insight', 'Wisdom' ],
+#   [ 'Medicine', 'Wisdom' ],
+#   [ 'Perception', 'Wisdom' ],
+#   [ 'Survival', 'Wisdom' ],
+#   [ 'Deception', 'Charisma' ],
+#   [ 'Intimidation', 'Charisma' ],
+#   [ 'Performance', 'Charisma' ],
+#   [ 'Persuasion', 'Charisma' ],
+# ]
+#
+# skill_list.each do |s|
+#   Skill.create(:name => s[0], :proficiency => s[1])
+# end
 
 # add some items to the db
-items = [
-  [ 'Medicine', 3, 0.3, false, false, false ],
-  [ 'Bullet', 1, 0.25, false, false, false ]
-]
+# items = [
+#   [ 'Medicine', 3, 0.3, false, false, false ],
+#   [ 'Bullet', 1, 0.25, false, false, false ]
+# ]
+#
+# items.each do |i|
+#   Item.create(:name => i[0], :cost => i[1], :weight => i[2], :is_trinket => i[3],
+#     :is_tool => i[4], :is_ammunition => i[5])
+# end
 
-items.each do |i|
-  Item.create(:name => i[0], :cost => i[1], :weight => i[2], :is_trinket => i[3],
-    :is_tool => i[4], :is_ammunition => i[5])
-end
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

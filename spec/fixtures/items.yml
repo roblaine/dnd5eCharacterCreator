@@ -1,7 +1,11 @@
 axe:
   name: Great Axe
+  is_tool: false
+  is_trinket: false
+  is_ammunition: false
+  type: MeleeWeapon
   class: Martial
-  range:
+  range: 0
   damage: 1d12
   damage_type: Slashing
   properties: [Heavy, Two-handed]
@@ -13,9 +17,22 @@ halberd:
     name:
     class:
     range:
+    type: MeleeWeapon
     damage:
     damage_type:
     properties: []
     cost:
     weight_lbs:
     silvered: false
+
+bow:
+  name: Bow
+  class:
+  type: RangedWeapon
+  range:
+  damage:
+  damage_type:
+  properties: []
+  cost:
+  weight_lbs:
+  silvered: false
