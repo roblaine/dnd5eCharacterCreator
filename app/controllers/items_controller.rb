@@ -1,4 +1,4 @@
-class ItemsController < ApiController
+class ItemsController < ApplicationController
 
   def index
     @items = Item.all
@@ -28,6 +28,9 @@ class ItemsController < ApiController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      # params.require(:item).permit()
+      params.require(:item).permit(
+        :name, :cost, :weight_lbs, :type, :range, :is_ammunition, :is_trinket,
+        :is_tool, :class, :properties[], :silvered
+      )
     end
 end
