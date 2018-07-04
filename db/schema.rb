@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_20_041820) do
+ActiveRecord::Schema.define(version: 2018_07_04_050846) do
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.integer "resource_id"
+    t.string "author_type"
+    t.integer "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
 
   create_table "beings", force: :cascade do |t|
     t.boolean "is_npc", null: false
@@ -58,24 +89,6 @@ ActiveRecord::Schema.define(version: 2018_06_20_041820) do
     t.index ["being_id", "race_id"], name: "index_beings_races_on_being_id_and_race_id"
   end
 
-  create_table "beings_skills", id: false, force: :cascade do |t|
-    t.integer "being_id", null: false
-    t.integer "skill_id", null: false
-    t.index ["being_id", "skill_id"], name: "index_beings_skills_on_being_id_and_skill_id"
-  end
-
-  create_table "dmg_type", force: :cascade do |t|
-    t.string "dmg_type_name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "dmg_type_weapons", id: false, force: :cascade do |t|
-    t.integer "weapon_id", null: false
-    t.integer "dmg_type_id", null: false
-    t.index ["weapon_id", "dmg_type_id"], name: "index_dmg_type_weapons_on_weapon_id_and_dmg_type_id"
-  end
-
   create_table "inventories", force: :cascade do |t|
     t.string "name"
     t.string "size"
@@ -92,25 +105,10 @@ ActiveRecord::Schema.define(version: 2018_06_20_041820) do
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.integer "cost"
-    t.float "weight"
-    t.boolean "is_trinket", null: false
-    t.boolean "is_tool", null: false
-    t.boolean "is_ammunition", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "races", force: :cascade do |t|
-    t.string "name"
-    t.integer "life_span"
-    t.integer "move_distance"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "skills", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "proficiency", null: false
+    t.float "weight_lbs"
+    t.string "type"
   end
 
   create_table "users", force: :cascade do |t|
@@ -118,22 +116,24 @@ ActiveRecord::Schema.define(version: 2018_06_20_041820) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "weapons", force: :cascade do |t|
     t.string "name", null: false
+    t.string "type", null: false
     t.integer "cost"
-    t.float "weight"
+    t.float "weight_lbs"
     t.string "damage"
-    t.boolean "ranged"
-    t.string "type"
     t.string "size"
+    t.string "weapon_class"
     t.string "damage_type"
-    t.string "primary_attack"
-    t.string "seondary_attack"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "properties"
+    t.boolean "silvered"
+    t.integer "range"
   end
 
 end
