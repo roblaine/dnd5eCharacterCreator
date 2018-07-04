@@ -1,8 +1,5 @@
 axe:
   name: Great Axe
-  is_tool: false
-  is_trinket: false
-  is_ammunition: false
   type: MeleeWeapon
   weapon_class: Martial
   range: 0
@@ -15,12 +12,9 @@ axe:
 
 halberd:
     name: Halberd
-    is_tool: false
-    is_trinket: false
-    is_ammunition: false
     weapon_class:
     range:
-    type:
+    type: MeleeWeapon
     damage:
     damage_type:
     properties: []
@@ -30,9 +24,6 @@ halberd:
 
 bow:
   name: Bow
-  is_tool: false
-  is_trinket: false
-  is_ammunition: false
   weapon_class:
   type: RangedWeapon
   range:
@@ -43,13 +34,10 @@ bow:
   weight_lbs:
   silvered: false
 
-cross:
-  name:
-  is_tool: false
-  is_trinket: false
-  is_ammunition: false
+bolt:
+  name: Bolt
   weapon_class:
-  type:
+  type: Ammunition
   range:
   damage:
   damage_type:
