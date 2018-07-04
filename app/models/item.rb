@@ -1,2 +1,2 @@
-class Item < ApiController
+class Item < ApplicationRecords
 end

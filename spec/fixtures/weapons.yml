@@ -36,7 +36,7 @@ bow:
 
 bolt:
   name: Bolt
-  weapon_class:
+  weapon_class: nil
   type: Ammunition
   range:
   damage:

@@ -1,2 +1,2 @@
-class Weapon < ApiController
+class Weapon < ApplicationRecord
 end
