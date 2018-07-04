@@ -1,3 +1,2 @@
-class Item < ApplicationRecord
-  
+class Item < ApiController
 end

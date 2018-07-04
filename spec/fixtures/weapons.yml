@@ -4,7 +4,7 @@ axe:
   is_trinket: false
   is_ammunition: false
   type: MeleeWeapon
-  class: Martial
+  weapon_class: Martial
   range: 0
   damage: 1d12
   damage_type: Slashing
@@ -14,10 +14,13 @@ axe:
   silvered: false
 
 halberd:
-    name:
-    class:
+    name: Halberd
+    is_tool: false
+    is_trinket: false
+    is_ammunition: false
+    weapon_class:
     range:
-    type: MeleeWeapon
+    type:
     damage:
     damage_type:
     properties: []
@@ -27,8 +30,26 @@ halberd:
 
 bow:
   name: Bow
-  class:
+  is_tool: false
+  is_trinket: false
+  is_ammunition: false
+  weapon_class:
   type: RangedWeapon
+  range:
+  damage:
+  damage_type:
+  properties: []
+  cost:
+  weight_lbs:
+  silvered: false
+
+cross:
+  name:
+  is_tool: false
+  is_trinket: false
+  is_ammunition: false
+  weapon_class:
+  type:
   range:
   damage:
   damage_type:

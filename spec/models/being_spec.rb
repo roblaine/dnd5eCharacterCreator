@@ -26,7 +26,11 @@ RSpec.describe Being, type: :model do
       end
     end
 
-    # it "is not valid without an acrobatics score"
+    it "should not be valid with a nil dead value" do
+      b = beings(:npc)
+      b.dead = nil
+      expect(b).to_not be_valid
+    end
 
     # you might just be really poor :(
     it "is valid without any gold pieces (gp)" do
@@ -34,6 +38,7 @@ RSpec.describe Being, type: :model do
       b.gold_pieces = 0
       expect(b).to be_valid
     end
+
 
   end # end of non npc
 
@@ -58,7 +63,7 @@ RSpec.describe Being, type: :model do
       end
     end
 
-    it "should not be valid with an invalid dead value" do
+    it "should not be valid with a nil dead value" do
       b = beings(:npc)
       b.dead = nil
       expect(b).to_not be_valid

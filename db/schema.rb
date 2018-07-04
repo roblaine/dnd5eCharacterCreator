@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_040249) do
+ActiveRecord::Schema.define(version: 2018_07_04_042335) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -89,18 +89,6 @@ ActiveRecord::Schema.define(version: 2018_07_04_040249) do
     t.index ["being_id", "race_id"], name: "index_beings_races_on_being_id_and_race_id"
   end
 
-  create_table "dmg_type", force: :cascade do |t|
-    t.string "dmg_type_name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "dmg_type_weapons", id: false, force: :cascade do |t|
-    t.integer "weapon_id", null: false
-    t.integer "dmg_type_id", null: false
-    t.index ["weapon_id", "dmg_type_id"], name: "index_dmg_type_weapons_on_weapon_id_and_dmg_type_id"
-  end
-
   create_table "inventories", force: :cascade do |t|
     t.string "name"
     t.string "size"
@@ -115,12 +103,14 @@ ActiveRecord::Schema.define(version: 2018_07_04_040249) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "cost"
     t.float "weight"
-    t.boolean "is_trinket"
-    t.boolean "is_tool"
-    t.boolean "is_ammunition"
+    t.boolean "is_trinket", null: false
+    t.boolean "is_tool", null: false
+    t.boolean "is_ammunition", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "weapon_class"
     t.string "range"
     t.string "damage"
@@ -129,18 +119,6 @@ ActiveRecord::Schema.define(version: 2018_07_04_040249) do
     t.float "weight_lbs"
     t.boolean "silvered"
     t.string "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "melee_weapons", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ranged_weapons", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -153,12 +131,12 @@ ActiveRecord::Schema.define(version: 2018_07_04_040249) do
 
   create_table "weapons", force: :cascade do |t|
     t.string "name", null: false
+    t.string "type", null: false
     t.integer "cost"
-    t.float "weight"
+    t.float "weight_lbs"
     t.string "damage"
-    t.boolean "ranged"
-    t.string "type"
     t.string "size"
+    t.string "weapon_class"
     t.string "damage_type"
     t.string "primary_attack"
     t.string "seondary_attack"
