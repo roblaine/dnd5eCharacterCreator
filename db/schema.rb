@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_045802) do
+ActiveRecord::Schema.define(version: 2018_07_04_050846) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -105,10 +105,10 @@ ActiveRecord::Schema.define(version: 2018_07_04_045802) do
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.integer "cost"
-    t.float "weight_lbs"
-    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "weight_lbs"
+    t.string "type"
   end
 
   create_table "users", force: :cascade do |t|
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2018_07_04_045802) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
