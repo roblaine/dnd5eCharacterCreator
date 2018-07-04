@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_042335) do
+ActiveRecord::Schema.define(version: 2018_07_04_045802) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -105,20 +105,10 @@ ActiveRecord::Schema.define(version: 2018_07_04_042335) do
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.integer "cost"
-    t.float "weight"
-    t.boolean "is_trinket", null: false
-    t.boolean "is_tool", null: false
-    t.boolean "is_ammunition", null: false
+    t.float "weight_lbs"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "weapon_class"
-    t.string "range"
-    t.string "damage"
-    t.string "damage_type"
-    t.string "properties"
-    t.float "weight_lbs"
-    t.boolean "silvered"
-    t.string "type"
   end
 
   create_table "users", force: :cascade do |t|
@@ -138,10 +128,11 @@ ActiveRecord::Schema.define(version: 2018_07_04_042335) do
     t.string "size"
     t.string "weapon_class"
     t.string "damage_type"
-    t.string "primary_attack"
-    t.string "seondary_attack"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "properties"
+    t.boolean "silvered"
+    t.integer "range"
   end
 
 end

@@ -3071,3 +3071,198 @@ Migrating to DropRangedWeaponsTable (20180704042335)
   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
   [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ModifyColumnsOnWeapons (20180704045135)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aweapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "type" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "damage" varchar DEFAULT NULL, "size" varchar DEFAULT NULL, "weapon_class" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "primary_attack" varchar DEFAULT NULL, "seondary_attack" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aweapons" ("id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","primary_attack","seondary_attack","created_at","updated_at")
+                     SELECT "id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","primary_attack","seondary_attack","created_at","updated_at" FROM "weapons"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "weapons"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "weapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "type" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "damage" varchar DEFAULT NULL, "size" varchar DEFAULT NULL, "weapon_class" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "seondary_attack" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at")
+                     SELECT "id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at" FROM "aweapons"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aweapons"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aweapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "type" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "damage" varchar DEFAULT NULL, "size" varchar DEFAULT NULL, "weapon_class" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "seondary_attack" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aweapons" ("id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at")
+                     SELECT "id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at" FROM "weapons"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "weapons"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "weapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "type" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "damage" varchar DEFAULT NULL, "size" varchar DEFAULT NULL, "weapon_class" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "seondary_attack" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "weapons" ("id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at")
+                     SELECT "id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at" FROM "aweapons"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aweapons"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ModifyColumnsOnWeapons (20180704045135)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aweapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "type" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "damage" varchar DEFAULT NULL, "size" varchar DEFAULT NULL, "weapon_class" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "primary_attack" varchar DEFAULT NULL, "seondary_attack" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aweapons" ("id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","primary_attack","seondary_attack","created_at","updated_at")
+                     SELECT "id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","primary_attack","seondary_attack","created_at","updated_at" FROM "weapons"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "weapons"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "weapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "type" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "damage" varchar DEFAULT NULL, "size" varchar DEFAULT NULL, "weapon_class" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "seondary_attack" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at")
+                     SELECT "id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at" FROM "aweapons"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aweapons"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aweapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "type" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "damage" varchar DEFAULT NULL, "size" varchar DEFAULT NULL, "weapon_class" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "seondary_attack" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "aweapons" ("id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at")
+                     SELECT "id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at" FROM "weapons"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "weapons"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "weapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "type" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "damage" varchar DEFAULT NULL, "size" varchar DEFAULT NULL, "weapon_class" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "seondary_attack" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "weapons" ("id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at")
+                     SELECT "id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at" FROM "aweapons"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aweapons"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "weapons" ADD "properties" varchar[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "weapons" ADD "silvered" boolean[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180704045135"]]
+  [1m[35m (13.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Create (1.4ms)[0m  [1m[32mINSERT INTO "beings" ("is_npc", "name", "age", "motivation", "dead", "initiative", "current_hp", "max_hp", "level", "armor_class", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "gold_pieces", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["is_npc", 1], ["name", "Charlie Orcington"], ["age", 22], ["motivation", "Hghly educated orc who was adopted by an eccentric wealthy widower"], ["dead", 0], ["initiative", 14], ["current_hp", 28], ["max_hp", 28], ["level", 4], ["armor_class", 15], ["strength", 13], ["dexterity", 9], ["constitution", 12], ["intelligence", 10], ["wisdom", 11], ["charisma", 14], ["gold_pieces", 2500], ["created_at", "2018-07-04 04:55:12.397025"], ["updated_at", "2018-07-04 04:55:12.397026"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Create (0.3ms)[0m  [1m[32mINSERT INTO "beings" ("is_npc", "name", "age", "motivation", "dead", "initiative", "current_hp", "max_hp", "level", "armor_class", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "gold_pieces", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["is_npc", 0], ["name", "Player 1"], ["age", 2], ["motivation", "A player within the game"], ["dead", 0], ["initiative", 14], ["current_hp", 28], ["max_hp", 28], ["level", 4], ["armor_class", 15], ["strength", 13], ["dexterity", 9], ["constitution", 12], ["intelligence", 10], ["wisdom", 11], ["charisma", 14], ["gold_pieces", 25], ["created_at", "2018-07-04 04:55:12.438081"], ["updated_at", "2018-07-04 04:55:12.438082"]]
+  [1m[35m (7.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddRangeToWeapons (20180704045545)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "weapons" ADD "range" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180704045545"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Create (0.6ms)[0m  [1m[32mINSERT INTO "beings" ("is_npc", "name", "age", "motivation", "dead", "initiative", "current_hp", "max_hp", "level", "armor_class", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "gold_pieces", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["is_npc", 1], ["name", "Charlie Orcington"], ["age", 22], ["motivation", "Hghly educated orc who was adopted by an eccentric wealthy widower"], ["dead", 0], ["initiative", 14], ["current_hp", 28], ["max_hp", 28], ["level", 4], ["armor_class", 15], ["strength", 13], ["dexterity", 9], ["constitution", 12], ["intelligence", 10], ["wisdom", 11], ["charisma", 14], ["gold_pieces", 2500], ["created_at", "2018-07-04 04:55:54.362868"], ["updated_at", "2018-07-04 04:55:54.362869"]]
+  [1m[35m (13.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Create (0.4ms)[0m  [1m[32mINSERT INTO "beings" ("is_npc", "name", "age", "motivation", "dead", "initiative", "current_hp", "max_hp", "level", "armor_class", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "gold_pieces", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["is_npc", 0], ["name", "Player 1"], ["age", 2], ["motivation", "A player within the game"], ["dead", 0], ["initiative", 14], ["current_hp", 28], ["max_hp", 28], ["level", 4], ["armor_class", 15], ["strength", 13], ["dexterity", 9], ["constitution", 12], ["intelligence", 10], ["wisdom", 11], ["charisma", 14], ["gold_pieces", 25], ["created_at", "2018-07-04 04:55:54.410682"], ["updated_at", "2018-07-04 04:55:54.410686"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMeleeWeapon Create (0.8ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "type", "cost", "weight_lbs", "damage", "size", "weapon_class", "damage_type", "created_at", "updated_at", "properties", "silvered", "range") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Great Axe"], ["type", "MeleeWeapon"], ["cost", 30], ["weight_lbs", 7.0], ["damage", "1d12"], ["size", "Large"], ["weapon_class", "Martial"], ["damage_type", "Slashing"], ["created_at", "2018-07-04 04:55:54.423497"], ["updated_at", "2018-07-04 04:55:54.423499"], ["properties", "Heavy, Two-handed"], ["silvered", 0], ["range", 0]]
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdminUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "admin_users" WHERE "admin_users"."email" = ? LIMIT ?[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  [1m[36mAdminUser Create (1.1ms)[0m  [1m[32mINSERT INTO "admin_users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "admin@example.com"], ["encrypted_password", "$2a$11$wAuhkbzlzyhd3VAtS6tl6u5nrvxSHqeBfdxeLJh2lTQ/Chp0/UKHS"], ["created_at", "2018-07-04 04:55:54.623490"], ["updated_at", "2018-07-04 04:55:54.623490"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mWeapon Load (0.8ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveSeondaryAttackFromWeapons (20180704045703)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aweapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "type" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "damage" varchar DEFAULT NULL, "size" varchar DEFAULT NULL, "weapon_class" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "seondary_attack" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "properties" varchar DEFAULT NULL, "silvered" boolean DEFAULT NULL, "range" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "aweapons" ("id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at","properties","silvered","range")
+                     SELECT "id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","seondary_attack","created_at","updated_at","properties","silvered","range" FROM "weapons"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "weapons"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "weapons" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "type" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "damage" varchar DEFAULT NULL, "size" varchar DEFAULT NULL, "weapon_class" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "properties" varchar DEFAULT NULL, "silvered" boolean DEFAULT NULL, "range" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "weapons" ("id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","created_at","updated_at","properties","silvered","range")
+                     SELECT "id","name","type","cost","weight_lbs","damage","size","weapon_class","damage_type","created_at","updated_at","properties","silvered","range" FROM "aweapons"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aweapons"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180704045703"]]
+  [1m[35m (12.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mWeapon Load (0.9ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveColumnsFromItems (20180704045802)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aitems" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "weight" float DEFAULT NULL, "is_trinket" boolean NOT NULL, "is_tool" boolean NOT NULL, "is_ammunition" boolean NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weapon_class" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aitems" ("id","name","cost","weight","is_trinket","is_tool","is_ammunition","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","weight","is_trinket","is_tool","is_ammunition","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "items"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "items"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "is_trinket" boolean NOT NULL, "is_tool" boolean NOT NULL, "is_ammunition" boolean NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weapon_class" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "items" ("id","name","cost","is_trinket","is_tool","is_ammunition","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","is_trinket","is_tool","is_ammunition","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "aitems"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aitems"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aitems" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "is_trinket" boolean NOT NULL, "is_tool" boolean NOT NULL, "is_ammunition" boolean NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weapon_class" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "aitems" ("id","name","cost","is_trinket","is_tool","is_ammunition","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","is_trinket","is_tool","is_ammunition","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "items"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "items"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "is_trinket" boolean NOT NULL, "is_tool" boolean NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weapon_class" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "items" ("id","name","cost","is_trinket","is_tool","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","is_trinket","is_tool","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "aitems"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aitems"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aitems" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "is_trinket" boolean NOT NULL, "is_tool" boolean NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weapon_class" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "aitems" ("id","name","cost","is_trinket","is_tool","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","is_trinket","is_tool","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "items"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "items"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "is_trinket" boolean NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weapon_class" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "items" ("id","name","cost","is_trinket","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","is_trinket","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "aitems"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "aitems"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aitems" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "is_trinket" boolean NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weapon_class" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "aitems" ("id","name","cost","is_trinket","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","is_trinket","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "items"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "items"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weapon_class" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "items" ("id","name","cost","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "aitems"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aitems"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aitems" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weapon_class" varchar DEFAULT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aitems" ("id","name","cost","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","weapon_class","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "items"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "items"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "items" ("id","name","cost","created_at","updated_at","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "aitems"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aitems"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aitems" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "range" varchar DEFAULT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aitems" ("id","name","cost","created_at","updated_at","range","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","range","damage","damage_type","properties","weight_lbs","silvered","type" FROM "items"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "items"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "items" ("id","name","cost","created_at","updated_at","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","damage","damage_type","properties","weight_lbs","silvered","type" FROM "aitems"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aitems"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aitems" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "damage" varchar DEFAULT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aitems" ("id","name","cost","created_at","updated_at","damage","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","damage","damage_type","properties","weight_lbs","silvered","type" FROM "items"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "items"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "items" ("id","name","cost","created_at","updated_at","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","damage_type","properties","weight_lbs","silvered","type" FROM "aitems"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aitems"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aitems" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "damage_type" varchar DEFAULT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aitems" ("id","name","cost","created_at","updated_at","damage_type","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","damage_type","properties","weight_lbs","silvered","type" FROM "items"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "items"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "items" ("id","name","cost","created_at","updated_at","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","properties","weight_lbs","silvered","type" FROM "aitems"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aitems"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aitems" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "properties" varchar DEFAULT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aitems" ("id","name","cost","created_at","updated_at","properties","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","properties","weight_lbs","silvered","type" FROM "items"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "items"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "items" ("id","name","cost","created_at","updated_at","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","weight_lbs","silvered","type" FROM "aitems"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aitems"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aitems" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weight_lbs" float DEFAULT NULL, "silvered" boolean DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aitems" ("id","name","cost","created_at","updated_at","weight_lbs","silvered","type")
+                     SELECT "id","name","cost","created_at","updated_at","weight_lbs","silvered","type" FROM "items"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "items"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "cost" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "weight_lbs" float DEFAULT NULL, "type" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "items" ("id","name","cost","created_at","updated_at","weight_lbs","type")
+                     SELECT "id","name","cost","created_at","updated_at","weight_lbs","type" FROM "aitems"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aitems"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180704045802"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

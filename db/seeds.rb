@@ -44,6 +44,23 @@ Being.create(
   updated_at: Time.now
 )
 
+# add some weapons to the db
+Weapon.create(
+  name: "Great Axe",
+  type: "MeleeWeapon",
+  weapon_class: "Martial",
+  range: 0,
+  damage: "1d12",
+  size: "Large",
+  damage_type: "Slashing",
+  properties: "Heavy, Two-handed",
+  cost: 30,
+  weight_lbs: 7,
+  silvered: false,
+  created_at: Time.now,
+  updated_at: Time.now
+)
+
 # Seed the db with all of the potential skills that a being can have and their proficiencies
 # skill_list = [
 #   [ 'Athletics', 'Strength' ],
