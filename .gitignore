@@ -11,7 +11,7 @@
 /tmp/
 /db/*.sqlite3
 *.sqlite3
-*.log
+/log/
 
 # Used by dotenv library to load environment variables.
 # .env
