@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :user, only: [:new, :show, :create, :destroy]
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
-  get "/items", to: "items#show"
+  # route all of our beings weapons and items paths behind host/api/
+  # eg localhost:3001/api/weapons/
+  scope '/api' do
+    resources :beings
+    resources :weapons
+    resources :items
+  end
 
-  get "/users", to: "user#show"
   # except [:index] # don't render the index page, either fix in routes or in the controller
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
