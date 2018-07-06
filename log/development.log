@@ -1136,3 +1136,16 @@ Processing by Admin::BeingsController#index as HTML
 Completed 200 OK in 115ms (Views: 109.6ms | ActiveRecord: 1.2ms)
 
 
+Started GET "/admin/beings" for 127.0.0.1 at 2018-07-06 14:42:24 +1000
+Processing by Admin::BeingsController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "beings"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mBeing Load (0.2ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (133.0ms)
+Completed 200 OK in 155ms (Views: 135.2ms | ActiveRecord: 2.3ms)
+
+
