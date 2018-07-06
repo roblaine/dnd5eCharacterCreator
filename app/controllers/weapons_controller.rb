@@ -1,4 +1,4 @@
-class WeaponsController < ApplicationController
+class WeaponsController < ApiController
 
   def index
     render json: Weapon.all
