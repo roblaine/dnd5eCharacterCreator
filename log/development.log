@@ -951,3 +951,188 @@ Processing by WeaponsController#index as HTML
 Completed 200 OK in 27ms (Views: 26.6ms | ActiveRecord: 1.6ms)
 
 
+Started GET "/admin" for 127.0.0.1 at 2018-07-06 14:37:31 +1000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/page/index.html.arb
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/page/index.html.arb (316.8ms)
+Completed 200 OK in 339ms (Views: 319.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/active_admin-24a716b2dd8e48cff446af15d2c0ca940018bad6568b0b18bf538f5be4923282.css" for 127.0.0.1 at 2018-07-06 14:37:32 +1000
+Started GET "/admin/beings" for 127.0.0.1 at 2018-07-06 14:37:38 +1000
+Processing by Admin::BeingsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "beings"[0m
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mBeing Load (0.3ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (174.0ms)
+Completed 200 OK in 188ms (Views: 179.0ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/assets/active_admin/orderable-29374dbb55b0012d78a37c614d573bb3474f0779849b478a147d0f1845ca6617.png" for 127.0.0.1 at 2018-07-06 14:37:39 +1000
+Started GET "/admin/comments" for 127.0.0.1 at 2018-07-06 14:37:44 +1000
+Processing by Admin::CommentsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."namespace" = ?[0m  [["namespace", "admin"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."namespace" = ? LIMIT ? OFFSET ?) subquery_for_count[0m  [["namespace", "admin"], ["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DISTINCT "active_admin_comments"."resource_type" FROM "active_admin_comments" ORDER BY resource_type asc[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DISTINCT "active_admin_comments"."author_type" FROM "active_admin_comments" ORDER BY author_type asc[0m
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (48.4ms)
+Completed 200 OK in 55ms (Views: 49.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/admin/admin_users" for 127.0.0.1 at 2018-07-06 14:38:10 +1000
+Processing by Admin::AdminUsersController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "admin_users" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "admin_users" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "admin_users"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "admin_users" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" ORDER BY "admin_users"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (51.9ms)
+Completed 200 OK in 57ms (Views: 53.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/admin/items" for 127.0.0.1 at 2018-07-06 14:38:12 +1000
+Processing by Admin::ItemsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "items" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (42.6ms)
+Completed 200 OK in 50ms (Views: 46.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/admin/items/new" for 127.0.0.1 at 2018-07-06 14:38:15 +1000
+Processing by Admin::ItemsController#new as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/new.html.arb
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/new.html.arb (56.2ms)
+Completed 200 OK in 73ms (Views: 61.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/admin/items" for 127.0.0.1 at 2018-07-06 14:38:40 +1000
+Processing by Admin::ItemsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZcSB5CePRPbbTl1CnH1mnL5XrzyRg6gyaqzOtr/iHoSVwVuP3s1G3thTjmsmaJ1Z4d2A6ISc13dmNvhv9Dbdrg==", "item"=>{"name"=>"Oil Lamp", "cost"=>"1", "weight_lbs"=>".5"}, "commit"=>"Create Item"}
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "cost", "created_at", "updated_at", "weight_lbs") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Oil Lamp"], ["cost", 1], ["created_at", "2018-07-06 04:38:40.298038"], ["updated_at", "2018-07-06 04:38:40.298038"], ["weight_lbs", 0.5]]
+  [1m[35m (9.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3001/admin/items/1
+Completed 302 Found in 33ms (ActiveRecord: 10.7ms)
+
+
+Started GET "/admin/items/1" for 127.0.0.1 at 2018-07-06 14:38:40 +1000
+Processing by Admin::ItemsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT  "items".* FROM "items" WHERE "items"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/show.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = ? AND "active_admin_comments"."namespace" = ?[0m  [["resource_type", "Item"], ["resource_id", 1], ["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = ? AND "active_admin_comments"."namespace" = ? LIMIT ? OFFSET ?[0m  [["resource_type", "Item"], ["resource_id", 1], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/show.html.arb (56.9ms)
+Completed 200 OK in 63ms (Views: 59.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/admin/items" for 127.0.0.1 at 2018-07-06 14:38:43 +1000
+Processing by Admin::ItemsController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "items" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "items" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "items"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "items" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT  "items".* FROM "items" ORDER BY "items"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (50.1ms)
+Completed 200 OK in 57ms (Views: 53.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/weapons" for 127.0.0.1 at 2018-07-06 14:38:49 +1000
+Processing by Admin::WeaponsController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "weapons" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "weapons" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "weapons"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "weapons" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mWeapon Load (0.3ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" ORDER BY "weapons"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (133.5ms)
+Completed 200 OK in 143ms (Views: 135.5ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/admin/weapons" for 127.0.0.1 at 2018-07-06 14:39:24 +1000
+Processing by Admin::WeaponsController#index as HTML
+  [1m[36mAdminUser Load (0.5ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "weapons" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "weapons" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "weapons"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "weapons" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mWeapon Load (0.4ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" ORDER BY "weapons"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (70.5ms)
+Completed 200 OK in 76ms (Views: 72.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/active_admin-24a716b2dd8e48cff446af15d2c0ca940018bad6568b0b18bf538f5be4923282.css" for 127.0.0.1 at 2018-07-06 14:39:24 +1000
+Started GET "/assets/active_admin/print-d33387f1de894e330984b5ae4a9ced78490aca3a83277bea0074efdca1859e29.css" for 127.0.0.1 at 2018-07-06 14:39:24 +1000
+Started GET "/assets/active_admin-e670a4b09c70a1cf0e546e3cc233273ec00d44a2fe841969cac0562998dbec41.js" for 127.0.0.1 at 2018-07-06 14:39:24 +1000
+Started GET "/assets/active_admin/orderable-29374dbb55b0012d78a37c614d573bb3474f0779849b478a147d0f1845ca6617.png" for 127.0.0.1 at 2018-07-06 14:39:25 +1000
+Started GET "/admin/weapons" for 127.0.0.1 at 2018-07-06 14:40:59 +1000
+Processing by Admin::WeaponsController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "weapons" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "weapons" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "weapons"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "weapons" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" ORDER BY "weapons"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (99.9ms)
+Completed 200 OK in 121ms (Views: 101.8ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/assets/active_admin-24a716b2dd8e48cff446af15d2c0ca940018bad6568b0b18bf538f5be4923282.css" for 127.0.0.1 at 2018-07-06 14:40:59 +1000
+Started GET "/assets/active_admin/print-d33387f1de894e330984b5ae4a9ced78490aca3a83277bea0074efdca1859e29.css" for 127.0.0.1 at 2018-07-06 14:40:59 +1000
+Started GET "/assets/active_admin-e670a4b09c70a1cf0e546e3cc233273ec00d44a2fe841969cac0562998dbec41.js" for 127.0.0.1 at 2018-07-06 14:40:59 +1000
+Started GET "/assets/active_admin/orderable-29374dbb55b0012d78a37c614d573bb3474f0779849b478a147d0f1845ca6617.png" for 127.0.0.1 at 2018-07-06 14:41:00 +1000
+Started GET "/admin/beings" for 127.0.0.1 at 2018-07-06 14:41:00 +1000
+Processing by Admin::BeingsController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "beings"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mBeing Load (0.3ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (147.1ms)
+Completed 200 OK in 160ms (Views: 151.2ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/admin/beings/2/edit" for 127.0.0.1 at 2018-07-06 14:41:10 +1000
+Processing by Admin::BeingsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBeing Load (0.4ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/edit.html.arb
+  [1m[36mCACHE Being Load (0.0ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/edit.html.arb (93.0ms)
+Completed 200 OK in 99ms (Views: 95.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/admin/beings" for 127.0.0.1 at 2018-07-06 14:41:21 +1000
+Processing by Admin::BeingsController#index as HTML
+  [1m[36mAdminUser Load (0.5ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = ? ORDER BY "admin_users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "beings"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "beings" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mBeing Load (0.2ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /home/rob/.rvm/gems/ruby-2.5.1/gems/activeadmin-1.3.0/app/views/active_admin/resource/index.html.arb (106.4ms)
+Completed 200 OK in 115ms (Views: 109.6ms | ActiveRecord: 1.2ms)
+
+
