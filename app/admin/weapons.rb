@@ -1,4 +1,7 @@
 ActiveAdmin.register Weapon do
+  permit_params :name, :type, :weapon_class, :range, :damage, :damage_type,
+  :properties, :cost, :weight_lbs, :silvered
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
