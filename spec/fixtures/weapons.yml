@@ -5,7 +5,7 @@ axe:
   range: 0
   damage: 1d12
   damage_type: Slashing
-  properties: [Heavy, Two-handed]
+  properties: Heavy, Two-handed
   cost: 30
   weight_lbs: 7
   silvered: false
@@ -17,7 +17,7 @@ halberd:
     type: MeleeWeapon
     damage:
     damage_type:
-    properties: []
+    properties:
     cost:
     weight_lbs:
     silvered: false
@@ -29,19 +29,19 @@ bow:
   range:
   damage:
   damage_type:
-  properties: []
+  properties:
   cost:
   weight_lbs:
   silvered: false
 
-bolt:
-  name: Bolt
-  weapon_class: nil
-  type: Ammunition
-  range:
-  damage:
-  damage_type:
-  properties: []
-  cost:
-  weight_lbs:
-  silvered: false
+# bolt:
+#   name: Bolt
+#   weapon_class: nil
+#   type: Ammunition
+#   range:
+#   damage:
+#   damage_type:
+#   properties:
+#   cost:
+#   weight_lbs:
+#   silvered: false

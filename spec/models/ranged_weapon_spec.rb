@@ -9,9 +9,9 @@ RSpec.describe RangedWeapon, type: :model do
     expect(w).to_not be_valid
   end
 
-  it "is invalid without a class" do
+  it "is invalid without a weapon_class" do
     w = weapons(:bow)
-    w.class = nil
+    w.weapon_class = nil
     expect(w).to_not be_valid
   end
 

@@ -13,9 +13,9 @@ RSpec.describe MeleeWeapon, type: :model do
     expect(w).to_not be_valid
   end
 
-  it "is invalid without a class" do
+  it "is invalid without a weapon_class" do
     w = weapons(:axe)
-    w.class = nil
+    w.weapon_class = nil
     expect(w).to_not be_valid
   end
 

@@ -8540,3 +8540,1031 @@
   [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
   [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$AJ6mHCut9e18vE4WLWTLIeHn9vrIAXwcoimjfKhsxfX7iPG..dBCe"], ["created_at", "2018-07-06 04:25:11.509017"], ["updated_at", "2018-07-06 04:25:11.509017"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$Uiyjo4aJtpfjwvONpfCul.0zTKkJQYBMEh/Nm/TfMpJBbNAnwMrMq"], ["created_at", "2018-07-06 04:25:11.517272"], ["updated_at", "2018-07-06 04:25:11.517272"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$QPWfYoITEOTMFXL5bxANEe8G1Ti2fRe3R9S9AYUUbRC7BY.DCoqhe"], ["created_at", "2018-07-06 04:25:11.542623"], ["updated_at", "2018-07-06 04:25:11.542623"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$CTQXAwEGMPYJEgA0MJYy9OEhCDbpaRK67udZOCFW1OHg2xxt/QGvq"], ["created_at", "2018-07-06 04:25:11.550486"], ["updated_at", "2018-07-06 04:25:11.550486"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$q3.G0JURqpE9dFguA0JF0utDAvYZcAbunMsq9IbDz/Eb2aZdXrgbi"], ["created_at", "2018-07-06 04:25:11.558530"], ["updated_at", "2018-07-06 04:25:11.558530"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$PTeAXYW6uwA5ddnLjUwc9.sv8.Y60eNHqaW0jJGi2wRUxhpCVT0we"], ["created_at", "2018-07-06 04:25:11.565631"], ["updated_at", "2018-07-06 04:25:11.565631"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "beings"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "beings" ("is_npc", "name", "age", "motivation", "dead", "initiative", "current_hp", "max_hp", "level", "armor_class", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "athletics", "acrobatics", "sleight_of_hand", "stealth", "arcana", "history", "investigation", "nature", "religion", "animal_handling", "insight", "medicine", "perception", "survival", "deception", "intimidation", "performance", "persuasion", "gold_pieces", "created_at", "updated_at", "id") VALUES (1, 'Johnny Bravo', 24, 'How you doin''?', 0, 12, 20, 20, 5, 15, 15, 6, 12, 4, 4, 7, 9, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 9, 8, 6, 250, '2018-07-06 04:25:11.575834', '2018-07-06 04:25:11.575834', 109868589)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "beings" ("is_npc", "name", "age", "motivation", "dead", "initiative", "current_hp", "max_hp", "level", "armor_class", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "athletics", "acrobatics", "sleight_of_hand", "stealth", "arcana", "history", "investigation", "nature", "religion", "animal_handling", "insight", "medicine", "perception", "survival", "deception", "intimidation", "performance", "persuasion", "gold_pieces", "created_at", "updated_at", "id") VALUES (0, 'Alfonso Coolsaus', 22, 'Finding the true power', 0, 12, 25, 25, 4, 16, 9, 15, 8, 11, 14, 16, 16, 15, 7, 8, 4, 5, 9, 7, 2, 12, 14, 14, 15, 7, 14, 15, 16, 16, 250, '2018-07-06 04:25:11.575834', '2018-07-06 04:25:11.575834', 870722737)[0m
+  [1m[35m (10.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.3ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.2ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.2ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.2ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "weapons"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "type", "weapon_class", "range", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Great Axe', 'MeleeWeapon', 'Martial', 0, '1d12', 'Slashing', '---
+- Heavy
+- Two-handed
+', 30, 7.0, 0, '2018-07-06 04:25:11.771167', '2018-07-06 04:25:11.771167', 745152045)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "weapon_class", "range", "type", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Halberd', NULL, NULL, 'MeleeWeapon', NULL, NULL, '--- []
+', NULL, NULL, 0, '2018-07-06 04:25:11.771167', '2018-07-06 04:25:11.771167', 851055417)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "weapon_class", "type", "range", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Bow', NULL, 'RangedWeapon', NULL, NULL, NULL, '--- []
+', NULL, NULL, 0, '2018-07-06 04:25:11.771167', '2018-07-06 04:25:11.771167', 404116909)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "weapon_class", "type", "range", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Bolt', 'nil', 'Ammunition', NULL, NULL, NULL, '--- []
+', NULL, NULL, 0, '2018-07-06 04:25:11.771167', '2018-07-06 04:25:11.771167', 767622408)[0m
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.3ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$C3p2eRRVu9jY1SzObPOrzO0ZccIiq1CCDmjCcbi73JYzfMgMM4BZu"], ["created_at", "2018-07-06 04:26:00.739205"], ["updated_at", "2018-07-06 04:26:00.739205"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$AEQ/qP9pqQLp1M1CNRkLpeH1bSRy4T0elFZH277I951vcl6miN24i"], ["created_at", "2018-07-06 04:26:00.746375"], ["updated_at", "2018-07-06 04:26:00.746375"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$e3QB7U0uK0.71Do6wqIUNO4ERA4sfuggPB/vua3Nhj97SLehACLga"], ["created_at", "2018-07-06 04:26:00.763003"], ["updated_at", "2018-07-06 04:26:00.763003"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$Qw883aMyT0wfGHDsVBJI4.qD22bV.WROp/vXRzYhn4TKxydegQwoO"], ["created_at", "2018-07-06 04:26:00.773955"], ["updated_at", "2018-07-06 04:26:00.773955"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$c7ihydf.Bt5ydxoP1Bkc3OFZ4zDe/f2AOyVgVpkqz7VRQN710V8UK"], ["created_at", "2018-07-06 04:26:00.782791"], ["updated_at", "2018-07-06 04:26:00.782791"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$BX0JWzKHchp4.THzcaBpSuh6oGz9TD.q.K.JYxiyCxdyOKnWc38au"], ["created_at", "2018-07-06 04:26:00.791260"], ["updated_at", "2018-07-06 04:26:00.791260"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (1.9ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "beings"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "beings" ("is_npc", "name", "age", "motivation", "dead", "initiative", "current_hp", "max_hp", "level", "armor_class", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "athletics", "acrobatics", "sleight_of_hand", "stealth", "arcana", "history", "investigation", "nature", "religion", "animal_handling", "insight", "medicine", "perception", "survival", "deception", "intimidation", "performance", "persuasion", "gold_pieces", "created_at", "updated_at", "id") VALUES (1, 'Johnny Bravo', 24, 'How you doin''?', 0, 12, 20, 20, 5, 15, 15, 6, 12, 4, 4, 7, 9, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 9, 8, 6, 250, '2018-07-06 04:26:00.800321', '2018-07-06 04:26:00.800321', 109868589)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "beings" ("is_npc", "name", "age", "motivation", "dead", "initiative", "current_hp", "max_hp", "level", "armor_class", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "athletics", "acrobatics", "sleight_of_hand", "stealth", "arcana", "history", "investigation", "nature", "religion", "animal_handling", "insight", "medicine", "perception", "survival", "deception", "intimidation", "performance", "persuasion", "gold_pieces", "created_at", "updated_at", "id") VALUES (0, 'Alfonso Coolsaus', 22, 'Finding the true power', 0, 12, 25, 25, 4, 16, 9, 15, 8, 11, 14, 16, 16, 15, 7, 8, 4, 5, 9, 7, 2, 12, 14, 14, 15, 7, 14, 15, 16, 16, 250, '2018-07-06 04:26:00.800321', '2018-07-06 04:26:00.800321', 870722737)[0m
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.3ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "weapons"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "type", "weapon_class", "range", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Great Axe', 'MeleeWeapon', 'Martial', 0, '1d12', 'Slashing', '---
+- Heavy
+- Two-handed
+', 30, 7.0, 0, '2018-07-06 04:26:00.951518', '2018-07-06 04:26:00.951518', 745152045)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "weapon_class", "range", "type", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Halberd', NULL, NULL, 'MeleeWeapon', NULL, NULL, '--- []
+', NULL, NULL, 0, '2018-07-06 04:26:00.951518', '2018-07-06 04:26:00.951518', 851055417)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "weapon_class", "type", "range", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Bow', NULL, 'RangedWeapon', NULL, NULL, NULL, '--- []
+', NULL, NULL, 0, '2018-07-06 04:26:00.951518', '2018-07-06 04:26:00.951518', 404116909)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "weapon_class", "type", "range", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Bolt', 'nil', 'Ammunition', NULL, NULL, NULL, '--- []
+', NULL, NULL, 0, '2018-07-06 04:26:00.951518', '2018-07-06 04:26:00.951518', 767622408)[0m
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$N05TTaC5or27sOzSoOAgiue.5j0Z9MZFinmQzuP9oJuAAtJn16ade"], ["created_at", "2018-07-06 04:26:48.355145"], ["updated_at", "2018-07-06 04:26:48.355145"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$AAvHOJFikERKrNG0s5tyBuA307BbcYSeHdVcRIM75iJY9j9ZIatrC"], ["created_at", "2018-07-06 04:26:48.361808"], ["updated_at", "2018-07-06 04:26:48.361808"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$9S3PeyhkwZJ.o50TGY0fO.wTW3VB5CFej/GIaZXlkO12kf/iyuSwm"], ["created_at", "2018-07-06 04:26:48.379130"], ["updated_at", "2018-07-06 04:26:48.379130"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$AABkEA/F/EvshySeyE4CFuQr9gR25Tm8Lt9sGSy6U8ySngcmgjgdK"], ["created_at", "2018-07-06 04:26:48.385433"], ["updated_at", "2018-07-06 04:26:48.385433"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$oEKEsIhKq693vKj7V.pa4eN8QagCik9HKXkWwlFlt6TcHScFSATiS"], ["created_at", "2018-07-06 04:26:48.399090"], ["updated_at", "2018-07-06 04:26:48.399090"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "name") VALUES (?, ?, ?, ?, ?)[0m  [["email", "Jb@gmail.com"], ["password_digest", "$2a$04$Z2EqEueX5X3GCrctXOPVvOZoV4GY4fQY/Cti8Fpwb/Fs8LrrX5UzK"], ["created_at", "2018-07-06 04:26:48.406779"], ["updated_at", "2018-07-06 04:26:48.406779"], ["name", "Johnny Bravo"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.9ms)[0m  [1m[31mDELETE FROM "beings"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "beings" ("is_npc", "name", "age", "motivation", "dead", "initiative", "current_hp", "max_hp", "level", "armor_class", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "athletics", "acrobatics", "sleight_of_hand", "stealth", "arcana", "history", "investigation", "nature", "religion", "animal_handling", "insight", "medicine", "perception", "survival", "deception", "intimidation", "performance", "persuasion", "gold_pieces", "created_at", "updated_at", "id") VALUES (1, 'Johnny Bravo', 24, 'How you doin''?', 0, 12, 20, 20, 5, 15, 15, 6, 12, 4, 4, 7, 9, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 9, 8, 6, 250, '2018-07-06 04:26:48.418299', '2018-07-06 04:26:48.418299', 109868589)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "beings" ("is_npc", "name", "age", "motivation", "dead", "initiative", "current_hp", "max_hp", "level", "armor_class", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "athletics", "acrobatics", "sleight_of_hand", "stealth", "arcana", "history", "investigation", "nature", "religion", "animal_handling", "insight", "medicine", "perception", "survival", "deception", "intimidation", "performance", "persuasion", "gold_pieces", "created_at", "updated_at", "id") VALUES (0, 'Alfonso Coolsaus', 22, 'Finding the true power', 0, 12, 25, 25, 4, 16, 9, 15, 8, 11, 14, 16, 16, 15, 7, 8, 4, 5, 9, 7, 2, 12, 14, 14, 15, 7, 14, 15, 16, 16, 250, '2018-07-06 04:26:48.418299', '2018-07-06 04:26:48.418299', 870722737)[0m
+  [1m[35m (7.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.5ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.2ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 870722737], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.2ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBeing Load (0.1ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" WHERE "beings"."id" = ? LIMIT ?[0m  [["id", 109868589], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "weapons"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "type", "weapon_class", "range", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Great Axe', 'MeleeWeapon', 'Martial', 0, '1d12', 'Slashing', 'Heavy, Two-handed', 30, 7.0, 0, '2018-07-06 04:26:48.594512', '2018-07-06 04:26:48.594512', 745152045)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "weapon_class", "range", "type", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Halberd', NULL, NULL, 'MeleeWeapon', NULL, NULL, NULL, NULL, NULL, 0, '2018-07-06 04:26:48.594512', '2018-07-06 04:26:48.594512', 851055417)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "weapons" ("name", "weapon_class", "type", "range", "damage", "damage_type", "properties", "cost", "weight_lbs", "silvered", "created_at", "updated_at", "id") VALUES ('Bow', NULL, 'RangedWeapon', NULL, NULL, NULL, NULL, NULL, NULL, 0, '2018-07-06 04:26:48.594512', '2018-07-06 04:26:48.594512', 404116909)[0m
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.3ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 745152045], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.2ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWeapon Load (0.1ms)[0m  [1m[34mSELECT  "weapons".* FROM "weapons" WHERE "weapons"."id" = ? LIMIT ?[0m  [["id", 404116909], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
