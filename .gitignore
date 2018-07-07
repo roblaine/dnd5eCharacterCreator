@@ -10,9 +10,11 @@
 /test/version_tmp/
 /tmp/
 /db/*.sqlite3
+test.sqlite3
 *.sqlite3
 /log/
 secrets.yml
+*.log
 
 # Used by dotenv library to load environment variables.
 # .env

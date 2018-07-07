@@ -129,11 +129,11 @@ ActiveRecord::Schema.define(version: 2018_07_04_050846) do
     t.string "size"
     t.string "weapon_class"
     t.string "damage_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "properties"
     t.boolean "silvered"
     t.integer "range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
