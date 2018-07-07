@@ -1,0 +1,23 @@
+# config for the use of an sql database
+
+# the main database that we'll be using to devlop on.
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+# warning: this db is volatile and will be wiped on every iteration of
+#   rake db:setup. only rely on for testing data
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+# the apdapter for the production db will be using pgsql
+# production:
+#   adapter: pg
+#   database: db/production.pq
+#   pool: 5
+#   timeout: 5000

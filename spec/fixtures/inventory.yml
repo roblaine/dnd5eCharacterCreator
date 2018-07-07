@@ -1,0 +1,17 @@
+backpack:
+  name: Backpack
+  weight_lbs: 10
+  stored_items_weight: 10
+  stored_items: [Lamp, Shovel]
+
+barrel:
+  name: Ale Barrel
+  weight_lbs: 10
+  stored_items_weight: 10
+  stored_items: [Ale]
+
+knapsack:
+  name: Knapsack
+  weight_lbs: 2.5
+  stored_items_weight: 1
+  stored_items: [Torch]

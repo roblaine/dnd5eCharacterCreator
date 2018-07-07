@@ -1,0 +1,80 @@
+# describe test data for the beings model:
+
+npc:
+  is_npc: true
+  name: Johnny Bravo
+  age: 24
+  motivation: How you doin'?
+  dead: false
+  initiative: 12
+  current_hp: 20
+  max_hp: 20
+  level: 5
+  armor_class: 15
+  # outline the ability scores:
+  strength: 15
+  dexterity: 6
+  constitution: 12
+  intelligence: 4
+  wisdom: 4
+  charisma: 7
+  # outline a being's skills:
+  athletics: 9
+  acrobatics: 3
+  sleight_of_hand: 0
+  stealth: 0
+  arcana: 0
+  history: 0
+  investigation: 0
+  nature: 0
+  religion: 0
+  animal_handling: 4
+  insight: 0
+  medicine: 0
+  perception: 0
+  survival: 0
+  deception: 0
+  intimidation: 9
+  performance: 8
+  persuasion: 6
+  gold_pieces: 250
+
+non_npc:
+  is_npc: false
+  name: Alfonso Coolsaus
+  age: 22
+  motivation: Finding the true power
+  dead: false
+  # the being's survivability:
+  initiative: 12
+  current_hp: 25
+  max_hp: 25
+  level: 4
+  armor_class: 16
+  # outline the ability scores:
+  strength: 9
+  dexterity: 15
+  constitution: 8
+  intelligence: 11
+  wisdom: 14
+  charisma: 16
+  # outline a being's skills:
+  athletics: 16
+  acrobatics: 15
+  sleight_of_hand: 7
+  stealth: 8
+  arcana: 4
+  history: 5
+  investigation: 9
+  nature: 7
+  religion: 2
+  animal_handling: 12
+  insight: 14
+  medicine: 14
+  perception: 15
+  survival: 7
+  deception: 14
+  intimidation: 15
+  performance: 16
+  persuasion: 16
+  gold_pieces: 250
