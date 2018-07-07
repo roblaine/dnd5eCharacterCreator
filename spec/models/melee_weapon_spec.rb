@@ -3,10 +3,6 @@ require 'rails_helper'
 RSpec.describe MeleeWeapon, type: :model do
   fixtures :weapons
 
-  it "is valid with valid attributes" do
-    expect(weapons(:axe)).to be_valid
-  end
-
   it "is invalid without a name" do
     w = weapons(:axe)
     w.name = nil

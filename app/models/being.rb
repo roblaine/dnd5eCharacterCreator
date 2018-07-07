@@ -9,7 +9,7 @@ class Being < ApplicationRecord
   # belongs_to :main_weapon
   # belongs_to :secondary_weapon
   # belongs_to :ranged_weapon
-  if !:is_npc
+  if !:is_npc 
     validates :name, :armor_class, :age, :current_hp,
       :max_hp, :level, :strength, :dexterity, :wisdom, :intelligence, :constitution,
       :charisma, :athletics, :acrobatics, :sleight_of_hand, :stealth, :arcana,

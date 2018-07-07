@@ -2,7 +2,7 @@ axe:
   name: Great Axe
   type: MeleeWeapon
   weapon_class: Martial
-  range: 0
+  range: nil
   damage: 1d12
   damage_type: Slashing
   properties: Heavy, Two-handed
@@ -13,7 +13,7 @@ axe:
 halberd:
     name: Halberd
     weapon_class:
-    range:
+    range: nil
     type: MeleeWeapon
     damage:
     damage_type:
@@ -26,12 +26,12 @@ bow:
   name: Bow
   weapon_class:
   type: RangedWeapon
-  range:
-  damage:
-  damage_type:
-  properties:
-  cost:
-  weight_lbs:
+  range: 12
+  damage: 1d12
+  damage_type: piercing
+  properties: light
+  cost: 4
+  weight_lbs: 2
   silvered: false
 
 # bolt:
