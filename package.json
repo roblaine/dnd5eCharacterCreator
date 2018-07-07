@@ -1,5 +1,5 @@
 {
-  "name": "DND Tracker",
+  "name": "DND-Tracker",
   "license": "MIT",
   "engines": {
     "node": "8.9.4",
