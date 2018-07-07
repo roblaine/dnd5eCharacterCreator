@@ -2340,3 +2340,12 @@ puma (3.11.4) lib/puma/server.rb:446:in `process_client'
 puma (3.11.4) lib/puma/server.rb:306:in `block in run'
 puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mBeing Load (0.6ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mBeing Load (0.6ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mBeing Load (0.3ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mBeing Load (0.3ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mBeing Load (0.3ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mBeing Load (0.3ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mBeing Load (0.2ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mBeing Load (0.2ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mBeing Load (0.7ms)[0m  [1m[34mSELECT  "beings".* FROM "beings" ORDER BY "beings"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]

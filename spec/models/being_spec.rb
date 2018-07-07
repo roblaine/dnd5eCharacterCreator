@@ -6,57 +6,59 @@ RSpec.describe Being, type: :model do
   fixtures :beings
 
   context "is not an npc" do
-    it "is valid only with all valid attributes" do
-      expect(beings(:non_npc)).to be_valid
+    it "should be valid without an initiative score" do
+      b = beings(:non_npc)
+      b.initiative = nil
+      expect(b).to be_valid
     end
 
     # define all of the available attributes which we want to test the validity of
     [
-      'name', 'age', 'initiative', 'armor_class', 'dead', 'motivation', 'current_hp',
+      'name', 'age', 'armor_class', 'motivation', 'current_hp',
       'max_hp', 'level',
       'strength', 'dexterity', 'wisdom', 'intelligence', 'constitution', 'charisma',
       'athletics', 'acrobatics', 'sleight_of_hand', 'stealth', 'arcana', 'history',
       'investigation', 'nature', 'religion', 'animal_handling', 'insight', 'medicine',
       'perception', 'survival', 'deception', 'intimidation', 'performance', 'persuasion'
     ].each do |a|
-      it "is not valid without a #{a} score" do
+      it "should be valid without a #{a} score" do
         b = beings(:non_npc)
         b[a] = nil
-        expect(b).to_not be_valid
+        expect(b).to be_valid
       end
     end
 
     it "should not be valid with a nil dead value" do
-      b = beings(:npc)
+      b = beings(:non_npc)
       b.dead = nil
       expect(b).to_not be_valid
     end
 
-    # you might just be really poor :(
-    it "is valid without any gold pieces (gp)" do
+    it "should not be valid with a nil gold_pieces value" do
       b = beings(:non_npc)
-      b.gold_pieces = 0
-      expect(b).to be_valid
+      b.gold_pieces = nil
+      expect(b).to_not be_valid
     end
-
 
   end # end of non npc
 
   context "is an npc" do
-    it "is valid only with all valid attributes" do
-      expect(beings(:npc)).to be_valid
+    it "should be valid without an initiative score" do
+      b = beings(:npc)
+      b.initiative = nil
+      expect(b).to be_valid
     end
 
     # define all of the available attributes which we want to test the validity of
     [
-      'name', 'age', 'initiative', 'armor_class', 'motivation', 'current_hp',
+      'name', 'age', 'armor_class', 'motivation', 'current_hp',
       'max_hp', 'level',
       'strength', 'dexterity', 'wisdom', 'intelligence', 'constitution', 'charisma',
       'athletics', 'acrobatics', 'sleight_of_hand', 'stealth', 'arcana', 'history',
       'investigation', 'nature', 'religion', 'animal_handling', 'insight', 'medicine',
       'perception', 'survival', 'deception', 'intimidation', 'performance', 'persuasion'
     ].each do |a|
-      it "is not valid without a #{a} score" do
+      it "should be valid without a #{a} score" do
         b = beings(:npc)
         b[a] = nil
         expect(b).to be_valid
@@ -69,11 +71,10 @@ RSpec.describe Being, type: :model do
       expect(b).to_not be_valid
     end
 
-    # a goblin might just be really poor :(
-    it "is valid without any gold pieces (gp)" do
+    it "should be valid with a nil gold_pieces value" do
       b = beings(:npc)
-      b.gold_pieces = 0
-      expect(b).to be_valid
+      b.gold_pieces = nil
+      expect(b).to_not be_valid
     end
 
   end
