@@ -16,8 +16,8 @@ test:
   timeout: 5000
 
 # the apdapter for the production db will be using pgsql
-# production:
-#   adapter: pg
-#   database: db/production.pq
-#   pool: 5
-#   timeout: 5000
+production:
+  adapter: pg
+  database: db/production.pq
+  pool: 5
+  timeout: 5000
