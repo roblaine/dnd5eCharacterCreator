@@ -16,8 +16,8 @@ test:
   timeout: 5000
 
 # the apdapter for the production db will be using pgsql
-# production:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: db/production
-#   pool: 5
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: db/production
+  pool: 5
