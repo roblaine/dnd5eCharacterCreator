@@ -38,7 +38,9 @@ module DndTracker
     # use rspec for testing framework
     config.generators do |g|
       # g.orm :active_record
-      g.test_framework :rspec
+      g.test_framework  :rspec
+      g.stylesheets     false
+      g.javascript      false
     end
 
 
