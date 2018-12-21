@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "DND Application with React",
   "scripts": {
+    "start": "cd server && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-lint": "eslint --ignore-pattern \"build\" --ignore-path .gitignore .",
     "server": "cd server && node server.js",
