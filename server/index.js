@@ -16,10 +16,11 @@ app.get('/api/greeting', (req, res) => {
   res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
 });
 
-app.get('/api/class', (req, res) => {
+app.get('/api/classData', (req, res) => {
   const className = req.query.className || 'Fighter';
+  console.log(`Recieving API query for class with name: ${className}`);
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ classData: { name: `John`, age: 24 } }));
+  res.send(JSON.stringify({ data: { name: `John`, age: 24 } }));
  });
 
 
@@ -29,10 +30,10 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 // create a GET route
 app.get('/express_backend', (req, res) => {
   console.log('Receiving API query for express backend');
-  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+  res.send({ data: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
 app.get('/', (req, res) => {
-  res.send({ express: 'Hi' });
+  res.send({ data: 'Hi' });
 });
 
