@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Spell from './Spell.js';
 
 class App extends Component {
 	constructor(props) {
@@ -28,7 +29,7 @@ class App extends Component {
 		}
 		console.log(`Retrieved data: ${body}`);
 		return body;	
-	};
+	}
 
   render() {
     return (
@@ -45,6 +46,7 @@ class App extends Component {
 					<input type="text" placeholder="password" name="password" />
 					<input type="submit" value="Submit" />
 				</form>
+				<Spell />			
 			</div>
     );
   }

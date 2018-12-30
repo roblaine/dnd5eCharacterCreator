@@ -6,19 +6,30 @@ const MongoClient = require('mongodb').MongoClient
 const port = process.env.PORT || 3001;
 const app = express();
 
+//var database = require('./interface/database');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(pino);
 
 var db;
 
-MongoClient.connect(
-  'mongodb://localhost:28015', 
-    (err, client) => {
-  if (err) { return console.log(err) };
+console.log(`Setting up database conn.`);
+MongoClient.connect('mongodb://localhost:28015', (err, client) => {
+  if (err) { 
+		console.log(`Error: ${err}`);
+  };
   db = client.db('dndtracker');
-  // console.log that your server is up and running
+  console.log(`Database: ${db}.`);
   app.listen(port, () => console.log(`Listening on port ${port}`));
 });
+
+//db = database.createDatabase();
+
+if(db == undefined) { 
+  console.log(`Failed to set the database`); 
+  process.exit();
+}
+
 
 app.post('/users/new', (req, res) => {
   db.collection('users').insertOne(req.body, (err, result) => {
