@@ -1,13 +1,42 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
+const MongoClient = require('mongodb').MongoClient
 
 const port = process.env.PORT || 3001;
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(pino);
 
+var db;
+
+MongoClient.connect(
+  'mongodb://localhost:28015', 
+    (err, client) => {
+  if (err) { return console.log(err) };
+  db = client.db('dndtracker');
+  // console.log that your server is up and running
+  app.listen(port, () => console.log(`Listening on port ${port}`));
+});
+
+app.post('/users/new', (req, res) => {
+  db.collection('users').insertOne(req.body, (err, result) => {
+    if (err) { 
+      return console.log(err); 
+    }
+
+    console.log(`saved user '${req.body.username}' to the database`);
+    res.redirect('/');
+  });
+});
+
+app.get('/users', (req, res) => {
+  const users = db.collection('users').find();
+  console.log(`${users}`);
+
+  res.send(JSON.stringify({ users: `${users}` }));
+});
 
 // Declare api endpoints
 app.get('/api/greeting', (req, res) => {
@@ -21,11 +50,7 @@ app.get('/api/classData', (req, res) => {
   console.log(`Recieving API query for class with name: ${className}`);
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ data: { name: `John`, age: 24 } }));
- });
-
-
-// console.log that your server is up and running
-app.listen(port, () => console.log(`Listening on port ${port}`));
+});
 
 // create a GET route
 app.get('/express_backend', (req, res) => {

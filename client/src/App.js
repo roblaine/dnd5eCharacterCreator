@@ -10,6 +10,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+		console.log(`Component mounted correctly.`);
     // Call our fetch function below once the component mounts
 		this.callClassAPI()
       .then(res => this.setState({ data: res.data }))
@@ -25,18 +26,26 @@ class App extends Component {
 		if (response.status !== 200 && response.status !== 304) {
 			throw Error(body.message) 
 		}
+		console.log(`Retrieved data: ${body}`);
 		return body;	
 	};
 
   render() {
-		console.log(`Data: ${this.state.data}`)
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to DND Tracker</h1>
         </header>
-        <p className="App-intro">{this.state.data.name} {this.state.data.age}</p>
-      </div>
+
+    		<form action="/users/new" method="POST">
+					<label>
+						Sign Up 
+					</label>
+					<input type="text" placeholder="username" name="username" />
+					<input type="text" placeholder="password" name="password" />
+					<input type="submit" value="Submit" />
+				</form>
+			</div>
     );
   }
 }
