@@ -10,6 +10,28 @@ var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:28015/dndtracker");
 
+var characterSchema = new mongoose.Schema({
+	name: String,
+	level: Number,
+	race: String,
+	class: String,
+	age: Number
+});
+
+var Character = new mongoose.model("Character", characterSchema);
+
+var demoChar = new Character({
+	name: 'jogn', 
+	level: 1, 
+	race: 'Dwarf',
+	class: 'Cleric',
+	age: 43
+});
+
+demoChar.save()
+	.then(item => {console.log(`Character: ${item}`)})
+	.catch(err => {console.log(err)});
+
 var spellSchema = new mongoose.Schema({
 	name: String,
 	level: Number,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Spell from './Spell.js';
+import CharacterSheet from './CharacterSheet';
 
 class App extends Component {
 	constructor(props) {
@@ -47,6 +48,7 @@ class App extends Component {
 					<input type="submit" value="Submit" />
 				</form>
 				<Spell />			
+        <CharacterSheet />
 			</div>
     );
   }
