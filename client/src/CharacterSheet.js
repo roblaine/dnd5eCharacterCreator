@@ -11,8 +11,23 @@ class CharacterSheet extends Component {
 
   componentDidMount() {
 		console.log(`'CharacterSheet' mounted correctly.`);
+		this.getCharacters()
+		.then(res => this.setState({ data: res.data }))
+		.catch(err => console.log(err))	
   }
+	
+	getCharacters = async() => {
+		const response = await fetch('/api/characters');
+		const body = await response.json();
 
+		if(response.status !== 200) {
+			throw Error(body.message);
+		}
+	
+		console.log(`Retrieved data: ${body}`);
+		return body;
+	}
+	
   render() {
     return (
       <div className="CharacterSheet">

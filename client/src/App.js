@@ -25,7 +25,7 @@ class App extends Component {
 		const response = await fetch('/api/classData');
 		const body = await response.json();
 		
-		if (response.status !== 200 && response.status !== 304) {
+		if(response.status !== 200 && response.status !== 304) {
 			throw Error(body.message) 
 		}
 		console.log(`Retrieved data: ${body}`);
