@@ -1,6 +1,4 @@
 .character-sheet {
-	display: flex;
-	flex-direction: column;
 	justify-content: space-evenly;
 }
 
@@ -12,24 +10,15 @@
 }
 
 .details {
-  display: flex;
-  flex-direction: row;
 }
 
 .details-meta {
-	display: flex;
-  flex-direction: column;
-}
-
-.details-meta-row {
-	display: flex;
-  flex-direction: row;
+	margin: 0;
+	padding: 0;
 	border: solid 1px yellow;
 }
 
 .detail-meta-group {
-  display: flex;
-  flex-direction: column;
 	border: solid 1px red;
 }
 
@@ -53,8 +42,12 @@ li {
 	text-align: center;
 }
 
+.column {
+	display: flex;
+	flex-direction: column;
+}
+
 .row {
-	border: solid 1px black;
 	display: flex;
 	flex-direction: row;
 }
@@ -64,8 +57,6 @@ li {
 	margin: 0;
 	vertical-align: middle;
 	text-align: center;
-	display: flex;
-	flex-direction: row;
 }
 
 .save .value {
@@ -84,14 +75,26 @@ li {
 }
 
 .saves {
-	display: flex;
-	flex-direction: column;
+}
+
+.label {
+	vertical-align: middle;
+	text-align: center;
 }
 
 .skills {
+	border: 1px purple solid;
 }
 
 .skill {
+}
+
+.skill .detail {
+	margin: 0;
+}
+
+.languages {
+	border: 1px solid black;	
 }
 
 .skills-meta {
