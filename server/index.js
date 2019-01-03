@@ -1,22 +1,51 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
+const path = require("path");
 
 const port = process.env.PORT || 3001;
 const app = express();
 //var database = require('./interface/database');
+app.use(express.static('public'))
 
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:28015/dndtracker", 
-	{useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:28015/dndtracker", {
+	useNewUrlParser: true
+});
+
+var userSchema = new mongoose.Schema({
+	username: { 
+		type: String, 
+		unique: true,
+		lowercase: true
+	},
+	password: String
+});
+
+var User = new mongoose.model("User", userSchema);
+
+var demoUser = new User({
+	username: 'johnny bravo',
+	password: 'monkey'
+});
+
+demoUser.save()
+.then(item => {console.log(`User: ${item}`)})
+.catch(err => {console.log(err)});
+
 
 var characterSchema = new mongoose.Schema({
-	name: String,
+	name: {
+		type: String,
+		unique: true,
+		lowercase: true
+	},
 	level: Number,
 	race: String,
 	class: String,
-	age: Number
+	age: Number,
+	creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
 var Character = new mongoose.model("Character", characterSchema);
@@ -26,7 +55,8 @@ var demoChar = new Character({
 	level: 1, 
 	race: 'Dwarf',
 	class: 'Cleric',
-	age: 43
+	age: 43,
+	creator: demoUser
 });
 
 demoChar.save()
@@ -34,7 +64,11 @@ demoChar.save()
 .catch(err => {console.log(err)});
 
 var spellSchema = new mongoose.Schema({
-	name: String,
+	name: {
+		type: String,
+		unique: true,
+		lowercase: true
+	},
 	level: Number,
 	school: String,
 	caster_class: String,
@@ -48,6 +82,7 @@ var Spell = new mongoose.model("Spell", spellSchema);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.use(pino);
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
@@ -88,7 +123,26 @@ app.get('/api/characters', (req, res) => {
 			chr = JSON.stringify({ data: { 'name': character.name } });
 			console.log(chr);
 		}
-	)
-	.then(res.send(chr));
+	).then(res.send(chr));
+});
+
+app.post('/login', function(req, res) {
+	let currentUser = null;
+	[username, password] = [req.body.username, req.body.password];
+	console.log('username: %s\npassword: %s', username, password);
+
+	User.findOne({'username': username.toLowerCase(), }, 'username', 
+		function(err, user) {
+			if(err) { return handleError(err) };
+			if(user.password === password) {
+				currentUser = user;
+			}
+			console.log('current: %s', user);
+		}
+	).then(res.send(currentUser));
+});
+
+app.get('/public/character', (req, res) => {
+	res.sendFile(__dirname + '/public/char.html');
 });
 

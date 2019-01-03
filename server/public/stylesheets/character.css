@@ -1,0 +1,101 @@
+.character-sheet {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.details-label {
+}
+
+.emphasis {
+	font-weight: bold;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+}
+
+.details-meta {
+	display: flex;
+  flex-direction: column;
+}
+
+.details-meta-row {
+	display: flex;
+  flex-direction: row;
+	border: solid 1px yellow;
+}
+
+.detail-meta-group {
+  display: flex;
+  flex-direction: column;
+	border: solid 1px red;
+}
+
+.detail {
+	border: solid 1px green;
+}
+
+li {
+  display: block;
+}
+
+.attributes {
+	display: flex;
+	flex-direction: column;
+}
+
+.attribute {
+	border: solid 1px black;
+	margin: 0;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.row {
+	border: solid 1px black;
+	display: flex;
+	flex-direction: row;
+}
+
+.save {
+	border: solid 1px black;
+	margin: 0;
+	vertical-align: middle;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.save .value {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.save .name {
+	padding-left: 10px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.proficiency .value {
+	margin-right: 5px;
+}
+
+.saves {
+	display: flex;
+	flex-direction: column;
+}
+
+.skills {
+}
+
+.skill {
+}
+
+.skills-meta {
+	display: flex;
+	flex-direction: row;
+}
+
