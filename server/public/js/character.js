@@ -11,8 +11,11 @@ const skillProfs = document.querySelectorAll('.skills input[type=checkbox]');
 
 const proficiencyBonus = document.querySelector('.proficiency input[type=number]');
 
+const saves = document.querySelectorAll('.saves input');
 const savingThrowVals = document.querySelectorAll('.save input[type=number]');
 const savingThrowProfs = document.querySelectorAll('.save input[type=checkbox]');
+
+const level = document.querySelector('.level');
 
 var oldProfBonus = proficiencyBonus.value;
 
@@ -115,10 +118,10 @@ function updateSaveProf() {
 }
 
 function updateProfBonus() {
-	//console.log(this);
 	// Update the skills that the char is prof. in when this changes
-	let skillProf = false;
-	const profBonus = parseInt(this.value);
+	[skillProf, saveProf] = [false, false];
+	const profBonus = parseInt(proficiencyBonus.value);
+
 	skills.forEach(skill => {
 		if(skill.id.includes('prof')) {
 			skillProf = skill.checked ? true : false;
@@ -128,22 +131,44 @@ function updateProfBonus() {
 		for that skill 
 		*/
 
-		// TODO fix the math
 		skill.value = skillProf ? 
 			(parseInt(skill.value) + profBonus - oldProfBonus) : 
 			parseInt(skill.value);
 	});
+
+	// Do the same thing but for saving throws instead
+	saves.forEach(save => {
+		if(save.id.includes('prof')) {
+			saveProf = save.checked ? true : false;
+		}
+/*
+		if(saveProf) {
+			save.value = (parseInt(save.value) + profBonus - oldProfBonus);
+		} else {
+			save.value = parseInt(save.value);
+		}
+*/
+		save.value = saveProf ? 
+			(parseInt(save.value) + profBonus - oldProfBonus) : 
+			parseInt(save.value);
+	});
 	oldProfBonus = profBonus;
+}
+
+function updateLevel() {
+	// Proficiency bonus changes based on level at
+	proficiencyBonus.value = Math.floor((7 + parseInt(level.value)) / 4);
+	updateProfBonus();
 }
 
 
 /* Event listener calls */
-attributeVals.forEach(attributeVal => {
-  attributeVal.addEventListener('change', handleAttributeValueChange);
+attributeVals.forEach(attribute => {
+  attribute.addEventListener('change', handleAttributeValueChange);
 });
 
-attributeMods.forEach(attributeVal => {
-  attributeVal.addEventListener('change', handleAttributeModValueChange);
+attributeMods.forEach(attribute => {
+  attribute.addEventListener('change', handleAttributeModValueChange);
 });
 
 skillProfs.forEach(checkbox => {
@@ -159,4 +184,6 @@ savingThrowProfs.forEach(save => {
 });
 
 proficiencyBonus.addEventListener('change', updateProfBonus);
+
+level.addEventListener('change', updateLevel);
 

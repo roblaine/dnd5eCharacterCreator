@@ -25,7 +25,7 @@
 					<ul class="detail-meta-group">
 						<div class="row">
 							<input class="detail class value" type="text"> &amp;
-							<input class="detail level value" type="number">
+							<input class="detail level value" type="number" max="30" min="1" value="1">
 						</div>
 						<li class="detail emphasis">Class &amp; Level</li>
 					</ul>
@@ -68,75 +68,75 @@
 					<div class="attributes">
 						<div class="attribute column">
 							<p class="attribute name emphasis">Strength</p>
-							<input class="attribute value" type="number" name="strength" max="30" min="1">
+							<input class="attribute value" type="number" name="strength" max="30" min="1" value="1">
 							<input class="attribute modifier" readonly type="number" name="strength-mod">
 						</div>
 						<div class="attribute column">
 							<p class="attribute name emphasis">Dexterity</p>
-							<input class="attribute value" type="number" name="dexterity" max="30" min="1">
+							<input class="attribute value" type="number" name="dexterity" max="30" min="1" value="1">
 							<input class="attribute modifier" readonly type="number" name="dexterity-mod">
 						</div>
 						<div class="attribute column">
 							<p class="attribute name emphasis">Constitution</p>
-							<input class="attribute value" type="number" name="constitution" max="30" min="1">
+							<input class="attribute value" type="number" name="constitution" max="30" min="1" value="1">
 							<input class="attribute modifier" readonly type="number" name="constitution-mod">
 						</div>
 						<div class="attribute column">
 							<p class="attribute name emphasis">Intelligence</p>
-							<input class="attribute value" type="number" name="intelligence" max="30" min="1">
+							<input class="attribute value" type="number" name="intelligence" max="30" min="1" value="1">
 							<input class="attribute modifier" readonly type="number" name="intelligence-mod">
 						</div>
 						<div class="attribute column">
 							<p class="attribute name emphasis">Wisdom</p>
-							<input class="attribute value" type="number" name="wisdom">
+							<input class="attribute value" type="number" name="wisdom" value="1">
 							<input class="attribute modifier" readonly type="number" name="wisdom-mod">
 						</div>
 						<div class="attribute column">
 							<p class="attribute name emphasis">Charisma</p>
-							<input class="attribute value" type="number" name="charisma" max="30" min="1">
+							<input class="attribute value" type="number" name="charisma" max="30" min="1" value="1">
 							<input class="attribute modifier" readonly type="number" name="charisma-mod">
 						</div>
 					</div>
 					<!-- End of attributes -->
 					<div class="column">
 						<div class="inspiration row">
-							<input class="inspiration value checkbox" type="checkbox" id="insipiration">
+							<input class="inspiration value checkbox" type="checkbox" id="insipirationi-prof">
 							<p class="emphasis">Inspiration</p>
 						</div>
 						<div class="proficiency row">
-							<input class="proficiency value" type="number" name="proficiency" id="proficiency" value="2" min="1">
+							<input class="proficiency value" type="number" name="proficiency" id="proficiency" value="2" min="2" readonly>
 							<p class="emphasis">Proficieny Bonus</p>
 						</div>
 
 						<!-- TODO Make these values update from the attributes modifier and if char is proficient ie strength becomes strMod + profBonus-->
 						<div class="saves column">
 							<div class="save row">
-								<input class="proficiency save checkbox" type="checkbox" id="strength">
+								<input class="proficiency save checkbox" type="checkbox" id="strength-prof">
 								<input class="save detail id" readonly type="number" id="strength">
 								<p class="save name emphasis">Strength</p>
 							</div>
 							<div class="save row">
-								<input class="proficiency save checkbox" type="checkbox" id="dexterity">
+								<input class="proficiency save checkbox" type="checkbox" id="dexterity-prof">
 								<input class="save detail id" readonly type="number" id="dexterity">
 								<p class="save name emphasis">Dexterity</p>
 							</div>
 							<div class="save row">
-								 <input class="proficiency save checkbox" type="checkbox" id="constitution">
+								 <input class="proficiency save checkbox" type="checkbox" id="constitution-prof">
 								<input class="save detail id" readonly type="number" id="constitution">
 								<p class="save name emphasis">Constitution</p>
 							</div>
 							<div class="save row">
-								<input class="proficiency save checkbox" type="checkbox" id="intelligence">
+								<input class="proficiency save checkbox" type="checkbox" id="intelligence-prof">
 								<input class="save detail id" readonly type="number" id="intelligence">
 								<p class="save name emphasis">Intelligence</p>
 							</div>
 							<div class="save row">
-								<input class="proficiency save checkbox" type="checkbox" id="wisdom">
+								<input class="proficiency save checkbox" type="checkbox" id="wisdom-prof">
 								<input class="save detail id" readonly type="number" id="wisdom">
 								<p class="save name emphasis">Wisdom</p>
 							</div>
 							<div class="save row">
-								<input class="proficiency save checkbox" type="checkbox" id="charisma">
+								<input class="proficiency save checkbox" type="checkbox" id="charisma-prof">
 								<input class="save detail id" readonly type="number" id="charisma">
 								<p class="save name emphasis">Charisma</p>
 							</div>
