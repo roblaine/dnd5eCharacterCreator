@@ -102,3 +102,7 @@ li {
 	flex-direction: row;
 }
 
+.features-traits {
+	border: solid black 1px;
+}
+

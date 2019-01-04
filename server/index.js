@@ -143,6 +143,6 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/public/character', (req, res) => {
-	res.sendFile(__dirname + '/public/char.html');
+	res.sendFile(__dirname + '/public/character.html');
 });
 
