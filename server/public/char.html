@@ -100,7 +100,7 @@
 					<!-- End of attributes -->
 					<div class="column">
 						<div class="inspiration row">
-							<input class="inspiration value checkbox" type="checkbox">
+							<input class="inspiration value checkbox" type="checkbox" value="insipiration">
 							<p class="emphasis">Inspiration</p>
 						</div>
 						<div class="proficiency row">
@@ -246,7 +246,22 @@
 			<!-- End Column for AC, HP, Weapons etc-->
 		</div>
 	</div>
+	<script>
+		// Dummy script for testing the functionality
+		/* variable declrations*/
+		const checkboxes = document.querySelectorAll('.checkbox');
+
+
+		/* Function definitions */
+		function checkboxChange() {
+			console.log(this.value, this.checked);
+		}
 		
+		/* Event lsitener calls */
+		checkboxes.forEach(checkbox => {
+			checkbox.addEventListener('change', checkboxChange);
+		});
+	</script>
 </body>
 
 </html>
