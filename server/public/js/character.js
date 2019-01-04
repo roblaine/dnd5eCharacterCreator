@@ -1,14 +1,20 @@
 // Dummy script for testing the functionality
 /* variable declrations*/
-const checkboxes = document.querySelectorAll('.checkbox');
 const valueInputs = document.querySelectorAll('.value');
+
 const attributeVals = document.querySelectorAll('.attributes .value');
 const attributeMods = document.querySelectorAll('.attributes .modifier');
+
+const skills = document.querySelectorAll('.skills input');
 const skillVals = document.querySelectorAll('.skills input[type=number]');
 const skillProfs = document.querySelectorAll('.skills input[type=checkbox]');
-const proficienyBonus = document.querySelector('.proficiency input[type=number]');
+
+const proficiencyBonus = document.querySelector('.proficiency input[type=number]');
+
 const savingThrowVals = document.querySelectorAll('.save input[type=number]');
 const savingThrowProfs = document.querySelectorAll('.save input[type=checkbox]');
+
+var oldProfBonus = proficiencyBonus.value;
 
 /* Function definitions */
 function handleCheckboxChange() {
@@ -64,7 +70,7 @@ function updateSkillProf () {
   skillVals.forEach(skill => {
     if(this.id.includes(skill.id)) {
       // Update the skill value based on current proficiency-bonus
-      const profBonus = parseInt(proficienyBonus.value);
+      const profBonus = parseInt(proficiencyBonus.value);
       skill.value = this.checked ? 
         (parseInt(skill.value) + profBonus).toString() : 
         (parseInt(skill.value) - profBonus).toString();
@@ -100,7 +106,7 @@ function updateSaveProf() {
   savingThrowVals.forEach(save => {
     if(this.id.includes(save.id)) {
       // Update the skill value based on current proficiency-bonus
-      const profBonus = parseInt(proficienyBonus.value);
+      const profBonus = parseInt(proficiencyBonus.value);
       save.value = this.checked ? 
         (parseInt(save.value) + profBonus).toString() : 
         (parseInt(save.value) - profBonus).toString();
@@ -108,12 +114,30 @@ function updateSaveProf() {
   });
 }
 
+function updateProfBonus() {
+	//console.log(this);
+	// Update the skills that the char is prof. in when this changes
+	let skillProf = false;
+	const profBonus = parseInt(this.value);
+	skills.forEach(skill => {
+		if(skill.id.includes('prof')) {
+			skillProf = skill.checked ? true : false;
+		}
+		/*
+		Increment the skill value by profBonus if the box is checked 
+		for that skill 
+		*/
+
+		// TODO fix the math
+		skill.value = skillProf ? 
+			(parseInt(skill.value) + profBonus - oldProfBonus) : 
+			parseInt(skill.value);
+	});
+	oldProfBonus = profBonus;
+}
+
 
 /* Event listener calls */
-checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', handleCheckboxChange);
-});
-
 attributeVals.forEach(attributeVal => {
   attributeVal.addEventListener('change', handleAttributeValueChange);
 });
@@ -133,4 +157,6 @@ savingThrowVals.forEach(save => {
 savingThrowProfs.forEach(save => {
   save.addEventListener('change', updateSaveProf);
 });
+
+proficiencyBonus.addEventListener('change', updateProfBonus);
 
