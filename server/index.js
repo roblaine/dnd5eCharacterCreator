@@ -1,24 +1,90 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
-const MongoClient = require('mongodb').MongoClient
+const path = require("path");
 
 const port = process.env.PORT || 3001;
 const app = express();
+//var database = require('./interface/database');
+app.use(express.static('public'))
+
+var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:28015/dndtracker", {
+	useNewUrlParser: true
+});
+
+var userSchema = new mongoose.Schema({
+	username: { 
+		type: String, 
+		unique: true,
+		lowercase: true
+	},
+	password: String
+});
+
+var User = new mongoose.model("User", userSchema);
+
+var demoUser = new User({
+	username: 'johnny bravo',
+	password: 'monkey'
+});
+
+demoUser.save()
+.then(item => {console.log(`User: ${item}`)})
+.catch(err => {console.log(err)});
+
+
+var characterSchema = new mongoose.Schema({
+	name: {
+		type: String,
+		unique: true,
+		lowercase: true
+	},
+	level: Number,
+	race: String,
+	class: String,
+	age: Number,
+	creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+});
+
+var Character = new mongoose.model("Character", characterSchema);
+
+var demoChar = new Character({
+	name: 'jogn', 
+	level: 1, 
+	race: 'Dwarf',
+	class: 'Cleric',
+	age: 43,
+	creator: demoUser
+});
+
+demoChar.save()
+.then(item => {console.log(`Character: ${item}`)})
+.catch(err => {console.log(err)});
+
+var spellSchema = new mongoose.Schema({
+	name: {
+		type: String,
+		unique: true,
+		lowercase: true
+	},
+	level: Number,
+	school: String,
+	caster_class: String,
+	desc: String,
+	ritual: Boolean,
+	range: Number,
+	damage: String
+});
+
+var Spell = new mongoose.model("Spell", spellSchema);
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(pino);
-
-var db;
-
-MongoClient.connect(
-  'mongodb://localhost:28015', 
-    (err, client) => {
-  if (err) { return console.log(err) };
-  db = client.db('dndtracker');
-  // console.log that your server is up and running
-  app.listen(port, () => console.log(`Listening on port ${port}`));
-});
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.post('/users/new', (req, res) => {
   db.collection('users').insertOne(req.body, (err, result) => {
@@ -38,27 +104,45 @@ app.get('/users', (req, res) => {
   res.send(JSON.stringify({ users: `${users}` }));
 });
 
-// Declare api endpoints
 app.get('/api/greeting', (req, res) => {
   const name = req.query.name || 'World';
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
 });
 
-app.get('/api/classData', (req, res) => {
-  const className = req.query.className || 'Fighter';
-  console.log(`Recieving API query for class with name: ${className}`);
+app.get('/api/characters', (req, res) => {
+  //const username = req.query.username;
+  //console.log(`Recieving API query for char belonging to: ${username}`);
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ data: { name: `John`, age: 24 } }));
+	// find the character and return it as a json object
+	// TODO make this dynamic instead of hardcoding the demo name
+	let chr = null;
+	Character.findOne({ 'name': 'jogn' }, 'name',
+		function(err, character) {
+			if(err) { return handleError(err) };
+			chr = JSON.stringify({ data: { 'name': character.name } });
+			console.log(chr);
+		}
+	).then(res.send(chr));
 });
 
-// create a GET route
-app.get('/express_backend', (req, res) => {
-  console.log('Receiving API query for express backend');
-  res.send({ data: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+app.post('/login', function(req, res) {
+	let currentUser = null;
+	[username, password] = [req.body.username, req.body.password];
+	console.log('username: %s\npassword: %s', username, password);
+
+	User.findOne({'username': username.toLowerCase(), }, 'username', 
+		function(err, user) {
+			if(err) { return handleError(err) };
+			if(user.password === password) {
+				currentUser = user;
+			}
+			console.log('current: %s', user);
+		}
+	).then(res.send(currentUser));
 });
 
-app.get('/', (req, res) => {
-  res.send({ data: 'Hi' });
+app.get('/public/character', (req, res) => {
+	res.sendFile(__dirname + '/public/character.html');
 });
 

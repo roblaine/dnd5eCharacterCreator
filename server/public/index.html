@@ -1,13 +1,35 @@
 <html>
 
 <head>
-  <title>Express</title>
+  <title>DND Tracker</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
 </head>
 
 <body>
-  <h1>Express</h1>
-  <p>Welcome to Express</p>
+	<div class="title">
+		<h1>Welcome to DND Tracker</h1>
+	</div>
+
+	<!-- Login form for the website -->
+	<div class="div login-form">
+		<form class="form login-form" action="/login" method="post">
+			<label for="login">
+				Login
+			</label>
+			<input type="text" id="username" class="username" name="username">
+
+			<label for="password">
+				Password
+			</label>
+			<input type="password" id="password" class="password" name="password">
+
+			<input type="submit" class="login" value="Login" />
+		</form>
+	</div>
+
 </body>
 
 </html>
+

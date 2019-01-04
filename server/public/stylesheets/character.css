@@ -1,0 +1,108 @@
+.character-sheet {
+	justify-content: space-evenly;
+}
+
+.details-label {
+}
+
+.emphasis {
+	font-weight: bold;
+}
+
+.details {
+}
+
+.details-meta {
+	margin: 0;
+	padding: 0;
+	border: solid 1px yellow;
+}
+
+.detail-meta-group {
+	border: solid 1px red;
+}
+
+.detail {
+	border: solid 1px green;
+}
+
+li {
+  display: block;
+}
+
+.attributes {
+	display: flex;
+	flex-direction: column;
+}
+
+.attribute {
+	border: solid 1px black;
+	margin: 0;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.save {
+	border: solid 1px black;
+	margin: 0;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.save .value {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.save .name {
+	padding-left: 10px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.proficiency .value {
+	margin-right: 5px;
+}
+
+.saves {
+}
+
+.label {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.skills {
+	border: 1px purple solid;
+}
+
+.skill {
+}
+
+.skill .detail {
+	margin: 0;
+}
+
+.languages {
+	border: 1px solid black;	
+}
+
+.skills-meta {
+	display: flex;
+	flex-direction: row;
+}
+
+.features-traits {
+	border: solid black 1px;
+}
+
