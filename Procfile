@@ -1,1 +1,2 @@
-web: docker-compose up
+web: node ./server/index.js
+
