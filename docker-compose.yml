@@ -31,6 +31,8 @@ services:
         networks:
             - webappnetwork 
         container_name: dndtracker_server
+        environment:
+          - APP_MONGO_URL=mongodb
     
     mongodb:
         image: mongo

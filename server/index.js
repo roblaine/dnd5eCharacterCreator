@@ -11,9 +11,18 @@ const app = express();
 app.use(express.static('public'))
 
 var mongoose = require("mongoose");
+
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://0.0.0.0:27017/dndtracker", {
-	useNewUrlParser: true
+const mongodb_ip = process.env.APP_MONGO_URL;
+console.log(mongodb_ip);
+
+mongoose.connect(
+	`mongodb://${mongodb_ip}:27017/dndtracker`, 
+	{ useNewUrlParser: true }
+)
+.then(() => console.info('Connected to mongodb'))
+.catch(err => {
+	console.error(err);
 });
 
 var userSchema = new mongoose.Schema({

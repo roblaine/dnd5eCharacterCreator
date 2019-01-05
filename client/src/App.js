@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+// eslint-disable-next-line
 import Spell from './Spell.js';
+// eslint-disable-next-line
 import CharacterSheet from './CharacterSheet';
 
 class App extends Component {
