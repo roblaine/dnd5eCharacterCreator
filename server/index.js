@@ -2,20 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 const path = require("path");
+const mongoose = require("mongoose");
+const app = express();
 
+// Load all of our env vars
 const port = process.env.PORT || 3001;
 const host = process.env.HOST || '0.0.0.0';
-console.log(port, host);
-const app = express();
-//var database = require('./interface/database');
+const mongodb_ip = process.env.APP_MONGO_URL;
+
 app.use(express.static('public'))
 
-var mongoose = require("mongoose");
-
 mongoose.Promise = global.Promise;
-const mongodb_ip = process.env.APP_MONGO_URL;
-console.log(mongodb_ip);
-
 mongoose.connect(
 	`mongodb://${mongodb_ip}:27017/dndtracker`, 
 	{ useNewUrlParser: true }
@@ -25,6 +22,7 @@ mongoose.connect(
 	console.error(err);
 });
 
+// TODO Move these to their own file
 var userSchema = new mongoose.Schema({
 	username: { 
 		type: String, 
