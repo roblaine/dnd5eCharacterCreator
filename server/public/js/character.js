@@ -17,6 +17,7 @@ const savingThrowProfs = document.querySelectorAll('.save input[type=checkbox]')
 
 const level = document.querySelector('.level');
 
+// This will change as the prof field changes
 var oldProfBonus = proficiencyBonus.value;
 
 /* Function definitions */

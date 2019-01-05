@@ -46,12 +46,20 @@
 						<li class="detail emphasis">Race</li>
 					</ul>
 					<ul class="detail-meta-group">
-						<input class="detail alignment value" type="text">
+						<select id="law-alignment">
+							<option value="lawful">Lawful</option>
+							<option value="neutral">Neutral</option>
+							<option value="chaotic">Chaotic</option>
+						</select>
+						<select id="evil-alignment">
+							<option value="good">Good</option>
+							<option value="neutral">Neutral</option>
+							<option value="evil">Evil</option>
+						</select>
 						<li class="detail emphasis">Alignment</li>
 					</ul>
 					<ul class="detail-meta-group">
-						<li class="detail">0</li>
-						<input class="detail experience value" type="number">
+						<input class="detail experience value" type="number" min="0" placeholder="0 min="0" placeholder="0"">
 						<li class="detail emphasis">Experience Points</li>
 					</ul>
 				</div>
@@ -280,11 +288,11 @@
 				<div class="ac-hp column">
 					<div class="ac-init-speed row">
 						<div class="ac">
-							<input class="ac detail value" type="number" id="ac">
+							<input class="ac detail value" type="number" id="ac" min="0">
 							<p class="ac detail emphasis">AC</p>
 						</div>
 						<div class="init">
-							<input class="init detail value" type="number" id="initiative">
+							<input class="init detail value" type="number" id="initiative" min="1">
 							<p class="init detail emphasis">Initiative</p>
 						</div>
 						<div class="speed">
@@ -296,14 +304,14 @@
 					<div class="hp column">
 						<div class="row">
 							<p class="emphasis">HP Max</p>
-							<input class="detail value" type="number" id="hp-max">
+							<input class="detail value" type="number" id="hp-max" min="1">
 						</div>
 						<div class="column">
-							<input class="hpcurrent detail value" type="number" id="hp-current">
+							<input class="hpcurrent detail value" type="number" id="hp-current" min="0">
 							<p class="emphasis">Current HP</p>
 						</div>
 						<div class="column">
-							<input class="hptemp detail value" type="number" id="hp-temp">
+							<input class="hptemp detail value" type="number" id="hp-temp" min="0">
 							<p class="emphasis">Temporary HP</p>
 						</div>
 					</div>
@@ -354,9 +362,36 @@
 						<p class="emphasis">Attacks &amp; Spellcasting</p>
 					</div>
 
-					<div class="equipment column">
-						
-					</div>
+					<div class="equipment-money row">
+            <div class="money column">
+							<div class="row">
+								<p class="emphasis">CP</p>
+								<input type="number" id="copper-pieces">      
+							</div>
+							<div class="row">
+								<p class="emphasis">SP</p>
+								<input type="number" id="silver-pieces">      
+							</div>
+							<div class="row">
+								<p class="emphasis">EP</p>
+								<input type="number" id="electrum-pieces">      
+							</div>
+							<div class="row">
+								<p class="emphasis">GP</p>
+								<input type="number" id="gold-pieces">      
+							</div>
+							<div class="row">
+								<p class="emphasis">PP</p>
+								<input type="number" id="platinum-pieces">      
+							</div>
+            </div>
+            <div class="equipment column">
+            	<input type="text" id="equipment">      
+							<button class="button" id="add-equip-row">Add Equipment</button>
+							<p class="emphasis">Equipment</p>
+            </div>
+          </div>
+				
 				</div>
 
 			</div>
