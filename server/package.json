@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
+    "debug": "node insepct index.js --port 3001 --host 0.0.0.0",
     "server": "node-env-run index.js --exec nodemon | pino-colada",
     "lint": "./node_modules/.bin/eslint"
   },

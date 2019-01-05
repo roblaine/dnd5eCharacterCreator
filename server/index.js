@@ -4,13 +4,15 @@ const pino = require('express-pino-logger')();
 const path = require("path");
 
 const port = process.env.PORT || 3001;
+const host = process.env.HOST || '0.0.0.0';
+console.log(port, host);
 const app = express();
 //var database = require('./interface/database');
 app.use(express.static('public'))
 
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:28015/dndtracker", {
+mongoose.connect("mongodb://0.0.0.0:27017/dndtracker", {
 	useNewUrlParser: true
 });
 
@@ -84,7 +86,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(pino);
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, host);
 
 app.post('/users/new', (req, res) => {
   db.collection('users').insertOne(req.body, (err, result) => {
