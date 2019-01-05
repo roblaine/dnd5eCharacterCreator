@@ -1,3 +1,4 @@
+// declare all of the required modules
 const express = require('express');
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
@@ -5,89 +6,32 @@ const path = require("path");
 const mongoose = require("mongoose");
 const app = express();
 
+// Database models
+const User = require('./database/schema').User;
+const Character = require('./database/schema').Character;
+const Spell = require('./database/schema').Spell;
+const Seed = require('./database/schema').seedDatabase;
+
 // Load all of our env vars
 const port = process.env.PORT || 3001;
 const host = process.env.HOST || '0.0.0.0';
-const mongodb_ip = process.env.APP_MONGO_URL;
+const mongodbIp = process.env.APP_MONGO_URL;
 
 app.use(express.static('public'))
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-	`mongodb://${mongodb_ip}:27017/dndtracker`, 
+	`mongodb://${mongodbIp}:27017/dndtracker`, 
 	{ useNewUrlParser: true }
 )
-.then(() => console.info('Connected to mongodb'))
+.then(() => {
+	console.log('\nConnected to mongodb\n');
+	// Seed the database
+	Seed();
+})
 .catch(err => {
 	console.error(err);
 });
-
-// TODO Move these to their own file
-var userSchema = new mongoose.Schema({
-	username: { 
-		type: String, 
-		unique: true,
-		lowercase: true
-	},
-	password: String
-});
-
-var User = new mongoose.model("User", userSchema);
-
-var demoUser = new User({
-	username: 'johnny bravo',
-	password: 'monkey'
-});
-
-demoUser.save()
-.then(item => {console.log(`User: ${item}`)})
-.catch(err => {console.log(err)});
-
-
-var characterSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		unique: true,
-		lowercase: true
-	},
-	level: Number,
-	race: String,
-	class: String,
-	age: Number,
-	creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-});
-
-var Character = new mongoose.model("Character", characterSchema);
-
-var demoChar = new Character({
-	name: 'jogn', 
-	level: 1, 
-	race: 'Dwarf',
-	class: 'Cleric',
-	age: 43,
-	creator: demoUser
-});
-
-demoChar.save()
-.then(item => {console.log(`Character: ${item}`)})
-.catch(err => {console.log(err)});
-
-var spellSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		unique: true,
-		lowercase: true
-	},
-	level: Number,
-	school: String,
-	caster_class: String,
-	desc: String,
-	ritual: Boolean,
-	range: Number,
-	damage: String
-});
-
-var Spell = new mongoose.model("Spell", spellSchema);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -113,11 +57,6 @@ app.get('/users', (req, res) => {
   res.send(JSON.stringify({ users: `${users}` }));
 });
 
-app.get('/api/greeting', (req, res) => {
-  const name = req.query.name || 'World';
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
-});
 
 app.get('/api/characters', (req, res) => {
   //const username = req.query.username;
@@ -148,9 +87,12 @@ app.post('/login', function(req, res) {
 			}
 			console.log('current: %s', user);
 		}
-	).then(res.send(currentUser));
+	)
+	.then(res.send(currentUser))
+	.catch(err => console.log(err));
 });
 
+// Static character sheet for demo
 app.get('/public/character', (req, res) => {
 	res.sendFile(__dirname + '/public/character.html');
 });
