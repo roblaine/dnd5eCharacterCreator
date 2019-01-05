@@ -1,0 +1,5 @@
+build:
+  docker:
+    client: Dockerfile
+    server: Dockerfile
+
