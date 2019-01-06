@@ -24,8 +24,8 @@ var oldProfBonus = proficiencyBonus.value;
 function handleCheckboxChange() {
 }
 
-function handleAttributeValueChange() {
-  const attr = this;
+function handleAttributeValueChange(e) {
+  const attr = e;
   /*
   // If theres not mod on the attribute name we will not 
   // update the skill. Otherwise we will
@@ -48,7 +48,8 @@ function handleAttributeValueChange() {
         if (attrMod.name.includes(attr.name)) {	
           const mod = Math.floor((attr.value - 10) / 2);
           attrMod.value = mod;
-          skillVals.forEach(skill => {
+					
+					skillVals.forEach(skill => {
             // Find out if the skill is dependent on the skill we're 
             // modifying
             const skillClass = [...skill.classList].join('');
@@ -162,29 +163,52 @@ function updateLevel() {
 	updateProfBonus();
 }
 
+function setDefaults() {
+	const attr = this;
+	console.log(`setting default for ${attr}`);
+	
+}
 
 /* Event listener calls */
+// On change reupdate the value of each
 attributeVals.forEach(attribute => {
-  attribute.addEventListener('change', handleAttributeValueChange);
+  attribute.addEventListener('change', () => {
+		handleAttributeValueChange(attribute);
+	})
 });
 
+// Load the default values on page load
+window.onload = () => {
+	attributeVals.forEach(attribute => {
+		handleAttributeValueChange(attribute);
+	});
+}
+
+// On change reupdate the value of each
 attributeMods.forEach(attribute => {
   attribute.addEventListener('change', handleAttributeModValueChange);
 });
 
+// On change reupdate the value of each
 skillProfs.forEach(checkbox => {
   checkbox.addEventListener('change', updateSkillProf);
 });
 
+// On change reupdate the value of each
 savingThrowVals.forEach(save => {
   save.addEventListener('change', updateSaveValue);
 });
 
+// On change reupdate the value of each
 savingThrowProfs.forEach(save => {
   save.addEventListener('change', updateSaveProf);
 });
 
+// On change reupdate the value of each
 proficiencyBonus.addEventListener('change', updateProfBonus);
 
+// On change reupdate the value of each
 level.addEventListener('change', updateLevel);
+
+
 

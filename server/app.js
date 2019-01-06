@@ -37,7 +37,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(pino);
-app.listen(port, host);
+app.listen(port, host, () => {
+	const listenLog = `> Server live at ${host}:${port}\n`;
+	console.log(listenLog);
+});
 
 app.post('/users/new', (req, res) => {
   db.collection('users').insertOne(req.body, (err, result) => {

@@ -76,35 +76,36 @@
 					<div class="attributes">
 						<div class="attribute column">
 							<p class="attribute name emphasis">Strength</p>
-							<input class="attribute value" type="number" name="strength" max="30" min="1" value="1">
+							<input class="attribute value" type="number" name="strength" max="30" min="1" value="10">
 							<input class="attribute modifier" readonly type="number" name="strength-mod">
 						</div>
 						<div class="attribute column">
 							<p class="attribute name emphasis">Dexterity</p>
-							<input class="attribute value" type="number" name="dexterity" max="30" min="1" value="1">
+							<input class="attribute value" type="number" name="dexterity" max="30" min="1" value="10">
 							<input class="attribute modifier" readonly type="number" name="dexterity-mod">
 						</div>
 						<div class="attribute column">
 							<p class="attribute name emphasis">Constitution</p>
-							<input class="attribute value" type="number" name="constitution" max="30" min="1" value="1">
+							<input class="attribute value" type="number" name="constitution" max="30" min="1" value="10">
 							<input class="attribute modifier" readonly type="number" name="constitution-mod">
 						</div>
 						<div class="attribute column">
 							<p class="attribute name emphasis">Intelligence</p>
-							<input class="attribute value" type="number" name="intelligence" max="30" min="1" value="1">
+							<input class="attribute value" type="number" name="intelligence" max="30" min="1" value="10">
 							<input class="attribute modifier" readonly type="number" name="intelligence-mod">
 						</div>
 						<div class="attribute column">
 							<p class="attribute name emphasis">Wisdom</p>
-							<input class="attribute value" type="number" name="wisdom" value="1">
+							<input class="attribute value" type="number" name="wisdom" value="10">
 							<input class="attribute modifier" readonly type="number" name="wisdom-mod">
 						</div>
 						<div class="attribute column">
 							<p class="attribute name emphasis">Charisma</p>
-							<input class="attribute value" type="number" name="charisma" max="30" min="1" value="1">
+							<input class="attribute value" type="number" name="charisma" max="30" min="1" value="10">
 							<input class="attribute modifier" readonly type="number" name="charisma-mod">
 						</div>
 					</div>
+
 					<!-- End of attributes -->
 					<div class="column">
 						<div class="inspiration row">
@@ -288,7 +289,7 @@
 				<div class="ac-hp column">
 					<div class="ac-init-speed row">
 						<div class="ac">
-							<input class="ac detail value" type="number" id="ac" min="0">
+							<input class="ac detail value" type="number" id="ac" min="1" value="1">
 							<p class="ac detail emphasis">AC</p>
 						</div>
 						<div class="init">
@@ -331,11 +332,15 @@
 						<div class="death-saves column">
 							<div class="row">
 								<p class="emphasis">Successes</p>
-								<input class="death-saves success value" type="number" id="success-count">
+								<input class="death-saves success value" type="checkbox" id="success-1">
+								<input class="death-saves success value" type="checkbox" id="success-2">
+								<input class="death-saves success value" type="checkbox" id="success-3">
 							</div>
 							<div class="row">
 								<p class="emphasis">Failures</p>
-								<input class="death-saves failures value" type="number" id="failure-count">
+								<input class="death-saves failures value" type="checkbox" id="failure-1">
+								<input class="death-saves failures value" type="checkbox" id="failure-2">
+								<input class="death-saves failures value" type="checkbox" id="failure-3">
 							</div>
 							<p class="label">Death Saves</p>
 						</div>
@@ -353,7 +358,7 @@
 						</div>
 						<div class="weapon row">
 							<input type="text" id="weapon-name"></input>
-							<input type="number" id="weapon-atkbonus"></input>
+							<input type="number" id="weapon-atkbonus" min="0" value="0"></input>
 							<input type="text" id="weapon-damage"></input>
 						</div>
 
@@ -366,23 +371,23 @@
             <div class="money column">
 							<div class="row">
 								<p class="emphasis">CP</p>
-								<input type="number" id="copper-pieces">      
+								<input type="number" id="copper-pieces" min="0" value="0">      
 							</div>
 							<div class="row">
 								<p class="emphasis">SP</p>
-								<input type="number" id="silver-pieces">      
+								<input type="number" id="silver-pieces" min="0" value="0">      
 							</div>
 							<div class="row">
 								<p class="emphasis">EP</p>
-								<input type="number" id="electrum-pieces">      
+								<input type="number" id="electrum-pieces" min="0" value="0">      
 							</div>
 							<div class="row">
 								<p class="emphasis">GP</p>
-								<input type="number" id="gold-pieces">      
+								<input type="number" id="gold-pieces" min="0" value="0">      
 							</div>
 							<div class="row">
 								<p class="emphasis">PP</p>
-								<input type="number" id="platinum-pieces">      
+								<input type="number" id="platinum-pieces" min="0" value="0">      
 							</div>
             </div>
             <div class="equipment column">
