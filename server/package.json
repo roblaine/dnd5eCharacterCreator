@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node index.js",
-    "debug": "node insepct index.js --port 3001 --host 0.0.0.0",
-    "server": "node-env-run index.js --exec nodemon | pino-colada",
+    "start": "node app.js",
+    "debug": "node insepct app.js --port 3001 --host 0.0.0.0",
+    "server": "node-env-run app.js --exec nodemon | pino-colada",
     "lint": "./node_modules/.bin/eslint"
   },
   "dependencies": {
