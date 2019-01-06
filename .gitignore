@@ -1,6 +1,9 @@
 # docker images
 /data-node/
 
+# zipped archive
+*.zip
+
 scratchpad/
 # vim
 *.swp
