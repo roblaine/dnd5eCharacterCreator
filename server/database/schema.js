@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
-	username: { 
-		type: String, 
+	username: {
+		type: String,
 		unique: true,
 		lowercase: true
 	},
@@ -45,18 +45,14 @@ var spellSchema = new mongoose.Schema({
 var Spell = new mongoose.model("Spell", spellSchema);
 
 function seedDatabase() {
-	// Drop the database before seeding again
-	//console.log('\n!!! --- Dropping database --- !!!\n');
-	//mongoose.connection.executeDbCommand( {dropDatabase:1}, function(err, result) { if (err) { console.log(err); } done(); });
-
 	var demoUser = new User({
 		username: 'johnny bravo',
 		password: 'monkey'
 	});
-	
+
 	var demoChar = new Character({
-		name: 'jogn', 
-		level: 1, 
+		name: 'jogn',
+		level: 1,
 		race: 'Dwarf',
 		class: 'Cleric',
 		age: 43,
@@ -81,9 +77,8 @@ function seedDatabase() {
 }
 
 module.exports = {
-  User, 
-  Character, 
+  User,
+  Character,
   Spell,
   seedDatabase
 };
-
