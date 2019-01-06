@@ -1,7 +1,53 @@
-.character-sheet {
-	justify-content: space-evenly;
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
 }
 
+/* We tell all items to be 100% width, via flex-basis */
+.wrapper > * {
+  flex: 1 100%;
+}
+
+/*
+	order for a mobile first application:
+	1. Header (.header)
+	2. character meta details (.main)
+	3. Attributes/skills (.col-1)
+	5. AC/hitdie (.col-2)
+	6. Traits (.col-3)
+	7. Footer (.footer)
+*/
+
+/* Medium screens */
+@media all and (min-width: 600px) {
+	/* Have each column share a row */
+  .col { flex: 1 auto; }
+}
+
+/* Large screens */
+@media all and (min-width: 800px) {
+	/* Each of the 4 rows spaced evenly accross the window width */
+  /*.main  { flex: 2 0px; }
+  .main	 { order: 1; }*/
+  .col-1 { order: 1; }
+  .col-2 { order: 2; }
+  .col-3 { order: 3; }
+}
+
+.wrapper {
+	border: red 1px solid;
+}
+
+.col {
+	border: purple 1px solid;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+/*
 .details-label {
 }
 
@@ -47,11 +93,6 @@ li {
 	flex-direction: column;
 }
 
-.row {
-	display: flex;
-	flex-direction: row;
-}
-
 .save {
 	border: solid 1px black;
 	margin: 0;
@@ -94,7 +135,7 @@ li {
 }
 
 .languages {
-	border: 1px solid black;	
+	border: 1px solid black;
 }
 
 .skills-meta {
@@ -105,4 +146,14 @@ li {
 .features-traits {
 	border: solid black 1px;
 }
+*/
 
+/* Hide the spinners on thee input boxes */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
