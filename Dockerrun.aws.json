@@ -6,15 +6,17 @@
 			"host": {
 				"sourcePath": "/var/app/current/dndtracker-client"
 			}
-			}, {
-				"name" : "dndtracker-server",
-				"host": {
-					"sourcePath": "/var/app/current/dndtracker-server"
-			}, {
-				"name" : "mongodb",
-				"host": {
-					"sourcePath": "/var/app/current/mongodb"
-				}
+		}, 
+		{
+			"name" : "dndtracker-server",
+			"host": {
+				"sourcePath": "/var/app/current/dndtracker-server"
+			}
+		}, 
+		{
+			"name" : "mongodb",
+			"host": {
+				"sourcePath": "/var/app/current/mongodb"
 			}
 		}
 	],
