@@ -32,7 +32,7 @@ order for a mobile first application:
 }
 
 /* Large screens */
-@media all and (min-width: 800px) {
+@media all and (min-width: 800px, max-width: 900px) {
   /* Each of the 4 rows spaced evenly accross the window width */
   /*.main  { flex: 2 0px; }*/
   .nav-col  { order: 1; }
@@ -45,6 +45,29 @@ order for a mobile first application:
     justify-content: space-around;
   }
 }
+
+.details-meta {
+  flex-flow: wrap;
+}
+
+.details-meta .row {
+  flex-wrap: wrap;
+}
+
+.skills-meta {
+  flex-wrap: wrap;
+}
+
+.nav-col {
+  flex: 1;
+}
+
+.nav-col a {
+  font-size: 18px;
+  font-weight: 600;
+  color: black
+}
+
 .navigation {
   display: flex;
   flex-flow: row wrap;
@@ -69,13 +92,6 @@ order for a mobile first application:
   /* This aligns items to the end line on main-axis */
   justify-content: space-between;
   border: solid 1px green;
-}
-
-.nav-col {
-  width: 20px;
-  font-size: 18px;
-  font-weight: 600;
-  color: black;
 }
 
 /* Set backrgound image */
@@ -105,7 +121,7 @@ li {
 
 .row, .data-row {
   display: flex;
-	flex-direction: row;
+  flex-flow: row wrap;
 }
 
 .skills-meta:last-child {
