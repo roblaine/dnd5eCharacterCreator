@@ -1,3 +1,34 @@
+/* Define all of the flex settings for various screen widths */
+/* Large */
+.navigation {
+  display: flex;
+  flex-flow: row wrap;
+  /* This aligns items to the end line on main-axis */
+  justify-content: flex-start;
+  border: solid 1px green;
+}
+
+.navigation > * {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* Medium screens */
+@media all and (max-width: 800px) {
+  .navigation {
+    /* When on medium sized screens, we center it by evenly distributing empty space around items */
+    justify-content: space-around;
+  }
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .navigation {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+}
+
 .wrapper {
   display: flex;
   flex-flow: row wrap;
@@ -10,7 +41,7 @@
 
 /*
 	order for a mobile first application:
-	1. Header (.header)
+	1. Header/navbar (.navigation)
 	2. character meta details (.main)
 	3. Attributes/skills (.col-1)
 	5. AC/hitdie (.col-2)
@@ -27,27 +58,82 @@
 /* Large screens */
 @media all and (min-width: 800px) {
 	/* Each of the 4 rows spaced evenly accross the window width */
-  /*.main  { flex: 2 0px; }
-  .main	 { order: 1; }*/
-  .col-1 { order: 1; }
-  .col-2 { order: 2; }
-  .col-3 { order: 3; }
+  /*.main  { flex: 2 0px; }*/
+  .nav-col  { order: 1; }
+  .col-1    { order: 2; }
+  .col-2    { order: 3; }
+  .col-3    { order: 4; }
 }
+
+.spell-nav {
+  margin: 0;
+  padding: 0;
+}
+
+.spell-nav {
+  display: flex;
+  flex-flow: row wrap;
+  /* This aligns items to the end line on main-axis */
+  justify-content: space-between;
+  border: solid 1px green;
+}
+
+.nav-col {
+  width: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+}
+
+/* Ultimately this can be remployed to rotate the side navbar*/
+/*
+.nav-col ul {
+  border: solid 1px yellow;
+  /* FF3.5+ */
+  -moz-transform: rotate(-90.0deg);
+  /* Opera 10.5 */
+  -o-transform: rotate(-90.0deg);
+  /* Saf3.1+, Chrome */
+  -webkit-transform: rotate(-90.0deg);
+  /* IE6,IE7 */
+  filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0.083);
+  /* IE8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)";
+  /* Standard */
+  transform: rotate(-90.0deg);
+}
+*/
 
 .wrapper {
 	border: red 1px solid;
+}
+
+/* Set backrgound image */
+body {
+  /*background-image:url('/images/background.jpg');*/
+  background-size: 100%;
+  background-size: contain;
 }
 
 .col {
 	border: purple 1px solid;
 }
 
+.header {
+  font-weight: bold;
+}
+
+/* Remove the bullet points from the list */
+li {
+  display: block;
+}
+
+/*
 .row {
 	display: flex;
 	flex-direction: row;
 }
 
-/*
 .details-label {
 }
 
@@ -70,10 +156,6 @@
 
 .detail {
 	border: solid 1px green;
-}
-
-li {
-  display: block;
 }
 
 .attributes {

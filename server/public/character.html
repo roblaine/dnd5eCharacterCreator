@@ -9,421 +9,432 @@
 <body>
   <!-- Start of the wrapper -->
   <div class="wrapper">
-      <!-- Start of meta details (name, age, class, race etc) -->
-      <div class="details row main">
-        <p class="details" class="details-label">Character Details</p>
-        <div class="detail-name">
-          <ul class="detail-group">
-            <input class="detail name value" type="text">
-            <li class="detail emphasis">Name</li>
+    <ul class="navigation">
+      <header class="header">DND Tracker</header>
+      <li><a href="">Character 1</a></li>
+      <li><a href="">Character 2</a></li>
+    </ul>
+    <div class="nav-col col">
+      <ul class="spell-nav">
+        <li class="spell-nav-item"><a href="">Character</a></li>
+        <li class="spell-nav-item"><a href="">Spells</a></li>
+      </ul>
+    </div>
+    <!-- Start of meta details (name, age, class, race etc) -->
+    <div class="details row main">
+      <p class="details" class="details-label">Character Details</p>
+      <div class="detail-name">
+        <ul class="detail-group">
+          <input class="detail name value" type="text">
+          <li class="detail emphasis">Name</li>
+        </ul>
+      </div>
+      <div class="details-meta">
+        <!-- Top row of details -->
+        <div class="details-meta row">
+          <ul class="detail-meta-group">
+            <div class="row">
+              <input class="detail class value" type="text"> &amp;
+              <input class="detail level value" type="number" max="30" min="1" value="1">
+            </div>
+            <li class="detail emphasis">Class &amp; Level</li>
+          </ul>
+          <ul class="detail-meta-group">
+            <input class="detail background value" type="text">
+            <li class="detail emphasis">Background</li>
+          </ul>
+          <ul class="detail-meta-group">
+            <input class="detail playername value" type="text">
+            <li class="detail emphasis">Player</li>
           </ul>
         </div>
-        <div class="details-meta">
-          <!-- Top row of details -->
-          <div class="details-meta row">
-            <ul class="detail-meta-group">
-              <div class="row">
-                <input class="detail class value" type="text"> &amp;
-                <input class="detail level value" type="number" max="30" min="1" value="1">
-              </div>
-              <li class="detail emphasis">Class &amp; Level</li>
-            </ul>
-            <ul class="detail-meta-group">
-              <input class="detail background value" type="text">
-              <li class="detail emphasis">Background</li>
-            </ul>
-            <ul class="detail-meta-group">
-              <input class="detail playername value" type="text">
-              <li class="detail emphasis">Player</li>
-            </ul>
-          </div>
 
-          <!-- Bottom row of details -->
-          <div class="details-meta row">
-            <ul class="detail-meta-group">
-              <input class="detail race value" type="text">
-              <li class="detail emphasis">Race</li>
-            </ul>
-            <ul class="detail-meta-group">
-              <select id="law-alignment">
-                <option value="lawful">Lawful</option>
-                <option value="neutral">Neutral</option>
-                <option value="chaotic">Chaotic</option>
-              </select>
-              <select id="evil-alignment">
-                <option value="good">Good</option>
-                <option value="neutral">Neutral</option>
-                <option value="evil">Evil</option>
-              </select>
-              <li class="detail emphasis">Alignment</li>
-            </ul>
-            <ul class="detail-meta-group">
-              <input class="detail experience value" type="number" min="0" placeholder="0" min="0">
-              <li class="detail emphasis">Experience Points</li>
-            </ul>
-          </div>
+        <!-- Bottom row of details -->
+        <div class="details-meta row">
+          <ul class="detail-meta-group">
+            <input class="detail race value" type="text">
+            <li class="detail emphasis">Race</li>
+          </ul>
+          <ul class="detail-meta-group">
+            <select id="law-alignment">
+              <option value="lawful">Lawful</option>
+              <option value="neutral">Neutral</option>
+              <option value="chaotic">Chaotic</option>
+            </select>
+            <select id="evil-alignment">
+              <option value="good">Good</option>
+              <option value="neutral">Neutral</option>
+              <option value="evil">Evil</option>
+            </select>
+            <li class="detail emphasis">Alignment</li>
+          </ul>
+          <ul class="detail-meta-group">
+            <input class="detail experience value" type="number" min="0" placeholder="0" min="0">
+            <li class="detail emphasis">Experience Points</li>
+          </ul>
         </div>
       </div>
-      <!-- End Meta details -->
+    </div>
+    <!-- End Meta details -->
 
-      <!-- Start Each major column detail blocks -->
-      <div class="skills-and-languages column col col-1">
-        <!-- Div that contains attributes, Ac, init, skills, etc  -->
-        <div class="skills-meta column">
-          <!-- Attributes for the character (str, wisdom, etc)  -->
-          <div class="attributes">
-            <div class="attribute column">
-              <p class="attribute name emphasis">Strength</p>
-              <input class="attribute value" type="number" name="strength" max="30" min="1" value="10">
-              <input class="attribute modifier" readonly type="number" name="strength-mod">
-            </div>
-            <div class="attribute column">
-              <p class="attribute name emphasis">Dexterity</p>
-              <input class="attribute value" type="number" name="dexterity" max="30" min="1" value="10">
-              <input class="attribute modifier" readonly type="number" name="dexterity-mod">
-            </div>
-            <div class="attribute column">
-              <p class="attribute name emphasis">Constitution</p>
-              <input class="attribute value" type="number" name="constitution" max="30" min="1" value="10">
-              <input class="attribute modifier" readonly type="number" name="constitution-mod">
-            </div>
-            <div class="attribute column">
-              <p class="attribute name emphasis">Intelligence</p>
-              <input class="attribute value" type="number" name="intelligence" max="30" min="1" value="10">
-              <input class="attribute modifier" readonly type="number" name="intelligence-mod">
-            </div>
-            <div class="attribute column">
-              <p class="attribute name emphasis">Wisdom</p>
-              <input class="attribute value" type="number" name="wisdom" value="10">
-              <input class="attribute modifier" readonly type="number" name="wisdom-mod">
-            </div>
-            <div class="attribute column">
-              <p class="attribute name emphasis">Charisma</p>
-              <input class="attribute value" type="number" name="charisma" max="30" min="1" value="10">
-              <input class="attribute modifier" readonly type="number" name="charisma-mod">
-            </div>
+    <!-- Start Each major column detail blocks -->
+    <div class="skills-and-languages column col col-1">
+      <!-- Div that contains attributes, Ac, init, skills, etc  -->
+      <div class="skills-meta column">
+        <!-- Attributes for the character (str, wisdom, etc)  -->
+        <div class="attributes">
+          <div class="attribute column">
+            <p class="attribute name emphasis">Strength</p>
+            <input class="attribute value" type="number" name="strength" max="30" min="1" value="10">
+            <input class="attribute modifier" readonly type="number" name="strength-mod">
           </div>
-          <!-- End of attributes -->
+          <div class="attribute column">
+            <p class="attribute name emphasis">Dexterity</p>
+            <input class="attribute value" type="number" name="dexterity" max="30" min="1" value="10">
+            <input class="attribute modifier" readonly type="number" name="dexterity-mod">
+          </div>
+          <div class="attribute column">
+            <p class="attribute name emphasis">Constitution</p>
+            <input class="attribute value" type="number" name="constitution" max="30" min="1" value="10">
+            <input class="attribute modifier" readonly type="number" name="constitution-mod">
+          </div>
+          <div class="attribute column">
+            <p class="attribute name emphasis">Intelligence</p>
+            <input class="attribute value" type="number" name="intelligence" max="30" min="1" value="10">
+            <input class="attribute modifier" readonly type="number" name="intelligence-mod">
+          </div>
+          <div class="attribute column">
+            <p class="attribute name emphasis">Wisdom</p>
+            <input class="attribute value" type="number" name="wisdom" value="10">
+            <input class="attribute modifier" readonly type="number" name="wisdom-mod">
+          </div>
+          <div class="attribute column">
+            <p class="attribute name emphasis">Charisma</p>
+            <input class="attribute value" type="number" name="charisma" max="30" min="1" value="10">
+            <input class="attribute modifier" readonly type="number" name="charisma-mod">
+          </div>
+        </div>
+        <!-- End of attributes -->
 
+        <div class="column">
+          <div class="inspiration row">
+            <input class="inspiration value checkbox" type="checkbox" id="insipirationi-prof">
+            <p class="emphasis">Inspiration</p>
+          </div>
+          <div class="proficiency row">
+            <input class="proficiency value" type="number" name="proficiency" id="proficiency" value="2" min="2" readonly>
+            <p class="emphasis">Proficieny Bonus</p>
+          </div>
+
+          <div class="saves column">
+            <div class="save row">
+              <input class="proficiency save checkbox" type="checkbox" id="strength-prof">
+              <input class="save detail id" readonly type="number" id="strength">
+              <p class="save name emphasis">Strength</p>
+            </div>
+            <div class="save row">
+              <input class="proficiency save checkbox" type="checkbox" id="dexterity-prof">
+              <input class="save detail id" readonly type="number" id="dexterity">
+              <p class="save name emphasis">Dexterity</p>
+            </div>
+            <div class="save row">
+              <input class="proficiency save checkbox" type="checkbox" id="constitution-prof">
+              <input class="save detail id" readonly type="number" id="constitution">
+              <p class="save name emphasis">Constitution</p>
+            </div>
+            <div class="save row">
+              <input class="proficiency save checkbox" type="checkbox" id="intelligence-prof">
+              <input class="save detail id" readonly type="number" id="intelligence">
+              <p class="save name emphasis">Intelligence</p>
+            </div>
+            <div class="save row">
+              <input class="proficiency save checkbox" type="checkbox" id="wisdom-prof">
+              <input class="save detail id" readonly type="number" id="wisdom">
+              <p class="save name emphasis">Wisdom</p>
+            </div>
+            <div class="save row">
+              <input class="proficiency save checkbox" type="checkbox" id="charisma-prof">
+              <input class="save detail id" readonly type="number" id="charisma">
+              <p class="save name emphasis">Charisma</p>
+            </div>
+            <label class="label save name emphasis">Saving Throws</label>
+          </div>
+          <!-- End of Saving Throws -->
+
+          <!-- Start of Skills (use vanilla 18 skills) -->
+          <div class="skills">
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="acrobatics-prof">
+              <input class="skill detail dexterity-mod" type="number" id="acrobatics">
+              <p class="skill detail id">Acrobatics</p>
+              <p class="skill detail stat">Dex</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="animal-handling-prof">
+              <input class="skill detail wisdom-mod" type="number" id="animal-handling">
+              <p class="skill detail id">Animal Handling</p>
+              <p class="skill detail stat">Wis</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="arcana-prof">
+              <input class="skill detail intelligence-mod" type="number" id="arcana">
+              <p class="skill detail id">Arcana</p>
+              <p class="skill detail stat">Int</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="athletics-prof">
+              <input class="skill detail strength-mod" type="number" id="athletics">
+              <p class="skill detail id">Athletics</p>
+              <p class="skill detail stat">Str</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="deception-prof">
+              <input class="skill detail charisma-mod" type="number" id="deception">
+              <p class="skill detail id">Deception</p>
+              <p class="skill detail stat">Cha</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="history-prof">
+              <input class="skill detail wisdom-mod" type="number" id="history">
+              <p class="skill detail id">History</p>
+              <p class="skill detail stat">Wis</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="insight-prof">
+              <input class="skill detail wisdom-mod" type="number" id="insight">
+              <p class="skill detail id">Insight</p>
+              <p class="skill detail stat">Wis</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="intimidation-prof">
+              <input class="skill detail charisma-mod" type="number" id="intimidation">
+              <p class="skill detail id">Intimidation</p>
+              <p class="skill detail stat">Cha</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="investigation-prof">
+              <input class="skill detail intelligence-mod" type="number" id="investigation">
+              <p class="skill detail id">Investigation</p>
+              <p class="skill detail stat">Int</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="medicine-prof">
+              <input class="skill detail wisdom-mod" type="number" id="medicine">
+              <p class="skill detail id">Medicine</p>
+              <p class="skill detail stat">Wis</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="nature-prof">
+              <input class="skill detail intelligence-mod" type="number" id="nature">
+              <p class="skill detail id">Nature</p>
+              <p class="skill detail stat">Int</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="perception-prof">
+              <input class="skill detail wisdom-mod" type="number" id="perception">
+              <p class="skill detail id">Perception</p>
+              <p class="skill detail stat">Wis</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="performance-prof">
+              <input class="skill detail charisma-mod" type="number" id="performance">
+              <p class="skill detail id">Performance</p>
+              <p class="skill detail stat">Cha</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="persuasion-prof">
+              <input class="skill detail charisma-mod" type="number" id="persuasion">
+              <p class="skill detail id">Persuasion</p>
+              <p class="skill detail stat">Cha</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="religion-prof">
+              <input class="skill detail intelligence-mod" type="number" id="religion">
+              <p class="skill detail id">Religion</p>
+              <p class="skill detail stat">Int</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="sleight-of-hand-prof">
+              <input class="skill detail dexterity-mod" type="number" id="sleight-of-hand">
+              <p class="skill detail id">Sleight of Hand</p>
+              <p class="skill detail stat">Dex</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="stealth-prof">
+              <input class="skill detail dexterity-mod" type="number" id="stealth">
+              <p class="skill detail id">Stealth</p>
+              <p class="skill detail stat">Dex</p>
+            </div>
+            <div class="skill row">
+              <input class="skill prof checkbox" type="checkbox" id="survival-prof">
+              <input class="skill detail wisdom-mod" type="number" id="survival">
+              <p class="skill detail id">Survival</p>
+              <p class="skill detail stat">Wis</p>
+            </div>
+            <p class="label emphasis">Skills</p>
+          </div>
+          <!-- End of Skills -->
+        </div>
+        <!-- End of skills meta column -->
+      </div>
+      <div class="perception row">
+        <input class="perception detail value" type="number" id="passive-perception">
+        <p class="perception detail emphasis">Passive Perception</p>
+      </div>
+      <div class="languages column">
+        <p class="language detail"></p>
+        <p class="language detail emphasis">Known Languages</p>
+      </div>
+      <!-- End of skills column -->
+    </div>
+    <!-- End of skills-languages column col-1 -->
+
+    <!-- Start of survivability column col-2 -->
+    <div class="survivability column col col-2">
+      <!-- One div for AC, and HP -->
+      <div class="ac-hp column">
+        <div class="ac-init-speed row">
+          <div class="ac">
+            <input class="ac detail value" type="number" id="ac" min="1" value="1">
+            <p class="ac detail emphasis">AC</p>
+          </div>
+          <div class="init">
+            <input class="init detail value" type="number" id="initiative" min="1">
+            <p class="init detail emphasis">Initiative</p>
+          </div>
+          <div class="speed">
+            <input class="speed detail value" type="number" id="speed">
+            <p class="speed detail emphasis">Speed</p>
+          </div>
+        </div>
+
+        <div class="hp column">
+          <div class="row">
+            <p class="emphasis">HP Max</p>
+            <input class="detail value" type="number" id="hp-max" min="1">
+          </div>
           <div class="column">
-            <div class="inspiration row">
-              <input class="inspiration value checkbox" type="checkbox" id="insipirationi-prof">
-              <p class="emphasis">Inspiration</p>
-            </div>
-            <div class="proficiency row">
-              <input class="proficiency value" type="number" name="proficiency" id="proficiency" value="2" min="2" readonly>
-              <p class="emphasis">Proficieny Bonus</p>
-            </div>
-
-            <div class="saves column">
-              <div class="save row">
-                <input class="proficiency save checkbox" type="checkbox" id="strength-prof">
-                <input class="save detail id" readonly type="number" id="strength">
-                <p class="save name emphasis">Strength</p>
-              </div>
-              <div class="save row">
-                <input class="proficiency save checkbox" type="checkbox" id="dexterity-prof">
-                <input class="save detail id" readonly type="number" id="dexterity">
-                <p class="save name emphasis">Dexterity</p>
-              </div>
-              <div class="save row">
-                <input class="proficiency save checkbox" type="checkbox" id="constitution-prof">
-                <input class="save detail id" readonly type="number" id="constitution">
-                <p class="save name emphasis">Constitution</p>
-              </div>
-              <div class="save row">
-                <input class="proficiency save checkbox" type="checkbox" id="intelligence-prof">
-                <input class="save detail id" readonly type="number" id="intelligence">
-                <p class="save name emphasis">Intelligence</p>
-              </div>
-              <div class="save row">
-                <input class="proficiency save checkbox" type="checkbox" id="wisdom-prof">
-                <input class="save detail id" readonly type="number" id="wisdom">
-                <p class="save name emphasis">Wisdom</p>
-              </div>
-              <div class="save row">
-                <input class="proficiency save checkbox" type="checkbox" id="charisma-prof">
-                <input class="save detail id" readonly type="number" id="charisma">
-                <p class="save name emphasis">Charisma</p>
-              </div>
-              <label class="label save name emphasis">Saving Throws</label>
-            </div>
-            <!-- End of Saving Throws -->
-
-            <!-- Start of Skills (use vanilla 18 skills) -->
-            <div class="skills">
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="acrobatics-prof">
-                <input class="skill detail dexterity-mod" type="number" id="acrobatics">
-                <p class="skill detail id">Acrobatics</p>
-                <p class="skill detail stat">Dex</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="animal-handling-prof">
-                <input class="skill detail wisdom-mod" type="number" id="animal-handling">
-                <p class="skill detail id">Animal Handling</p>
-                <p class="skill detail stat">Wis</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="arcana-prof">
-                <input class="skill detail intelligence-mod" type="number" id="arcana">
-                <p class="skill detail id">Arcana</p>
-                <p class="skill detail stat">Int</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="athletics-prof">
-                <input class="skill detail strength-mod" type="number" id="athletics">
-                <p class="skill detail id">Athletics</p>
-                <p class="skill detail stat">Str</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="deception-prof">
-                <input class="skill detail charisma-mod" type="number" id="deception">
-                <p class="skill detail id">Deception</p>
-                <p class="skill detail stat">Cha</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="history-prof">
-                <input class="skill detail wisdom-mod" type="number" id="history">
-                <p class="skill detail id">History</p>
-                <p class="skill detail stat">Wis</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="insight-prof">
-                <input class="skill detail wisdom-mod" type="number" id="insight">
-                <p class="skill detail id">Insight</p>
-                <p class="skill detail stat">Wis</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="intimidation-prof">
-                <input class="skill detail charisma-mod" type="number" id="intimidation">
-                <p class="skill detail id">Intimidation</p>
-                <p class="skill detail stat">Cha</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="investigation-prof">
-                <input class="skill detail intelligence-mod" type="number" id="investigation">
-                <p class="skill detail id">Investigation</p>
-                <p class="skill detail stat">Int</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="medicine-prof">
-                <input class="skill detail wisdom-mod" type="number" id="medicine">
-                <p class="skill detail id">Medicine</p>
-                <p class="skill detail stat">Wis</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="nature-prof">
-                <input class="skill detail intelligence-mod" type="number" id="nature">
-                <p class="skill detail id">Nature</p>
-                <p class="skill detail stat">Int</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="perception-prof">
-                <input class="skill detail wisdom-mod" type="number" id="perception">
-                <p class="skill detail id">Perception</p>
-                <p class="skill detail stat">Wis</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="performance-prof">
-                <input class="skill detail charisma-mod" type="number" id="performance">
-                <p class="skill detail id">Performance</p>
-                <p class="skill detail stat">Cha</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="persuasion-prof">
-                <input class="skill detail charisma-mod" type="number" id="persuasion">
-                <p class="skill detail id">Persuasion</p>
-                <p class="skill detail stat">Cha</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="religion-prof">
-                <input class="skill detail intelligence-mod" type="number" id="religion">
-                <p class="skill detail id">Religion</p>
-                <p class="skill detail stat">Int</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="sleight-of-hand-prof">
-                <input class="skill detail dexterity-mod" type="number" id="sleight-of-hand">
-                <p class="skill detail id">Sleight of Hand</p>
-                <p class="skill detail stat">Dex</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="stealth-prof">
-                <input class="skill detail dexterity-mod" type="number" id="stealth">
-                <p class="skill detail id">Stealth</p>
-                <p class="skill detail stat">Dex</p>
-              </div>
-              <div class="skill row">
-                <input class="skill prof checkbox" type="checkbox" id="survival-prof">
-                <input class="skill detail wisdom-mod" type="number" id="survival">
-                <p class="skill detail id">Survival</p>
-                <p class="skill detail stat">Wis</p>
-              </div>
-              <p class="label emphasis">Skills</p>
-            </div>
-            <!-- End of Skills -->
+            <input class="hpcurrent detail value" type="number" id="hp-current" min="0">
+            <p class="emphasis">Current HP</p>
           </div>
-          <!-- End of skills meta column -->
-        </div>
-        <div class="perception row">
-          <input class="perception detail value" type="number" id="passive-perception">
-          <p class="perception detail emphasis">Passive Perception</p>
-        </div>
-        <div class="languages column">
-          <p class="language detail"></p>
-          <p class="language detail emphasis">Known Languages</p>
-        </div>
-        <!-- End of skills column -->
-      </div>
-      <!-- End of skills-languages column col-1 -->
-
-      <!-- Start of survivability column col-2 -->
-      <div class="survivability column col col-2">
-        <!-- One div for AC, and HP -->
-        <div class="ac-hp column">
-          <div class="ac-init-speed row">
-            <div class="ac">
-              <input class="ac detail value" type="number" id="ac" min="1" value="1">
-              <p class="ac detail emphasis">AC</p>
-            </div>
-            <div class="init">
-              <input class="init detail value" type="number" id="initiative" min="1">
-              <p class="init detail emphasis">Initiative</p>
-            </div>
-            <div class="speed">
-              <input class="speed detail value" type="number" id="speed">
-              <p class="speed detail emphasis">Speed</p>
-            </div>
+          <div class="column">
+            <input class="hptemp detail value" type="number" id="hp-temp" min="0">
+            <p class="emphasis">Temporary HP</p>
           </div>
+        </div>
 
-          <div class="hp column">
+        <!-- Start of hitdice row -->
+        <div class="hitdice row">
+          <div class="column">
             <div class="row">
-              <p class="emphasis">HP Max</p>
-              <input class="detail value" type="number" id="hp-max" min="1">
+              <p class="label">Total</p>
+              <input class="hitdice count value" type="number" id="hitdie-count">
             </div>
             <div class="column">
-              <input class="hpcurrent detail value" type="number" id="hp-current" min="0">
-              <p class="emphasis">Current HP</p>
+              <input class="hitdice value detail" type="text" id="hitdie">
+              <p class="label">Hit Dice</p>
             </div>
-            <div class="column">
-              <input class="hptemp detail value" type="number" id="hp-temp" min="0">
-              <p class="emphasis">Temporary HP</p>
+          </div>
+          <div class="death-saves column">
+            <div class="row">
+              <p class="emphasis">Successes</p>
+              <input class="death-saves success value" type="checkbox" id="success-1">
+              <input class="death-saves success value" type="checkbox" id="success-2">
+              <input class="death-saves success value" type="checkbox" id="success-3">
             </div>
+            <div class="row">
+              <p class="emphasis">Failures</p>
+              <input class="death-saves failures value" type="checkbox" id="failure-1">
+              <input class="death-saves failures value" type="checkbox" id="failure-2">
+              <input class="death-saves failures value" type="checkbox" id="failure-3">
+            </div>
+            <p class="label">Death Saves</p>
+          </div>
+          <!-- End of hitdice row -->
+        </div>
+      </div>
+
+      <!-- Another div for weapons and equipment -->
+      <div class="weapons-items column">
+        <div class="weapons column">
+          <div class="weapon-title row emphasis">
+            <p>Name</p>
+            <p>ATK Bonus</p>
+            <p>Damage/Type</p>
+          </div>
+          <div class="weapon row">
+            <input type="text" id="weapon-name"></input>
+            <input type="number" id="weapon-atkbonus" min="0" value="0"></input>
+            <input type="text" id="weapon-damage"></input>
           </div>
 
-          <!-- Start of hitdice row -->
-          <div class="hitdice row">
-            <div class="column">
-              <div class="row">
-                <p class="label">Total</p>
-                <input class="hitdice count value" type="number" id="hitdie-count">
-              </div>
-              <div class="column">
-                <input class="hitdice value detail" type="text" id="hitdie">
-                <p class="label">Hit Dice</p>
-              </div>
-            </div>
-            <div class="death-saves column">
-              <div class="row">
-                <p class="emphasis">Successes</p>
-                <input class="death-saves success value" type="checkbox" id="success-1">
-                <input class="death-saves success value" type="checkbox" id="success-2">
-                <input class="death-saves success value" type="checkbox" id="success-3">
-              </div>
-              <div class="row">
-                <p class="emphasis">Failures</p>
-                <input class="death-saves failures value" type="checkbox" id="failure-1">
-                <input class="death-saves failures value" type="checkbox" id="failure-2">
-                <input class="death-saves failures value" type="checkbox" id="failure-3">
-              </div>
-              <p class="label">Death Saves</p>
-            </div>
-            <!-- End of hitdice row -->
-          </div>
+          <!-- Add a new weapon row button, use JS to insert -->
+          <button class="button" id="add-weapon-row">Add Weapon</button>
+          <p class="emphasis">Attacks &amp; Spellcasting</p>
         </div>
 
-        <!-- Another div for weapons and equipment -->
-        <div class="weapons-items column">
-          <div class="weapons column">
-            <div class="weapon-title row emphasis">
-              <p>Name</p>
-              <p>ATK Bonus</p>
-              <p>Damage/Type</p>
+        <div class="equipment-money row">
+          <div class="money column">
+            <div class="row">
+              <p class="emphasis">CP</p>
+              <input type="number" id="copper-pieces" min="0" value="0">
             </div>
-            <div class="weapon row">
-              <input type="text" id="weapon-name"></input>
-              <input type="number" id="weapon-atkbonus" min="0" value="0"></input>
-              <input type="text" id="weapon-damage"></input>
+            <div class="row">
+              <p class="emphasis">SP</p>
+              <input type="number" id="silver-pieces" min="0" value="0">
             </div>
-
-            <!-- Add a new weapon row button, use JS to insert -->
-            <button class="button" id="add-weapon-row">Add Weapon</button>
-            <p class="emphasis">Attacks &amp; Spellcasting</p>
+            <div class="row">
+              <p class="emphasis">EP</p>
+              <input type="number" id="electrum-pieces" min="0" value="0">
+            </div>
+            <div class="row">
+              <p class="emphasis">GP</p>
+              <input type="number" id="gold-pieces" min="0" value="0">
+            </div>
+            <div class="row">
+              <p class="emphasis">PP</p>
+              <input type="number" id="platinum-pieces" min="0" value="0">
+            </div>
           </div>
-
-          <div class="equipment-money row">
-            <div class="money column">
-              <div class="row">
-                <p class="emphasis">CP</p>
-                <input type="number" id="copper-pieces" min="0" value="0">
-              </div>
-              <div class="row">
-                <p class="emphasis">SP</p>
-                <input type="number" id="silver-pieces" min="0" value="0">
-              </div>
-              <div class="row">
-                <p class="emphasis">EP</p>
-                <input type="number" id="electrum-pieces" min="0" value="0">
-              </div>
-              <div class="row">
-                <p class="emphasis">GP</p>
-                <input type="number" id="gold-pieces" min="0" value="0">
-              </div>
-              <div class="row">
-                <p class="emphasis">PP</p>
-                <input type="number" id="platinum-pieces" min="0" value="0">
-              </div>
-            </div>
-            <div class="equipment column">
-              <input type="text" id="equipment">
-              <button class="button" id="add-equip-row">Add Equipment</button>
-              <p class="emphasis">Equipment</p>
-            </div>
+          <div class="equipment column">
+            <input type="text" id="equipment">
+            <button class="button" id="add-equip-row">Add Equipment</button>
+            <p class="emphasis">Equipment</p>
           </div>
         </div>
       </div>
-      <!-- End of survivability column col-2 -->
+    </div>
+    <!-- End of survivability column col-2 -->
 
-      <!-- Start of traits column col-3 -->
-      <div class="features-traits column col col-3">
-        <div class="personality-traits">
-          <div class="traits">
-            <textarea id="traits"></textarea>
-            <label for="traits">Bonds</label>
-          </div>
-          <div class="ideals">
-            <textarea id="ideals"></textarea>
-            <label for="ideals">Ideals</label>
-          </div>
-          <div class="bonds">
-            <textarea id="bonds"></textarea>
-            <label for="bonds">Bonds</label>
-          </div>
-          <div class="flaws">
-            <textarea id="flaws"></textarea>
-            <label for="flaws">Flaws</label>
-          </div>
+    <!-- Start of traits column col-3 -->
+    <div class="features-traits column col col-3">
+      <div class="personality-traits">
+        <div class="traits">
+          <textarea id="traits"></textarea>
+          <label for="traits">Bonds</label>
         </div>
-
-        <div class="features">
-          <textarea id="features"></textarea>
-          <label for="features">Features &amp; Traits</p>
-          </div>
+        <div class="ideals">
+          <textarea id="ideals"></textarea>
+          <label for="ideals">Ideals</label>
         </div>
-        <!-- End of traits column col-3 -->
+        <div class="bonds">
+          <textarea id="bonds"></textarea>
+          <label for="bonds">Bonds</label>
+        </div>
+        <div class="flaws">
+          <textarea id="flaws"></textarea>
+          <label for="flaws">Flaws</label>
+        </div>
       </div>
-      <footer class="footer">Footer</footer>
+
+      <div class="features">
+        <textarea id="features"></textarea>
+        <label for="features">Features &amp; Traits</p>
+        </div>
+      </div>
+      <!-- End of traits column col-3 -->
+    </div>
+    <footer class="footer">Footer</footer>
 
   </div>
   <!-- End of wrapper -->
