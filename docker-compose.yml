@@ -3,7 +3,7 @@ version: "2"
 services:
     client:
         build: ./client
-        image: dndtracker_client
+        container_name: dndtracker_client
         restart: always
         ports:
             - "3000:3000"
@@ -13,12 +13,11 @@ services:
         links:
             - server
         networks:
-            - webappnetwork
-        container_name: dndtracker_client
+            - dndnet
 
     server:
         build: ./server
-        image: dndtracker_server
+        container_name: dndtracker_server
         restart: always
         ports:
            - "3001:3001"
@@ -29,11 +28,10 @@ services:
         depends_on:
             - mongodb
         networks:
-            - webappnetwork 
-        container_name: dndtracker_server
+            - dndnet
         environment:
           - APP_MONGO_URL=mongodb
-    
+
     mongodb:
         image: mongo
         restart: always
@@ -44,8 +42,8 @@ services:
             - "27017:27017"
         command: mongod --noauth --smallfiles
         networks:
-            - webappnetwork
+            - dndnet
 
 networks:
-    webappnetwork:
+    dndnet:
         driver: bridge

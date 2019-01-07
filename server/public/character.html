@@ -23,22 +23,22 @@
       </ul>
     </div>
     <!-- Start of meta details (name, age, class, race etc) -->
-    <div class="details row main">
+    <div class="details main">
       <div class="details-meta">
         <!-- Button to control readonly status of various inputs -->
         <div class="play-buttons">
           <button class="play-mode button" value="play" id="play">Play Mode</button>
           <button class="play-mode button" value="edit" id="edit">Edit Mode</button>
         </div>
-        <p class="details details-label">Character Details</p>
-        <div class="detail-name">
+        <h3 class="details-header">Character Details</h3>
+        <div class="detail name-detail">
           <ul class="detail-group">
             <input class="detail name value" type="text">
             <li class="detail emphasis">Name</li>
           </ul>
         </div>
         <!-- Top row of details -->
-        <div class="details-meta row">
+        <div class="details-meta col">
           <ul class="detail-meta-group">
             <div class="row">
               <input class="detail class value" type="text"> &amp;
@@ -46,18 +46,6 @@
             </div>
             <li class="detail emphasis">Class &amp; Level</li>
           </ul>
-          <ul class="detail-meta-group">
-            <input class="detail background value" type="text">
-            <li class="detail emphasis">Background</li>
-          </ul>
-          <ul class="detail-meta-group">
-            <input class="detail playername value" type="text">
-            <li class="detail emphasis">Player</li>
-          </ul>
-        </div>
-
-        <!-- Bottom row of details -->
-        <div class="details-meta row">
           <ul class="detail-meta-group">
             <select name="race" id="race" class="race">
               <option value="dragonborn">Dragonborn</option>
@@ -72,6 +60,14 @@
             </select>
             <li class="detail emphasis">Race</li>
           </ul>
+        </div>
+
+        <div class="details-meta col">
+          <ul class="detail-meta-group">
+            <input class="detail background value" type="text">
+            <li class="detail emphasis">Background</li>
+          </ul>
+
           <ul class="detail-meta-group">
             <select id="law-alignment">
               <option value="lawful">Lawful</option>
@@ -84,6 +80,14 @@
               <option value="evil">Evil</option>
             </select>
             <li class="detail emphasis">Alignment</li>
+          </ul>
+        </div>
+
+        <!-- Bottom row of details -->
+        <div class="details-meta col">
+          <ul class="detail-meta-group">
+            <input class="detail playername value" type="text">
+            <li class="detail emphasis">Player</li>
           </ul>
           <ul class="detail-meta-group">
             <input class="detail experience value" type="number" min="0" placeholder="0" min="0">

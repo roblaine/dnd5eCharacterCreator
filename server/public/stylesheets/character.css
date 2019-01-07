@@ -46,17 +46,16 @@ order for a mobile first application:
   }
 }
 
-.details-meta {
-  flex-flow: wrap;
+.main {
+  border: 1px solid blue;
+  flex-flow: row wrap;
   padding-left: 0px;
 }
 
 .detail-group, .detail-meta-group {
-  /*padding: 0;*/
 }
 
 .details-meta .row {
-  flex-wrap: wrap;
 }
 
 .skills-meta {
@@ -81,7 +80,7 @@ order for a mobile first application:
   border: solid 1px green;
 }
 
-.navigation > * {
+.navigation * {
   padding-left: 12px;
   padding-right: 12px;
 }
