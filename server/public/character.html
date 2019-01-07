@@ -25,7 +25,12 @@
     <!-- Start of meta details (name, age, class, race etc) -->
     <div class="details row main">
       <div class="details-meta">
-        <p class="details" class="details-label">Character Details</p>
+        <!-- Button to control readonly status of various inputs -->
+        <div class="play-buttons">
+          <button class="play-mode button" value="play" id="play">Play Mode</button>
+          <button class="play-mode button" value="edit" id="edit">Edit Mode</button>
+        </div>
+        <p class="details details-label">Character Details</p>
         <div class="detail-name">
           <ul class="detail-group">
             <input class="detail name value" type="text">
@@ -54,7 +59,17 @@
         <!-- Bottom row of details -->
         <div class="details-meta row">
           <ul class="detail-meta-group">
-            <input class="detail race value" type="text">
+            <select name="race" id="race" class="race">
+              <option value="dragonborn">Dragonborn</option>
+              <option value="dwarf">Dwarf</option>
+              <option value="elf">Elf</option>
+              <option value="gnome">Gnome</option>
+              <option value="half-elf">Half Elf</option>
+              <option value="half-orc">Half Orc</option>
+              <option value="halfling">Halfling</option>
+              <option value="humn">Human</option>
+              <option value="tiefling">Tiefling</option>
+            </select>
             <li class="detail emphasis">Race</li>
           </ul>
           <ul class="detail-meta-group">
