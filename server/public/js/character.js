@@ -148,13 +148,7 @@ function updateProfBonus() {
 		if(save.id.includes('prof')) {
 			saveProf = save.checked ? true : false;
 		}
-/*
-		if(saveProf) {
-			save.value = (parseInt(save.value) + profBonus - oldProfBonus);
-		} else {
-			save.value = parseInt(save.value);
-		}
-*/
+
 		save.value = saveProf ?
 			(parseInt(save.value) + profBonus - oldProfBonus) :
 			parseInt(save.value);
@@ -171,7 +165,6 @@ function updateLevel() {
 function toggleMode(e) {
   const buttonVal = e.target.value;
   // only modify the fields that would normally be editable,
-  // Eg ignore the skills, and saving throws, etc
   if(buttonVal === 'play') {
     // set the dropdowns to be disbaled
     dropdowns.forEach(dropdown => {
