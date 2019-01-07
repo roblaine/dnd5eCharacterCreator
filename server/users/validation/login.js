@@ -1,3 +1,6 @@
+/* Created following the guide by Rishi Prasad at
+https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-1-c405048e3669
+*/
 // Login logic for the app
 const Validator = require('validator');
 const isEmpty = require('is-empty');
