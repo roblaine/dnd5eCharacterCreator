@@ -1,33 +1,25 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import './App.css';
-// eslint-disable-next-line
-import Spell from './Spell.js';
-// eslint-disable-next-line
-import CharacterSheet from './CharacterSheet';
+import Navbar from './components/layout/Navbar';
+import Landing from './components/layout/Landing';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 
 class App extends Component {
-	constructor(props) {
-    super(props);
-    this.state = {
-      data: []
-    };
-  }
-
-  componentDidMount() {
-		console.log(`App mounted correctly.`);
-  }
-
-
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to DND Tracker</h1>
-        </header>
-			</div>
+      <Router>
+        <div className='App'>
+          <Navbar />
+          <Route exact path='/' component={Landing} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/login' component={Login} />
+        </div>
+      </Router>
     );
   }
 }
 
 export default App;
-

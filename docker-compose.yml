@@ -5,8 +5,6 @@ services:
         image: dndtracker:client
         build:
           context: ./client
-          dockerfile: Dockerfile
-        container_name: dndtracker_client
         restart: always
         ports:
             - "3000:3000"
@@ -22,8 +20,6 @@ services:
         image: dndtracker:server
         build:
           context: ./server
-          dockerfile: Dockerfile
-        container_name: dndtracker_server
         restart: always
         ports:
            - "3001:3001"
