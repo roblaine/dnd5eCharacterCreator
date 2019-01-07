@@ -14,7 +14,7 @@ class Navbar extends Component {
               }}
               className='col s5 brand-logo center black-text'
             >
-              <i className='material-icons'>code</i>
+              <i className='material-icons'>healing</i>
               DND Tracker
             </Link>
           </div>

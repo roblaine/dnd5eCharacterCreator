@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Landing extends Component {
   render() {
-    // eslint-disable-next-line
     return (
       <div style={{ height: '75vh' }} className='container valign-wrapper'>
         <div className='row'>
@@ -12,10 +12,11 @@ class Landing extends Component {
               <span style={{ fontFamily: 'monospace' }}>DND</span> character sheet tracker
             </h4>
             <p className='flow-text grey-text text-darken-1'>
-              Keep trakc of characters, play with your friends, and create spell books
+              Keep track of characters, play with your friends, and create spell books
             </p>
             <br />
-            <a
+            <Link
+              to="/register"
               style={{
                 width: '150px',
                 borderRadius: '3px',
@@ -24,8 +25,9 @@ class Landing extends Component {
               className='btn btn-large waves-effect waves-light hoverable blue accent-3'
             >
               Register
-            </a>
-            <a
+            </Link>
+            <Link
+              to="/login"
               style={{
                 marginLeft: '2rem',
                 width: '150px',
@@ -35,7 +37,7 @@ class Landing extends Component {
               className='btn btn-large waves-effect white hoverable black-text'
             >
               Log In
-            </a>
+            </Link>
           </div>
         </div>
       </div>
