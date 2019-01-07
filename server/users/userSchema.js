@@ -1,4 +1,4 @@
-// User schema for the app
+// Basic user schema for the app
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
