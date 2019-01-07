@@ -33,7 +33,7 @@
         <h3 class="details-header">Character Details</h3>
         <div class="detail name-detail">
           <ul class="detail-group">
-            <input class="detail name value" type="text">
+            <input class="detail name value play-lock" type="text">
             <li class="detail emphasis">Name</li>
           </ul>
         </div>
@@ -41,13 +41,16 @@
         <div class="details-meta col">
           <ul class="detail-meta-group">
             <div class="row">
-              <input class="detail class value" type="text"> &amp;
-              <input class="detail level value" type="number" max="30" min="1" value="1">
+              <select class="class play-lock" name="class" id="class">
+                <option value="gnome">Fighter</option>
+              </select>
+              &amp;
+              <input class="detail level value play-lock" type="number" max="30" min="1" value="1">
             </div>
             <li class="detail emphasis">Class &amp; Level</li>
           </ul>
           <ul class="detail-meta-group">
-            <select name="race" id="race" class="race">
+            <select name="race" id="race" class="race play-lock">
               <option value="dragonborn">Dragonborn</option>
               <option value="dwarf">Dwarf</option>
               <option value="elf">Elf</option>
@@ -64,17 +67,17 @@
 
         <div class="details-meta col">
           <ul class="detail-meta-group">
-            <input class="detail background value" type="text">
+            <input class="detail background value play-lock" type="text">
             <li class="detail emphasis">Background</li>
           </ul>
 
           <ul class="detail-meta-group">
-            <select id="law-alignment">
+            <select id="law-alignment" class="play-lock">
               <option value="lawful">Lawful</option>
               <option value="neutral">Neutral</option>
               <option value="chaotic">Chaotic</option>
             </select>
-            <select id="evil-alignment">
+            <select id="evil-alignment" class="play-lock">
               <option value="good">Good</option>
               <option value="neutral">Neutral</option>
               <option value="evil">Evil</option>
@@ -86,11 +89,11 @@
         <!-- Bottom row of details -->
         <div class="details-meta col">
           <ul class="detail-meta-group">
-            <input class="detail playername value" type="text">
+            <input class="detail playername value play-lock" type="text">
             <li class="detail emphasis">Player</li>
           </ul>
           <ul class="detail-meta-group">
-            <input class="detail experience value" type="number" min="0" placeholder="0" min="0">
+            <input class="detail experience value play-lock" type="number" min="0" placeholder="0" min="0">
             <li class="detail emphasis">Experience Points</li>
           </ul>
         </div>
@@ -105,32 +108,32 @@
         <div class="attributes data-col">
           <div class="attribute data-col">
             <p class="attribute name emphasis">Strength</p>
-            <input class="attribute value" type="number" name="strength" max="30" min="1" value="10">
+            <input class="attribute value play-lock" type="number" name="strength" max="30" min="1" value="10">
             <input class="attribute modifier" readonly type="number" name="strength-mod">
           </div>
           <div class="attribute data-col">
             <p class="attribute name emphasis">Dexterity</p>
-            <input class="attribute value" type="number" name="dexterity" max="30" min="1" value="10">
+            <input class="attribute value play-lock" type="number" name="dexterity" max="30" min="1" value="10">
             <input class="attribute modifier" readonly type="number" name="dexterity-mod">
           </div>
           <div class="attribute data-col">
             <p class="attribute name emphasis">Constitution</p>
-            <input class="attribute value" type="number" name="constitution" max="30" min="1" value="10">
+            <input class="attribute value play-lock" type="number" name="constitution" max="30" min="1" value="10">
             <input class="attribute modifier" readonly type="number" name="constitution-mod">
           </div>
           <div class="attribute data-col">
             <p class="attribute name emphasis">Intelligence</p>
-            <input class="attribute value" type="number" name="intelligence" max="30" min="1" value="10">
+            <input class="attribute value play-lock" type="number" name="intelligence" max="30" min="1" value="10">
             <input class="attribute modifier" readonly type="number" name="intelligence-mod">
           </div>
           <div class="attribute data-col">
             <p class="attribute name emphasis">Wisdom</p>
-            <input class="attribute value" type="number" name="wisdom" value="10">
+            <input class="attribute value play-lock" type="number" name="wisdom" value="10">
             <input class="attribute modifier" readonly type="number" name="wisdom-mod">
           </div>
           <div class="attribute data-col">
             <p class="attribute name emphasis">Charisma</p>
-            <input class="attribute value" type="number" name="charisma" max="30" min="1" value="10">
+            <input class="attribute value play-lock" type="number" name="charisma" max="30" min="1" value="10">
             <input class="attribute modifier" readonly type="number" name="charisma-mod">
           </div>
         </div>
@@ -147,32 +150,32 @@
 
           <div class="saves-data-col data-col">
             <div class="save row">
-              <input class="proficiency save checkbox" type="checkbox" id="strength-prof">
+              <input class="proficiency save checkbox play-lock" type="checkbox" id="strength-prof">
               <input class="save detail id" readonly type="number" id="strength">
               <p class="save name emphasis">Strength</p>
             </div>
             <div class="save row">
-              <input class="proficiency save checkbox" type="checkbox" id="dexterity-prof">
+              <input class="proficiency save checkbox play-lock" type="checkbox" id="dexterity-prof">
               <input class="save detail id" readonly type="number" id="dexterity">
               <p class="save name emphasis">Dexterity</p>
             </div>
             <div class="save row">
-              <input class="proficiency save checkbox" type="checkbox" id="constitution-prof">
+              <input class="proficiency save checkbox play-lock" type="checkbox" id="constitution-prof">
               <input class="save detail id" readonly type="number" id="constitution">
               <p class="save name emphasis">Constitution</p>
             </div>
             <div class="save row">
-              <input class="proficiency save checkbox" type="checkbox" id="intelligence-prof">
+              <input class="proficiency save checkbox play-lock" type="checkbox" id="intelligence-prof">
               <input class="save detail id" readonly type="number" id="intelligence">
               <p class="save name emphasis">Intelligence</p>
             </div>
             <div class="save row">
-              <input class="proficiency save checkbox" type="checkbox" id="wisdom-prof">
+              <input class="proficiency save checkbox play-lock" type="checkbox" id="wisdom-prof">
               <input class="save detail id" readonly type="number" id="wisdom">
               <p class="save name emphasis">Wisdom</p>
             </div>
             <div class="save row">
-              <input class="proficiency save checkbox" type="checkbox" id="charisma-prof">
+              <input class="proficiency save checkbox play-lock" type="checkbox" id="charisma-prof">
               <input class="save detail id" readonly type="number" id="charisma">
               <p class="save name emphasis">Charisma</p>
             </div>
@@ -182,109 +185,109 @@
           <!-- Start of Skills (use vanilla 18 skills) -->
           <div class="skills">
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="acrobatics-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="acrobatics-prof">
               <input class="skill detail dexterity-mod" type="number" readonly id="acrobatics">
               <p class="skill detail id">Acrobatics</p>
               <p class="skill detail stat">Dex</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="animal-handling-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="animal-handling-prof">
               <input class="skill detail wisdom-mod" type="number" readonly id="animal-handling">
               <p class="skill detail id">Animal Handling</p>
               <p class="skill detail stat">Wis</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="arcana-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="arcana-prof">
               <input class="skill detail intelligence-mod" type="number" readonly id="arcana">
               <p class="skill detail id">Arcana</p>
               <p class="skill detail stat">Int</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="athletics-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="athletics-prof">
               <input class="skill detail strength-mod" type="number" readonly id="athletics">
               <p class="skill detail id">Athletics</p>
               <p class="skill detail stat">Str</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="deception-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="deception-prof">
               <input class="skill detail charisma-mod" type="number" readonly id="deception">
               <p class="skill detail id">Deception</p>
               <p class="skill detail stat">Cha</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="history-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="history-prof">
               <input class="skill detail wisdom-mod" type="number" readonly id="history">
               <p class="skill detail id">History</p>
               <p class="skill detail stat">Wis</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="insight-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="insight-prof">
               <input class="skill detail wisdom-mod" type="number" readonly id="insight">
               <p class="skill detail id">Insight</p>
               <p class="skill detail stat">Wis</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="intimidation-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="intimidation-prof">
               <input class="skill detail charisma-mod" type="number" readonly id="intimidation">
               <p class="skill detail id">Intimidation</p>
               <p class="skill detail stat">Cha</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="investigation-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="investigation-prof">
               <input class="skill detail intelligence-mod" type="number" readonly id="investigation">
               <p class="skill detail id">Investigation</p>
               <p class="skill detail stat">Int</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="medicine-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="medicine-prof">
               <input class="skill detail wisdom-mod" type="number" readonly id="medicine">
               <p class="skill detail id">Medicine</p>
               <p class="skill detail stat">Wis</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="nature-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="nature-prof">
               <input class="skill detail intelligence-mod" type="number" readonly id="nature">
               <p class="skill detail id">Nature</p>
               <p class="skill detail stat">Int</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="perception-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="perception-prof">
               <input class="skill detail wisdom-mod" type="number" readonly id="perception">
               <p class="skill detail id">Perception</p>
               <p class="skill detail stat">Wis</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="performance-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="performance-prof">
               <input class="skill detail charisma-mod" type="number" readonly id="performance">
               <p class="skill detail id">Performance</p>
               <p class="skill detail stat">Cha</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="persuasion-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="persuasion-prof">
               <input class="skill detail charisma-mod" type="number" readonly id="persuasion">
               <p class="skill detail id">Persuasion</p>
               <p class="skill detail stat">Cha</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="religion-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="religion-prof">
               <input class="skill detail intelligence-mod" type="number" readonly id="religion">
               <p class="skill detail id">Religion</p>
               <p class="skill detail stat">Int</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="sleight-of-hand-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="sleight-of-hand-prof">
               <input class="skill detail dexterity-mod" type="number" readonly id="sleight-of-hand">
               <p class="skill detail id">Sleight of Hand</p>
               <p class="skill detail stat">Dex</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="stealth-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="stealth-prof">
               <input class="skill detail dexterity-mod" type="number" readonly id="stealth">
               <p class="skill detail id">Stealth</p>
               <p class="skill detail stat">Dex</p>
             </div>
             <div class="skill data-row">
-              <input class="skill prof checkbox" type="checkbox" id="survival-prof">
+              <input class="skill prof checkbox play-lock" type="checkbox" id="survival-prof">
               <input class="skill detail wisdom-mod" type="number" readonly id="survival">
               <p class="skill detail id">Survival</p>
               <p class="skill detail stat">Wis</p>
@@ -296,7 +299,7 @@
         <!-- End of skills meta data-col -->
       </div>
       <div class="perception data-row">
-        <input class="perception detail value" type="number" id="passive-perception">
+        <input class="perception detail value play-lock" type="number" id="passive-perception">
         <p class="perception detail emphasis">Passive Perception</p>
       </div>
       <div class="languages data-col">
@@ -329,7 +332,7 @@
         <div class="hp data-col">
           <div class="data-row">
             <p class="emphasis">HP Max</p>
-            <input class="detail value" type="number" id="hp-max" min="1">
+            <input class="detail value play-lock" type="number" id="hp-max" min="1">
           </div>
           <div class="data-col">
             <input class="hpcurrent detail value" type="number" id="hp-current" min="0">
@@ -429,24 +432,24 @@
       <div class="personality-traits">
         <div class="traits data-col">
           <textarea id="traits"></textarea>
-          <label for="traits">Bonds</label>
+          <p class="traits">Bonds</p>
         </div>
         <div class="ideals data-col">
           <textarea id="ideals"></textarea>
-          <label for="ideals">Ideals</label>
+          <p class="ideals">Ideals</p>
         </div>
         <div class="bonds data-col">
           <textarea id="bonds"></textarea>
-          <label for="bonds">Bonds</label>
+          <p class="bonds">Bonds</p>
         </div>
         <div class="flaws data-col">
           <textarea id="flaws"></textarea>
-          <label for="flaws">Flaws</label>
+          <p class="flaws">Flaws</p>
         </div>
       </div>
       <div class="features data-col">
         <textarea id="features"></textarea>
-        <label for="features">Features &amp; Traits</p>
+        <p class="features">Features &amp; Traits</p>
         </div>
       </div>
       <!-- End of traits col col-3 -->

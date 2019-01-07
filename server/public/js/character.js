@@ -1,7 +1,4 @@
-// Dummy script for testing the functionality
 /* variable declrations*/
-const valueInputs = document.querySelectorAll('.value');
-
 const attributeVals = document.querySelectorAll('.attributes .value');
 const attributeMods = document.querySelectorAll('.attributes .modifier');
 
@@ -18,6 +15,12 @@ const savingThrowProfs = document.querySelectorAll('.save input[type=checkbox]')
 const level = document.querySelector('.level');
 
 const raceDropDown = document.querySelector('.race');
+
+// Get the play buttons to toggle from edit mode to play mode
+const playButton = document.querySelector('button#play');
+const editButton = document.querySelector('button#edit');
+const dropdowns = document.querySelectorAll('select.play-lock');
+const editableInputs = document.querySelectorAll('input.play-lock');
 
 // This will change as the prof field changes
 var oldProfBonus = proficiencyBonus.value;
@@ -165,10 +168,29 @@ function updateLevel() {
 	updateProfBonus();
 }
 
-function setDefaults() {
-	const attr = this;
-	console.log(`setting default for ${attr}`);
-
+function toggleMode(e) {
+  const buttonVal = e.target.value;
+  // only modify the fields that would normally be editable,
+  // Eg ignore the skills, and saving throws, etc
+  if(buttonVal === 'play') {
+    // set the dropdowns to be disbaled
+    dropdowns.forEach(dropdown => {
+      dropdown.disabled = true;
+    });
+    // Set fillable fields to be uneditable
+    editableInputs.forEach(input => {
+      input.readOnly = true;
+    });
+  } else if(buttonVal === 'edit') {
+    // set the dropdowns to be enabled
+    dropdowns.forEach(dropdown => {
+      dropdown.disabled = false;
+    });
+    // set fillable fields to be editable
+    editableInputs.forEach(input => {
+      input.readOnly = false;
+    });
+  }
 }
 
 /* Event listener calls */
@@ -211,3 +233,6 @@ proficiencyBonus.addEventListener('change', updateProfBonus);
 
 // On change reupdate the value of each
 level.addEventListener('change', updateLevel);
+
+playButton.addEventListener('click', toggleMode);
+editButton.addEventListener('click', toggleMode);
