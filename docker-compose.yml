@@ -2,7 +2,10 @@ version: "2"
 
 services:
     client:
-        build: ./client
+        image: dndtracker:client
+        build:
+          context: ./client
+          dockerfile: Dockerfile
         container_name: dndtracker_client
         restart: always
         ports:
@@ -16,7 +19,10 @@ services:
             - dndnet
 
     server:
-        build: ./server
+        image: dndtracker:server
+        build:
+          context: ./server
+          dockerfile: Dockerfile
         container_name: dndtracker_server
         restart: always
         ports:
