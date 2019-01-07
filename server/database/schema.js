@@ -1,16 +1,5 @@
 const mongoose = require('mongoose');
 
-var userSchema = new mongoose.Schema({
-	username: {
-		type: String,
-		unique: true,
-		lowercase: true
-	},
-	password: String
-});
-
-var User = new mongoose.model("User", userSchema);
-
 var characterSchema = new mongoose.Schema({
 	name: {
 		type: String,
@@ -77,7 +66,6 @@ function seedDatabase() {
 }
 
 module.exports = {
-  User,
   Character,
   Spell,
   seedDatabase
