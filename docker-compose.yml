@@ -13,8 +13,12 @@ services:
             - /client/node_modules
         links:
             - server
+        depends_on:
+            - server
         networks:
             - dndnet
+        environment:
+            - APP_SERVER_URL=server
 
     server:
         image: dndtracker:server
