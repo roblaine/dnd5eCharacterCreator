@@ -1,108 +1,146 @@
-.character-sheet {
-	justify-content: space-evenly;
+/* Define all of the flex settings for various screen widths */
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  border: red 1px solid;
 }
 
-.details-label {
+/* We tell all items to be 100% width, via flex-basis */
+.wrapper > * {
+  flex: 1 100%;
 }
 
-.emphasis {
-	font-weight: bold;
+/*
+order for a mobile first application:
+1. Header/navbar (.navigation)
+2. character meta details (.main)
+3. Attributes/skills (.col-1)
+5. AC/hitdie (.col-2)
+6. Traits (.col-3)
+7. Footer (.footer)
+*/
+
+/* Medium screens */
+@media all and (min-width: 600px) {
+  /* Have each column share a row */
+  .col { flex: 1 auto; }
+  .navigation {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+    font-size: 20;
+  }
 }
 
-.details {
+/* Large screens */
+@media all and (min-width: 800px) {
+  /* Each of the 4 rows spaced evenly accross the window width */
+  /*.main  { flex: 2 0px; }*/
+  .nav-col  { order: 1; }
+  .col-1    { order: 2; }
+  .col-2    { order: 3; }
+  .col-3    { order: 4; }
+
+  .navigation {
+    /* When on medium sized screens, we center it by evenly distributing empty space around items */
+    justify-content: space-around;
+  }
 }
 
-.details-meta {
-	margin: 0;
-	padding: 0;
-	border: solid 1px yellow;
+.main {
+  border: 1px solid blue;
+  flex-flow: row wrap;
+  padding-left: 0px;
 }
 
-.detail-meta-group {
-	border: solid 1px red;
+.detail-group, .detail-meta-group {
 }
 
-.detail {
-	border: solid 1px green;
+.details-meta .row {
 }
 
+.skills-meta {
+  flex-wrap: wrap;
+}
+
+.nav-col {
+  flex: 1;
+}
+
+.nav-col a {
+  font-size: 18px;
+  font-weight: 600;
+  color: black
+}
+
+.navigation {
+  display: flex;
+  flex-flow: row wrap;
+  /* This aligns items to the end line on main-axis */
+  justify-content: flex-start;
+  border: solid 1px green;
+}
+
+.navigation * {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.spell-nav {
+  margin: 0;
+  padding: 0;
+}
+
+.spell-nav {
+  display: flex;
+  flex-flow: column wrap;
+  /* This aligns items to the end line on main-axis */
+  justify-content: space-between;
+  border: solid 1px green;
+}
+
+/* Set backrgound image */
+body {
+  /*background-image:url('/images/background.jpg');*/
+  background-size: 100%;
+  background-size: contain;
+}
+
+.col {
+	border: purple 1px solid;
+}
+
+.header {
+  font-weight: bold;
+}
+
+/* Remove the bullet points from the list */
 li {
   display: block;
 }
 
-.attributes {
+.data-col {
 	display: flex;
 	flex-direction: column;
 }
 
-.attribute {
-	border: solid 1px black;
-	margin: 0;
-	vertical-align: middle;
-	text-align: center;
+.row, .data-row {
+  display: flex;
+  flex-flow: row wrap;
 }
 
-.column {
-	display: flex;
-	flex-direction: column;
+.skills-meta:last-child {
+  align-self: flex-end;
 }
 
-.row {
-	display: flex;
-	flex-direction: row;
+.footer-contact {
 }
 
-.save {
-	border: solid 1px black;
-	margin: 0;
-	vertical-align: middle;
-	text-align: center;
+/* Hide the spinners on thee input boxes */
+input[type='number'] {
+  -moz-appearance:textfield;
 }
 
-.save .value {
-	margin-left: 3px;
-	margin-right: 3px;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
-
-.save .name {
-	padding-left: 10px;
-	vertical-align: middle;
-	text-align: center;
-}
-
-.proficiency .value {
-	margin-right: 5px;
-}
-
-.saves {
-}
-
-.label {
-	vertical-align: middle;
-	text-align: center;
-}
-
-.skills {
-	border: 1px purple solid;
-}
-
-.skill {
-}
-
-.skill .detail {
-	margin: 0;
-}
-
-.languages {
-	border: 1px solid black;	
-}
-
-.skills-meta {
-	display: flex;
-	flex-direction: row;
-}
-
-.features-traits {
-	border: solid black 1px;
-}
-

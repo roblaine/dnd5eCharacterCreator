@@ -8,7 +8,7 @@ WORKDIR /client
 COPY package*.json /client/
 
 # install dependencies
-RUN npm install
+RUN yarn install
 
 # Copy the current directory contents into the container at /client
 COPY . /client/
@@ -17,5 +17,5 @@ COPY . /client/
 EXPOSE 3000
 
 # Run the app when the container launches
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
 

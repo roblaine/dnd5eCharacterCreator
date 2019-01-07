@@ -21,7 +21,7 @@ app.use(express.static('public'))
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-	`mongodb://${mongodbIp}:27017/dndtracker`, 
+	`mongodb://${mongodbIp}:27017/dndtracker`,
 	{ useNewUrlParser: true }
 )
 .then(() => {
@@ -37,12 +37,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(pino);
-app.listen(port, host);
+app.listen(port, host, () => {
+	const listenLog = `> Server live at ${host}:${port}\n`;
+	console.log(listenLog);
+});
 
 app.post('/users/new', (req, res) => {
   db.collection('users').insertOne(req.body, (err, result) => {
-    if (err) { 
-      return console.log(err); 
+    if (err) {
+      return console.log(err);
     }
 
     console.log(`saved user '${req.body.username}' to the database`);
@@ -75,25 +78,26 @@ app.get('/api/characters', (req, res) => {
 });
 
 app.post('/login', function(req, res) {
-	let currentUser = null;
 	[username, password] = [req.body.username, req.body.password];
 	console.log('username: %s\npassword: %s', username, password);
 
-	User.findOne({'username': username.toLowerCase(), }, 'username', 
-		function(err, user) {
-			if(err) { return handleError(err) };
-			if(user.password === password) {
-				currentUser = user;
-			}
-			console.log('current: %s', user);
+	const loggedInUser = User.findOne({ 'username': username.toLowerCase() }, 'username',
+    function(err, user) {
+			if(err) {
+        return handleError(err);
+      }
+      console.log('current: %s', user);
+      // loggedInUser = user;
+			return user;
 		}
 	)
-	.then(res.send(currentUser))
+	.then((e) => {
+      res.send({ 'data' : `${e}` });
+  })
 	.catch(err => console.log(err));
 });
 
 // Static character sheet for demo
-app.get('/public/character', (req, res) => {
+app.get('/character', (req, res) => {
 	res.sendFile(__dirname + '/public/character.html');
 });
-

@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "debug": "node insepct app.js --port 3001 --host 0.0.0.0",
-    "server": "node-env-run app.js --exec nodemon | pino-colada",
+    "debug": "node app.js --port 3001 --host 0.0.0.0",
+    "dev": "node-env-run app.js --exec nodemon | pino-colada",
     "lint": "./node_modules/.bin/eslint"
   },
   "dependencies": {

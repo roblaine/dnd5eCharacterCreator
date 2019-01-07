@@ -6,13 +6,13 @@
 			"host": {
 				"sourcePath": "/var/app/current/dndtracker-client"
 			}
-		}, 
+		},
 		{
 			"name" : "dndtracker-server",
 			"host": {
 				"sourcePath": "/var/app/current/dndtracker-server"
 			}
-		}, 
+		},
 		{
 			"name" : "mongodb",
 			"host": {
@@ -23,7 +23,7 @@
 	"containerDefinitions" : [
 		{
 			"name" : "dndtracker-client",
-			"image" : "mhart/alpine-node",
+			"image" : "spacebits/dndtracker:client",
 			"essential": false,
 			"environment" : [
 				{
@@ -35,7 +35,7 @@
 		},
 		{
 			"name" : "dndtracker-server",
-			"image" : "mhart/alpine-node",
+			"image" : "spacebits/dndtracker:server",
 			"essential": true,
 			"environment" : [
 				{
@@ -73,4 +73,3 @@
 		}
 	]
 }
-

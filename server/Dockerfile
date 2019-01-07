@@ -17,5 +17,5 @@ COPY . /server/
 EXPOSE 80
 
 # Run the app when the container launches
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
 
