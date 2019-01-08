@@ -13,7 +13,6 @@ class Navbar extends Component {
   // render different links, ie logout link if user is logged in
   render() {
     let loggedIn = this.props.auth.isAuthenticated;
-
     return (
       <div className='navbar-fixed'>
         <nav className='z-depth-10'>
