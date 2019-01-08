@@ -2,15 +2,36 @@ const express = require('express');
 const router = express.Router();
 
 // Load the input validation method
-const validateCreationInput = require('../../characters/validation/creation');
+const validateCharacterCreate = require('../../characters/validation/creation');
+const validateCharacterQuery = require('../../characters/validation/query');
 // Load the character model
 const character = require('../../characters/characterSchema');
 
-// @route GET api/characters/retrieve
-// @desc Retrieve Characters
+// @route POST api/characters/query
+// @desc Query Characters
 // @access Public
-router.get('/retrieve', (req, res) => {
+router.post('/query', (req, res) => {
+  // Make sure that req contains an email
+  const { errors, isValid } = validateCharacterQuery(req.body);
 
+  if(!isValid) {
+    // Return 400 status and json errors on invalid form submission
+    return res.status(400).json(errors);
+  }
+
+  User.findOne({ email: req.body.email })
+  .then(owner => {
+    // Return message on invalid email
+    if(!owner) {
+      return res.status(400).json({ email: 'Invalid email provided'});
+    }
+
+    Character.find({ owner: owner.id })
+    .then(characters => {
+      // Return an array of character objects
+      res.send(characters);
+    });
+  });
 });
 
 // @route POST api/characters/add
@@ -18,26 +39,28 @@ router.get('/retrieve', (req, res) => {
 // @access Public
 router.post('/add', (req, res) => {
   // Validate the creation Form
-  const { errors, isValid } = validateCreationInput(req.body);
+  const { errors, isValid } = validateCharacterCreate(req.body);
 
   if(!isValid) {
     // Return 400 status and json errors on invalid form submission
     return res.status(400).json(errors);
   }
 
-  // Find the character from the name, if it already exists, ret error
-  Character.findOne({ name: req.body.name })
-  .then(char => {
-    if(char) {
-      return res.status(400).json({ name: 'Character name taken' });
+  // Validates the email first before even querying for characters
+  // Find the user that this new character will belong to from the email
+  User.findOne({ email: req.body.email })
+  .then(owner => {
+    if(!owner) {
+      return res.status(400).json({ email: 'Invalid email provided'});
     }
 
-    // Find the user that this new character will belong to from the email
-    User.findOne({ email: req.body.owner })
-    .then(owner => {
-      if(!owner) {
-        return res.status(400).json({ owner: 'Invalid email provided'});
+    // Find the character from the name, if it already exists, ret error
+    Character.findOne({ name: req.body.name })
+    .then(char => {
+      if(char) {
+        return res.status(400).json({ name: 'Character name taken' });
       }
+
 
       // Create the new char. Class.level will default to 1
       const newChar = new Character({

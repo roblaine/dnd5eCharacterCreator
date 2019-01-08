@@ -3,7 +3,7 @@ const Validator = require('validator');
 const isEmpty = require('is-empty');
 
 // Only field that needs to be validated is the name field
-module.exports = function validateCreationInput(data) {
+module.exports = function validateCharacterCreate(data) {
   let errors = {};
 
   data.name = !isEmpty(data.name) ? data.name : '';
