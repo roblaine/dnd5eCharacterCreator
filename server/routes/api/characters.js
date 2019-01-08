@@ -11,7 +11,7 @@ const character = require('../../characters/characterSchema');
 // @desc Query Characters
 // @access Public
 router.post('/query', (req, res) => {
-  // Make sure that req contains an email
+  // Make sure that the request body contains an email
   const { errors, isValid } = validateCharacterQuery(req.body);
 
   if(!isValid) {
@@ -19,16 +19,17 @@ router.post('/query', (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email })
+  User.findOne({ email: req.body.owner })
   .then(owner => {
     // Return message on invalid email
     if(!owner) {
       return res.status(400).json({ email: 'Invalid email provided'});
     }
-
+    console.log('Found user : %s', owner);
     Character.find({ owner: owner.id })
     .then(characters => {
       // Return an array of character objects
+      console.log(characters);
       res.send(characters);
     });
   });

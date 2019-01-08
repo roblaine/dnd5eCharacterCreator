@@ -28,7 +28,7 @@ class Navbar extends Component {
                 DND Tracker
               </Link>
               {loggedIn ? (
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <ul id="nav-mobile" className="right hide-on-med-and-down">
                   <button
                     style={{
                       width: '150px',
@@ -37,7 +37,7 @@ class Navbar extends Component {
                       marginRight: '10px'
                     }}
                     onClick={this.onLogoutClick}
-                    class="waves-effect waves-light btn hoverable blue">
+                    className="waves-effect waves-light btn hoverable blue">
                     Logout
                   </button>
                 </ul>
