@@ -3,27 +3,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Create the Schema
+// Reference a user for each created character
 const CharacterSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  class: [{
-    primary: {
-      name: {
-        type: String,
-        required: true
-      },
-      level: Number
-    },
-    secondary: {
-      name: String,
-      level: Number
+  owner: { type: 'ObjectId', ref: 'User', required: true },
+  name: { type: String, required: true },
+  race: { type: String, required: true },
+  classes: [
+    {
+      name: { type: String, required: true },
+      level: { type: Number, default: 1 }
     }
-  }],
-  race: {
-
-  }
+  ]
 });
 
 module.exports = Character = mongoose.model("characters", CharacterSchema);
