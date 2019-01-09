@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { fetchCharacters } from '../../actions/characterActions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { fetchCharacters } from "../../actions/characterActions";
 
 class Character extends Component {
   componentWillMount() {
@@ -22,7 +22,7 @@ class Character extends Component {
     return this.props.characters.map((char) => (
       <div key={char._id}>
         <h3>{char.name}</h3>
-        <div className="" id='char-meta-details'>
+        <div className="" id="char-meta-details">
           {char.race}
           {/* Load the classes div into the function */}
           {this.loopClasses(char)}

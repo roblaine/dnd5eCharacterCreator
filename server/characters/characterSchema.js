@@ -10,11 +10,11 @@ const CharacterSchema = new Schema({
   race: { type: String, required: true },
   alignment: [
     {
-      law: { type: String, required: true },
-      chaos: { type: String, required: true }
+      law: { type: String, required: true, default: 'Nuetral' },
+      chaos: { type: String, required: true, default: 'Nuetral' }
     }
   ],
-  background: { type: String, required: true },
+  background: { type: String },
   classes: [
     {
       name: { type: String, required: true },
@@ -22,7 +22,7 @@ const CharacterSchema = new Schema({
     }
   ],
   hasInspiration: { type: Boolean, default: false },
-  passivePerception: { type: Number, required: true },
+  passivePerception: { type: Number, required: true, default: 1 },
   attributes: [
     {
       name: { type: String, required: true },
@@ -32,7 +32,7 @@ const CharacterSchema = new Schema({
   ],
   savingThrows: [
     {
-      name: { type: String, required: true },
+      name: { type: String },
       level: { type: Number, default: 0 },
       proficient: { type: Boolean, default: false }
     }
@@ -46,17 +46,17 @@ const CharacterSchema = new Schema({
   ],
   languages: [
     {
-      name: { type: String, required: true }
+      name: { type: String }
     }
   ],
   combat: {
-    ac: { type: Number, required: true },
-    initiative: { type: Number, required: true },
-    speed: { type: Number, required: true },
+    ac: { type: Number, required: true , default: 1 },
+    initiative: { type: Number, required: true, default: 1 },
+    speed: { type: Number, required: true, default: 25 },
   },
   hitpoints: {
-    max: { type: Number, required: true },
-    current: { type: Number, required: true },
+    max: { type: Number, required: true, default: 1 },
+    current: { type: Number, required: true, default: 1 },
     temp: { type: Number, required: true, default: 0 }
   },
   hitdice: {
@@ -65,19 +65,21 @@ const CharacterSchema = new Schema({
     failure: { type: Number, required: true, default: 0 },
     success: { type: Number, required: true, default: 0 },
   },
-  attacks: [
-    // TODO Create a weapon model and reference it here in future
-    {
-      name: { type: String, required: true },
-      attackBonus: { type: Number, default: 0 },
-      proficient: { type: Boolean, default: false },
-      damageType: { type: String, required: true }
-    }
-  ],
+  attacks: {
+    weapons: [
+      // TODO Create a weapon model and reference it here in future
+      {
+        name: { type: String },
+        attackBonus: { type: Number, default: 0 },
+        proficient: { type: Boolean, default: false },
+        damageType: { type: String }
+      }
+    ]
+  },
   equipment: {
     items: [
       {
-        name: { type: String, required: true },
+        name: { type: String },
         acBonus: { type: Number, default: 0 },
         proficient: { type: Boolean, default: false }
       }
