@@ -9,16 +9,20 @@ class Character extends Component {
   }
 
   render() {
-    console.log(this.props.characters);
-    const charItems = this.props.characters.map(char => (
-      <li key={char.id}>
-        <p>{char.name}</p>
+    const charItems = this.props.characters.map((char) => (
+      <li class="tab col s3"><a href="#test1" key={char._id}>
+          {char.name}
+        </a>
       </li>
     ));
 
     return (
-      <div className='center-align'>
-        {charItems}
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            {charItems}
+          </ul>
+        </div>
       </div>
     );
   }

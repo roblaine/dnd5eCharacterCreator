@@ -1,4 +1,7 @@
-import { FETCH_CHARACTERS, ADD_CHARACTER } from '../actions/types';
+import {
+  FETCH_CHARACTERS,
+  ADD_CHARACTER
+} from '../actions/types';
 
 const initialState = {
   items: [],

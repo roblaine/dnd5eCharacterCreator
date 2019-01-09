@@ -1,15 +1,15 @@
 import { FETCH_CHARACTERS, ADD_CHARACTER } from './types';
 import axios from 'axios';
 
-export const fetchCharacters = (userData) => dispatch => {
-  console.log(userData);
+export const fetchCharacters = () => dispatch => {
+
   axios
   .post('/api/characters/query', {
     owner: 'abc@gmail.com'
   })
   .then(function(characters) {
       dispatch({
-        FETCH_CHARACTERS,
+        type: FETCH_CHARACTERS,
         payload: characters.data
       })
     }
@@ -24,7 +24,7 @@ export const addCharacter = charData => dispatch => {
   // Only store the data in data
   .then(function(charData) {
       dispatch({
-        ADD_CHARACTER,
+        type: ADD_CHARACTER,
         payload: charData
       })
     }
