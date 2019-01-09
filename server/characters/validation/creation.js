@@ -9,8 +9,8 @@ module.exports = function validateCharacterCreate(data) {
   data.name = !isEmpty(data.name) ? data.name : '';
   data.class = !isEmpty(data.class) ? data.class : '';
   data.race = !isEmpty(data.race) ? data.race : '';
+  data.owner = !isEmpty(data.owner) ? data.owner : '';
 
-  // data.owner = !isEmpty(data.owner) ? data.owner : '';
   // data.attributes = !isEmpty(data.attributes) ? data.attributes : '';
   // data.skills = !isEmpty(data.skills) ? data.skills : '';
   // data.hitpoints = !isEmpty(data.hitpoints) ? data.hitpoints : '';
@@ -26,9 +26,9 @@ module.exports = function validateCharacterCreate(data) {
   if (Validator.isEmpty(data.race)) {
     errors.race = 'Character must have a race';
   }
-  // if (Validator.isEmpty(data.owner)) {
-  //   errors.owner = 'Character must have an owner';
-  // }
+  if (Validator.isEmpty(data.owner)) {
+    errors.owner = 'Character must have an owner';
+  }
   // if (Validator.isEmpty(data.attributes)) {
   //   errors.attributes = 'Character must have an attributes array';
   // }

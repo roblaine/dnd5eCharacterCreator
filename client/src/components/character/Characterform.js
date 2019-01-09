@@ -21,6 +21,11 @@ class CharacterForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.characters.isCreated) {
+      this.props.history.push('/dashboard');
+      // Redirect to the dashboard on success
+    }
+    // Load errors if they exist into props
     if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
@@ -36,14 +41,28 @@ class CharacterForm extends Component {
     e.preventDefault();
 
     const characterData = {
+      email: this.state.auth.user.email,
       name: this.state.name,
       race: this.state.race,
-      class: this.state.class,
-      alignment: {
-        law: this.state.law,
-        evil: this.state.evil
-      },
-      owner: this.state.auth.user.email
+      classes: [
+        {
+          name: this.state.class
+        }
+      ],
+      attributes: [
+        {
+          name: "strength"
+        }
+      ],
+      skills: [
+        {
+          name: "acrobatics"
+        }
+      ]
+      // alignment: {
+      //   law: this.state.law,
+      //   evil: this.state.evil
+      // }
     };
 
     this.props.addCharacter(characterData);
@@ -58,22 +77,34 @@ class CharacterForm extends Component {
         <form noValidate onSubmit={this.onSubmit}>
           {/* Character name */}
           <div className="input-field">
-            <label>Name: </label>
+            <label htmlFor="name">Name: </label>
+            <span className='red-text'>
+              {errors.name}
+            </span>
             <input
               type="text"
               name="name"
+              id="name"
               onChange={this.onChange}
               value={this.state.name}
+              error={errors.name}
             />
           </div>
 
           <div className="container" id="race-class">
             {/* Race select */}
             <label htmlFor="race">Race</label>
-            <select className="browser-default" name="race"
+            <span className='red-text'>
+              {errors.race}
+            </span>
+            <select className="browser-default"
+              name="race"
+              id="race"
+              onChange={this.onChange}
               value={this.state.value}
-              onChange={this.onChange}>
-              <option defaultValue value="">Choose One</option>
+              error={errors.race}
+              >
+              <option defaultValue value="">Race</option>
               <option value="dragonborn">Dragonborn</option>
               <option value="dwarf">Dwarf</option>
               <option value="elf">Elf</option>
@@ -87,10 +118,16 @@ class CharacterForm extends Component {
 
             {/* Class select */}
             <label htmlFor="class">Class</label>
-            <select className="browser-default" name="class"
+            <span className='red-text'>
+              {errors.class}
+            </span>
+            <select className="browser-default"
+              name="class"
+              id="class"
+              onChange={this.onChange}
               value={this.state.value}
-              onChange={this.onChange}>
-              <option defaultValue value="">Choose One</option>
+              error={errors.class}>
+              <option defaultValue value="">Class</option>
               <option value="barbarian">Barbarian</option>
               <option value="bard">Bard</option>
               <option value="cleric">Cleric</option>
@@ -108,19 +145,33 @@ class CharacterForm extends Component {
 
           <div className="container" id="alignment-background">
             {/* Alignment select */}
-            <label htmlFor="alignment">Alignment</label>
-            <select className="browser-default" name="law"
+            <label htmlFor="law">Lawfulness</label>
+            <span className='red-text'>
+              {errors.law}
+            </span>
+            <select className="browser-default"
+              name="law"
+              id="law"
+              onChange={this.onChange}
               value={this.state.value}
-              onChange={this.onChange}>
-              <option defaultValue value="">Choose One</option>
+              error={errors.law}>
+              <option defaultValue value="">Lawfulness</option>
               <option value="lawful">Lawful</option>
               <option value="nuetral">Neutral</option>
               <option value="chaos">Chaos</option>
             </select>
-            <select className="browser-default" name="evil"
+
+            <label htmlFor="law">Morality</label>
+            <span className='red-text'>
+              {errors.evil}
+            </span>
+            <select className="browser-default"
+              name="evil"
+              id="evil"
+              onChange={this.onChange}
               value={this.state.value}
-              onChange={this.onChange}>
-              <option defaultValue value="">Choose One</option>
+              error={errors.evil}>
+              <option defaultValue value="">Morality</option>
               <option value="good">Good</option>
               <option value="neutral">Neutral</option>
               <option value="evil">Evil</option>

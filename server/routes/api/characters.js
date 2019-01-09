@@ -27,11 +27,10 @@ router.post('/query', (req, res) => {
     if(!owner) {
       return res.status(400).json({ email: 'Invalid email provided'});
     }
-    console.log('Found user : %s', owner);
+    
     Character.find({ owner: owner.id })
     .then(characters => {
       // Return an array of character objects
-      console.log(characters);
       res.send(characters);
     });
   });

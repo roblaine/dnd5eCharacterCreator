@@ -42,7 +42,7 @@ class Character extends Component {
     return (
       <div className="row">
         <CharacterForm />
-        {/* {charItems} */}
+        {charItems}
       </div>
     );
   }
