@@ -13,6 +13,20 @@ const CharacterSchema = new Schema({
       name: { type: String, required: true },
       level: { type: Number, default: 1 }
     }
+  ],
+  attributes: [
+    {
+      name: { type: String, required: true },
+      level: { type: Number, default: 10 },
+      modifier: { type: Number, default: 0 }
+    }
+  ],
+  skills: [
+    {
+      name: { type: String, required: true },
+      level: { type: Number, default: 0 },
+      proficient: { type: Boolean, default: false }
+    }
   ]
 });
 

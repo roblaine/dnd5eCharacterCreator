@@ -36,7 +36,7 @@ router.post('/query', (req, res) => {
 });
 
 // @route POST api/characters/add
-// @desc Add Character
+// @desc Add Character, skills and attributes expects an array of objects
 // @access Public
 router.post('/add', (req, res) => {
   // Validate the creation Form
@@ -62,17 +62,21 @@ router.post('/add', (req, res) => {
         return res.status(400).json({ name: 'Character name taken' });
       }
 
+      let attributes = JSON.parse(req.body.attributes);
+      let skills = JSON.parse(req.body.skills);
 
       // Create the new char. Class.level will default to 1
       const newChar = new Character({
         // Attach the currently logged in user as the owner
         // owner: req.body.currentUser,
+        owner: owner,
         name: req.body.name,
         race: req.body.race,
         classes: [{
           name: req.body.class
         }],
-        owner: owner
+        attributes: attributes,
+        skills: skills
       });
 
       // Finally save the new character
