@@ -12,7 +12,7 @@ class Landing extends Component {
               <span style={{ fontFamily: 'monospace' }}>DND</span> character sheet tracker
             </h4>
             <p className='flow-text grey-text text-darken-1'>
-              Keep track of characters, play with your friends, and create spell books
+              Keep track of characters, host a session, and create spell books
             </p>
             <br />
             <Link

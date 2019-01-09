@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 const users = require('./routes/api/users');
+const characters = require('./routes/api/characters');
 
 // Declare our app to use express
 const app = express();
@@ -40,8 +41,10 @@ app.use(pino);
 app.use(passport.initialize());
 // Passport config
 require('./config/passport')(passport);
+
 // Routes
 app.use('/api/users', users);
+app.use('/api/characters', characters);
 
 // Static character sheet for demo
 app.get('/character', (req, res) => {
