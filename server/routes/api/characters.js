@@ -4,6 +4,8 @@ const router = express.Router();
 // Load the input validation method
 const validateCharacterCreate = require('../../characters/validation/creation');
 const validateCharacterQuery = require('../../characters/validation/query');
+const validateCharacterUpdate = require('../../characters/validation/update');
+
 // Load the character model
 const character = require('../../characters/characterSchema');
 
@@ -85,7 +87,41 @@ router.post('/add', (req, res) => {
       .then(char => res.json(char))
       .catch(err => console.log(err));
     });
+  });
+});
 
+// @route PATCH api/characters/update
+// @desc Update a Character, skills and attributes expects an array of objects
+// @access Public
+router.patch('/update', (req, res) => {
+  // Validate the update Form
+  const { errors, isValid } = validateCharacterUpdate(req.body);
+
+  if(!isValid) {
+    // Return 400 status and json errors on invalid form submission
+    return res.status(400).json(errors);
+  }
+
+  // Validates the email first before even querying for characters
+  // Find the user that this new character will belong to from the email
+  User.findOne({ email: req.body.email })
+  .then(owner => {
+    if(!owner) {
+      return res.status(400).json({ email: 'Invalid email provided'});
+    }
+
+    // Find the character from the name, if it already exists, ret error
+    Character.findOne({ name: req.body.name })
+    .then(updateChar => {
+      // TODO Add validation to the updateChar validator
+      // TODO update the character from values passed in from req.body
+
+      // Finally update the character
+      updateChar
+      .save()
+      .then(char => res.json(char))
+      .catch(err => console.log(err));
+    });
   });
 });
 
