@@ -2,11 +2,9 @@ import { FETCH_CHARACTERS, ADD_CHARACTER } from "./types";
 import axios from "axios";
 
 export const fetchCharacters = userData => dispatch => {
-
+  console.log(userData);
   axios
-  .post("/api/characters/query", {
-    owner: "abc@gmail.com"
-  })
+  .post("/api/characters/query", userData)
   .then(function(characters) {
       dispatch({
         type: FETCH_CHARACTERS,

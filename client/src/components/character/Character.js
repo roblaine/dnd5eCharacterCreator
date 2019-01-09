@@ -5,8 +5,20 @@ import { fetchCharacters } from "../../actions/characterActions";
 import CharacterForm from "./Characterform";
 
 class Character extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      errors: {},
+      auth: this.props.auth
+    };
+  }
+
   componentWillMount() {
-    this.props.fetchCharacters();
+    const charData = {
+      owner: this.state.auth.user.email
+    };
+    this.props.fetchCharacters(charData);
   }
 
   loopOverClasses(char) {
@@ -44,7 +56,7 @@ class Character extends Component {
         <div className="row">
           <CharacterForm />
         </div>
-        <div className="row">  
+        <div className="row">
           {charItems}
         </div>
       </div>
@@ -55,10 +67,14 @@ class Character extends Component {
 Character.propTypes = {
   fetchCharacters: PropTypes.func.isRequired,
   characters: PropTypes.array.isRequired,
-  newCharacter: PropTypes.object
-}
+  newCharacter: PropTypes.object,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors,
   characters: state.characters.items,
   newCharacter: state.characters.item
 });
