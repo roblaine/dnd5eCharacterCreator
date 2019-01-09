@@ -10,8 +10,11 @@ class Character extends Component {
 
     this.state = {
       errors: {},
-      auth: this.props.auth
+      auth: this.props.auth,
+      createCharacter: false
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillMount() {
@@ -19,6 +22,12 @@ class Character extends Component {
       owner: this.state.auth.user.email
     };
     this.props.fetchCharacters(charData);
+  }
+
+  handleClick = e => {
+    this.setState(state => ({
+      createCharacter: !state.createCharacter
+    }));
   }
 
   loopOverClasses(char) {
@@ -51,14 +60,33 @@ class Character extends Component {
 
   render() {
     const charItems = this.loopChars();
+    // Update state with the button
+    const charForm = this.state.createCharacter ? (
+      <div className="row">
+        <CharacterForm />
+      </div>) : ('')
+
     return (
       <div className="col">
-        <div className="row">
-          <CharacterForm />
-        </div>
-        <div className="row">
+        {charForm}
+        {/* Button to open the character create form */}
+        <button
+          style={{ marginTop: "20px", marginBottom: "20px" }}
+          className="waves-effect waves-light btn blue"
+          type="submit"
+          value={this.state.createCharacter}
+          name="createCharacter"
+          onClick={this.handleClick}>
+          {this.state.createCharacter ?
+            'Close Form' :
+            'Create Character'
+          }
+        </button>
+        <h1>My Characters</h1>
+        <div className="row left-align">
           {charItems}
         </div>
+
       </div>
     );
   }

@@ -324,7 +324,7 @@ class CharacterForm extends Component {
 
     return (
       <div className="center-align">
-        <h1>Create Character</h1>
+        <h1>Create New Character</h1>
         <form noValidate onSubmit={this.onSubmit}>
           {/* Character name */}
           <div className="input-field">
