@@ -1,7 +1,7 @@
 import {
   FETCH_CHARACTERS,
   ADD_CHARACTER
-} from '../actions/types';
+} from "../actions/types";
 
 const initialState = {
   items: [],
