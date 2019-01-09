@@ -10,19 +10,17 @@ class Character extends Component {
 
   render() {
     const charItems = this.props.characters.map((char) => (
-      <li class="tab col s3"><a href="#test1" key={char._id}>
-          {char.name}
-        </a>
-      </li>
+      <div key={char._id}>
+        <h3>{char.name}</h3>
+        <div>
+          {char.race}
+        </div>
+      </div>
     ));
 
     return (
       <div class="row">
-        <div class="col s12">
-          <ul class="tabs">
-            {charItems}
-          </ul>
-        </div>
+        {charItems}
       </div>
     );
   }
