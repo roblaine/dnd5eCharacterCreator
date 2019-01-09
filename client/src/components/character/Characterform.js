@@ -7,6 +7,7 @@ class CharacterForm extends Component {
   constructor(props) {
     super(props);
 
+    // Create class arrays for attributes
     this.atttributeList = [
       "Strength",
       "Dexterity",
@@ -15,6 +16,16 @@ class CharacterForm extends Component {
       "Wisdom",
       "Charisma"
     ];
+
+    this.attributeProfList = [
+      "Strength Prof",
+      "Dexterity Prof",
+      "Constitution Prof",
+      "Intelligence Prof",
+      "Wisdom Prof",
+      "Charisma Prof"
+    ];
+
     // Declare all of the skills
     this.skillList = [
       "Acrobatics",
@@ -47,12 +58,19 @@ class CharacterForm extends Component {
       law: '',
       evil: '',
       ac: '',
+
       strength: '',
+      strengthProf: false,
       dexterity: '',
+      dexterityProf: false,
       constitution: '',
+      constitutionProf: false,
       intelligence: '',
+      intelligenceProf: false,
       wisdom: '',
+      wisdomProf: false,
       charisma: '',
+      charismaProf: false,
 
       acrobatics: false,
       animalhandling: false,
@@ -78,6 +96,7 @@ class CharacterForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.loopSkills = this.loopSkills.bind(this);
     this.loopAttributes = this.loopAttributes.bind(this);
+    this.loopAttributeProfs = this.loopAttributeProfs.bind(this);
   }
 
   componentWillMount() {
@@ -105,7 +124,7 @@ class CharacterForm extends Component {
     // Check target for checbox before assigning value
     const target = e.target;
     const value = target.type === 'checkbox' ?
-      target.checked : target.value;
+    target.checked : target.value;
 
     // Remove any spaces and lowercase the names
     const name = target.name.toLowerCase().replace(/\s/g, '');
@@ -115,6 +134,110 @@ class CharacterForm extends Component {
   onSubmit = e => {
     e.preventDefault();
 
+    // Attributes
+    const attributes = [
+      {
+        name: 'strength',
+        level: this.state.strength
+      },
+      {
+        name: 'dexterity',
+        level: this.state.dexterity
+      },
+      {
+        name: 'constitution',
+        level: this.state.constitution
+      },
+      {
+        name: 'intelligence',
+        level: this.state.intelligence
+      },
+      {
+        name: 'wisdom',
+        level: this.state.wisdom
+      },
+      {
+        name: 'charisma',
+        level: this.state.charisma
+      }
+    ]
+
+    // Skills
+    const skills = [
+      {
+        name: 'acrobatics',
+        level: this.state.acrobatics
+      },
+      {
+        name: 'animalhandling',
+        level: this.state.animalhandling
+      },
+      {
+        name: 'arcana',
+        level: this.state.arcana
+      },
+      {
+        name: 'athletics',
+        level: this.state.athletics
+      },
+      {
+        name: 'deception',
+        level: this.state.deception
+      },
+      {
+        name: 'history',
+        level: this.state.history
+      },
+      {
+        name: 'insight',
+        level: this.state.insight
+      },
+      {
+        name: 'intimidation',
+        level: this.state.intimidation
+      },
+      {
+        name: 'investigation',
+        level: this.state.investigation
+      },
+      {
+        name: 'medicine',
+        level: this.state.medicine
+      },
+      {
+        name: 'nature',
+        level: this.state.nature
+      },
+      {
+        name: 'perception',
+        level: this.state.perception
+      },
+      {
+        name: 'performance',
+        level: this.state.performance
+      },
+      {
+        name: 'persuasion',
+        level: this.state.persuasion
+      },
+      {
+        name: 'religion',
+        level: this.state.religion
+      },
+      {
+        name: 'sleightofhand',
+        level: this.state.sleightofhand
+      },
+      {
+        name: 'stealth',
+        level: this.state.stealth
+      },
+      {
+        name: 'survival',
+        level: this.state.survival
+      }
+    ]
+
     const characterData = {
       email: this.state.auth.user.email,
       name: this.state.name,
@@ -122,56 +245,71 @@ class CharacterForm extends Component {
       class: this.state.class,
       law: this.state.law,
       evil: this.state.evil,
-      ac: this.state.ac,
-      // Attributes
-      strength: this.state.strength,
-      // Skills
-      acrobatics: this.state.acrobatics
+      combat: {
+        ac: this.state.ac,
+      },
+      attributes: attributes,
+      skills: skills
     };
 
     this.props.addCharacter(characterData);
   }
 
-  loopAttributes(atttributeList = this.atttributeList) {
-    return atttributeList.map((attribute, index)=> (
+  loopAttributeProfs(attributeProfList = this.attributeProfList) {
+    return attributeProfList.map((prof, index) => (
       <div className="row" key={index}>
-          <p><label>
+        <p>
+          <label>
             <input
-              className="input"
               type="checkbox"
-              name={attribute}
-              id={attribute}
+              name={prof}
+              id={prof}
               onChange={this.onChange}
-              checked={this.state.strengthProf}
+              checked={this.state.prof}
             />
-          <span>
-            <input
-              type="number"
-              name={attribute}
-              onChange={this.onChange}
-              value={this.state.attribute}
-            />
-            {attribute}
-          </span>
-        </label></p>
+            <span>{prof}</span>
+          </label>
+        </p>
+      </div>
+    ));
+  }
+
+  loopAttributes(atttributeList = this.atttributeList) {
+    return atttributeList.map((attribute, index) => (
+      <div className="row" key={index}>
+        <p>
+          <label>
+            <span>
+              <input
+                type="number"
+                name={attribute}
+                onChange={this.onChange}
+                value={this.state.attribute}
+                min="1"
+                max="30"
+              />
+              {attribute}
+            </span>
+          </label>
+        </p>
       </div>
     ));
   }
 
   loopSkills(skillList = this.skillList) {
     return skillList.map((skill, index) => (
-        <p key={index}>
-          <label>
-            <input
-              type="checkbox"
-              name={skill}
-              id={skill}
-              onChange={this.onChange}
-              checked={this.state.skill}
-            />
-            <span>{skill}</span>
-          </label>
-        </p>
+      <p key={index}>
+        <label>
+          <input
+            type="checkbox"
+            name={skill}
+            id={skill}
+            onChange={this.onChange}
+            checked={this.state.skill}
+          />
+          <span>{skill}</span>
+        </label>
+      </p>
     ));
   }
 
@@ -182,9 +320,10 @@ class CharacterForm extends Component {
     // Programatically generate the columns
     const skillItems = this.loopSkills();
     const attributeItems = this.loopAttributes();
+    const attrProfItems = this.loopAttributeProfs();
 
     return (
-      <div className="container center-align">
+      <div className="center-align">
         <h1>Create Character</h1>
         <form noValidate onSubmit={this.onSubmit}>
           {/* Character name */}
@@ -214,8 +353,7 @@ class CharacterForm extends Component {
               id="race"
               onChange={this.onChange}
               value={this.state.value}
-              error={errors.race}
-              >
+              error={errors.race}>
               <option defaultValue value="">Race</option>
               <option value="dragonborn">Dragonborn</option>
               <option value="dwarf">Dwarf</option>
@@ -305,25 +443,48 @@ class CharacterForm extends Component {
           </div>
 
           {/* Set the starting stats */}
-          <div className="stats row">
-            {/* Column for starting attributes */}
-            <div className="col s6">
-              {attributeItems}
+          <div className="stats">
+            {/* Desktop with 3 cols */}
+            <div className="row show-on-large hide-on-med-and-down">
+              <div className="left-align col s4">
+                {attrProfItems}
+              </div>
+              {/* Column for starting attributes */}
+              <div className="col s4">
+                {attributeItems}
+              </div>
+              {/* Column for starting skills */}
+              <div className="left-align col s4">
+                {skillItems}
+              </div>
+              <button className="waves-effect waves-light btn blue" type="submit">Create!
+              </button>
             </div>
-            {/* Column for starting skills */}
-            <div className="left-align col s6">
-              {skillItems}
+
+            {/* Mobile and tablet */}
+            <div className="center-align stats col hide-on-large-only show-on-medium-and-down">
+              <div className="left-align">
+                {attrProfItems}
+              </div>
+              {/* Column for starting attributes */}
+              <div className="left-align">
+                {attributeItems}
+              </div>
+              {/* Column for starting skills */}
+              <div className="left-align">
+                {skillItems}
+              </div>
+              <button className="waves-effect waves-light btn blue" type="submit">Create!
+              </button>
             </div>
 
           </div>
-
-          <button className="waves-effect waves-light btn blue" type="submit">Create!
-          </button>
         </form>
       </div>
     );
   }
 }
+
 
 CharacterForm.propTypes = {
   addCharacter: PropTypes.func.isRequired,

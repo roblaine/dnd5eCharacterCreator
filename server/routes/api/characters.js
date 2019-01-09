@@ -64,8 +64,8 @@ router.post('/add', (req, res) => {
       }
 
       // Set up the default values
-      let attributes = [{name: strength}];
-      let skills = [{name: acrobatics}];
+      let attributes = req.body.attributes;
+      let skills = req.body.skills;
 
       // Create the new char. Class.level will default to 1
       const newChar = new Character({
@@ -84,11 +84,12 @@ router.post('/add', (req, res) => {
           evil: req.body.evil
         },
         combat: {
-          ac: req.body.ac
+          ac: req.body.combat.ac
         }
       });
+      console.log(newChar);
 
-      // Finally save the new character
+      // // Finally save the new character
       newChar
       .save()
       .then(char => res.json(char))

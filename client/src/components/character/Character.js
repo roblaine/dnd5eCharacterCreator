@@ -40,9 +40,13 @@ class Character extends Component {
   render() {
     const charItems = this.loopChars();
     return (
-      <div className="row">
-        <CharacterForm />
-        {charItems}
+      <div className="col">
+        <div className="row">
+          <CharacterForm />
+        </div>
+        <div className="row">  
+          {charItems}
+        </div>
       </div>
     );
   }
