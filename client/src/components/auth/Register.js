@@ -12,7 +12,7 @@ class Register extends Component {
       this.props.history.push('/dashboard');
     }
   }
-  
+
   constructor() {
     super();
     this.state = {
@@ -44,11 +44,9 @@ class Register extends Component {
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2
-
     };
 
     this.props.registerUser(newUser, this.props.history);
-    console.log(newUser);
   };
 
   render() {

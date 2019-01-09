@@ -27,11 +27,10 @@ router.post('/query', (req, res) => {
     if(!owner) {
       return res.status(400).json({ email: 'Invalid email provided'});
     }
-    console.log('Found user : %s', owner);
+
     Character.find({ owner: owner.id })
     .then(characters => {
       // Return an array of character objects
-      console.log(characters);
       res.send(characters);
     });
   });
@@ -64,8 +63,9 @@ router.post('/add', (req, res) => {
         return res.status(400).json({ name: 'Character name taken' });
       }
 
-      let attributes = JSON.parse(req.body.attributes);
-      let skills = JSON.parse(req.body.skills);
+      // Set up the default values
+      let attributes = req.body.attributes;
+      let skills = req.body.skills;
 
       // Create the new char. Class.level will default to 1
       const newChar = new Character({
@@ -78,10 +78,18 @@ router.post('/add', (req, res) => {
           name: req.body.class
         }],
         attributes: attributes,
-        skills: skills
+        skills: skills,
+        alignment: {
+          law: req.body.law,
+          evil: req.body.evil
+        },
+        combat: {
+          ac: req.body.combat.ac
+        }
       });
+      console.log(newChar);
 
-      // Finally save the new character
+      // // Finally save the new character
       newChar
       .save()
       .then(char => res.json(char))

@@ -14,7 +14,8 @@ class Navbar extends Component {
   render() {
     let loggedIn = this.props.auth.isAuthenticated;
     return (
-      <div className='navbar-fixed'>
+      // TODO Figure out how to resize the navbar on smaller screens
+      <div className='navbar-fixed hide-on-small-only'>
         <nav className='z-depth-10'>
           <div className='nav-wrapper white'>
             <Link
@@ -28,7 +29,7 @@ class Navbar extends Component {
                 DND Tracker
               </Link>
               {loggedIn ? (
-                <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <ul id="nav-mobile" className="right hide-on-small-only">
                   <button
                     style={{
                       width: '150px',

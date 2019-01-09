@@ -12,7 +12,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div style={{ height: '75vh' }} className='container wrapper center-align'>
+      <div style={{maxWidth: "90%"}} className='container center-align'>
         <Character />
       </div>
     );
