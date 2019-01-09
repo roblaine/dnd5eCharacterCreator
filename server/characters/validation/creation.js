@@ -6,10 +6,12 @@ const isEmpty = require('is-empty');
 module.exports = function validateCharacterCreate(data) {
   let errors = {};
 
+  data.owner = !isEmpty(data.owner) ? data.owner : '';
   data.name = !isEmpty(data.name) ? data.name : '';
   data.class = !isEmpty(data.class) ? data.class : '';
   data.race = !isEmpty(data.race) ? data.race : '';
-  data.owner = !isEmpty(data.owner) ? data.owner : '';
+  data.law = !isEmpty(data.law) ? data.law : '';
+  data.evil = !isEmpty(data.evil) ? data.evil : '';
 
   // data.attributes = !isEmpty(data.attributes) ? data.attributes : '';
   // data.skills = !isEmpty(data.skills) ? data.skills : '';
@@ -26,21 +28,12 @@ module.exports = function validateCharacterCreate(data) {
   if (Validator.isEmpty(data.race)) {
     errors.race = 'Character must have a race';
   }
-  if (Validator.isEmpty(data.owner)) {
-    errors.owner = 'Character must have an owner';
+  if (Validator.isEmpty(data.law)) {
+    errors.law = 'Character must have law alignment';
   }
-  // if (Validator.isEmpty(data.attributes)) {
-  //   errors.attributes = 'Character must have an attributes array';
-  // }
-  // if (Validator.isEmpty(data.skills)) {
-  //   errors.skills = 'Character must have a skills array';
-  // }
-  // if (Validator.isEmpty(data.hitpoints)) {
-  //   errors.hitpoints = 'Character must have a hitpoints array';
-  // }
-  // if (Validator.isEmpty(data.combat)) {
-  //   errors.combat = 'Character must have a combat array';
-  // }
+  if (Validator.isEmpty(data.evil)) {
+    errors.evil = 'Character must have a morality alignment';
+  }
 
   return {
     errors,

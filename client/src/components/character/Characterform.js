@@ -6,18 +6,86 @@ import { addCharacter } from '../../actions/characterActions';
 class CharacterForm extends Component {
   constructor(props) {
     super(props);
+
+    this.atttributeList = [
+      "Strength",
+      "Dexterity",
+      "Constitution",
+      "Intelligence",
+      "Wisdom",
+      "Charisma"
+    ];
+    // Declare all of the skills
+    this.skillList = [
+      "Acrobatics",
+      "Animal Handling",
+      "Arcana",
+      "Athletics",
+      "Deception",
+      "History",
+      "Insight",
+      "Intimidation",
+      "Investigation",
+      "Medicine",
+      "Nature",
+      "Perception",
+      "Performance",
+      "Persuasion",
+      "Religion",
+      "Sleight of Hand",
+      "Stealth",
+      "Survival"
+    ];
+
     this.state = {
       errors: {},
+      auth: this.props.auth,
+
       name: '',
       race: '',
       class: '',
       law: '',
       evil: '',
-      auth: this.props.auth
+      ac: '',
+      strength: '',
+      dexterity: '',
+      constitution: '',
+      intelligence: '',
+      wisdom: '',
+      charisma: '',
+
+      acrobatics: false,
+      animalhandling: false,
+      arcana: false,
+      athletics: false,
+      deception: false,
+      history: false,
+      insight: false,
+      intimidation: false,
+      investigation: false,
+      medicine: false,
+      nature: false,
+      perception: false,
+      performance: false,
+      persuasion: false,
+      religion: false,
+      sleightofhand: false,
+      stealth: false,
+      survival: false
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.loopSkills = this.loopSkills.bind(this);
+    this.loopAttributes = this.loopAttributes.bind(this);
+  }
+
+  componentWillMount() {
+    document.title = "Create Character";
+  }
+
+  componentWillUnmount() {
+    document.title = "DND Tracker";
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,7 +102,14 @@ class CharacterForm extends Component {
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    // Check target for checbox before assigning value
+    const target = e.target;
+    const value = target.type === 'checkbox' ?
+      target.checked : target.value;
+
+    // Remove any spaces and lowercase the names
+    const name = target.name.toLowerCase().replace(/\s/g, '');
+    this.setState({ [name]: value });
   }
 
   onSubmit = e => {
@@ -44,40 +119,77 @@ class CharacterForm extends Component {
       email: this.state.auth.user.email,
       name: this.state.name,
       race: this.state.race,
-      classes: [
-        {
-          name: this.state.class
-        }
-      ],
-      attributes: [
-        {
-          name: "strength"
-        }
-      ],
-      skills: [
-        {
-          name: "acrobatics"
-        }
-      ]
-      // alignment: {
-      //   law: this.state.law,
-      //   evil: this.state.evil
-      // }
+      class: this.state.class,
+      law: this.state.law,
+      evil: this.state.evil,
+      ac: this.state.ac,
+      // Attributes
+      strength: this.state.strength,
+      // Skills
+      acrobatics: this.state.acrobatics
     };
 
     this.props.addCharacter(characterData);
   }
 
+  loopAttributes(atttributeList = this.atttributeList) {
+    return atttributeList.map((attribute, index)=> (
+      <div className="row" key={index}>
+          <p><label>
+            <input
+              className="input"
+              type="checkbox"
+              name={attribute}
+              id={attribute}
+              onChange={this.onChange}
+              checked={this.state.strengthProf}
+            />
+          <span>
+            <input
+              type="number"
+              name={attribute}
+              onChange={this.onChange}
+              value={this.state.attribute}
+            />
+            {attribute}
+          </span>
+        </label></p>
+      </div>
+    ));
+  }
+
+  loopSkills(skillList = this.skillList) {
+    return skillList.map((skill, index) => (
+        <p key={index}>
+          <label>
+            <input
+              type="checkbox"
+              name={skill}
+              id={skill}
+              onChange={this.onChange}
+              checked={this.state.skill}
+            />
+            <span>{skill}</span>
+          </label>
+        </p>
+    ));
+  }
+
+
   render() {
     const { errors } = this.state;
 
+    // Programatically generate the columns
+    const skillItems = this.loopSkills();
+    const attributeItems = this.loopAttributes();
+
     return (
       <div className="container center-align">
-        <h1>Add Character</h1>
+        <h1>Create Character</h1>
         <form noValidate onSubmit={this.onSubmit}>
           {/* Character name */}
           <div className="input-field">
-            <label htmlFor="name">Name: </label>
+            <label htmlFor="name">Name</label>
             <span className='red-text'>
               {errors.name}
             </span>
@@ -176,6 +288,33 @@ class CharacterForm extends Component {
               <option value="neutral">Neutral</option>
               <option value="evil">Evil</option>
             </select>
+            {/* Starting ac */}
+            <div className="input-field">
+              <label htmlFor="ac">Starting AC</label>
+              <span className='red-text'>
+                {errors.ac}
+              </span>
+              <input
+                type="number"
+                name="ac"
+                id="ac"
+                onChange={this.onChange}
+                value={this.state.ac}
+              />
+            </div>
+          </div>
+
+          {/* Set the starting stats */}
+          <div className="stats row">
+            {/* Column for starting attributes */}
+            <div className="col s6">
+              {attributeItems}
+            </div>
+            {/* Column for starting skills */}
+            <div className="left-align col s6">
+              {skillItems}
+            </div>
+
           </div>
 
           <button className="waves-effect waves-light btn blue" type="submit">Create!

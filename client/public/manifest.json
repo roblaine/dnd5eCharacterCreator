@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "D&D Tracker",
+  "name": "Character Sheets tracker for D&D",
   "icons": [
     {
       "src": "favicon.ico",
