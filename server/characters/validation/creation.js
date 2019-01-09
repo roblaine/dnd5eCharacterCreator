@@ -7,23 +7,26 @@ module.exports = function validateCharacterCreate(data) {
   let errors = {};
 
   data.name = !isEmpty(data.name) ? data.name : '';
-
   data.class = !isEmpty(data.class) ? data.class : '';
-
   data.owner = !isEmpty(data.owner) ? data.owner : '';
-
+  data.attributes = !isEmpty(data.attributes) ? data.attributes : '';
+  data.skills = !isEmpty(data.skills) ? data.skills : '';
 
   // Check the character name against validators
   if (Validator.isEmpty(data.name)) {
     errors.name = 'Character must have a name';
   }
-
   if (Validator.isEmpty(data.class)) {
     errors.class = 'Character must have a class';
   }
-
   if (Validator.isEmpty(data.owner)) {
-    errors.owner = 'Character must have an  owner';
+    errors.owner = 'Character must have an owner';
+  }
+  if (Validator.isEmpty(data.attributes)) {
+    errors.strength = 'Character must have an attributes array';
+  }
+  if (Validator.isEmpty(data.skills)) {
+    errors.skills = 'Character must have a skills array';
   }
 
   return {
