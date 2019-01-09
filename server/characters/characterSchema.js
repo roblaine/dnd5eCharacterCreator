@@ -8,16 +8,16 @@ const CharacterSchema = new Schema({
   owner: { type: 'ObjectId', ref: 'User', required: true },
   name: { type: String, required: true },
   race: { type: String, required: true },
-  alignment: [
-    {
-      law: { type: String, required: true, default: 'Nuetral' },
-      chaos: { type: String, required: true, default: 'Nuetral' }
-    }
-  ],
+  alignment: {
+    law: { type: String, required: true, default: 'Nuetral' },
+    evil: { type: String, required: true, default: 'Nuetral' }
+  },
   background: { type: String },
   classes: [
     {
       name: { type: String, required: true },
+      // TODO Add specialisation
+      // specialisation: { type: String, required: true },
       level: { type: Number, default: 1 }
     }
   ],

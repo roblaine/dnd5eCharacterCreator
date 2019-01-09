@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { fetchCharacters } from "../../actions/characterActions";
+import CharacterForm from "./Characterform";
 
 class Character extends Component {
   componentWillMount() {
     this.props.fetchCharacters();
   }
 
-  loopClasses(char) {
+  loopOverClasses(char) {
     return char.classes.map(classInfo => (
       <div key={classInfo._id}>
         <h6>{classInfo.name}</h6>
@@ -24,8 +25,13 @@ class Character extends Component {
         <h3>{char.name}</h3>
         <div className="" id="char-meta-details">
           {char.race}
+          <div className="alignment"
+            style= {{ display: "inline" }}>
+            <p className="">{char.alignment.law}</p>
+            <p className="">{char.alignment.chaos}</p>
+          </div>
           {/* Load the classes div into the function */}
-          {this.loopClasses(char)}
+          {this.loopOverClasses(char)}
         </div>
       </div>
     ));
@@ -34,8 +40,9 @@ class Character extends Component {
   render() {
     const charItems = this.loopChars();
     return (
-      <div class="row">
-        {charItems}
+      <div className="row">
+        <CharacterForm />
+        {/* {charItems} */}
       </div>
     );
   }
