@@ -16,11 +16,8 @@ export const fetchCharacters = userData => dispatch => {
 
 export const addCharacter = charData => dispatch => {
 
-  console.log(charData);
-
   axios
   .post("/api/characters/add", charData)
-  // Only store the data in data
   .then(function(charData) {
       dispatch({
         type: ADD_CHARACTER,

@@ -86,7 +86,6 @@ class Character extends Component {
         <div className="row left-align">
           {charItems}
         </div>
-
       </div>
     );
   }
