@@ -1,33 +1,45 @@
-// Basic user schema for the app
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Create the Schema for base races in 5e to create new characters with
+// Base races in 5e to reference when create new character is called
 const RaceSchema = new Schema({
-  name: {},
+  name: String,
   subclasses: [
+    // eg path of the totem warrior
     {
-      name: {}
+      name: String,
+      proficiencies: {
+        skills: [
+          String
+        ],
+        attributes: [
+          String
+        ]
+      },
+      traits: [
+        // Eg darkvision: Can see better in the dark
+        {
+          Name: String,
+          description: String
+        }
+      ]
     }
   ],
-  speed: {},
+  speed: Number,
   proficiencies: {
     skills: [
-      {
-        name: {}
-      }
+      String
     ],
     attributes: [
-      {
-        name: {}
-      }
+      String
     ]
   },
-  moodifiers: [
+  modifiers: [
     {
-      name: {},
-      value: {}
+      name: String,
+      value: Number
     }
   ]
 });
+
 module.exports = Race = mongoose.model("races", RaceSchema);

@@ -6,8 +6,8 @@ const ClassSchema = new Schema({
   name: String,
   features: [
     {
-      name: {},
-      level: {},
+      name: String,
+      level: Number,
       effects: [
         String
       ],
