@@ -4,41 +4,48 @@ const Schema = mongoose.Schema;
 // Base races in 5e to reference when create new character is called
 const RaceSchema = new Schema({
   name: String,
-  subclasses: [
-    // eg path of the totem warrior
+  abilityScoreIncrease: {
+    name: String,
+    value: Number
+  },
+  size: String,
+  alignment: {
+    law: String,
+    moral: String
+  },
+  height: {
+    min: Number,
+    max: Number
+  },
+  age: {
+    lifespan: Number,
+    mature: Number,
+    mentallyMature: Number
+  },
+  subrace: [
+
+  ],
+  speed: {
+    // eg dwarf:
+    //  Speed: 25
+    //  description: Your speed is not reduced by wearing heavy armor
+    distance: Number,
+    description: String
+  },
+  traits: [
     {
       name: String,
-      proficiencies: {
-        skills: [
-          String
-        ],
-        attributes: [
-          String
-        ]
-      },
-      traits: [
-        // Eg darkvision: Can see better in the dark
-        {
-          Name: String,
-          description: String
-        }
-      ]
+      description: String
     }
   ],
-  speed: Number,
-  proficiencies: {
-    skills: [
-      String
-    ],
-    attributes: [
-      String
-    ]
-  },
   modifiers: [
     {
       name: String,
       value: Number
     }
+  ],
+  languages: [
+    String
   ]
 });
 
