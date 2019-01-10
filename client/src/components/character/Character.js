@@ -11,48 +11,90 @@ class Character extends Component {
     this.state = {
       errors: {},
       auth: this.props.auth,
-      createCharacter: false
+      createCharacter: false,
+      showDetail: false,
+      selectCharacter: ''
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.loopOverClasses = this.loopOverClasses.bind(this);
+    this.loopChars = this.loopChars.bind(this);
+    this.capitalize = this.capitalize.bind(this);
   }
 
   componentWillMount() {
     const charData = {
       owner: this.state.auth.user.email
     };
+
     this.props.fetchCharacters(charData);
   }
 
   handleClick = e => {
-    this.setState(state => ({
-      createCharacter: !state.createCharacter
-    }));
+    // Check target for checbox before assigning value
+    const target = e.target;
+    const name = target.name;
+    // Find the value in the state tree by name key, and invert it
+    const value = target.id === "toggle" ? !this.state[name] : target.value;
+
+    this.setState({ [name]: value });
   }
 
   loopOverClasses(char) {
-    return char.classes.map(classInfo => (
-      <div key={classInfo._id}>
-        <h6>{classInfo.name}</h6>
-        <p className="level">Level: {classInfo.level}</p>
-      </div>
-    ));
+    return char.classes.map(classInfo => {
+      // Uppercase the class name
+      const className = this.capitalize(classInfo.name);
+      return(
+        <p key={classInfo._id}>Level {classInfo.level} {className}</p>
+      )
+    });
+  }
+
+  capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   loopChars() {
     // Get all of the important info from within the characters that we just fetched
     return this.props.characters.map((char) => (
       <div key={char._id}>
+        <div className="row">
+          <div className="col s12 m6">
+            <div className="card blue-grey darken-1">
+              <div className="card-content white-text">
+                <span className="card-title">{char.name}</span>
+                {this.loopOverClasses(char)}
+                <p className="">{this.capitalize(char.alignment.law)} {this.capitalize(char.alignment.evil)}</p>
+              </div>
+              <div className="card-action">
+                <button
+                  className="waves-effect waves-light btn blue"
+                  name="showDetail"
+                  id="toggle"
+                  value={this.state.showDetail}
+                  onClick={this.handleClick}>Show Full Detail
+                </button>
+                <button
+                  className="waves-effect waves-light btn blue"
+                  name="selectCharacter"
+                  id="selectCharacter"
+                  value={char._id}
+                  onClick={this.handleClick}>Select Character</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <h3>{char.name}</h3>
         <div className="" id="char-meta-details">
           {char.race}
-          <div className="alignment"
-            style= {{ display: "inline" }}>
-            <p className="">{char.alignment.law}</p>
-            <p className="">{char.alignment.chaos}</p>
+          <div className="row">
+            <div className="col">{char.alignment.law}</div>
+            <div className="col">{char.alignment.evil}</div>
           </div>
           {/* Load the classes div into the function */}
-          {this.loopOverClasses(char)}
+          <div className="row">
+            {this.loopOverClasses(char)}
+          </div>
         </div>
       </div>
     ));
@@ -64,7 +106,7 @@ class Character extends Component {
     const charForm = this.state.createCharacter ? (
       <div className="row">
         <CharacterForm />
-      </div>) : ('')
+      </div>) : (null)
 
     return (
       <div className="col">
@@ -74,6 +116,7 @@ class Character extends Component {
           style={{ marginTop: "20px", marginBottom: "20px" }}
           className="waves-effect waves-light btn blue"
           type="submit"
+          id="toggle"
           value={this.state.createCharacter}
           name="createCharacter"
           onClick={this.handleClick}>

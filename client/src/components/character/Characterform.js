@@ -125,9 +125,9 @@ class CharacterForm extends Component {
     const target = e.target;
     const value = target.type === 'checkbox' ?
     target.checked : target.value;
-
     // Remove any spaces and lowercase the names
     const name = target.name.toLowerCase().replace(/\s/g, '');
+
     this.setState({ [name]: value });
   }
 
@@ -457,7 +457,10 @@ class CharacterForm extends Component {
               <div className="left-align col s4">
                 {skillItems}
               </div>
-              <button className="waves-effect waves-light btn blue" type="submit">Create!
+              <button
+                className="waves-effect waves-light btn blue"
+                type="submit">
+                Create!
               </button>
             </div>
 
