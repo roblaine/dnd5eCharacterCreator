@@ -1,21 +1,20 @@
 # dndTracker
 DND Character Sheets &amp; more
 
-
 TODO:
  - [] Character creation form has class and subclass dropdowns
 ==============================================================
   Character has an object in this.state.classes which contains
   each subclass list for a given class,
-  ie
+
   this.state.classes = {
     cleric: { sub: [war: "War"] },
     wizard: { sub: [conjuration: "Conjuration", illusion: "Illusion"] }
   };
 
 ==============================================================
- - [] Character has an inventory
- - [] Inventory stores weapons, items, equipment, money
+ - [x] Character has an inventory
+ - [x] Inventory stores weapons, items, equipment, money
  - [] Add a session model that stores an array of characters and a dm
  - [] Add characters to the session by a form with input field for session id and a play button
  - [] Button submits the form the the reducer that will assign a player to a session
