@@ -31,12 +31,11 @@ class Character extends Component {
   }
 
   handleClick = e => {
-    // Check target for checbox before assigning value
+    // Check target for toggle as the id before assigning value
     const target = e.target;
     const name = target.name;
     // Find the value in the state tree by name key, and invert it
     const value = target.id === "toggle" ? !this.state[name] : target.value;
-
     this.setState({ [name]: value });
   }
 

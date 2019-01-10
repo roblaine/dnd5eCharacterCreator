@@ -98,6 +98,10 @@ const CharacterSchema = new Schema({
     ideals: { type: String },
     flaws: { type: String },
     traits: { type: String }
+  },
+  timestamps: {
+    createdAt: { type: Date, required: true, default: Date.now() },
+    updatedAt: { type: Date, required: true, default: Date.now() }
   }
 });
 
