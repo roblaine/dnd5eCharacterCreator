@@ -16,7 +16,7 @@ const CharacterSchema = new Schema({
   classes: [
     {
       name: { type: String, required: true },
-      // TODO Add specialisation
+      // TODO Add speccing
       // specialisation: { type: String, required: true },
       level: { type: Number, default: 1 }
     }
@@ -65,22 +65,42 @@ const CharacterSchema = new Schema({
     failure: { type: Number, required: true, default: 0 },
     success: { type: Number, required: true, default: 0 },
   },
-  attacks: {
-    weapons: [
-      // TODO Create a weapon model and reference it here in future
+  // Not the be confused with features
+  feats: [
+
+  ],
+  spellbook: [
+
+  ],
+  inventory: {
+    ammunition: [
       {
         name: { type: String },
         attackBonus: { type: Number, default: 0 },
         proficient: { type: Boolean, default: false },
-        damageType: { type: String }
+        damageType: { type: String },
+        equipped: { type: Boolean, default: false },
+        count: { type: Number, default: 1, required: true }
       }
-    ]
-  },
-  equipment: {
-    items: [
+    ],
+    weapons: [
       {
         name: { type: String },
-        acBonus: { type: Number, default: 0 },
+        attackBonus: { type: Number, default: 0 },
+        proficient: { type: Boolean, default: false },
+        damageType: { type: String },
+        equipped: { type: Boolean, default: false }
+      }
+    ],
+    items: [
+      {
+        name: { type: String, required: true },
+        bonuses: [
+          {
+            affects: { type: String, required: true },
+            modifier: { type: Number, default: 0 }
+          }
+        ],
         proficient: { type: Boolean, default: false }
       }
     ],

@@ -87,7 +87,6 @@ router.post('/add', (req, res) => {
           ac: req.body.combat.ac
         }
       });
-      console.log(newChar);
 
       // // Finally save the new character
       newChar

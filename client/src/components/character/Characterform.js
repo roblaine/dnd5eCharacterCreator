@@ -408,7 +408,7 @@ class CharacterForm extends Component {
               <option defaultValue value="">Lawfulness</option>
               <option value="lawful">Lawful</option>
               <option value="nuetral">Neutral</option>
-              <option value="chaos">Chaos</option>
+              <option value="chaotic">Chaotic</option>
             </select>
 
             <label htmlFor="law">Morality</label>
