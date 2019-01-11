@@ -24,6 +24,12 @@ class Character extends Component {
     this.capitalize = this.capitalize.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.newCharacter) {
+      this.props.characters.unshift(nextProps.newCharacter);
+    }
+  }
+
   componentWillMount() {
     const charData = {
       owner: this.state.auth.user.email
@@ -41,6 +47,10 @@ class Character extends Component {
     this.setState({ [name]: value });
   }
 
+  capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   loopOverClasses(char) {
     return char.classes.map(classInfo => {
       // Uppercase the class name
@@ -51,50 +61,31 @@ class Character extends Component {
     });
   }
 
-  capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
   loopChars(characters) {
     // Get all of the important info from within the characters that we just fetched
     return characters.map((char) => (
-      <div key={char._id}>
-        <div className="row">
-          <div className="col s12 m6">
-            <div className="card blue-grey darken-1">
-              <div className="card-content white-text">
-                <span className="card-title">{char.name}</span>
-                {this.loopOverClasses(char)}
-                <p className="">{this.capitalize(char.alignment.law)} {this.capitalize(char.alignment.evil)}</p>
-              </div>
-              <div className="card-action">
-                <button
-                  className="waves-effect waves-light btn blue"
-                  name="showDetail"
-                  id="toggle"
-                  value={this.state.showDetail}
-                  onClick={this.handleClick}>Show Full Detail
-                </button>
-                <button
-                  className="waves-effect waves-light btn blue"
-                  name="selectedCharacter"
-                  id="selectedCharacter"
-                  value={char._id}
-                  onClick={this.handleClick}>Select Character</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <h3>{char.name}</h3>
-        <div className="" id="char-meta-details">
-          {char.race}
-          <div className="row">
-            <div className="col">{char.alignment.law}</div>
-            <div className="col">{char.alignment.evil}</div>
-          </div>
-          {/* Load the classes div into the function */}
-          <div className="row">
+      <div key={char._id} className="col s12 m6">
+        <div className="card blue-grey darken-1">
+          <div className="card-content white-text">
+            <span className="card-title">{char.name}</span>
             {this.loopOverClasses(char)}
+            <p className="">{this.capitalize(char.alignment.law)} {this.capitalize(char.alignment.evil)}</p>
+          </div>
+          <div className="card-action">
+            <button
+              className="waves-effect waves-light btn blue"
+              name="showDetail"
+              id="toggle"
+              value={this.state.showDetail}
+              onClick={this.handleClick}>Show Full Detail
+            </button>
+            <button
+              className="waves-effect waves-light btn blue"
+              name="selectedCharacter"
+              id="selectedCharacter"
+              value={char._id}
+              onClick={this.handleClick}>Select Character
+            </button>
           </div>
         </div>
       </div>
@@ -107,7 +98,8 @@ class Character extends Component {
     const charForm = this.state.createCharacter ? (
       <div className="row">
         <CharacterForm />
-      </div>) : (null)
+      </div>
+    ) : (null)
 
     return (
       <div className="col">
