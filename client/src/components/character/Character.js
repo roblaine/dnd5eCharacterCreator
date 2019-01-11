@@ -83,18 +83,6 @@ class Character extends Component {
             </div>
           </div>
         </div>
-        <h3>{char.name}</h3>
-        <div className="" id="char-meta-details">
-          {char.race}
-          <div className="row">
-            <div className="col">{char.alignment.law}</div>
-            <div className="col">{char.alignment.evil}</div>
-          </div>
-          {/* Load the classes div into the function */}
-          <div className="row">
-            {this.loopOverClasses(char)}
-          </div>
-        </div>
       </div>
     ));
   }
