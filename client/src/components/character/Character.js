@@ -11,9 +11,11 @@ class Character extends Component {
     this.state = {
       errors: {},
       auth: this.props.auth,
+      characters: [],
+      newCharacter: {},
       createCharacter: false,
       showDetail: false,
-      selectCharacter: ''
+      selectedCharacter: ''
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -53,9 +55,9 @@ class Character extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  loopChars() {
+  loopChars(characters) {
     // Get all of the important info from within the characters that we just fetched
-    return this.props.characters.map((char) => (
+    return characters.map((char) => (
       <div key={char._id}>
         <div className="row">
           <div className="col s12 m6">
@@ -75,8 +77,8 @@ class Character extends Component {
                 </button>
                 <button
                   className="waves-effect waves-light btn blue"
-                  name="selectCharacter"
-                  id="selectCharacter"
+                  name="selectedCharacter"
+                  id="selectedCharacter"
                   value={char._id}
                   onClick={this.handleClick}>Select Character</button>
               </div>
@@ -100,7 +102,7 @@ class Character extends Component {
   }
 
   render() {
-    const charItems = this.loopChars();
+    const charItems = this.loopChars(this.props.characters);
     // Update state with the button
     const charForm = this.state.createCharacter ? (
       <div className="row">
@@ -145,7 +147,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
   characters: state.characters.items,
-  newCharacter: state.characters.item
+  newCharacter: state.characters.item.data
 });
 
 export default connect(
