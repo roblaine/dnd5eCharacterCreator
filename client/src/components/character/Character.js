@@ -127,7 +127,7 @@ class Character extends Component {
               </h5>
             </span>
             <div className="row">
-              <h5 className="center-align">
+              <h5 style={{textDecoration: "underline"}} className="center-align">
                 Combat
               </h5>
               <div className="col s4 center-align">
@@ -156,7 +156,7 @@ class Character extends Component {
               </div>
             </div>
             <div className="row">
-              <h5 className="center-align">
+              <h5 style={{textDecoration: "underline"}} className="center-align">
                 Hitpoints
               </h5>
               <div className="col s4 center-align">
@@ -186,12 +186,13 @@ class Character extends Component {
             </div>
             {/* inventory */}
             <div className="row center-align">
+              <h5 style={{textDecoration: "underline"}}>Inventory</h5>
               <div className="row center-align">
+                <h6>Currently Equipped Weapon</h6>
                 {/* Currently equipped weapon */}
-                {/* {this.equippedWeapon(char.inventory.weapons)} */}
+                {this.equippedWeapon(char.inventory.weapons)}
               </div>
               <div className="row center-align">
-                <h5>Inventory</h5>
                 {/* Loop over the items in inventory */}
                 {this.loopOverItems(char.inventory.items)}
               </div>
