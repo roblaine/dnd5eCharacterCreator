@@ -197,7 +197,6 @@ class Character extends Component {
                 {this.loopOverItems(char.inventory.items)}
               </div>
             </div>
-
           </div>
         </div>
       </div>
