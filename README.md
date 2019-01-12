@@ -8,12 +8,12 @@ TODO:
 
   Character has an object in this.state.classes which contains
   each subclass list for a given class,
-
-  this.state.classes = {
-    cleric: { sub: [war: "War"] },
+  ```
+  this.state.classes = {  
+    cleric: { sub: [war: "War"] },  
     wizard: { sub: [conjuration: "Conjuration", illusion: "Illusion"] }
   };
-
+```
 ==============================================================
 
  - [x] Character has an inventory
