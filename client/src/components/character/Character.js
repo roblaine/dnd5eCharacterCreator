@@ -20,7 +20,9 @@ class Character extends Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.loopOverClasses = this.loopOverClasses.bind(this);
-    this.loopChars = this.loopChars.bind(this);
+    this.loopOverCharacters = this.loopOverCharacters.bind(this);
+    this.loopOverItems = this.loopOverItems.bind(this);
+    this.equippedWeapon = this.equippedWeapon.bind(this);
     this.capitalize = this.capitalize.bind(this);
   }
 
@@ -61,31 +63,140 @@ class Character extends Component {
     });
   }
 
-  loopChars(characters) {
+  loopOverItems(items) {
+    return items.map(item => (
+      <div key={item._id}>
+
+      </div>
+    ));
+  }
+
+  // Finds the equipped weapon for display purposes
+  equippedWeapon(weapons) {
+    weapons.forEach(weapon => {
+      if(weapon.equipped) {
+        return weapon;
+      }
+    });
+  }
+
+  loopOverCharacters(characters) {
     // Get all of the important info from within the characters that we just fetched
     return characters.map((char) => (
       <div key={char._id} className="col s12 m6">
-        <div className="card blue-grey darken-1">
-          <div className="card-content white-text">
-            <span className="card-title">{char.name}</span>
-            {this.loopOverClasses(char)}
-            <p className="">{this.capitalize(char.alignment.law)} {this.capitalize(char.alignment.evil)}</p>
-          </div>
-          <div className="card-action">
-            <button
-              className="waves-effect waves-light btn blue"
-              name="showDetail"
-              id="toggle"
-              value={this.state.showDetail}
-              onClick={this.handleClick}>Show Full Detail
-            </button>
+        <div className="card medium">
+          {/* <div className="waves-effect waves-block waves-light">
+            <img
+              className="activator"
+              src="images/class.jpg"
+              alt="Picture of class"
+            />
+          </div> */}
+          <div className="card-content">
+            <span
+              className="card-title activator grey-text text-darken-4">
+              <h5>
+                {char.name}
+                <i className="material-icons right">more_vert</i>
+              </h5>
+            </span>
+            <div>
+              {this.loopOverClasses(char)}
+            </div>
+            <div>
+              {this.capitalize(char.alignment.law)} {this.capitalize(char.alignment.evil)}
+            </div>
+            <div>
+
+            </div>
             <button
               className="waves-effect waves-light btn blue"
               name="selectedCharacter"
               id="selectedCharacter"
               value={char._id}
-              onClick={this.handleClick}>Select Character
+              onClick={this.handleClick}>
+              Select Character
             </button>
+          </div>
+          {/* Expand content for the card */}
+          <div className="card-reveal">
+            <span className="card-title grey-text text-darken-4">
+              <h5>
+                {char.name}
+                <i className="material-icons right">close</i>
+              </h5>
+            </span>
+            <div className="row">
+              <h5 className="center-align">
+                Combat
+              </h5>
+              <div className="col s4 center-align">
+                <h6>
+                  Speed
+                </h6>
+                <p>
+                  {char.combat.speed}
+                </p>
+              </div>
+              <div className="col s4 center-align">
+                <h6>
+                  Armor Class
+                </h6>
+                <p>
+                  {char.combat.ac}
+                </p>
+              </div>
+              <div className="col s4 center-align">
+                <h6>
+                  Initiative
+                </h6>
+                <p>
+                  {char.combat.initiative}
+                </p>
+              </div>
+            </div>
+            <div className="row">
+              <h5 className="center-align">
+                Hitpoints
+              </h5>
+              <div className="col s4 center-align">
+                <h6>
+                  Maximum
+                </h6>
+                <p>
+                  {char.hitpoints.max}
+                </p>
+              </div>
+              <div className="col s4 center-align">
+                <h6>
+                  Current
+                </h6>
+                <p>
+                  {char.hitpoints.current}
+                </p>
+              </div>
+              <div className="col s4 center-align">
+                <h6>
+                  Temporary
+                </h6>
+                <p>
+                  {char.hitpoints.temp}
+                </p>
+              </div>
+            </div>
+            {/* inventory */}
+            <div className="row center-align">
+              <div className="row center-align">
+                {/* Currently equipped weapon */}
+                {/* {this.equippedWeapon(char.inventory.weapons)} */}
+              </div>
+              <div className="row center-align">
+                <h5>Inventory</h5>
+                {/* Loop over the items in inventory */}
+                {this.loopOverItems(char.inventory.items)}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -93,7 +204,7 @@ class Character extends Component {
   }
 
   render() {
-    const charItems = this.loopChars(this.props.characters);
+    const charItems = this.loopOverCharacters(this.props.characters);
     // Update state with the button
     const charForm = this.state.createCharacter ? (
       <div className="row">

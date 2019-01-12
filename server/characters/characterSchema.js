@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 // Reference a user for each created character
 const CharacterSchema = new Schema({
   owner: { type: 'ObjectId', ref: 'User', required: true },
+  session: { type: Number },
   name: { type: String, required: true, unique: true },
   race: { type: String, required: true },
   alignment: {
