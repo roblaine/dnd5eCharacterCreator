@@ -1,7 +1,7 @@
 const Validator = require('validator');
 const isEmpty = require('is-empty');
 
-module.exports = function validateSessionCreate(data) {
+module.exports = function validateCampaignCreate(data) {
   let errors = {};
 
   data.host = !isEmpty(data.host) ? data.host : '';
@@ -9,10 +9,10 @@ module.exports = function validateSessionCreate(data) {
 
   // Check the character name against validators
   if (Validator.isEmpty(data.host)) {
-    errors.host = 'Session must have a host';
+    errors.host = 'Campaign must have a host';
   }
   if (Validator.isEmpty(data.name)) {
-    errors.name = 'Session must have a unique name';
+    errors.name = 'Campaign must have a unique name';
   }
 
   return {

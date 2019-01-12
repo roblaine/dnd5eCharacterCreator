@@ -9,7 +9,7 @@ const passport = require('passport');
 // Import the routes
 const users = require('./routes/api/users');
 const characters = require('./routes/api/characters');
-const sessions = require('./routes/api/sessions');
+const campaigns = require('./routes/api/campaigns');
 
 // Declare our app to use express
 const app = express();
@@ -47,7 +47,7 @@ require('./config/passport')(passport);
 // Routes
 app.use('/api/users', users);
 app.use('/api/characters', characters);
-app.use('/api/sessions', sessions);
+app.use('/api/campaigns', campaigns);
 
 // Static character sheet for demo
 app.get('/character', (req, res) => {

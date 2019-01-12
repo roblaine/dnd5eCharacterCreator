@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Create the Schema
-const SessionSchema = new Schema({
+const CampaignSchema = new Schema({
   host: { type: 'ObjectId', ref: 'User', required: true },
   players: [
     { type: 'ObjectId', ref: 'User' }
@@ -16,4 +16,4 @@ const SessionSchema = new Schema({
   }
 });
 
-module.exports = Session = mongoose.model("sessions", SessionSchema);
+module.exports = Campaign = mongoose.model("campaigns", CampaignSchema);
