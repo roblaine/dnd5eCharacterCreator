@@ -14,11 +14,24 @@ const session = require('../../sessions/sessionSchema');
 // @desc Query Sessions
 // @access Public
 router.post('/query', (req, res) => {
-  // Get all of the public sessions that a user can join
-  Session.find({ public: true })
-  .then(sessions => {
-    res.send(sessions);
-  })
+  const public = req.body.public;
+  if(public) {
+    // Get all of the public sessions that a user can join
+    Session.find({ public: true })
+    .then(sessions => {
+      res.send(sessions);
+    })
+  } else {
+    // Find the user
+    User.findOne({ email: req.body.email })
+    .then(user => {
+      // Find the sessions hosted by a user
+      Session.find({ host: user.id })
+      .then(session => {
+        res.send(session);
+      });
+    });
+  }
 });
 
 // @route POST api/sessions/add
@@ -66,6 +79,14 @@ router.post('/add', (req, res) => {
 // @desc Delete an existing session
 // @access Public
 router.post('/delete', (req, res) => {
+
+});
+
+
+// @route POST api/sessions/join
+// @desc Join an existing session
+// @access Public
+router.post('/join', (req, res) => {
 
 });
 
