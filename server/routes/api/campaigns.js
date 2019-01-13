@@ -118,7 +118,7 @@ router.post('/delete', (req, res) => {
 
 
 // @route POST api/campaigns/join
-// @desc Join an existing campaign
+// @desc Join an existing campaign based on the campaignId
 // @access Public
 router.post('/join', (req, res) => {
   // Details about the joining players
