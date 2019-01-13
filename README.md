@@ -2,17 +2,15 @@
 DND Character Sheets &amp; more
 
 TODO:
- - [] Character creation form has class and subclass dropdowns
-==============================================================
-  Character has an object in this.state.classes which contains
+ - [ ] Character creation form has class and subclass dropdowns
+ - [ ] Character has an object in this.state.classes which contains
   each subclass list for a given class,
-
-  this.state.classes = {
-    cleric: { sub: [war: "War"] },
+```
+  this.state.classes = {  
+    cleric: { sub: [war: "War"] },  
     wizard: { sub: [conjuration: "Conjuration", illusion: "Illusion"] }
   };
-
-==============================================================
+```
  - [x] Character has an inventory
  - [x] Inventory stores weapons, items, equipment, money
  - [] Add a campaign model that stores an array of characters and a dm
