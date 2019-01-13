@@ -97,13 +97,36 @@ router.post('/delete', (req, res) => {
       return res.status(400).json({ errors: "Must enter a valid campaignId"})
     }
 
-    // Loop over each user, remove the campaign
+    // Loop over each user in the campaign
     camp.players.forEach(playerId => {
+      // Find the user
       User.findOne({ _id: playerId })
       .then(player => {
         if(player) {
+          // TODO troubleshoot and fix this loop
+          // Find the user's characters
+          Character.find({ owner: player._id })
+          .then(characters => {
+            // Loop over each one
+            characters.forEach(character => {
+              // console.log(player.email, character.name, character.campaign);
+              // If the character has a campaign, remove the campaign
+              if(character.campaign) {
+                // console.log("!!! Campaign Info: %s %s", character.campaign, camp._id);
+                if(character.campaign.equals(camp._id)) {
+                  console.log("Removing campaign from char...");
+                  // Unset the campaign and save the update
+                  character.campaign = undefined;
+
+                  character
+                  .save();
+                  console.log(character.campaign);
+                }
+              }
+            });
+          });
+
           player.campaign = { id: undefined, dm: false };
-          console.log(player);
 
           player
           .save();
@@ -121,46 +144,65 @@ router.post('/delete', (req, res) => {
 // @desc Join an existing campaign based on the campaignId
 // @access Public
 router.post('/join', (req, res) => {
-  // Details about the joining players
+  // Details about the joining player
   const email = req.body.email;
   const campaignId = req.body.campaignId;
+  const characterId = req.body.characterId;
 
   // Find the user that is joining the campaign
   User.findOne({ email: email })
   .then(joiningPlayer => {
-
     if(!joiningPlayer) {
       return res.status(400).json({ email: 'A valid user email is required' });
     }
-
-    // Find the campaign to add the player to it
-    Campaign.findOne({ _id: campaignId })
-    .then(campaign => {
-      if(!campaign) {
-        return res.status(400).json({ email: 'A valid campaign is required' });
+    Character.findOne({ _id: characterId })
+    .then(joiningChar => {
+      if(!joiningChar) {
+        return res.status(400).json({ characterId: 'A valid character is required' });
       }
 
-      // update the campaign and the player and character
-      joiningPlayer.campaign.id = campaignId;
-      campaign.players.push(joiningPlayer.id);
+      // Find the campaign to add the player to it
+      Campaign.findOne({ _id: campaignId })
+      .then(campaign => {
+        if(!campaign) {
+          return res.status(400).json({ email: 'A valid campaign is required' });
+        }
 
-      // save the player change
-      joiningPlayer
-      .save()
-      .then(player => {
-        // Save the campaign change
-        campaign
+        // update the campaign and the player and the player's character
+        if(!campaign.players.contains(joiningPlayer.id)) {
+          campaign.players.push(joiningPlayer.id);
+        } else {
+          return res.status(400).json({ player: 'This player has already joined' });
+        }
+
+        joiningPlayer.campaign.id = campaignId;
+        joiningChar.campaign = campaignId;
+
+        // save the player change
+        joiningPlayer
         .save()
-        .then(camp => {
-          res.send({player: joiningPlayer, campaign: sess})
+        .then(player => {
+          // Save the campaign change
+          campaign
+          .save()
+          .then(camp => {
+            // save the character
+            joiningChar
+            .save()
+            .then(char => {
+              res.send({player: joiningPlayer, campaign: camp, character: char})
+            })
+            .catch(err => console.log(err));
+          })
+          .catch(err => console.log(err));
         })
         .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
-
     })
     .catch(err => console.log(err));
-  }).catch(err => console.log(err));
+  })
+  .catch(err => console.log(err));
 });
 
 
