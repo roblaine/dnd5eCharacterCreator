@@ -1,6 +1,7 @@
 // API endpoint for creating, updating, and deleting a campaign
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 // Load the input validation method
 const validateCampaignCreate = require('../../campaigns/validation/creation');
@@ -89,11 +90,30 @@ router.post('/add', (req, res) => {
 // @access Public
 router.post('/delete', (req, res) => {
   // Find the campaign to delete, loop through all the players and remove them
-  // then delete it
-  Campaign.findOne({})
+  // then delete the campaign
+  Campaign.findOne({ _id: req.body.campaignId })
   .then(camp => {
+    if(!camp) {
+      return res.status(400).json({ errors: "Must enter a valid campaignId"})
+    }
+
     // Loop over each user, remove the campaign
-  });
+    camp.players.forEach(playerId => {
+      User.findOne({ _id: playerId })
+      .then(player => {
+        if(player) {
+          player.campaign = { id: undefined, dm: false };
+          console.log(player);
+
+          player
+          .save();
+        }
+      })
+    });
+    Campaign.deleteOne({ _id: camp.id })
+    .then(res.send({ message: "Deleted campaign" }));
+  })
+  .catch(err => console.log(err));
 });
 
 
@@ -116,11 +136,13 @@ router.post('/join', (req, res) => {
     // Find the campaign to add the player to it
     Campaign.findOne({ _id: campaignId })
     .then(campaign => {
+      if(!campaign) {
+        return res.status(400).json({ email: 'A valid campaign is required' });
+      }
+
       // update the campaign and the player and character
       joiningPlayer.campaign.id = campaignId;
       campaign.players.push(joiningPlayer.id);
-      console.log(joiningPlayer);
-      console.log(campaign);
 
       // save the player change
       joiningPlayer
@@ -129,8 +151,8 @@ router.post('/join', (req, res) => {
         // Save the campaign change
         campaign
         .save()
-        .then(sess => {
-          res.send({player: joiningPlayer, session: sess})
+        .then(camp => {
+          res.send({player: joiningPlayer, campaign: sess})
         })
         .catch(err => console.log(err));
       })
