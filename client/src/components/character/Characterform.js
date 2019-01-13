@@ -108,10 +108,6 @@ class CharacterForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.characters.isCreated) {
-      this.props.history.push('/dashboard');
-      // Redirect to the dashboard on success
-    }
     // Load errors if they exist into props
     if (nextProps.errors) {
       this.setState({
@@ -245,9 +241,7 @@ class CharacterForm extends Component {
       class: this.state.class,
       law: this.state.law,
       evil: this.state.evil,
-      combat: {
-        ac: this.state.ac,
-      },
+      ac: this.state.ac,
       attributes: attributes,
       skills: skills
     };
@@ -287,6 +281,8 @@ class CharacterForm extends Component {
                 value={this.state.attribute}
                 min="1"
                 max="30"
+                defaultValue="10"
+                style={{textAlign: "center"}}
               />
               {attribute}
             </span>
@@ -329,9 +325,12 @@ class CharacterForm extends Component {
           {/* Character name */}
           <div className="input-field">
             <label htmlFor="name">Name</label>
-            <span className='red-text'>
-              {errors.name}
-            </span>
+            <div>
+              <span className="red-text">
+                {errors.name}
+              </span>
+            </div>
+
             <input
               type="text"
               name="name"
@@ -342,18 +341,19 @@ class CharacterForm extends Component {
             />
           </div>
 
-          <div className="container" id="race-class">
+          <div className="container" id="race-class" style={{width: "auto"}}>
             {/* Race select */}
+            <div>
+              <span className="red-text">
+                {errors.race}
+              </span>
+            </div>
             <label htmlFor="race">Race</label>
-            <span className='red-text'>
-              {errors.race}
-            </span>
             <select className="browser-default"
               name="race"
               id="race"
               onChange={this.onChange}
-              value={this.state.value}
-              error={errors.race}>
+              value={this.state.value}>
               <option defaultValue value="">Race</option>
               <option value="dragonborn">Dragonborn</option>
               <option value="dwarf">Dwarf</option>
@@ -367,16 +367,17 @@ class CharacterForm extends Component {
             </select>
 
             {/* Class select */}
+            <div>
+              <span className="red-text">
+                {errors.class}
+              </span>
+            </div>
             <label htmlFor="class">Class</label>
-            <span className='red-text'>
-              {errors.class}
-            </span>
             <select className="browser-default"
               name="class"
               id="class"
               onChange={this.onChange}
-              value={this.state.value}
-              error={errors.class}>
+              value={this.state.value}>
               <option defaultValue value="">Class</option>
               <option value="barbarian">Barbarian</option>
               <option value="bard">Bard</option>
@@ -393,12 +394,14 @@ class CharacterForm extends Component {
             </select>
           </div>
 
-          <div className="container" id="alignment-background">
+          <div className="container" id="alignment-background" style={{width: "auto"}}>
             {/* Alignment select */}
+            <div>
+              <span className='red-text'>
+                {errors.law}
+              </span>
+            </div>
             <label htmlFor="law">Lawfulness</label>
-            <span className='red-text'>
-              {errors.law}
-            </span>
             <select className="browser-default"
               name="law"
               id="law"
@@ -411,10 +414,12 @@ class CharacterForm extends Component {
               <option value="chaotic">Chaotic</option>
             </select>
 
+            <div>
+              <span className='red-text'>
+                {errors.evil}
+              </span>
+            </div>
             <label htmlFor="law">Morality</label>
-            <span className='red-text'>
-              {errors.evil}
-            </span>
             <select className="browser-default"
               name="evil"
               id="evil"
@@ -428,10 +433,12 @@ class CharacterForm extends Component {
             </select>
             {/* Starting ac */}
             <div className="input-field">
+              <div>
+                <span className='red-text'>
+                  {errors.ac}
+                </span>
+              </div>
               <label htmlFor="ac">Starting AC</label>
-              <span className='red-text'>
-                {errors.ac}
-              </span>
               <input
                 type="number"
                 name="ac"

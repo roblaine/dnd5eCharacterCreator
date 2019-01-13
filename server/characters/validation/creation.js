@@ -12,11 +12,11 @@ module.exports = function validateCharacterCreate(data) {
   data.race = !isEmpty(data.race) ? data.race : '';
   data.law = !isEmpty(data.law) ? data.law : '';
   data.evil = !isEmpty(data.evil) ? data.evil : '';
+  data.ac = !isEmpty(data.ac) ? data.ac : '';
 
   // data.attributes = !isEmpty(data.attributes) ? data.attributes : '';
   // data.skills = !isEmpty(data.skills) ? data.skills : '';
   // data.hitpoints = !isEmpty(data.hitpoints) ? data.hitpoints : '';
-  // data.combat = !isEmpty(data.combat) ? data.combat : '';
 
   // Check the character name against validators
   if (Validator.isEmpty(data.name)) {
@@ -33,6 +33,9 @@ module.exports = function validateCharacterCreate(data) {
   }
   if (Validator.isEmpty(data.evil)) {
     errors.evil = 'Character must have a morality alignment';
+  }
+  if (Validator.isEmpty(data.ac)) {
+    errors.ac = 'Character must have a starting AC value';
   }
 
   return {

@@ -19,6 +19,10 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  campaign: {
+    id: { type: 'ObjectId', ref: 'Campaign' },
+    dm: { type: Boolean, required: true, default: false }
   }
 });
 

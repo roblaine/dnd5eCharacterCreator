@@ -1,8 +1,11 @@
-import { FETCH_CHARACTERS, ADD_CHARACTER } from "./types";
 import axios from "axios";
+import {
+  FETCH_CHARACTERS,
+  ADD_CHARACTER,
+  GET_ERRORS,
+} from "./types";
 
 export const fetchCharacters = userData => dispatch => {
-  console.log(userData);
   axios
   .post("/api/characters/query", userData)
   .then(function(characters) {
@@ -12,10 +15,15 @@ export const fetchCharacters = userData => dispatch => {
       })
     }
   )
+  .catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  );
 };
 
 export const addCharacter = charData => dispatch => {
-
   axios
   .post("/api/characters/add", charData)
   .then(function(charData) {
@@ -25,4 +33,10 @@ export const addCharacter = charData => dispatch => {
       })
     }
   )
+  .catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  );
 };

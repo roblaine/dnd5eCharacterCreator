@@ -12,7 +12,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div style={{maxWidth: "90%"}} className='container center-align'>
+      <div style={{width: "85%"}} className='container center-align'>
         <Character />
       </div>
     );
