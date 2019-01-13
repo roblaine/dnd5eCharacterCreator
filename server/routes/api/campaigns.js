@@ -16,9 +16,10 @@ const campaign = require('../../campaigns/campaignSchema');
 // @access Public
 router.post('/query', (req, res) => {
   const public = req.body.public;
+
   if(public) {
     // Get all of the public campaigns that a user can join
-    Campaign.find({ public: true })
+    Campaign.find({ public: public })
     .then(campaigns => {
       res.send(campaigns);
     })
@@ -67,7 +68,6 @@ router.post('/add', (req, res) => {
         name: req.body.name,
         public: public
       });
-
 
       newCampaign
       .save()

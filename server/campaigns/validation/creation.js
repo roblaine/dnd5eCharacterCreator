@@ -7,7 +7,7 @@ module.exports = function validateCampaignCreate(data) {
   data.host = !isEmpty(data.host) ? data.host : '';
   data.name = !isEmpty(data.name) ? data.name : '';
 
-  // Check the character name against validators
+  // Check the campaign against validators
   if (Validator.isEmpty(data.host)) {
     errors.host = 'Campaign must have a host';
   }
