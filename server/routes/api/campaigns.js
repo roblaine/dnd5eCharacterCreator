@@ -23,7 +23,7 @@ router.post('/query', (req, res) => {
     })
   } else {
     // Find the user
-    User.findOne({ email: req.body.email })
+    User.findOne({ email: req.body.host })
     .then(user => {
       // Find the campaigns hosted by a user
       Campaign.find({ host: user.id })
@@ -67,9 +67,18 @@ router.post('/add', (req, res) => {
         public: public
       });
 
+
       newCampaign
       .save()
-      .then(campaign => res.json(campaign))
+      .then(campaign => {
+        host.campaign = { id: campaign.id, dm: true };
+        host.save()
+        .then(h => {
+          res.json({ host: h, campaign: campaign })
+        })
+        .catch(error => console.log(error));
+
+      })
       .catch(err => console.log(err));
     });
   });
@@ -79,7 +88,12 @@ router.post('/add', (req, res) => {
 // @desc Delete an existing campaign
 // @access Public
 router.post('/delete', (req, res) => {
-
+  // Find the campaign to delete, loop through all the players and remove them
+  // then delete it
+  Campaign.findOne({})
+  .then(camp => {
+    // Loop over each user, remove the campaign
+  });
 });
 
 
@@ -94,18 +108,25 @@ router.post('/join', (req, res) => {
   // Find the user that is joining the campaign
   User.findOne({ email: email })
   .then(joiningPlayer => {
+
+    if(!joiningPlayer) {
+      return res.status(400).json({ email: 'A valid user email is required' });
+    }
+
     // Find the campaign to add the player to it
     Campaign.findOne({ _id: campaignId })
     .then(campaign => {
       // update the campaign and the player and character
-      joiningPlayer.campaign.id = campaign.id;
+      joiningPlayer.campaign.id = campaignId;
       campaign.players.push(joiningPlayer.id);
       console.log(joiningPlayer);
       console.log(campaign);
+
       // save the player change
       joiningPlayer
       .save()
       .then(player => {
+        // Save the campaign change
         campaign
         .save()
         .then(sess => {
@@ -114,9 +135,10 @@ router.post('/join', (req, res) => {
         .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
-      // Save the campaign change
-    });
-  });
+
+    })
+    .catch(err => console.log(err));
+  }).catch(err => console.log(err));
 });
 
 
