@@ -88,24 +88,33 @@ router.post('/delete', (req, res) => {
 // @access Public
 router.post('/join', (req, res) => {
   // Details about the joining players
-  const joiningPlayer = req.body.playerId;
+  const email = req.body.email;
   const campaignId = req.body.campaignId;
 
   // Find the user that is joining the campaign
-  User.find({ id: ObjectId(joiningPlayer) })
+  User.findOne({ email: email })
   .then(joiningPlayer => {
     // Find the campaign to add the player to it
-    Campaign.find({ id: ObjectId(campaignId) })
+    Campaign.findOne({ _id: campaignId })
     .then(campaign => {
       // update the campaign and the player and character
-      campaign.players.push(joiningPlayer);
-      joiningPlayer.campaign = campaignId;
-
-      // Save the campaign change
-      campaign
+      joiningPlayer.campaign.id = campaign.id;
+      campaign.players.push(joiningPlayer.id);
+      console.log(joiningPlayer);
+      console.log(campaign);
+      // save the player change
+      joiningPlayer
       .save()
-      .then(sess => res.send(sess))
+      .then(player => {
+        campaign
+        .save()
+        .then(sess => {
+          res.send({player: joiningPlayer, session: sess})
+        })
+        .catch(err => console.log(err));
+      })
       .catch(err => console.log(err));
+      // Save the campaign change
     });
   });
 });
