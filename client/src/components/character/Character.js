@@ -60,10 +60,7 @@ class Character extends Component {
   }
 
   render() {
-    var charItems = null;
-    console.log(this.props);
-    charItems = this.loopOverCharacters(this.props.characters);
-
+    var charItems = this.loopOverCharacters(this.props.characters);
 
     // Update state with the button
     const charForm = this.state.createCharacter ? (
