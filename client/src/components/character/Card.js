@@ -28,7 +28,16 @@ class Card extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
+    console.log(nextProps);
+    if(nextProps.characters) {
+      console.log(nextProps.characters);
+    }
+    // Load errors if they exist into props
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
   }
 
   componentWillMount() {
@@ -69,25 +78,29 @@ class Card extends Component {
   }
 
   loopOverItems(items) {
-    return items.map(item => (
-      <div key={item._id}>
+    if(items) {
+      return items.map(item => (
+        <div key={item._id}>
 
-      </div>
-    ));
+        </div>
+      ));
+    }
   }
 
   // Finds the equipped weapon for display purposes
   equippedWeapon(weapons) {
-    weapons.forEach(weapon => {
-      if(weapon.equipped) {
-        return weapon;
-      }
+    if(weapons) {
+      weapons.forEach(weapon => {
+        if(weapon.equipped) {
+          return weapon;
+        }
     });
+    }
   }
 
   render() {
     const { errors } = this.props;
-    console.log(errors);
+
     return (
       <div className="card medium">
         {/* Add an image here */}
@@ -162,7 +175,7 @@ class Card extends Component {
                 id="deletedCharacter"
                 value={this.state.cardCharacter._id}
                 onClick={(e) => {
-                  if (window.confirm('Are you sure you wish to delete this this.state.character?')) {
+                  if (window.confirm('Are you sure you wish to delete this character?')) {
                     // Set the state of the card to have the character ID
                     this.handleClick(e);
                     // Delete the character

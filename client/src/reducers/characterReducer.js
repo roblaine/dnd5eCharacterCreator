@@ -6,8 +6,9 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  items: [],
-  item: {}
+  characters: [],
+  newCharacter: {},
+  chosenCharacter: {}
 }
 
 export default function(state = initialState, action) {
@@ -15,24 +16,24 @@ export default function(state = initialState, action) {
     case FETCH_CHARACTERS:
       return {
         ...state,
-        items: action.payload
+        characters: action.payload
       };
     case ADD_CHARACTER:
       return {
         ...state,
-        item: action.payload
+        newCharacter: action.payload
       };
     case CHOOSE_CHARACTER:
       return {
         ...state,
-        item: action.payload
+        chosenCharacter: action.payload
       }
     case DELETE_CHARACTER:
       return {
         ...state,
-        items: [
-          ...state.items.slice(0, action.payload),
-          ...state.items.slice(action.payload + 1)
+        characters: [
+          ...state.characters.characters.slice(0, action.payload),
+          ...state.characters.characters.slice(action.payload + 1)
         ]
       }
     default:

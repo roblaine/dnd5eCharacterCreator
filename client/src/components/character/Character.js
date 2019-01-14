@@ -29,7 +29,8 @@ class Character extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.newCharacter) {
-      this.props.characters.unshift(nextProps.newCharacter);
+      // Add the newCharacter upon submission
+      this.props.characters.unshift(nextProps.newCharacter.data);
     }
   }
 
@@ -128,7 +129,7 @@ class Character extends Component {
 Character.propTypes = {
   fetchCharacters: PropTypes.func.isRequired,
   characters: PropTypes.array.isRequired,
-  newCharacter: PropTypes.object,
+  newCharacter: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -136,7 +137,8 @@ Character.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
-  characters: state.characters.items
+  characters: state.characters.characters,
+  newCharacter: state.characters.newCharacter
 });
 
 // Map all of the required actions to the connect export

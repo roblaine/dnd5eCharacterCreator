@@ -84,7 +84,7 @@ router.post('/add', (req, res) => {
           evil: req.body.evil
         },
         combat: {
-          ac: req.body.combat.ac
+          ac: req.body.ac
         }
       });
 
@@ -107,7 +107,7 @@ router.post('/delete', (req, res) => {
   //   // Return 400 status and json errors on invalid form submission
   //   return res.status(400).json(errors);
   // }
-  
+
   // TODO implement a way to make sure only the owner can delete their own character
   Character.deleteOne({ _id: req.body.characterId })
   .then(res.send({ message: "Character deleted" }));

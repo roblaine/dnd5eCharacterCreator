@@ -25,13 +25,13 @@ export const fetchCharacters = userData => dispatch => {
   );
 };
 
-export const addCharacter = charData => dispatch => {
+export const addCharacter = character => dispatch => {
   axios
-  .post("/api/characters/add", charData)
-  .then(function(charData) {
+  .post("/api/characters/add", character)
+  .then(character => {
       dispatch({
         type: ADD_CHARACTER,
-        payload: charData
+        payload: character
       })
     }
   )
@@ -45,9 +45,8 @@ export const addCharacter = charData => dispatch => {
 
 export const deleteCharacter = charData => dispatch => {
   // Get the important info from charData that the endpoint expects
-
-  // TODO Add authorisation through the jwt token
   const deleteData = { characterId: charData._id };
+
   axios
   .post("/api/characters/delete", deleteData)
   .then(function(deleteData) {
