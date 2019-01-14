@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchCharacters } from "../../actions/characterActions";
+import { fetchCharacters, deleteCharacter, selectCharacter } from "../../actions/characterActions";
 import CharacterForm from "./Characterform";
 
 class Character extends Component {
@@ -13,9 +13,9 @@ class Character extends Component {
       auth: this.props.auth,
       characters: [],
       newCharacter: {},
+      selectedCharacter: {},
       createCharacter: false,
-      showDetail: false,
-      selectedCharacter: ''
+      showDetail: false
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -114,8 +114,26 @@ class Character extends Component {
               name="selectedCharacter"
               id="selectedCharacter"
               value={char._id}
-              onClick={this.handleClick}>
+              onClick={(e) => {
+                if (window.confirm('Are you sure you wish to select this character?')) {
+                  this.props.selectCharacter(e)
+                }
+              }
+            }>
               Select Character
+            </button>
+            <button
+              className="waves-effect waves-light btn blue"
+              name="deleteCharacter"
+              id="deleteCharacter"
+              value={char._id}
+              onClick={(e) => {
+                if (window.confirm('Are you sure you wish to delete this character?')) {
+                  this.props.deleteCharacter(e)
+                }
+              }
+            }>
+              Delete Character
             </button>
           </div>
           {/* Expand content for the card */}
@@ -240,6 +258,8 @@ class Character extends Component {
 
 Character.propTypes = {
   fetchCharacters: PropTypes.func.isRequired,
+  deleteCharacter: PropTypes.func.isRequired,
+  selectCharacter: PropTypes.func.isRequired,
   characters: PropTypes.array.isRequired,
   newCharacter: PropTypes.object,
   auth: PropTypes.object.isRequired,
@@ -253,7 +273,10 @@ const mapStateToProps = state => ({
   newCharacter: state.characters.item.data
 });
 
+// Map all of the required actions to the connect export
+const actions = { fetchCharacters, deleteCharacter, selectCharacter }
+
 export default connect(
   mapStateToProps,
-  { fetchCharacters }
+  actions
 )(Character);
