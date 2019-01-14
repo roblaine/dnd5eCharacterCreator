@@ -16,7 +16,9 @@ class Character extends Component {
       newCharacter: {},
       selectedCharacter: {},
       createCharacter: false,
-      showDetail: false
+      showDetail: false,
+      campaign: {},
+      inCampaign: false
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -27,9 +29,6 @@ class Character extends Component {
     if (nextProps.newCharacter) {
       // Add the newCharacter to the props.characters array upon submission
       this.props.characters.unshift(nextProps.newCharacter.data);
-    }
-    if (nextProps.chosenCharacter) {
-      this.props.chosenCharacter = nextProps.chosenCharacter.characterId;
     }
   }
 
@@ -61,10 +60,7 @@ class Character extends Component {
   }
 
   render() {
-    var charItems = null;
-    console.log(this.props);
-    charItems = this.loopOverCharacters(this.props.characters);
-
+    var charItems = this.loopOverCharacters(this.props.characters);
 
     // Update state with the button
     const charForm = this.state.createCharacter ? (
@@ -114,7 +110,7 @@ const mapStateToProps = state => ({
   errors: state.errors,
   characters: state.characters.characters,
   newCharacter: state.characters.newCharacter,
-  campaign: state.campaign.data.campaignDetails.campaign,
+  campaign: state.campaign,
   inCampaign: state.inCampaign
 });
 
