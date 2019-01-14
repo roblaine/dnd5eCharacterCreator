@@ -30,7 +30,10 @@ export default function(state = initialState, action) {
     case DELETE_CHARACTER:
       return {
         ...state,
-        item: action.payload
+        items: [
+          ...state.items.slice(0, action.payload),
+          ...state.items.slice(action.payload + 1)
+        ]
       }
     default:
       return state;

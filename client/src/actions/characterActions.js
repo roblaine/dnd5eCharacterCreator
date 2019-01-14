@@ -50,10 +50,10 @@ export const deleteCharacter = charData => dispatch => {
   const deleteData = { characterId: charData._id };
   axios
   .post("/api/characters/delete", deleteData)
-  .then(function(charData) {
+  .then(function(deleteData) {
     dispatch({
       type: DELETE_CHARACTER,
-      payload: charData
+      payload: deleteData
     })
   })
   .catch(err =>
@@ -64,11 +64,22 @@ export const deleteCharacter = charData => dispatch => {
   );
 };
 
-export const selectCharacter = charData => dispatch => {
+export const selectCharacter = playData => dispatch => {
   // change the state to reflect the selected character to be used by
   // campaignAction
-  dispatch({
-    type: CHOOSE_CHARACTER,
-    payload: charData
+  console.log(playData);
+  axios
+  .post("/api/campaigns/join", playData)
+  .then(function(playData) {
+    dispatch({
+      type: CHOOSE_CHARACTER,
+      payload: playData
+    })
+  })
+  .catch(err => {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
   })
 };

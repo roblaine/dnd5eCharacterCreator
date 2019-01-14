@@ -13,10 +13,14 @@ class Card extends Component {
       cardCharacter: this.props.characterFromParent,
       charData: {},
       selectedCharacter: {},
-      deletedCharacter: {}
+      deletedCharacter: {},
+      campaignId: '',
+      joiningPlayerId: '',
+      characterId: ''
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.loopOverClasses = this.loopOverClasses.bind(this);
     this.loopOverItems = this.loopOverItems.bind(this);
     this.equippedWeapon = this.equippedWeapon.bind(this);
@@ -33,6 +37,12 @@ class Card extends Component {
     };
 
     this.setState({ charData: charData })
+  }
+
+  onChange = e => {
+    this.setState({
+      campaignId: e.target.value
+    });
   }
 
   handleClick = e => {
@@ -76,6 +86,8 @@ class Card extends Component {
   }
 
   render() {
+    const { errors } = this.props;
+
     return (
       <div className="card medium">
         {/* Add an image here */}
@@ -97,20 +109,49 @@ class Card extends Component {
 
           </div>
           <div className="row">
+            <label>
+              Campaign ID:
+            </label>
+            <div>
+              <span className="red-text">
+                {errors.campaignId}
+              </span>
+            </div>
+            <input
+              className=""
+              type="text"
+              id="campaignId"
+              name="campaignId"
+              value={this.state.campaignId}
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="row">
             <div className="col s12 m6">
               <button
                 className="waves-effect waves-light btn blue"
-                name={this.state.cardCharacter.name}
-                id="selectedCharacter"
-                value={this.state.cardCharacter._id}
+                name="selectedCharacter"
+                id="playData"
+                value={{
+                  characterId: this.state.cardCharacter._id,
+                  joiningPlayerId: this.state.cardCharacter.owner,
+                  campaignId: this.state.campaignId
+                }}
                 onClick={(e) => {
-                  if (window.confirm('Are you sure you wish to select this this.state.character?')) {
+                  if (window.confirm(
+                    'Are you sure that you want to join with this character?'
+                  )) {
                     // Set the state of the card to have the selected character ID
+                    const playData = {
+                      characterId: this.state.cardCharacter._id,
+                      joiningPlayerId: this.state.cardCharacter.owner,
+                      campaignId: this.state.campaignId
+                    };
                     this.handleClick(e);
-                    // this.props.selectCharacter(this.state.characterFromParent)
+                    this.props.selectCharacter(playData)
                   }
                 }}>
-                Select Character
+                Play
               </button>
             </div>
             <div className="col s12 m6">
@@ -127,7 +168,7 @@ class Card extends Component {
                     this.props.deleteCharacter(this.state.cardCharacter);
                   }
                 }}>
-                Delete Character
+                Delete
               </button>
             </div>
           </div>

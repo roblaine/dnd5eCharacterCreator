@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const validateCampaignCreate = require('../../campaigns/validation/creation');
 // const validateCampaignQuery = require('../../campaigns/validation/query');
 // const validateCampaignUpdate = require('../../campaigns/validation/update');
+const validateCampaignJoin = require("../../campaigns/validation/join");
 
 // Load the campaign model
 const campaign = require('../../campaigns/campaignSchema');
@@ -28,7 +29,7 @@ router.post('/query', (req, res) => {
     User.findOne({ email: req.body.host })
     .then(user => {
       // Find the campaigns hosted by a user
-      Campaign.find({ host: user.id })
+      Campaign.find({ host: user._id })
       .then(campaign => {
         res.send(campaign);
       });
@@ -144,17 +145,28 @@ router.post('/delete', (req, res) => {
 // @desc Join an existing campaign based on the campaignId
 // @access Public
 router.post('/join', (req, res) => {
-  // Details about the joining player
-  const email = req.body.email;
-  const campaignId = req.body.campaignId;
-  const characterId = req.body.characterId;
+  const { errors, isValid } = validateCampaignJoin(req.body);
 
+  if(!isValid) {
+    // Return 400 status and json errors on invalid form submission
+    return res.status(400).json(errors);
+  }
+
+  // Details about the joining player
+  const joiningPlayerId = mongoose.Types.ObjectId(req.body.joiningPlayerId);
+  const characterId = mongoose.Types.ObjectId(req.body.characterId);
+  const campaignId = mongoose.Types.ObjectId(req.body.campaignId);
+
+  if(!campaignId) {
+    return res.status(400).json({ campaignId: 'A valid campaign ID is required' });
+  }
   // Find the user that is joining the campaign
-  User.findOne({ email: email })
+  User.findOne({ _id: joiningPlayerId })
   .then(joiningPlayer => {
     if(!joiningPlayer) {
       return res.status(400).json({ email: 'A valid user email is required' });
     }
+
     Character.findOne({ _id: characterId })
     .then(joiningChar => {
       if(!joiningChar) {
@@ -168,11 +180,16 @@ router.post('/join', (req, res) => {
           return res.status(400).json({ email: 'A valid campaign is required' });
         }
 
+        var hasPlayer = campaign.players.some(function (player) {
+            return player.equals(joiningPlayer._id);
+        });
+
         // update the campaign and the player and the player's character
-        if(!campaign.players.contains(joiningPlayer.id)) {
-          campaign.players.push(joiningPlayer.id);
-        } else {
+        if(hasPlayer) {
           return res.status(400).json({ player: 'This player has already joined' });
+        } else {
+          // add the player if it isn't already there
+          campaign.players.push(joiningPlayer);
         }
 
         joiningPlayer.campaign.id = campaignId;
