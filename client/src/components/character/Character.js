@@ -110,8 +110,8 @@ const mapStateToProps = state => ({
   errors: state.errors,
   characters: state.characters.characters,
   newCharacter: state.characters.newCharacter,
-  campaign: state.campaign,
-  inCampaign: state.inCampaign
+  campaign: state.campaigns.campaign,
+  inCampaign: state.campaigns.inCampaign
 });
 
 // Map all of the required actions to the connect export

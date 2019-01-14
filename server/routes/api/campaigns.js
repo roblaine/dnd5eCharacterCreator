@@ -265,16 +265,15 @@ router.post('/leave', (req, res) => {
         }
 
         var hasPlayer = campaign.players.some(function (player) {
-            return player.equals(leavingChar._id);
+            return player.equals(leavingPlayer._id);
         });
-
         // update the campaign and the player and the player's character
         if(!hasPlayer) {
           return res.status(400).json({  playerId: 'This player is not in this campaign' });
         }
 
         // add the player if it isn't already there
-        campaign.players.remove(leavingChar);
+        campaign.players = campaign.players.filter(id => !id.equals(leavingPlayer._id));
         leavingPlayer.campaign.id = undefined;
         leavingChar.campaign = undefined;
 
