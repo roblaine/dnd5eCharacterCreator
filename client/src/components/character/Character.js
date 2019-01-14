@@ -114,7 +114,7 @@ const mapStateToProps = state => ({
   errors: state.errors,
   characters: state.characters.characters,
   newCharacter: state.characters.newCharacter,
-  campaign: state.campaign,
+  campaign: state.campaign.data.campaignDetails.campaign,
   inCampaign: state.inCampaign
 });
 
