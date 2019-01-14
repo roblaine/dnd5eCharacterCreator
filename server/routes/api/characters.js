@@ -109,8 +109,14 @@ router.post('/delete', (req, res) => {
   // }
 
   // TODO implement a way to make sure only the owner can delete their own character
-  Character.deleteOne({ _id: req.body.characterId })
-  .then(res.send({ message: "Character deleted" }));
+  Character.findOne({ _id: req.body.characterId })
+  .then(character => {
+    Character.deleteOne({ _id: req.body.characterId })
+    .then(
+      res.send({ character: character })
+    );
+  })
+  .catch(err => console.log(err));
 });
 
 // @route POST api/characters/update

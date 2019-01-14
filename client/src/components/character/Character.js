@@ -20,16 +20,12 @@ class Character extends Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.loopOverClasses = this.loopOverClasses.bind(this);
     this.loopOverCharacters = this.loopOverCharacters.bind(this);
-    this.loopOverItems = this.loopOverItems.bind(this);
-    this.equippedWeapon = this.equippedWeapon.bind(this);
-    this.capitalize = this.capitalize.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.newCharacter) {
-      // Add the newCharacter upon submission
+      // Add the newCharacter to the props.characters array upon submission
       this.props.characters.unshift(nextProps.newCharacter.data);
     }
   }
@@ -38,7 +34,6 @@ class Character extends Component {
     const charData = {
       owner: this.state.auth.user.email
     };
-
     this.props.fetchCharacters(charData);
   }
 
@@ -49,37 +44,6 @@ class Character extends Component {
     // Find the value in the state tree by name key, and invert it
     const value = target.id === "toggle" ? !this.state[name] : target.value;
     this.setState({ [name]: value });
-  }
-
-  capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  loopOverClasses(char) {
-    return char.classes.map(classInfo => {
-      // Uppercase the class name
-      const className = this.capitalize(classInfo.name);
-      return(
-        <p key={classInfo._id}>Level {classInfo.level} {className}</p>
-      )
-    });
-  }
-
-  loopOverItems(items) {
-    return items.map(item => (
-      <div key={item._id}>
-
-      </div>
-    ));
-  }
-
-  // Finds the equipped weapon for display purposes
-  equippedWeapon(weapons) {
-    weapons.forEach(weapon => {
-      if(weapon.equipped) {
-        return weapon;
-      }
-    });
   }
 
   loopOverCharacters(characters) {

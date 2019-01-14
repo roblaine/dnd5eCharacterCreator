@@ -29,13 +29,16 @@ export default function(state = initialState, action) {
         chosenCharacter: action.payload
       }
     case DELETE_CHARACTER:
+      // Return the new state skipping the object to delete by finding first the index
+      const index = state.characters.map(function(e) { return e._id; }).indexOf(action.payload._id);
       return {
         ...state,
         characters: [
-          ...state.characters.characters.slice(0, action.payload),
-          ...state.characters.characters.slice(action.payload + 1)
+          ...state.characters.slice(0, index),
+          ...state.characters.slice(index + 1)
         ]
       }
+
     default:
       return state;
   }

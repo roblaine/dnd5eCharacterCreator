@@ -50,9 +50,10 @@ export const deleteCharacter = charData => dispatch => {
   axios
   .post("/api/characters/delete", deleteData)
   .then(function(deleteData) {
+    console.log("delete char: ", deleteData.data.character);
     dispatch({
       type: DELETE_CHARACTER,
-      payload: deleteData
+      payload: deleteData.data.character
     })
   })
   .catch(err =>
