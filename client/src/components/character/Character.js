@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { fetchCharacters, deleteCharacter, selectCharacter } from "../../actions/characterActions";
 import CharacterForm from "./Characterform";
+import Card from "./Card";
 
 class Character extends Component {
   constructor(props) {
@@ -84,139 +85,7 @@ class Character extends Component {
     // Get all of the important info from within the characters that we just fetched
     return characters.map((char) => (
       <div key={char._id} className="col s12 m6">
-        <div className="card medium">
-          {/* <div className="waves-effect waves-block waves-light">
-            <img
-              className="activator"
-              src="images/class.jpg"
-              alt="Picture of class"
-            />
-          </div> */}
-          <div className="card-content">
-            <span
-              className="card-title activator grey-text text-darken-4">
-              <h5>
-                {char.name}
-                <i className="material-icons right">more_vert</i>
-              </h5>
-            </span>
-            <div>
-              {this.loopOverClasses(char)}
-            </div>
-            <div>
-              {this.capitalize(char.alignment.law)} {this.capitalize(char.alignment.evil)}
-            </div>
-            <div>
-
-            </div>
-            <button
-              className="waves-effect waves-light btn blue"
-              name="selectedCharacter"
-              id="selectedCharacter"
-              value={char._id}
-              onClick={(e) => {
-                if (window.confirm('Are you sure you wish to select this character?')) {
-                  this.props.selectCharacter(e)
-                }
-              }
-            }>
-              Select Character
-            </button>
-            <button
-              className="waves-effect waves-light btn blue"
-              name="deleteCharacter"
-              id="deleteCharacter"
-              value={char._id}
-              onClick={(e) => {
-                if (window.confirm('Are you sure you wish to delete this character?')) {
-                  this.props.deleteCharacter(e)
-                }
-              }
-            }>
-              Delete Character
-            </button>
-          </div>
-          {/* Expand content for the card */}
-          <div className="card-reveal">
-            <span className="card-title grey-text text-darken-4">
-              <h5>
-                {char.name}
-                <i className="material-icons right">close</i>
-              </h5>
-            </span>
-            <div className="row">
-              <h5 style={{textDecoration: "underline"}} className="center-align">
-                Combat
-              </h5>
-              <div className="col s4 center-align">
-                <h6>
-                  Speed
-                </h6>
-                <p>
-                  {char.combat.speed}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Armor Class
-                </h6>
-                <p>
-                  {char.combat.ac}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Initiative
-                </h6>
-                <p>
-                  {char.combat.initiative}
-                </p>
-              </div>
-            </div>
-            <div className="row">
-              <h5 style={{textDecoration: "underline"}} className="center-align">
-                Hitpoints
-              </h5>
-              <div className="col s4 center-align">
-                <h6>
-                  Maximum
-                </h6>
-                <p>
-                  {char.hitpoints.max}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Current
-                </h6>
-                <p>
-                  {char.hitpoints.current}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Temporary
-                </h6>
-                <p>
-                  {char.hitpoints.temp}
-                </p>
-              </div>
-            </div>
-            {/* inventory */}
-            <div className="row center-align">
-              <h5 style={{textDecoration: "underline"}}>Inventory</h5>
-              <div className="row center-align">
-                <h6>Currently Equipped Weapon</h6>
-                {/* Currently equipped weapon */}
-                {this.equippedWeapon(char.inventory.weapons)}
-              </div>
-              <div className="row center-align">
-                {/* Loop over the items in inventory */}
-                {this.loopOverItems(char.inventory.items)}
-              </div>
-            </div>
-          </div>
-        </div>
+        <Card characterFromParent={char} />
       </div>
     ));
   }
