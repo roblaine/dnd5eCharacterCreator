@@ -153,18 +153,19 @@ router.post('/join', (req, res) => {
   }
 
   // Details about the joining player
-  const joiningPlayerId = mongoose.Types.ObjectId(req.body.joiningPlayerId);
+  const playerId = mongoose.Types.ObjectId(req.body.playerId);
   const characterId = mongoose.Types.ObjectId(req.body.characterId);
   const campaignId = mongoose.Types.ObjectId(req.body.campaignId);
 
   if(!campaignId) {
     return res.status(400).json({ campaignId: 'A valid campaign ID is required' });
   }
+
   // Find the user that is joining the campaign
-  User.findOne({ _id: joiningPlayerId })
+  User.findOne({ _id: playerId })
   .then(joiningPlayer => {
     if(!joiningPlayer) {
-      return res.status(400).json({ email: 'A valid user email is required' });
+      return res.status(400).json({ playerId: 'A valid playerId is required' });
     }
 
     Character.findOne({ _id: characterId })
@@ -177,7 +178,7 @@ router.post('/join', (req, res) => {
       Campaign.findOne({ _id: campaignId })
       .then(campaign => {
         if(!campaign) {
-          return res.status(400).json({ email: 'A valid campaign is required' });
+          return res.status(400).json({ campaignId: 'A valid campaign is required' });
         }
 
         var hasPlayer = campaign.players.some(function (player) {

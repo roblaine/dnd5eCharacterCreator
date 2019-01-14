@@ -28,6 +28,9 @@ class Character extends Component {
       // Add the newCharacter to the props.characters array upon submission
       this.props.characters.unshift(nextProps.newCharacter.data);
     }
+    if (nextProps.chosenCharacter) {
+      this.props.chosenCharacter = nextProps.chosenCharacter.characterId;
+    }
   }
 
   componentWillMount() {

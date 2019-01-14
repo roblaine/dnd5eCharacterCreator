@@ -24,6 +24,7 @@ export default function(state = initialState, action) {
         newCharacter: action.payload
       };
     case CHOOSE_CHARACTER:
+      console.log("choosing character ", action.payload);
       return {
         ...state,
         chosenCharacter: action.payload

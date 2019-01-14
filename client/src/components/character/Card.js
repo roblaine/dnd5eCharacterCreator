@@ -15,7 +15,7 @@ class Card extends Component {
       selectedCharacter: {},
       deletedCharacter: {},
       campaignId: '',
-      joiningPlayerId: '',
+      playerId: '',
       characterId: ''
     };
 
@@ -28,10 +28,6 @@ class Card extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-    if(nextProps.characters) {
-      console.log(nextProps.characters);
-    }
     // Load errors if they exist into props
     if (nextProps.errors) {
       this.setState({
@@ -128,6 +124,7 @@ class Card extends Component {
             <div>
               <span className="red-text">
                 {errors.campaignId ? errors.campaignId : null}
+                {errors.player ? errors.player : null}
               </span>
             </div>
             <input
@@ -148,7 +145,7 @@ class Card extends Component {
                 id="playData"
                 value={{
                   characterId: this.state.cardCharacter._id,
-                  joiningPlayerId: this.state.cardCharacter.owner,
+                  playerId: this.state.cardCharacter.owner,
                   campaignId: this.state.campaignId
                 }}
                 onClick={(e) => {
@@ -158,7 +155,7 @@ class Card extends Component {
                     // Set the state of the card to have the selected character ID
                     const playData = {
                       characterId: this.state.cardCharacter._id,
-                      joiningPlayerId: this.state.cardCharacter.owner,
+                      playerId: this.state.cardCharacter.owner,
                       campaignId: this.state.campaignId
                     };
                     this.handleClick(e);
