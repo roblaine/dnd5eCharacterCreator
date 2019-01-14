@@ -146,8 +146,8 @@ router.post('/delete', (req, res) => {
 // @access Public
 router.post('/join', (req, res) => {
   const { errors, isValid } = validateCampaignJoin(req.body);
-
   if(!isValid) {
+    console.log(errors);
     // Return 400 status and json errors on invalid form submission
     return res.status(400).json(errors);
   }
@@ -187,12 +187,11 @@ router.post('/join', (req, res) => {
 
         // update the campaign and the player and the player's character
         if(hasPlayer) {
-          return res.status(400).json({ player: 'This player has already joined' });
-        } else {
-          // add the player if it isn't already there
-          campaign.players.push(joiningPlayer);
+          return res.status(400).json({  playerId: 'This player has already joined' });
         }
 
+        // add the player if it isn't already there
+        campaign.players.push(joiningPlayer);
         joiningPlayer.campaign.id = campaignId;
         joiningChar.campaign = campaignId;
 
@@ -208,7 +207,8 @@ router.post('/join', (req, res) => {
             joiningChar
             .save()
             .then(char => {
-              res.send({player: joiningPlayer, campaign: camp, character: char})
+              const returnObject = {player: joiningPlayer, campaign: camp, character: char};
+              res.send( { campaignDetails: returnObject });
             })
             .catch(err => console.log(err));
           })

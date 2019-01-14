@@ -2,7 +2,7 @@ import axios from "axios";
 import {
   FETCH_CHARACTERS,
   ADD_CHARACTER,
-  CHOOSE_CHARACTER,
+  JOIN_CAMPAIGN,
   DELETE_CHARACTER,
   GET_ERRORS,
 } from "./types";
@@ -64,15 +64,19 @@ export const deleteCharacter = charData => dispatch => {
   );
 };
 
-export const selectCharacter = playData => dispatch => {
+export const leaveCampaign = playData => dispatch => {
+  
+};
+
+export const joinCampaign = playData => dispatch => {
   // change the state to reflect the selected character to be used by
   // campaignAction
-  console.log(playData);
+  console.log("Play Data: ", playData);
   axios
   .post("/api/campaigns/join", playData)
   .then(function(playData) {
     dispatch({
-      type: CHOOSE_CHARACTER,
+      type: JOIN_CAMPAIGN,
       payload: playData
     })
   })

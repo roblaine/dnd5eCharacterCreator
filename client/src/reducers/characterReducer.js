@@ -1,7 +1,8 @@
 import {
   FETCH_CHARACTERS,
   ADD_CHARACTER,
-  CHOOSE_CHARACTER,
+  JOIN_CAMPAIGN,
+  LEAVE_CAMPAIGN,
   DELETE_CHARACTER
 } from "../actions/types";
 
@@ -23,11 +24,16 @@ export default function(state = initialState, action) {
         ...state,
         newCharacter: action.payload
       };
-    case CHOOSE_CHARACTER:
-      console.log("choosing character ", action.payload);
+    case JOIN_CAMPAIGN:
       return {
         ...state,
-        chosenCharacter: action.payload
+        inCampaign: true
+      }
+    case LEAVE_CAMPAIGN:
+      // Leave the campaign with the character
+      return {
+        ...state,
+        chosenCharacter: false
       }
     case DELETE_CHARACTER:
       // Return the new state skipping the object to delete by finding first the index
@@ -39,7 +45,6 @@ export default function(state = initialState, action) {
           ...state.characters.slice(index + 1)
         ]
       }
-
     default:
       return state;
   }

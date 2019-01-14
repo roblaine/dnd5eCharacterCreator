@@ -12,7 +12,7 @@ class Character extends Component {
     this.state = {
       errors: {},
       auth: this.props.auth,
-      characters: [],
+      characters: this.props.characters.characters,
       newCharacter: {},
       selectedCharacter: {},
       createCharacter: false,
@@ -52,20 +52,26 @@ class Character extends Component {
   loopOverCharacters(characters) {
     // Get all of the important info from within the characters that we just fetched
     return characters.map((char) => (
-      <div key={char._id} className="col s12 m6">
-        <Card characterFromParent={char} />
-      </div>
-    ));
+      char ? (
+        <div key={char._id} className="col s12 m6">
+          <Card characterFromParent={char} />
+        </div>
+      ) : (null))
+    );
   }
 
   render() {
-    const charItems = this.loopOverCharacters(this.props.characters);
+    var charItems = null;
+    console.log(this.props);
+    charItems = this.loopOverCharacters(this.props.characters);
+
+
     // Update state with the button
     const charForm = this.state.createCharacter ? (
       <div className="row">
         <CharacterForm />
       </div>
-    ) : (null)
+    ) : (null);
 
     return (
       <div className="col">
