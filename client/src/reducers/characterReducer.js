@@ -27,6 +27,7 @@ export default function(state = initialState, action) {
     case JOIN_CAMPAIGN:
       return {
         ...state,
+        campaign: action.payload.data.campaignDetails.campaign,
         inCampaign: true
       }
     case LEAVE_CAMPAIGN:

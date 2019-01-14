@@ -313,7 +313,6 @@ Card.propTypes = {
   deleteCharacter: PropTypes.func.isRequired,
   joinCampaign: PropTypes.func.isRequired,
   leaveCampaign: PropTypes.func.isRequired,
-  inCampaign: PropTypes.bool.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -321,8 +320,7 @@ Card.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
-  cardCharacter: state.cardCharacter,
-  inCampaign: state.inCampaign
+  cardCharacter: state.cardCharacter
 });
 
 // Map all of the required actions to the connect export

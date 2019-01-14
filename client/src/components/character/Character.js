@@ -103,6 +103,8 @@ Character.propTypes = {
   fetchCharacters: PropTypes.func.isRequired,
   characters: PropTypes.array.isRequired,
   newCharacter: PropTypes.object.isRequired,
+  campaign: PropTypes.object.isRequired,
+  inCampaign: PropTypes.bool.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -111,7 +113,9 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
   characters: state.characters.characters,
-  newCharacter: state.characters.newCharacter
+  newCharacter: state.characters.newCharacter,
+  campaign: state.campaign,
+  inCampaign: state.inCampaign
 });
 
 // Map all of the required actions to the connect export
