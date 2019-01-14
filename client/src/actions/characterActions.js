@@ -44,9 +44,15 @@ export const addCharacter = charData => dispatch => {
 };
 
 export const deleteCharacter = charData => dispatch => {
+
   axios
-  .post()
-  .then()
+  .post("/api/characters/delete", charData)
+  .then(function(charData) {
+    dispatch({
+      type: DELETE_CHARACTER,
+      payload: charData
+    })
+  })
   .catch(err =>
     dispatch({
       type: GET_ERRORS,
@@ -58,6 +64,7 @@ export const deleteCharacter = charData => dispatch => {
 export const selectCharacter = charData => dispatch => {
   // change the state to reflect the selected character to be used by
   // campaignAction
+  console.log(charData);
   dispatch({
     type: CHOOSE_CHARACTER,
     payload: charData

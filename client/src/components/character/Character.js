@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchCharacters, deleteCharacter, selectCharacter } from "../../actions/characterActions";
+import { fetchCharacters } from "../../actions/characterActions";
 import CharacterForm from "./Characterform";
 import Card from "./Card";
 
@@ -127,8 +127,6 @@ class Character extends Component {
 
 Character.propTypes = {
   fetchCharacters: PropTypes.func.isRequired,
-  deleteCharacter: PropTypes.func.isRequired,
-  selectCharacter: PropTypes.func.isRequired,
   characters: PropTypes.array.isRequired,
   newCharacter: PropTypes.object,
   auth: PropTypes.object.isRequired,
@@ -138,12 +136,11 @@ Character.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
-  characters: state.characters.items,
-  newCharacter: state.characters.item.data
+  characters: state.characters.items
 });
 
 // Map all of the required actions to the connect export
-const actions = { fetchCharacters, deleteCharacter, selectCharacter }
+const actions = { fetchCharacters }
 
 export default connect(
   mapStateToProps,

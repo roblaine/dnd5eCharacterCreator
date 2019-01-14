@@ -1,6 +1,8 @@
 import {
   FETCH_CHARACTERS,
-  ADD_CHARACTER
+  ADD_CHARACTER,
+  CHOOSE_CHARACTER,
+  DELETE_CHARACTER
 } from "../actions/types";
 
 const initialState = {
@@ -20,6 +22,18 @@ export default function(state = initialState, action) {
         ...state,
         item: action.payload
       };
+    case CHOOSE_CHARACTER:
+      console.log(action.payload);
+      return {
+        ...state,
+        item: action.payload
+      }
+    case DELETE_CHARACTER:
+      console.log(action.payload);
+      return {
+        ...state,
+        item: action.payload
+      }
     default:
       return state;
   }

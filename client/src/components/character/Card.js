@@ -10,8 +10,9 @@ class Card extends Component {
     this.state = {
       errors: {},
       auth: this.props.auth,
-      selectedCharacter: {},
-      char: this.props.characterFromParent
+      cardCharacter: this.props.characterFromParent,
+      charData: {},
+      selectedCharacter: {}
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -29,6 +30,8 @@ class Card extends Component {
     const charData = {
       owner: this.state.auth.user.email
     };
+
+    this.setState({ charData: charData })
   }
 
   handleClick = e => {
@@ -73,140 +76,137 @@ class Card extends Component {
 
   render() {
     return (
-
-        <div className="card medium">
-          {/* <div className="waves-effect waves-block waves-light">
-            <img
-              className="activator"
-              src="images/class.jpg"
-              alt="Picture of class"
-            />
-          </div> */}
-          <div className="card-content">
-            <span
-              className="card-title activator grey-text text-darken-4">
-              <h5>
-                {this.state.char.name}
-                <i className="material-icons right">more_vert</i>
-              </h5>
-            </span>
-            <div>
-              {this.loopOverClasses(this.state.char)}
-            </div>
-            <div>
-              {this.capitalize(this.state.char.alignment.law)} {this.capitalize(this.state.char.alignment.evil)}
-            </div>
-            <div>
-
-            </div>
-            <button
-              className="waves-effect waves-light btn blue"
-              name="selectedthis.state.character"
-              id="selectedthis.state.character"
-              value={this.state.char._id}
-              onClick={(e) => {
-                if (window.confirm('Are you sure you wish to select this this.state.character?')) {
-                  this.props.selectthis.state.character(e)
-                }
-              }
-            }>
-              Select this.state.character
-            </button>
-            <button
-              className="waves-effect waves-light btn blue"
-              name="deletethis.state.character"
-              id="deletethis.state.character"
-              value={this.state.char._id}
-              onClick={(e) => {
-                if (window.confirm('Are you sure you wish to delete this this.state.character?')) {
-                  this.props.deletethis.state.character(e)
-                }
-              }
-            }>
-              Delete this.state.character
-            </button>
+      <div className="card medium">
+        {/* Add an image here */}
+        <div className="card-content">
+          <span
+            className="card-title activator grey-text text-darken-4">
+            <h5>
+              {this.state.cardCharacter.name}
+              <i className="material-icons right">more_vert</i>
+            </h5>
+          </span>
+          <div>
+            {this.loopOverClasses(this.state.cardCharacter)}
           </div>
-          {/* Expand content for the card */}
-          <div className="card-reveal">
-            <span className="card-title grey-text text-darken-4">
-              <h5>
-                {this.state.char.name}
-                <i className="material-icons right">close</i>
-              </h5>
-            </span>
-            <div className="row">
-              <h5 style={{textDecoration: "underline"}} className="center-align">
-                Combat
-              </h5>
-              <div className="col s4 center-align">
-                <h6>
-                  Speed
-                </h6>
-                <p>
-                  {this.state.char.combat.speed}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Armor Class
-                </h6>
-                <p>
-                  {this.state.char.combat.ac}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Initiative
-                </h6>
-                <p>
-                  {this.state.char.combat.initiative}
-                </p>
-              </div>
+          <div>
+            {this.capitalize(this.state.cardCharacter.alignment.law)} {this.capitalize(this.state.cardCharacter.alignment.evil)}
+          </div>
+          <div>
+
+          </div>
+          <div className="row">
+            <div className="col s12 m6">
+              <button
+                className="waves-effect waves-light btn blue"
+                name="selectedthis.state.character"
+                id="selectedthis.state.character"
+                value={this.state.cardCharacter._id}
+                onClick={(e) => {
+                  if (window.confirm('Are you sure you wish to select this this.state.character?')) {
+                    this.props.selectCharacter(this.state.characterFromParent)
+                  }
+                }}>
+                Select Character
+              </button>
             </div>
-            <div className="row">
-              <h5 style={{textDecoration: "underline"}} className="center-align">
-                Hitpoints
-              </h5>
-              <div className="col s4 center-align">
-                <h6>
-                  Maximum
-                </h6>
-                <p>
-                  {this.state.char.hitpoints.max}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Current
-                </h6>
-                <p>
-                  {this.state.char.hitpoints.current}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Temporary
-                </h6>
-                <p>
-                  {this.state.char.hitpoints.temp}
-                </p>
-              </div>
-            </div>
-            {/* inventory */}
-            <div className="row center-align">
-              <h5 style={{textDecoration: "underline"}}>Inventory</h5>
-              <div className="row center-align">
-                <h6>Currently Equipped Weapon</h6>
-                {/* Currently equipped weapon */}
-                {this.equippedWeapon(this.state.char.inventory.weapons)}
-              </div>
-              <div className="row center-align">
-                {/* Loop over the items in inventory */}
-                {this.loopOverItems(this.state.char.inventory.items)}
-              </div>
+            <div className="col s12 m6">
+              <button
+                className="waves-effect waves-light btn blue"
+                name="deletethis.state.character"
+                id="deletethis.state.character"
+                value={this.state.cardCharacter._id}
+                onClick={(e) => {
+                  if (window.confirm('Are you sure you wish to delete this this.state.character?')) {
+                    this.props.deleteCharacter(this.state.charData)
+                  }
+                }}>
+                Delete Character
+              </button>
             </div>
           </div>
         </div>
+        {/* Expand content for the card */}
+        <div className="card-reveal">
+          <span className="card-title grey-text text-darken-4">
+            <h5>
+              {this.state.cardCharacter.name}
+              <i className="material-icons right">close</i>
+            </h5>
+          </span>
+          <div className="row">
+            <h5 style={{textDecoration: "underline"}} className="center-align">
+              Combat
+            </h5>
+            <div className="col s4 center-align">
+              <h6>
+                Speed
+              </h6>
+              <p>
+                {this.state.cardCharacter.combat.speed}
+              </p>
+            </div>
+            <div className="col s4 center-align">
+              <h6>
+                Armor Class
+              </h6>
+              <p>
+                {this.state.cardCharacter.combat.ac}
+              </p>
+            </div>
+            <div className="col s4 center-align">
+              <h6>
+                Initiative
+              </h6>
+              <p>
+                {this.state.cardCharacter.combat.initiative}
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            <h5 style={{textDecoration: "underline"}} className="center-align">
+              Hitpoints
+            </h5>
+            <div className="col s4 center-align">
+              <h6>
+                Maximum
+              </h6>
+              <p>
+                {this.state.cardCharacter.hitpoints.max}
+              </p>
+            </div>
+            <div className="col s4 center-align">
+              <h6>
+                Current
+              </h6>
+              <p>
+                {this.state.cardCharacter.hitpoints.current}
+              </p>
+            </div>
+            <div className="col s4 center-align">
+              <h6>
+                Temporary
+              </h6>
+              <p>
+                {this.state.cardCharacter.hitpoints.temp}
+              </p>
+            </div>
+          </div>
+          {/* inventory */}
+          <div className="row center-align">
+            <h5 style={{textDecoration: "underline"}}>Inventory</h5>
+            <div className="row center-align">
+              <h6>Currently Equipped Weapon</h6>
+              {/* Currently equipped weapon */}
+              {this.equippedWeapon(this.state.cardCharacter.inventory.weapons)}
+            </div>
+            <div className="row center-align">
+              {/* Loop over the items in inventory */}
+              {this.loopOverItems(this.state.cardCharacter.inventory.items)}
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
@@ -220,7 +220,8 @@ Card.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  cardCharacter: state.cardCharacter
 });
 
 // Map all of the required actions to the connect export
