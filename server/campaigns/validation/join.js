@@ -13,7 +13,7 @@ module.exports = function validateCampaignJoin(data) {
     errors.email = 'Player joining must be present';
   }
   if (Validator.isEmpty(data.characterId)) {
-    errors.characterId = 'Character joining must be present';
+    errors.characterId = 'Campaign to join must have an id';
   }
   if (Validator.isEmpty(data.campaignId)) {
     errors.campaignId = 'Campaign to join must have an id';

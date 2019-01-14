@@ -87,7 +87,7 @@ class Card extends Component {
 
   render() {
     const { errors } = this.props;
-
+    console.log(errors);
     return (
       <div className="card medium">
         {/* Add an image here */}
@@ -114,7 +114,7 @@ class Card extends Component {
             </label>
             <div>
               <span className="red-text">
-                {errors.campaignId}
+                {errors.campaignId ? errors.campaignId : null}
               </span>
             </div>
             <input
@@ -124,6 +124,7 @@ class Card extends Component {
               name="campaignId"
               value={this.state.campaignId}
               onChange={this.onChange}
+              error={errors.campaignId ? errors.campaignId : null}
             />
           </div>
           <div className="row">
