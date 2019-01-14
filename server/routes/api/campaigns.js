@@ -8,6 +8,7 @@ const validateCampaignCreate = require('../../campaigns/validation/creation');
 // const validateCampaignQuery = require('../../campaigns/validation/query');
 // const validateCampaignUpdate = require('../../campaigns/validation/update');
 const validateCampaignJoin = require("../../campaigns/validation/join");
+const validateCampaignLeave = require("../../campaigns/validation/leave");
 
 // Load the campaign model
 const campaign = require('../../campaigns/campaignSchema');
@@ -208,6 +209,88 @@ router.post('/join', (req, res) => {
             .save()
             .then(char => {
               const returnObject = {player: joiningPlayer, campaign: camp, character: char};
+              res.send( { campaignDetails: returnObject });
+            })
+            .catch(err => console.log(err));
+          })
+          .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+  })
+  .catch(err => console.log(err));
+});
+
+// @route POST api/campaigns/leave
+// @desc Leave an existing campaign based on the campaignId
+// @access Public
+router.post('/leave', (req, res) => {
+  const { errors, isValid } = validateCampaignLeave(req.body);
+  if(!isValid) {
+    console.log(errors);
+    // Return 400 status and json errors on invalid form submission
+    return res.status(400).json(errors);
+  }
+
+  // Details about the joining player
+  const playerId = mongoose.Types.ObjectId(req.body.playerId);
+  const characterId = mongoose.Types.ObjectId(req.body.characterId);
+  const campaignId = mongoose.Types.ObjectId(req.body.campaignId);
+
+  if(!campaignId) {
+    return res.status(400).json({ campaignId: 'A valid campaign ID is required' });
+  }
+
+  // Find the user that is leaving the campaign
+  User.findOne({ _id: playerId })
+  .then(leavingPlayer => {
+    if(!leavingPlayer) {
+      return res.status(400).json({ playerId: 'A valid playerId is required' });
+    }
+
+    Character.findOne({ _id: characterId })
+    .then(leavingChar => {
+      if(!leavingChar) {
+        return res.status(400).json({ characterId: 'A valid character is required' });
+      }
+
+      // Find the campaign to add the player to it
+      Campaign.findOne({ _id: campaignId })
+      .then(campaign => {
+        if(!campaign) {
+          return res.status(400).json({ campaignId: 'A valid campaign is required' });
+        }
+
+        var hasPlayer = campaign.players.some(function (player) {
+            return player.equals(leavingChar._id);
+        });
+
+        // update the campaign and the player and the player's character
+        if(!hasPlayer) {
+          return res.status(400).json({  playerId: 'This player is not in this campaign' });
+        }
+
+        // add the player if it isn't already there
+        campaign.players.remove(leavingChar);
+        leavingPlayer.campaign.id = undefined;
+        leavingChar.campaign = undefined;
+
+        // save the player change
+        leavingPlayer
+        .save()
+        .then(player => {
+          // Save the campaign change
+          campaign
+          .save()
+          .then(camp => {
+            // save the character
+            leavingChar
+            .save()
+            .then(char => {
+              const returnObject = {player: leavingPlayer, campaign: camp, character: char};
               res.send( { campaignDetails: returnObject });
             })
             .catch(err => console.log(err));
