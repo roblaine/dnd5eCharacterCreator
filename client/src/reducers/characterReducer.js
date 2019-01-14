@@ -23,13 +23,11 @@ export default function(state = initialState, action) {
         item: action.payload
       };
     case CHOOSE_CHARACTER:
-      console.log(action.payload);
       return {
         ...state,
         item: action.payload
       }
     case DELETE_CHARACTER:
-      console.log(action.payload);
       return {
         ...state,
         item: action.payload

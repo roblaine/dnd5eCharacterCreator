@@ -12,7 +12,8 @@ class Card extends Component {
       auth: this.props.auth,
       cardCharacter: this.props.characterFromParent,
       charData: {},
-      selectedCharacter: {}
+      selectedCharacter: {},
+      deletedCharacter: {}
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -35,12 +36,12 @@ class Card extends Component {
   }
 
   handleClick = e => {
-    // Check target for toggle as the id before assigning value
+    // Assign the seelcted character or deleted character
     const target = e.target;
-    const name = target.name;
-    // Find the value in the state tree by name key, and invert it
-    const value = target.id === "toggle" ? !this.state[name] : target.value;
-    this.setState({ [name]: value });
+    const id = target.id;
+    const value = target.value
+
+    this.setState({ [id]: value });
   }
 
   capitalize(string) {
@@ -99,12 +100,14 @@ class Card extends Component {
             <div className="col s12 m6">
               <button
                 className="waves-effect waves-light btn blue"
-                name="selectedthis.state.character"
-                id="selectedthis.state.character"
+                name={this.state.cardCharacter.name}
+                id="selectedCharacter"
                 value={this.state.cardCharacter._id}
                 onClick={(e) => {
                   if (window.confirm('Are you sure you wish to select this this.state.character?')) {
-                    this.props.selectCharacter(this.state.characterFromParent)
+                    // Set the state of the card to have the selected character ID
+                    this.handleClick(e);
+                    // this.props.selectCharacter(this.state.characterFromParent)
                   }
                 }}>
                 Select Character
@@ -113,12 +116,15 @@ class Card extends Component {
             <div className="col s12 m6">
               <button
                 className="waves-effect waves-light btn blue"
-                name="deletethis.state.character"
-                id="deletethis.state.character"
+                name={this.state.cardCharacter.name}
+                id="deletedCharacter"
                 value={this.state.cardCharacter._id}
                 onClick={(e) => {
                   if (window.confirm('Are you sure you wish to delete this this.state.character?')) {
-                    this.props.deleteCharacter(this.state.charData)
+                    // Set the state of the card to have the character ID
+                    this.handleClick(e);
+                    // Delete the character
+                    this.props.deleteCharacter(this.state.cardCharacter);
                   }
                 }}>
                 Delete Character

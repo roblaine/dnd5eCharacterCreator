@@ -44,9 +44,12 @@ export const addCharacter = charData => dispatch => {
 };
 
 export const deleteCharacter = charData => dispatch => {
+  // Get the important info from charData that the endpoint expects
 
+  // TODO Add authorisation through the jwt token
+  const deleteData = { characterId: charData._id };
   axios
-  .post("/api/characters/delete", charData)
+  .post("/api/characters/delete", deleteData)
   .then(function(charData) {
     dispatch({
       type: DELETE_CHARACTER,
@@ -64,7 +67,6 @@ export const deleteCharacter = charData => dispatch => {
 export const selectCharacter = charData => dispatch => {
   // change the state to reflect the selected character to be used by
   // campaignAction
-  console.log(charData);
   dispatch({
     type: CHOOSE_CHARACTER,
     payload: charData
