@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { deleteCharacter, joinCampaign, leaveCampaign } from "../../actions/characterActions";
+import { deleteCharacter } from "../../actions/characterActions";
+import { joinCampaign, leaveCampaign } from "../../actions/campaignActions";
 
 class Card extends Component {
   constructor(props) {
