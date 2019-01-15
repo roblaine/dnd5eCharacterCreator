@@ -1,4 +1,5 @@
 import axios from "axios";
+import Log from "../utils/log";
 import {
   FETCH_CAMPAIGN,
   JOIN_CAMPAIGN,
@@ -8,6 +9,7 @@ import {
 
 export const queryMyCampaign = campaignData => dispatch => {
   // Set state to contain the campgin info and if the player is in a campaign
+  Log.trace("Querying the campaign for the user");
   axios
   .post("/api/campaigns/myCampaign", campaignData)
   .then(function(campaignData) {
@@ -17,6 +19,7 @@ export const queryMyCampaign = campaignData => dispatch => {
     })
   })
   .catch(err => {
+    Log.warn("Failed to retrieve the user's campaign");
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data

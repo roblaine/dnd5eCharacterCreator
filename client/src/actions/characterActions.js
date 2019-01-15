@@ -1,4 +1,5 @@
 import axios from "axios";
+import Log from "../utils/log";
 import {
   FETCH_CHARACTERS,
   ADD_CHARACTER,
@@ -25,6 +26,8 @@ export const fetchCharacters = userData => dispatch => {
 };
 
 export const addCharacter = character => dispatch => {
+  Log.trace("Adding character for the user");
+  Log.trace(character);
   axios
   .post("/api/characters/add", character)
   .then(character => {
@@ -43,6 +46,8 @@ export const addCharacter = character => dispatch => {
 };
 
 export const deleteCharacter = charData => dispatch => {
+  Log.trace("Deleting the character for the user");
+  Log.trace(charData);
   // Get the important info from charData that the endpoint expects
   const deleteData = { characterId: charData._id };
 
