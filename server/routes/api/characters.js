@@ -84,7 +84,7 @@ router.post('/add', (req, res) => {
           evil: req.body.evil
         },
         combat: {
-          ac: req.body.combat.ac
+          ac: req.body.ac
         }
       });
 
@@ -97,10 +97,32 @@ router.post('/add', (req, res) => {
   });
 });
 
-// @route PATCH api/characters/update
+// @route POST api/characters/delete
+// @desc Delete a Character
+// @access Public
+router.post('/delete', (req, res) => {
+  // const { errors, isValid } = validateCharacterDelete(req.body);
+
+  // if(!isValid) {
+  //   // Return 400 status and json errors on invalid form submission
+  //   return res.status(400).json(errors);
+  // }
+
+  // TODO implement a way to make sure only the owner can delete their own character
+  Character.findOne({ _id: req.body.characterId })
+  .then(character => {
+    Character.deleteOne({ _id: req.body.characterId })
+    .then(
+      res.send({ character: character })
+    );
+  })
+  .catch(err => console.log(err));
+});
+
+// @route POST api/characters/update
 // @desc Update a Character, skills and attributes expects an array of objects
 // @access Public
-router.patch('/update', (req, res) => {
+router.post('/update', (req, res) => {
   // Validate the update Form
   const { errors, isValid } = validateCharacterUpdate(req.body);
 

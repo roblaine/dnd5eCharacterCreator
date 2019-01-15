@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { fetchCharacters } from "../../actions/characterActions";
 import CharacterForm from "./Characterform";
+import Card from "./Card";
 
 class Character extends Component {
   constructor(props) {
@@ -11,24 +12,23 @@ class Character extends Component {
     this.state = {
       errors: {},
       auth: this.props.auth,
-      characters: [],
+      characters: this.props.characters.characters,
       newCharacter: {},
+      selectedCharacter: {},
       createCharacter: false,
       showDetail: false,
-      selectedCharacter: ''
+      campaign: this.props.campaign,
+      inCampaign: this.props.inCampaign
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.loopOverClasses = this.loopOverClasses.bind(this);
     this.loopOverCharacters = this.loopOverCharacters.bind(this);
-    this.loopOverItems = this.loopOverItems.bind(this);
-    this.equippedWeapon = this.equippedWeapon.bind(this);
-    this.capitalize = this.capitalize.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.newCharacter) {
-      this.props.characters.unshift(nextProps.newCharacter);
+      // Add the newCharacter to the props.characters array upon submission
+      this.props.characters.unshift(nextProps.newCharacter.data);
     }
   }
 
@@ -36,7 +36,6 @@ class Character extends Component {
     const charData = {
       owner: this.state.auth.user.email
     };
-
     this.props.fetchCharacters(charData);
   }
 
@@ -49,168 +48,26 @@ class Character extends Component {
     this.setState({ [name]: value });
   }
 
-  capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  loopOverClasses(char) {
-    return char.classes.map(classInfo => {
-      // Uppercase the class name
-      const className = this.capitalize(classInfo.name);
-      return(
-        <p key={classInfo._id}>Level {classInfo.level} {className}</p>
-      )
-    });
-  }
-
-  loopOverItems(items) {
-    return items.map(item => (
-      <div key={item._id}>
-
-      </div>
-    ));
-  }
-
-  // Finds the equipped weapon for display purposes
-  equippedWeapon(weapons) {
-    weapons.forEach(weapon => {
-      if(weapon.equipped) {
-        return weapon;
-      }
-    });
-  }
-
   loopOverCharacters(characters) {
     // Get all of the important info from within the characters that we just fetched
     return characters.map((char) => (
-      <div key={char._id} className="col s12 m6">
-        <div className="card medium">
-          {/* <div className="waves-effect waves-block waves-light">
-            <img
-              className="activator"
-              src="images/class.jpg"
-              alt="Picture of class"
-            />
-          </div> */}
-          <div className="card-content">
-            <span
-              className="card-title activator grey-text text-darken-4">
-              <h5>
-                {char.name}
-                <i className="material-icons right">more_vert</i>
-              </h5>
-            </span>
-            <div>
-              {this.loopOverClasses(char)}
-            </div>
-            <div>
-              {this.capitalize(char.alignment.law)} {this.capitalize(char.alignment.evil)}
-            </div>
-            <div>
-
-            </div>
-            <button
-              className="waves-effect waves-light btn blue"
-              name="selectedCharacter"
-              id="selectedCharacter"
-              value={char._id}
-              onClick={this.handleClick}>
-              Select Character
-            </button>
-          </div>
-          {/* Expand content for the card */}
-          <div className="card-reveal">
-            <span className="card-title grey-text text-darken-4">
-              <h5>
-                {char.name}
-                <i className="material-icons right">close</i>
-              </h5>
-            </span>
-            <div className="row">
-              <h5 style={{textDecoration: "underline"}} className="center-align">
-                Combat
-              </h5>
-              <div className="col s4 center-align">
-                <h6>
-                  Speed
-                </h6>
-                <p>
-                  {char.combat.speed}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Armor Class
-                </h6>
-                <p>
-                  {char.combat.ac}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Initiative
-                </h6>
-                <p>
-                  {char.combat.initiative}
-                </p>
-              </div>
-            </div>
-            <div className="row">
-              <h5 style={{textDecoration: "underline"}} className="center-align">
-                Hitpoints
-              </h5>
-              <div className="col s4 center-align">
-                <h6>
-                  Maximum
-                </h6>
-                <p>
-                  {char.hitpoints.max}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Current
-                </h6>
-                <p>
-                  {char.hitpoints.current}
-                </p>
-              </div>
-              <div className="col s4 center-align">
-                <h6>
-                  Temporary
-                </h6>
-                <p>
-                  {char.hitpoints.temp}
-                </p>
-              </div>
-            </div>
-            {/* inventory */}
-            <div className="row center-align">
-              <h5 style={{textDecoration: "underline"}}>Inventory</h5>
-              <div className="row center-align">
-                <h6>Currently Equipped Weapon</h6>
-                {/* Currently equipped weapon */}
-                {this.equippedWeapon(char.inventory.weapons)}
-              </div>
-              <div className="row center-align">
-                {/* Loop over the items in inventory */}
-                {this.loopOverItems(char.inventory.items)}
-              </div>
-            </div>
-          </div>
+      char ? (
+        <div key={char._id} className="col s12 m6">
+          <Card characterFromParent={char} inCampaign={this.props.inCampaign} campaign={this.props.campaign} />
         </div>
-      </div>
-    ));
+      ) : (null))
+    );
   }
 
   render() {
-    const charItems = this.loopOverCharacters(this.props.characters);
+    var charItems = this.loopOverCharacters(this.props.characters);
+
     // Update state with the button
     const charForm = this.state.createCharacter ? (
       <div className="row">
         <CharacterForm />
       </div>
-    ) : (null)
+    ) : (null);
 
     return (
       <div className="col">
@@ -241,7 +98,9 @@ class Character extends Component {
 Character.propTypes = {
   fetchCharacters: PropTypes.func.isRequired,
   characters: PropTypes.array.isRequired,
-  newCharacter: PropTypes.object,
+  newCharacter: PropTypes.object.isRequired,
+  campaign: PropTypes.object,
+  inCampaign: PropTypes.bool,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -249,11 +108,16 @@ Character.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
-  characters: state.characters.items,
-  newCharacter: state.characters.item.data
+  characters: state.characters.characters,
+  newCharacter: state.characters.newCharacter,
+  campaign: state.campaigns.campaign,
+  inCampaign: state.campaigns.inCampaign
 });
+
+// Map all of the required actions to the connect export
+const actions = { fetchCharacters }
 
 export default connect(
   mapStateToProps,
-  { fetchCharacters }
+  actions
 )(Character);

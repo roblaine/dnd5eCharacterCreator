@@ -5,8 +5,10 @@ const mongoose = require('mongoose');
 
 // Load the input validation method
 const validateCampaignCreate = require('../../campaigns/validation/creation');
-// const validateCampaignQuery = require('../../campaigns/validation/query');
+const validateCampaignMyCampaign = require('../../campaigns/validation/myCampaign');
 // const validateCampaignUpdate = require('../../campaigns/validation/update');
+const validateCampaignJoin = require("../../campaigns/validation/join");
+const validateCampaignLeave = require("../../campaigns/validation/leave");
 
 // Load the campaign model
 const campaign = require('../../campaigns/campaignSchema');
@@ -16,9 +18,10 @@ const campaign = require('../../campaigns/campaignSchema');
 // @access Public
 router.post('/query', (req, res) => {
   const public = req.body.public;
+
   if(public) {
     // Get all of the public campaigns that a user can join
-    Campaign.find({ public: true })
+    Campaign.find({ public: public })
     .then(campaigns => {
       res.send(campaigns);
     })
@@ -27,12 +30,41 @@ router.post('/query', (req, res) => {
     User.findOne({ email: req.body.host })
     .then(user => {
       // Find the campaigns hosted by a user
-      Campaign.find({ host: user.id })
+      Campaign.find({ host: user._id })
       .then(campaign => {
         res.send(campaign);
       });
     });
   }
+});
+
+// @route POST api/campaigns/myCampaign
+// @desc Query the player's campaign
+// @access Public
+router.post('/myCampaign', (req, res) => {
+  // Intent is to find the campaign details which a user has joined
+  // So we wont know the campaign id
+  const { errors, isValid } = validateCampaignMyCampaign(req.body);
+
+  if(!isValid) {
+    return res.status(400).send({ errors });
+  }
+
+  const playerId = mongoose.Types.ObjectId(req.body.playerId);
+  Campaign.findOne({ players: playerId })
+  .then(campaign => {
+     res.send({ campaign: campaign, inCampaign: (campaign !== null) });
+  });
+
+  // Find the player that is currently logged in
+  // User.findOne({ _id: playerId })
+  // .then(player => {
+  //   // Find the campaigns hosted by a user
+  //   Campaign.find({  })
+  //   .then(campaign => {
+  //     res.send(campaign);
+  //   });
+  // });
 });
 
 // @route POST api/campaigns/add
@@ -68,7 +100,6 @@ router.post('/add', (req, res) => {
         public: public
       });
 
-
       newCampaign
       .save()
       .then(campaign => {
@@ -97,13 +128,36 @@ router.post('/delete', (req, res) => {
       return res.status(400).json({ errors: "Must enter a valid campaignId"})
     }
 
-    // Loop over each user, remove the campaign
+    // Loop over each user in the campaign
     camp.players.forEach(playerId => {
+      // Find the user
       User.findOne({ _id: playerId })
       .then(player => {
         if(player) {
+          // TODO troubleshoot and fix this loop
+          // Find the user's characters
+          Character.find({ owner: player._id })
+          .then(characters => {
+            // Loop over each one
+            characters.forEach(character => {
+              // console.log(player.email, character.name, character.campaign);
+              // If the character has a campaign, remove the campaign
+              if(character.campaign) {
+                // console.log("!!! Campaign Info: %s %s", character.campaign, camp._id);
+                if(character.campaign.equals(camp._id)) {
+                  console.log("Removing campaign from char...");
+                  // Unset the campaign and save the update
+                  character.campaign = undefined;
+
+                  character
+                  .save();
+                  console.log(character.campaign);
+                }
+              }
+            });
+          });
+
           player.campaign = { id: undefined, dm: false };
-          console.log(player);
 
           player
           .save();
@@ -118,49 +172,166 @@ router.post('/delete', (req, res) => {
 
 
 // @route POST api/campaigns/join
-// @desc Join an existing campaign
+// @desc Join an existing campaign based on the campaignId
 // @access Public
 router.post('/join', (req, res) => {
-  // Details about the joining players
-  const email = req.body.email;
-  const campaignId = req.body.campaignId;
+  const { errors, isValid } = validateCampaignJoin(req.body);
+  if(!isValid) {
+    console.log(errors);
+    // Return 400 status and json errors on invalid form submission
+    return res.status(400).json(errors);
+  }
+
+  // Details about the joining player
+  const playerId = mongoose.Types.ObjectId(req.body.playerId);
+  const characterId = mongoose.Types.ObjectId(req.body.characterId);
+  const campaignId = mongoose.Types.ObjectId(req.body.campaignId);
+
+  if(!campaignId) {
+    return res.status(400).json({ campaignId: 'A valid campaign ID is required' });
+  }
 
   // Find the user that is joining the campaign
-  User.findOne({ email: email })
+  User.findOne({ _id: playerId })
   .then(joiningPlayer => {
-
     if(!joiningPlayer) {
-      return res.status(400).json({ email: 'A valid user email is required' });
+      return res.status(400).json({ playerId: 'A valid playerId is required' });
     }
 
-    // Find the campaign to add the player to it
-    Campaign.findOne({ _id: campaignId })
-    .then(campaign => {
-      if(!campaign) {
-        return res.status(400).json({ email: 'A valid campaign is required' });
+    Character.findOne({ _id: characterId })
+    .then(joiningChar => {
+      if(!joiningChar) {
+        return res.status(400).json({ characterId: 'A valid character is required' });
       }
 
-      // update the campaign and the player and character
-      joiningPlayer.campaign.id = campaignId;
-      campaign.players.push(joiningPlayer.id);
+      // Find the campaign to add the player to it
+      Campaign.findOne({ _id: campaignId })
+      .then(campaign => {
+        if(!campaign) {
+          return res.status(400).json({ campaignId: 'A valid campaign is required' });
+        }
 
-      // save the player change
-      joiningPlayer
-      .save()
-      .then(player => {
-        // Save the campaign change
-        campaign
+        var hasPlayer = campaign.players.some(function (player) {
+            return player.equals(joiningPlayer._id);
+        });
+
+        // update the campaign and the player and the player's character
+        if(hasPlayer) {
+          return res.status(400).json({  playerId: 'This player has already joined' });
+        }
+
+        // add the player if it isn't already there
+        campaign.players.push(joiningPlayer);
+        joiningPlayer.campaign.id = campaignId;
+        joiningChar.campaign = campaignId;
+
+        // save the player change
+        joiningPlayer
         .save()
-        .then(camp => {
-          res.send({player: joiningPlayer, campaign: sess})
+        .then(player => {
+          // Save the campaign change
+          campaign
+          .save()
+          .then(camp => {
+            // save the character
+            joiningChar
+            .save()
+            .then(char => {
+              const returnObject = {player: joiningPlayer, campaign: camp, character: char};
+              res.send( { campaignDetails: returnObject });
+            })
+            .catch(err => console.log(err));
+          })
+          .catch(err => console.log(err));
         })
         .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
-
     })
     .catch(err => console.log(err));
-  }).catch(err => console.log(err));
+  })
+  .catch(err => console.log(err));
+});
+
+// @route POST api/campaigns/leave
+// @desc Leave an existing campaign based on the campaignId
+// @access Public
+router.post('/leave', (req, res) => {
+  const { errors, isValid } = validateCampaignLeave(req.body);
+  if(!isValid) {
+    console.log(errors);
+    // Return 400 status and json errors on invalid form submission
+    return res.status(400).json(errors);
+  }
+
+  // Details about the joining player
+  const playerId = mongoose.Types.ObjectId(req.body.playerId);
+  const characterId = mongoose.Types.ObjectId(req.body.characterId);
+  const campaignId = mongoose.Types.ObjectId(req.body.campaignId);
+
+  if(!campaignId) {
+    return res.status(400).json({ campaignId: 'A valid campaign ID is required' });
+  }
+
+  // Find the user that is leaving the campaign
+  User.findOne({ _id: playerId })
+  .then(leavingPlayer => {
+    if(!leavingPlayer) {
+      return res.status(400).json({ playerId: 'A valid playerId is required' });
+    }
+
+    Character.findOne({ _id: characterId })
+    .then(leavingChar => {
+      if(!leavingChar) {
+        return res.status(400).json({ characterId: 'A valid character is required' });
+      }
+
+      // Find the campaign to add the player to it
+      Campaign.findOne({ _id: campaignId })
+      .then(campaign => {
+        if(!campaign) {
+          return res.status(400).json({ campaignId: 'A valid campaign is required' });
+        }
+
+        var hasPlayer = campaign.players.some(function (player) {
+            return player.equals(leavingPlayer._id);
+        });
+        // update the campaign and the player and the player's character
+        if(!hasPlayer) {
+          return res.status(400).json({  playerId: 'This player is not in this campaign' });
+        }
+
+        // add the player if it isn't already there
+        campaign.players = campaign.players.filter(id => !id.equals(leavingPlayer._id));
+        leavingPlayer.campaign.id = undefined;
+        leavingChar.campaign = undefined;
+
+        // save the player change
+        leavingPlayer
+        .save()
+        .then(player => {
+          // Save the campaign change
+          campaign
+          .save()
+          .then(camp => {
+            // save the character
+            leavingChar
+            .save()
+            .then(char => {
+              const returnObject = {player: leavingPlayer, campaign: camp, character: char};
+              res.send( { campaignDetails: returnObject });
+            })
+            .catch(err => console.log(err));
+          })
+          .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+  })
+  .catch(err => console.log(err));
 });
 
 
