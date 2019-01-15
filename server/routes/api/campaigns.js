@@ -94,6 +94,7 @@ router.post('/add', (req, res) => {
       if(campaign) {
         return res.status(400).json({ name: 'You already have a campaign with this name' });
       }
+      
       const newCampaign = new Campaign({
         host: host,
         name: req.body.name,
@@ -103,13 +104,12 @@ router.post('/add', (req, res) => {
       newCampaign
       .save()
       .then(campaign => {
-        host.campaign = { id: campaign.id, dm: true };
+        host.campaign = { _id: campaign._id, dm: true };
         host.save()
         .then(h => {
-          res.json({ host: h, campaign: campaign })
+          res.json({ host: h, campaign: campaign, inCampaign: true })
         })
         .catch(error => console.log(error));
-
       })
       .catch(err => console.log(err));
     });

@@ -49,7 +49,6 @@ export const deleteCharacter = charData => dispatch => {
   axios
   .post("/api/characters/delete", deleteData)
   .then(function(deleteData) {
-    console.log("delete char: ", deleteData.data);
     dispatch({
       type: DELETE_CHARACTER,
       payload: deleteData.data
