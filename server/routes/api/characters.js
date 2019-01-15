@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 // Load the input validation method
 const validateCharacterCreate = require('../../characters/validation/creation');
 const validateCharacterQuery = require('../../characters/validation/query');
 const validateCharacterUpdate = require('../../characters/validation/update');
+const validateCharacterDelete = require('../../characters/validation/delete');
 
 // Load the character model
 const character = require('../../characters/characterSchema');
@@ -88,7 +90,7 @@ router.post('/add', (req, res) => {
         }
       });
 
-      // // Finally save the new character
+      // Finally save the new character
       newChar
       .save()
       .then(char => res.json(char))
@@ -101,17 +103,18 @@ router.post('/add', (req, res) => {
 // @desc Delete a Character
 // @access Public
 router.post('/delete', (req, res) => {
-  // const { errors, isValid } = validateCharacterDelete(req.body);
+  const { errors, isValid } = validateCharacterDelete(req.body);
 
-  // if(!isValid) {
-  //   // Return 400 status and json errors on invalid form submission
-  //   return res.status(400).json(errors);
-  // }
+  if(!isValid) {
+    // Return 400 status and json errors on invalid form submission
+    return res.status(400).json(errors);
+  }
 
   // TODO implement a way to make sure only the owner can delete their own character
-  Character.findOne({ _id: req.body.characterId })
+  const characterId = mongoose.Types.ObjectId(req.body.characterId);
+  Character.findOne({ _id: characterId })
   .then(character => {
-    Character.deleteOne({ _id: req.body.characterId })
+    Character.deleteOne({ _id: characterId })
     .then(
       res.send({ character: character })
     );

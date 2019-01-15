@@ -18,7 +18,6 @@ export default function(state = initialState, action) {
         inCampaign: action.payload.data.inCampaign
       }
     case JOIN_CAMPAIGN:
-      console.log(action.payload.data);
       return {
         ...state,
         campaign: action.payload.data.campaignDetails.campaign,
