@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { deleteCharacter } from "../../actions/characterActions";
-import { joinCampaign, leaveCampaign } from "../../actions/campaignActions";
+import { joinCampaign, leaveCampaign, queryMyCampaign } from "../../actions/campaignActions";
 
 class Card extends Component {
   constructor(props) {
@@ -12,12 +12,10 @@ class Card extends Component {
       errors: {},
       auth: this.props.auth,
       cardCharacter: this.props.characterFromParent,
-      charData: {},
-      selectedCharacter: {},
-      deletedCharacter: {},
       campaignId: '',
       playerId: '',
       characterId: '',
+      campaign: this.props.campaign,
       inCampaign: this.props.inCampaign
     };
 
@@ -40,11 +38,11 @@ class Card extends Component {
   }
 
   componentWillMount() {
-    const charData = {
-      owner: this.state.auth.user.email
+    const campaignData = {
+      playerId: this.state.auth.user.id,
+      characterId: this.state.cardCharacter._id
     };
-
-    this.setState({ charData: charData })
+    this.props.queryMyCampaign(campaignData);
   }
 
   onChange = e => {
@@ -64,14 +62,19 @@ class Card extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
-    const campaignData = {
+    var campaignData = {
       characterId: this.state.cardCharacter._id,
-      playerId: this.state.cardCharacter.owner,
-      campaignId: this.state.campaignId
+      playerId: this.state.auth.user.id,
+      campaignId: ''
     };
 
-    this.state.inCampaign ?
+    if(this.props.campaign) {
+      campaignData.campaignId = this.props.campaign._id;
+    } else {
+      campaignData.campaignId = this.state.campaignId;
+    }
+
+    this.props.inCampaign ?
       this.props.leaveCampaign(campaignData) :
       this.props.joinCampaign(campaignData);
   }
@@ -113,7 +116,7 @@ class Card extends Component {
 
   render() {
     const { errors } = this.props;
-    const inCampaign = this.state.inCampaign;
+    const inCampaign = this.props.inCampaign;
 
     return (
       <div className="card medium">
@@ -170,7 +173,7 @@ class Card extends Component {
                 value={{
                   characterId: this.state.cardCharacter._id,
                   playerId: this.state.cardCharacter.owner,
-                  campaignId: this.state.campaignId
+                  campaignId: this.props.campaignId
                 }}
                 onClick={(e) => {
                   if (window.confirm(
@@ -314,6 +317,7 @@ Card.propTypes = {
   deleteCharacter: PropTypes.func.isRequired,
   joinCampaign: PropTypes.func.isRequired,
   leaveCampaign: PropTypes.func.isRequired,
+  queryMyCampaign: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -325,7 +329,7 @@ const mapStateToProps = state => ({
 });
 
 // Map all of the required actions to the connect export
-const actions = { deleteCharacter, joinCampaign, leaveCampaign }
+const actions = { deleteCharacter, joinCampaign, leaveCampaign, queryMyCampaign }
 
 export default connect(
   mapStateToProps,

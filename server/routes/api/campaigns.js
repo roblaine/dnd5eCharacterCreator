@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 // Load the input validation method
 const validateCampaignCreate = require('../../campaigns/validation/creation');
-// const validateCampaignQuery = require('../../campaigns/validation/query');
+const validateCampaignMyCampaign = require('../../campaigns/validation/myCampaign');
 // const validateCampaignUpdate = require('../../campaigns/validation/update');
 const validateCampaignJoin = require("../../campaigns/validation/join");
 const validateCampaignLeave = require("../../campaigns/validation/leave");
@@ -36,6 +36,35 @@ router.post('/query', (req, res) => {
       });
     });
   }
+});
+
+// @route POST api/campaigns/myCampaign
+// @desc Query the player's campaign
+// @access Public
+router.post('/myCampaign', (req, res) => {
+  // Intent is to find the campaign details which a user has joined
+  // So we wont know the campaign id
+  const { errors, isValid } = validateCampaignMyCampaign(req.body);
+
+  if(!isValid) {
+    return res.status(400).send({ errors });
+  }
+
+  const playerId = mongoose.Types.ObjectId(req.body.playerId);
+  Campaign.findOne({ players: playerId })
+  .then(campaign => {
+     res.send({ campaign: campaign, inCampaign: (campaign !== null) });
+  });
+
+  // Find the player that is currently logged in
+  // User.findOne({ _id: playerId })
+  // .then(player => {
+  //   // Find the campaigns hosted by a user
+  //   Campaign.find({  })
+  //   .then(campaign => {
+  //     res.send(campaign);
+  //   });
+  // });
 });
 
 // @route POST api/campaigns/add

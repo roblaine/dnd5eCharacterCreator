@@ -1,8 +1,7 @@
 import {
   FETCH_CHARACTERS,
   ADD_CHARACTER,
-  DELETE_CHARACTER,
-  GET_ERRORS
+  DELETE_CHARACTER
 } from "../actions/types";
 
 const initialState = {

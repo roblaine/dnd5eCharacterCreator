@@ -17,8 +17,8 @@ class Character extends Component {
       selectedCharacter: {},
       createCharacter: false,
       showDetail: false,
-      campaign: {},
-      inCampaign: false
+      campaign: this.props.campaign,
+      inCampaign: this.props.inCampaign
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -53,7 +53,7 @@ class Character extends Component {
     return characters.map((char) => (
       char ? (
         <div key={char._id} className="col s12 m6">
-          <Card characterFromParent={char} />
+          <Card characterFromParent={char} inCampaign={this.props.inCampaign} campaign={this.props.campaign} />
         </div>
       ) : (null))
     );
@@ -99,8 +99,8 @@ Character.propTypes = {
   fetchCharacters: PropTypes.func.isRequired,
   characters: PropTypes.array.isRequired,
   newCharacter: PropTypes.object.isRequired,
-  campaign: PropTypes.object.isRequired,
-  inCampaign: PropTypes.bool.isRequired,
+  campaign: PropTypes.object,
+  inCampaign: PropTypes.bool,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };

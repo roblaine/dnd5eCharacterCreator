@@ -1,8 +1,7 @@
 import {
   FETCH_CAMPAIGN,
   JOIN_CAMPAIGN,
-  LEAVE_CAMPAIGN,
-  GET_ERRORS
+  LEAVE_CAMPAIGN
 } from "../actions/types";
 
 const initialState = {
@@ -15,10 +14,11 @@ export default function(state = initialState, action) {
     case FETCH_CAMPAIGN:
       return {
         ...state,
-        campaign: action.payload.data.campaignDetails.campaign,
-        inCampaign: action.payload.data.campaignDetails.inCampaign
+        campaign: action.payload.data.campaign,
+        inCampaign: action.payload.data.inCampaign
       }
     case JOIN_CAMPAIGN:
+      console.log(action.payload.data);
       return {
         ...state,
         campaign: action.payload.data.campaignDetails.campaign,
@@ -28,6 +28,7 @@ export default function(state = initialState, action) {
       // Leave the campaign with the character
       return {
         ...state,
+        campaign: null,
         inCampaign: false
       }
     default:
