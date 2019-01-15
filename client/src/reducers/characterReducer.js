@@ -12,6 +12,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch(action.type) {
     case FETCH_CHARACTERS:
+      // console.log();
       return {
         ...state,
         characters: action.payload
@@ -19,11 +20,16 @@ export default function(state = initialState, action) {
     case ADD_CHARACTER:
       return {
         ...state,
-        newCharacter: action.payload
+        // Add the new character to the characters array
+        newCharacter: action.payload.data
       };
     case DELETE_CHARACTER:
       // Return the new state skipping the object to delete by finding first the index
-      const index = state.characters.map(function(e) { return e._id; }).indexOf(action.payload._id);
+      var index = state.characters.map(function(e) {
+        console.log(e._id);
+        return e._id;
+      }).indexOf(action.payload.character._id);
+
       return {
         ...state,
         characters: [

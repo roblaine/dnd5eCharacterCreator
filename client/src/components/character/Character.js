@@ -12,11 +12,9 @@ class Character extends Component {
     this.state = {
       errors: {},
       auth: this.props.auth,
-      characters: this.props.characters.characters,
+      characters: this.props.characters,
       newCharacter: {},
-      selectedCharacter: {},
       createCharacter: false,
-      showDetail: false,
       campaign: this.props.campaign,
       inCampaign: this.props.inCampaign
     };
@@ -26,9 +24,12 @@ class Character extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.newCharacter) {
+    // Make sure that nextProps.newCharacter isn't empty
+    if (!(
+        Object.keys(nextProps.newCharacter).length === 0 && nextProps.newCharacter.constructor === Object
+    )) {
       // Add the newCharacter to the props.characters array upon submission
-      this.props.characters.unshift(nextProps.newCharacter.data);
+      this.props.characters.unshift(nextProps.newCharacter);
     }
   }
 
