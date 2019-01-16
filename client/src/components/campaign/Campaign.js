@@ -12,39 +12,52 @@ class Campaign extends Component {
 
     // Class State
     this.state = {
-      publicCampaigns: this.props.publicCampaigns
+      publicCampaigns: []
     };
 
     // Class Functions
-
+    this.loopOverCampaigns = this.loopOverCampaigns.bind(this);
   }
 
   // Lifecycle methods
   componentWillMount() {
+    Log.trace("Mounting Campaign and fetching public campaigns");
     this.props.fetchPublicCampaigns();
   }
 
-  componentWillReceiveProps(nextProps) {
-    Log.info(nextProps);
+  loopOverCampaigns(campaigns) {
+    return campaigns.map(campaign => (
+      campaign ? (
+        <div key={campaign._id}>
+          <CampaignDetail campaignInfo={campaign} />
+        </div>
+      ) : (
+        null
+      )
+    ));
   }
 
   render () {
     // Load in all of the local variables
+    const campaignDetailRows = this.loopOverCampaigns(this.props.campaigns.publicCampaigns);
 
+    Log.trace("Rendering campaign view");
     return (
       <div>
         <div>Campaign View</div>
+        {campaignDetailRows}
       </div>
     );
   }
 }
 
 Campaign.propTypes = {
-  fetchPublicCampaigns: PropTypes.func.isRequired
+  fetchPublicCampaigns: PropTypes.func.isRequired,
+  campaigns: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  publicCampaigns: state.publicCampaigns
+  campaigns: state.campaigns
 });
 
 // Map all of the required actions to the connect export
