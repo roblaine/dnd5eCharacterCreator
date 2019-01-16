@@ -2,13 +2,30 @@ import axios from "axios";
 import Log from "../utils/log";
 import {
   FETCH_CAMPAIGN,
+  FETCH_PUBLIC_CAMPAIGNS,
   JOIN_CAMPAIGN,
   LEAVE_CAMPAIGN,
   GET_ERRORS,
 } from "./types";
 
+// Get all of the public campaigns and add them to the state.publicCampaigns
+export const fetchPublicCampaigns = () => dispatch => {
+  Log.trace("Fetching public campaigns");
+  const campaignData = { public: true };
+  axios
+  .post("/api/campaigns/query", campaignData)
+  .then(function(returnedCampaigns) {
+    Log.trace("Dispatching with public campaign info");
+    Log.trace(returnedCampaigns);
+    dispatch({
+      type: FETCH_PUBLIC_CAMPAIGNS,
+      payload: returnedCampaigns.data.publicCampaigns
+    });
+  });
+}
+
 export const queryMyCampaign = campaignData => dispatch => {
-  // Set state to contain the campgin info and if the player is in a campaign
+  // Set state to contain the campaign info and if the player is in a campaign
   Log.trace("Querying the campaign for the user");
   axios
   .post("/api/campaigns/myCampaign", campaignData)

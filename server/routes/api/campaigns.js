@@ -23,7 +23,8 @@ router.post('/query', (req, res) => {
     // Get all of the public campaigns that a user can join
     Campaign.find({ public: public })
     .then(campaigns => {
-      res.send(campaigns);
+      // Return an obbject that contains the key publicCampaigns
+      res.send({ publicCampaigns: campaigns });
     })
   } else {
     // Find the user
@@ -94,7 +95,7 @@ router.post('/add', (req, res) => {
       if(campaign) {
         return res.status(400).json({ name: 'You already have a campaign with this name' });
       }
-      
+
       const newCampaign = new Campaign({
         host: host,
         name: req.body.name,

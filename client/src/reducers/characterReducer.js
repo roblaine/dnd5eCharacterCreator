@@ -13,6 +13,8 @@ const initialState = {
 export default function(state = initialState, action) {
   switch(action.type) {
     case FETCH_CHARACTERS:
+      Log.trace("Setting state to contain characters")
+      Log.trace(action.payload)
       return {
         ...state,
         characters: action.payload
