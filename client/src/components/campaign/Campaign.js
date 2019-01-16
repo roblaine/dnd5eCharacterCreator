@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import Log from "../../utils/log";
+import CampaignDetail from "./Campaigndetail";
 import { fetchPublicCampaigns } from "../../actions/campaignActions";
 
 class Campaign extends Component {
