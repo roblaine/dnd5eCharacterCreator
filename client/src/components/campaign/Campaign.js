@@ -12,6 +12,7 @@ class Campaign extends Component {
 
     // Class State
     this.state = {
+      myCharacters: this.props.myCharacters,
       publicCampaigns: []
     };
 
@@ -28,7 +29,7 @@ class Campaign extends Component {
   loopOverCampaigns(campaigns) {
     return campaigns.map(campaign => (
       campaign ? (
-        <CampaignDetail campaignInfo={campaign} key={campaign._id} />
+        <CampaignDetail campaignInfo={campaign} myCharacters={this.state.myCharacters} key={campaign._id} />
       ) : (
         null
       )
@@ -48,6 +49,7 @@ class Campaign extends Component {
           <tr>
               <th>Name</th>
               <th>ID</th>
+              <th>Join</th>
               <th>Player Count</th>
               <th>Created At</th>
           </tr>

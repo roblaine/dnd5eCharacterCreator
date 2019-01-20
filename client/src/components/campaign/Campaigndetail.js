@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 class CampaignDetail extends Component {
@@ -7,9 +6,21 @@ class CampaignDetail extends Component {
     super(props);
 
     this.state = {
+      myCharacters: this.props.myCharacters,
       campaignInfo: this.props.campaignInfo
       // host: this.props.host.campaignInfo.host
     };
+
+    this.characterSelector = this.characterSelector.bind(this);
+  }
+
+  characterSelector(myCharacters) {
+    console.log(this.state.myCharacters);
+    return(
+      <select>
+
+      </select>
+    );
   }
 
   render() {
@@ -23,6 +34,9 @@ class CampaignDetail extends Component {
         </th>
         <th>
           {this.state.campaignInfo.host}
+        </th>
+        <th>
+          {this.characterSelector(this.state.myCharacters)}
         </th>
         <th>
           {playerCount}
