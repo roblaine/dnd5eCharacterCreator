@@ -62,7 +62,7 @@ class Dashboard extends Component {
           name="showCampaignFinder"
           onClick={this.handleClick}>
           {this.state.showCampaignFinder ?
-            'Close Form' :
+            'Hide Campaign Finder' :
             'Show Campaign Finder'
           }
         </button>

@@ -1,11 +1,13 @@
 import axios from "axios";
-import Log from "../utils/log";
+
 import {
   FETCH_CHARACTERS,
   ADD_CHARACTER,
   DELETE_CHARACTER,
   GET_ERRORS,
 } from "./types";
+
+import Log from "../utils/log";
 
 export const fetchCharacters = userData => dispatch => {
   axios

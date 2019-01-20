@@ -1,8 +1,10 @@
 import {
+  FETCH_USER,
   FETCH_CHARACTERS,
   ADD_CHARACTER,
   DELETE_CHARACTER
 } from "../actions/types";
+
 import Log from "../utils/log";
 
 const initialState = {

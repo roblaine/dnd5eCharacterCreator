@@ -6,6 +6,7 @@ export const USER_LOADING = "USER_LOADING";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 // Character
+export const FETCH_USER = "FETCH_USER";
 export const FETCH_CHARACTERS = "FETCH_CHARACTERS";
 export const ADD_CHARACTER = "ADD_CHARACTER";
 export const DELETE_CHARACTER = "DELETE_CHARACTER";

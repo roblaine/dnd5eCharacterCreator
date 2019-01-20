@@ -9,9 +9,9 @@ import {
 } from "./types";
 
 // Get all of the public campaigns and add them to the state.publicCampaigns
-export const fetchPublicCampaigns = () => dispatch => {
+export const fetchPublicCampaigns = hostId => dispatch => {
   Log.trace("Fetching public campaigns");
-  const campaignData = { public: true };
+  const campaignData = { public: true, hostId: hostId };
   axios
   .post("/api/campaigns/query", campaignData)
   .then(function(returnedCampaigns) {

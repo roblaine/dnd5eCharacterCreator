@@ -17,24 +17,25 @@ const campaign = require('../../campaigns/campaignSchema');
 // @desc Query Campaigns
 // @access Public
 router.post('/query', (req, res) => {
+
   const public = req.body.public;
+  const hostId = req.body.hostId;
 
   if(public) {
     // Get all of the public campaigns that a user can join
     Campaign.find({ public: public })
+    // Add the host information into the campaign
     .then(campaigns => {
-      // Return an obbject that contains the key publicCampaigns
       res.send({ publicCampaigns: campaigns });
-    })
+    });
+    
+    // TODO Figure out how to do this properly
   } else {
     // Find the user
-    User.findOne({ email: req.body.host })
-    .then(user => {
-      // Find the campaigns hosted by a user
-      Campaign.find({ host: user._id })
-      .then(campaign => {
-        res.send(campaign);
-      });
+    // Find the campaigns hosted by a user
+    Campaign.find({ host: user._id })
+    .then(campaign => {
+      res.json(campaign);
     });
   }
 });
@@ -54,7 +55,7 @@ router.post('/myCampaign', (req, res) => {
   const playerId = mongoose.Types.ObjectId(req.body.playerId);
   Campaign.findOne({ players: playerId })
   .then(campaign => {
-     res.send({ campaign: campaign, inCampaign: (campaign !== null) });
+    res.send({ campaign: campaign, inCampaign: (campaign !== null) });
   });
 
   // Find the player that is currently logged in
@@ -213,7 +214,7 @@ router.post('/join', (req, res) => {
         }
 
         var hasPlayer = campaign.players.some(function (player) {
-            return player.equals(joiningPlayer._id);
+          return player.equals(joiningPlayer._id);
         });
 
         // update the campaign and the player and the player's character
@@ -295,7 +296,7 @@ router.post('/leave', (req, res) => {
         }
 
         var hasPlayer = campaign.players.some(function (player) {
-            return player.equals(leavingPlayer._id);
+          return player.equals(leavingPlayer._id);
         });
         // update the campaign and the player and the player's character
         if(!hasPlayer) {

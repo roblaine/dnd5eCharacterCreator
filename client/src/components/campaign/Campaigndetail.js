@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class CampaignDetail extends Component {
   constructor(props) {
@@ -6,28 +8,29 @@ class CampaignDetail extends Component {
 
     this.state = {
       campaignInfo: this.props.campaignInfo
+      // host: this.props.host.campaignInfo.host
     };
   }
-  
+
   render() {
     const campaignInfo = this.state.campaignInfo;
     const name = campaignInfo.name;
     const playerCount = campaignInfo.players.length;
     return (
-      <div className="row">
-        <div className="col s4">
+      <tr>
+        <th>
           {name}
-        </div>
-        <div className="col s4">
+        </th>
+        <th>
           {this.state.campaignInfo.host}
-        </div>
-        <div className="col s4">
+        </th>
+        <th>
           {playerCount}
-        </div>
-        <div className="col s4">
+        </th>
+        <th>
           {this.state.campaignInfo.timestamps.createdAt}
-        </div>
-      </div>
+        </th>
+      </tr>
     );
   }
 }

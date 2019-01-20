@@ -28,9 +28,7 @@ class Campaign extends Component {
   loopOverCampaigns(campaigns) {
     return campaigns.map(campaign => (
       campaign ? (
-        <div key={campaign._id}>
-          <CampaignDetail campaignInfo={campaign} />
-        </div>
+        <CampaignDetail campaignInfo={campaign} key={campaign._id} />
       ) : (
         null
       )
@@ -45,7 +43,19 @@ class Campaign extends Component {
     return (
       <div>
         <div>Campaign View</div>
-        {campaignDetailRows}
+        <table>
+          <thead>
+          <tr>
+              <th>Name</th>
+              <th>ID</th>
+              <th>Player Count</th>
+              <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {campaignDetailRows}
+        </tbody>
+        </table>
       </div>
     );
   }

@@ -11,7 +11,6 @@ const passport = require('passport');
 // Load input validation
 const validateRegisterInput = require('../../users/validation/register');
 const validateLoginInput = require('../../users/validation/login');
-const validateQueryInput = require("../../users/validation/query");
 
 // Load User model
 const User = require('../../users/userSchema');
@@ -112,23 +111,6 @@ router.post('/login', (req, res) => {
       }
     });
   });
-});
-
-// @route POST api/users/query
-// @desc Query user id and return the user
-// @access Public
-router.post('/query', (req, res) => {
-  const { errors, isValid } = validateQueryInput(req.body);
-
-  if(!isValid) {
-    return res.status(400).json(errors);
-  }
-
-  User.findOne({ _id: req.body.userId })
-  .then(user => {
-    res.send({ user: user })
-  })
-  .catch(err => console.log(err););
 });
 
 module.exports = router;
