@@ -40,12 +40,12 @@ class Dashboard extends Component {
 
   render() {
     console.log(this.props);
-    const myCharacters = this.props.characters;
+    const characters = this.props.characters;
     const showCampaignFinder = this.state.showCampaignFinder;
     const campaignFinder = showCampaignFinder ?
       (
         <div id="campaignFinder">
-          <Campaign mmyCharacters={myCharacters} />
+          <Campaign characters={characters} />
         </div>
       ) : (
         null

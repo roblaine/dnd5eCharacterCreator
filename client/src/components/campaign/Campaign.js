@@ -12,7 +12,7 @@ class Campaign extends Component {
 
     // Class State
     this.state = {
-      myCharacters: this.props.myCharacters,
+      characters: this.props.characters,
       publicCampaigns: []
     };
 
@@ -29,7 +29,7 @@ class Campaign extends Component {
   loopOverCampaigns(campaigns) {
     return campaigns.map(campaign => (
       campaign ? (
-        <CampaignDetail campaignInfo={campaign} myCharacters={this.state.myCharacters} key={campaign._id} />
+        <CampaignDetail campaignInfo={campaign} characters={this.state.characters} key={campaign._id} />
       ) : (
         null
       )
@@ -65,11 +65,13 @@ class Campaign extends Component {
 
 Campaign.propTypes = {
   fetchPublicCampaigns: PropTypes.func.isRequired,
-  campaigns: PropTypes.object.isRequired
+  campaigns: PropTypes.object.isRequired,
+  characters: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  campaigns: state.campaigns
+  campaigns: state.campaigns,
+  characters: state.characters
 });
 
 // Map all of the required actions to the connect export
