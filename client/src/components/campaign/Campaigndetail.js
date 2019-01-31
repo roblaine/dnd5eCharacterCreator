@@ -26,13 +26,13 @@ class CampaignDetail extends Component {
 
   characterInputs(characters) {
     return characters.map(character => (
-      <option key={character._id} value={character.name}>{character.name}</option>
+      <option key={character._id} value={character._id}>{character.name}</option>
     ))
   }
 
   characterSelector(characters) {
     const inputs = this.characterInputs(characters);
-    console.log(inputs);
+    console.log(this.state.userEmail);
     return(
       <select
         className="browser-default"
@@ -80,7 +80,7 @@ const mapStateToProps = state => ({
   characters: state.characters
 });
 
-const actions = null;
+const actions = null; // { joinCampaign };
 
 export default connect(
   mapStateToProps,
