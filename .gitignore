@@ -10,8 +10,8 @@ keys.js
 # zipped archive
 *.zip
 
+# vim & experimenting area
 scratchpad/
-# vim
 *.swp
 
 # Logs

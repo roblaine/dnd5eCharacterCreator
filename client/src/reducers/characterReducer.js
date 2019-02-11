@@ -4,6 +4,8 @@ import {
   DELETE_CHARACTER
 } from "../actions/types";
 
+import Log from "../utils/log";
+
 const initialState = {
   characters: [],
   newCharacter: {}
@@ -12,21 +14,26 @@ const initialState = {
 export default function(state = initialState, action) {
   switch(action.type) {
     case FETCH_CHARACTERS:
-      // console.log();
+      Log.trace("Setting state to contain characters")
+      Log.trace(action.payload)
       return {
         ...state,
         characters: action.payload
       };
     case ADD_CHARACTER:
-      return {
+      Log.trace("Adding character");
+      Log.trace(action.payload.data.name);
+      state = {
         ...state,
         // Add the new character to the characters array
         newCharacter: action.payload.data
       };
+      Log.trace("New state");
+      Log.trace(state);
+      return state;
     case DELETE_CHARACTER:
       // Return the new state skipping the object to delete by finding first the index
       var index = state.characters.map(function(e) {
-        console.log(e._id);
         return e._id;
       }).indexOf(action.payload.character._id);
 

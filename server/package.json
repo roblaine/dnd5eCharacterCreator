@@ -2,6 +2,9 @@
   "name": "DNDTracker-Server",
   "author": "Rob Laine",
   "version": "0.1.0",
+  "description": "Server for the dndTracker app",
+  "repository": "",
+  "license": "",
   "private": false,
   "scripts": {
     "start": "node server.js",

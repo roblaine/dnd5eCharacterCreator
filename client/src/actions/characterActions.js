@@ -1,10 +1,13 @@
 import axios from "axios";
+
 import {
   FETCH_CHARACTERS,
   ADD_CHARACTER,
   DELETE_CHARACTER,
   GET_ERRORS,
 } from "./types";
+
+import Log from "../utils/log";
 
 export const fetchCharacters = userData => dispatch => {
   axios
@@ -25,6 +28,8 @@ export const fetchCharacters = userData => dispatch => {
 };
 
 export const addCharacter = character => dispatch => {
+  Log.trace("Adding character for the user");
+  Log.trace(character);
   axios
   .post("/api/characters/add", character)
   .then(character => {
@@ -43,13 +48,14 @@ export const addCharacter = character => dispatch => {
 };
 
 export const deleteCharacter = charData => dispatch => {
+  Log.trace("Deleting the character for the user");
+  Log.trace(charData);
   // Get the important info from charData that the endpoint expects
   const deleteData = { characterId: charData._id };
 
   axios
   .post("/api/characters/delete", deleteData)
   .then(function(deleteData) {
-    console.log("delete char: ", deleteData.data);
     dispatch({
       type: DELETE_CHARACTER,
       payload: deleteData.data

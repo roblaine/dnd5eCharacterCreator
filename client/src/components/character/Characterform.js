@@ -465,7 +465,7 @@ class CharacterForm extends Component {
                 {skillItems}
               </div>
               <button
-                className="waves-effect waves-light btn blue"
+                className="waves-effect waves-light btn blue center-align"
                 type="submit">
                 Create!
               </button>
@@ -484,7 +484,10 @@ class CharacterForm extends Component {
               <div className="left-align">
                 {skillItems}
               </div>
-              <button className="waves-effect waves-light btn blue" type="submit">Create!
+              <button
+                className="waves-effect waves-light btn blue center-align"
+                type="submit">
+                Create!
               </button>
             </div>
 
