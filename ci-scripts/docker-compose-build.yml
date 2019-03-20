@@ -2,14 +2,14 @@ version: "2"
 
 services:
     client:
-        image: dndtracker:client
+        image: spacebits/dndtracker:client
         build:
-          context: ./client
+          context: ../client
         restart: always
         ports:
             - "3000:3000"
         volumes:
-            - ./client:/client
+            - ../client:/client
             - /client/node_modules
         links:
             - server
@@ -21,15 +21,15 @@ services:
             - APP_SERVER_URL=server
 
     server:
-        image: dndtracker:server
+        image: spacebits/dndtracker:server
         build:
-          context: ./server
+          context: ../server
         restart: always
         ports:
            - "3001:3001"
         tty: true
         volumes:
-            - ./server:/server
+            - ../server:/server
             - /server/node_modules
         depends_on:
             - mongodb
@@ -43,7 +43,7 @@ services:
         restart: always
         container_name: mongodb
         volumes:
-            - ./data-node:/data/db
+            - ../data-node:/data/db
         ports:
             - "27017:27017"
         command: mongod --noauth --smallfiles
