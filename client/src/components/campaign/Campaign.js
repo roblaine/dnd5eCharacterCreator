@@ -47,11 +47,11 @@ class Campaign extends Component {
         <table>
           <thead>
           <tr>
-              <th>Name</th>
+              <th>Campaign Name</th>
               <th>ID</th>
-              <th>Join</th>
+              <th>Join With</th>
               <th>Player Count</th>
-              <th>Created At</th>
+              <th>Start Time</th>
           </tr>
         </thead>
         <tbody>
