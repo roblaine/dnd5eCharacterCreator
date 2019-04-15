@@ -222,10 +222,9 @@ class Card extends Component {
                   // Delete the character
                   this.props.deleteCharacter(this.state.cardCharacter);
                 }
-              }
-            }>
+              }}>
             Delete
-          </button>
+            </button>
         </div>
       </div>
       {/* Expand content for the card */}
