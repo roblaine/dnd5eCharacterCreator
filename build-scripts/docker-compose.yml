@@ -2,7 +2,7 @@ version: "2"
 
 services:
     client:
-        image: spacebits/dndtracker:client
+        image: asia.gcr.io/dnd-tracker-237708/client:latest
         build:
           context: ../client
         restart: always
@@ -21,7 +21,7 @@ services:
             - APP_SERVER_URL=server
 
     server:
-        image: spacebits/dndtracker:server
+        image: asia.gcr.io/dnd-tracker-237708/server:latest
         build:
           context: ../server
         restart: always
