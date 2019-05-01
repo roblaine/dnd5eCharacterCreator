@@ -33,10 +33,28 @@ services:
             - /server/node_modules
         depends_on:
             - mongodb
+            - characterService
         networks:
             - dndnet
         environment:
           - APP_MONGO_URL=mongodb
+    characterService:
+      image: dndtracker:character
+      build:
+        context: ../character-service
+      restart: always
+      ports:
+        - "3002:3002"
+      tty: true
+      volumes:
+        - ../character-service:/character-service
+        - /server/node_modules
+      depends_on:
+        - mongodb
+      networks:
+        - dndnet
+      environment:
+        - APP_MONGO_URL=mongodb
 
     mongodb:
         image: mongo

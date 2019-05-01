@@ -1,14 +1,14 @@
 // declare all of the required imports
 const express = require('express');
 const bodyParser = require('body-parser');
-const pino = require('express-pino-logger')();
+const pino = require('express-pino-logger');
 const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
 // Import the routes
 const users = require('./routes/api/users');
-const characters = require('./routes/api/characters');
+// const characters = require('./routes/api/characters');
 const campaigns = require('./routes/api/campaigns');
 
 // Declare our app to use express
@@ -29,7 +29,7 @@ mongoose.connect(
   { useNewUrlParser: true }
 )
 .then(() => {
-  console.log('\nConnected to mongodb\n');
+  console.log(`\nConnected to mongodb at ${db}\n`);
   // Seed the database
 })
 .catch(err => {
@@ -46,13 +46,13 @@ require('./config/passport')(passport);
 
 // Routes
 app.use('/api/users', users);
-app.use('/api/characters', characters);
+// app.use('/api/characters', characters);
 app.use('/api/campaigns', campaigns);
 
-// Static character sheet for demo
-app.get('/character', (req, res) => {
-  res.sendFile(__dirname + '/public/character.html');
-});
+// // Static character sheet for demo
+// app.get('/character', (req, res) => {
+//   res.sendFile(__dirname + '/public/character.html');
+// });
 
 // Initialize the app
 app.listen(port, host, () => {

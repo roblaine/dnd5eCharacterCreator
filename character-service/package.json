@@ -1,0 +1,11 @@
+{
+  "name": "character-service",
+  "version": "0.1.0",
+  "description": "Micro service for character interactions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'No Tests specified'"
+  },
+  "author": "",
+  "license": "ISC"
+}
