@@ -5,7 +5,7 @@
   "description": "Server for the dndTracker app",
   "repository": "",
   "license": "",
-  "private": false,
+  "private": true,
   "scripts": {
     "start": "node server.js",
     "debug": "node server.js --port 3001 --host 0.0.0.0",
