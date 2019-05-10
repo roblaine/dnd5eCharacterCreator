@@ -55,6 +55,7 @@ services:
         - dndnet
       environment:
         - APP_MONGO_URL=mongodb
+        - APP_MONGO_PORT=mongodb.ports
 
     mongodb:
         image: mongo
