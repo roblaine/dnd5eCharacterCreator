@@ -5,7 +5,7 @@ services:
         image: dndtracker:client
         build:
           context: ../client
-        restart: always
+        restart: on-failure
         ports:
             - "3000:3000"
         volumes:
@@ -24,7 +24,7 @@ services:
         image: dndtracker:server
         build:
           context: ../server
-        restart: always
+        restart: on-failure
         ports:
            - "3001:3001"
         tty: true
@@ -42,7 +42,7 @@ services:
       image: dndtracker:character
       build:
         context: ../character-service
-      restart: always
+      restart: on-failure
       ports:
         - "3002:3002"
       tty: true
@@ -58,7 +58,7 @@ services:
 
     mongodb:
         image: mongo
-        restart: always
+        restart: on-failure
         container_name: mongodb
         volumes:
             - ../data-node:/data/db

@@ -8,6 +8,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+		"dev": "node index.js",
     "test": "echo 'No Tests specified'"
   },
   "dependencies": {
