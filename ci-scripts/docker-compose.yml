@@ -48,7 +48,7 @@ services:
       tty: true
       volumes:
         - ../character-service:/character-service
-        - /server/node_modules
+        - /character-service/node_modules
       depends_on:
         - mongodb
       networks:
