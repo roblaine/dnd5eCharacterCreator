@@ -5,7 +5,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 // Import the characters api endpoint
-const characters = require('./routes/api/characters');
+// const characters = require('./routes/api/characters');
 
 // Declare our micro-service to use express
 const app = express();
@@ -33,15 +33,22 @@ mongoose.connect(
   console.error(err);
 });
 
+console.log('Using pino and bodyParser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(pino);
 
-app.use('/api/characters', characters);
+app.get('/', (req, res) => {
+  console.log(`Connection incoming.`);
+  res.send({ data: 'Connected' });
+});
+
+// app.use('/api/characters', characters);
 
 // Static character sheet for demo
 app.get('/character', (req, res) => {
-  res.sendFile(__dirname + '/public/character.html');
+  console.log(`Request from ${req}`);
+  res.send({ data: 'hi'});
 });
 
 // Initialize the microservice
