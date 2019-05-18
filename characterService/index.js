@@ -18,20 +18,20 @@ const host = process.env.HOST || '0.0.0.0';
 // DB Config
 const db = require('./config/keys').mongoURI;
 
-app.use(express.static('public'))
+// app.use(express.static('public'))
 
-mongoose.Promise = global.Promise;
-mongoose.connect(
-  db,
-  { useNewUrlParser: true }
-)
-.then(() => {
-  console.log(`\nConnected to mongodb at ${db}\n`);
-  // Seed the database
-})
-.catch(err => {
-  console.error(err);
-});
+// mongoose.Promise = global.Promise;
+// mongoose.connect(
+//   db,
+//   { useNewUrlParser: true }
+// )
+// .then(() => {
+//   console.log(`\nConnected to mongodb at ${db}\n`);
+//   // Seed the database
+// })
+// .catch(err => {
+//   console.error(err);
+// });
 
 console.log('Using pino and bodyParser');
 app.use(bodyParser.urlencoded({ extended: true }));

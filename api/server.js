@@ -46,7 +46,7 @@ require('./config/passport')(passport);
 
 // Routes
 app.use('/api/users', users);
-app.use('/api/characters', characters);
+// app.use('/api/characters', characters);
 app.use('/api/campaigns', campaigns);
 
 // // Static character sheet for demo

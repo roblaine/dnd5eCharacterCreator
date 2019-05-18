@@ -12,7 +12,7 @@ services:
     - ../client:/client
     - /client/node_modules
     depends_on:
-    - server
+    - api
     networks:
     - dndnet
     environment:
@@ -24,11 +24,11 @@ services:
       context: ../api
     restart: on-failure
     ports:
-   - "3001:3001"
+    - "3001:3001"
     tty: true
     volumes:
-    - ../server:/server
-    - /server/node_modules
+    - ../api:/api
+    - /api/node_modules
     depends_on:
     - characterService
     networks:
