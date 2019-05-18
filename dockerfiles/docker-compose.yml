@@ -5,22 +5,28 @@ services:
     image: dndtracker:client
     build:
       context: ../client
+    expose:
+    - 3000
     restart: on-failure
     ports:
-    - "3000:3000"
+    - 3000:3000
     volumes:
     - ../client:/client
     - /client/node_modules
     depends_on:
     - apiGateway
+    links:
+    - apiGateway
     networks:
     - dndnet
     environment:
-    - APP_API_URL=apiGateway
+    - APP_SERVER_URL=apiGateway
 
   apiGateway:
     image: node:11
     restart: on-failure
+    expose:
+    - 3001
     ports:
     - 3001:3001
     tty: true
@@ -38,6 +44,8 @@ services:
   characterService:
     image: node:11
     restart: on-failure
+    expose:
+    - 3002
     ports:
     - 3002:3002
     tty: true
