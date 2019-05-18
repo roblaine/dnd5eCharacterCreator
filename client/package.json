@@ -24,7 +24,7 @@
     "eject": "react-scripts eject",
     "serve": "serve -s build/"
   },
-  "proxy": "http://server:3001/",
+  "proxy": "http://apiGateway:3001/",
   "eslintConfig": {
     "extends": "react-app"
   },
