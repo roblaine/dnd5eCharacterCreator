@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   client:
@@ -24,7 +24,7 @@ services:
       context: ../api
     restart: on-failure
     ports:
-    - "3001:3001"
+    - 3001:3001
     tty: true
     volumes:
     - ../api:/api
@@ -37,25 +37,26 @@ services:
     - APP_MONGO_URL=mongodb
 
   characterService:
-    image: dndtracker:character
-    build:
-      context: ../character-service
+    image: node:11
     restart: on-failure
     ports:
-    - "3002:3002"
+    - 3002:3002
     tty: true
     volumes:
-    - ../character-service:/character-service
-    - /character-service/node_modules
-    depends_on:
-    - mongodb
-    networks:
-    - dndnet
+    - ../characterService:/usr/src/service
+    - character_nodemodules:/usr/src/service/node_modules
+    working_dir: /usr/src/service
+    command: npm run dev
     environment:
+    - NODE_ENV=development
     - PORT=3002
     - HOST=0.0.0.0
     - APP_MONGO_URL=mongodb
     - APP_MONGO_PORT=27017
+    # depends_on:
+    # - mongodb
+    # networks:
+    # - dndnet
 
   mongodb:
     image: mongo
@@ -64,10 +65,14 @@ services:
     volumes:
     - ../data-node:/data/db
     ports:
-    - "27017:27017"
+    - 27017:27017
     command: mongod --noauth --smallfiles
     networks:
     - dndnet
+
+volumes:
+  character_nodemodules:
+    external: true
 
 networks:
   dndnet:
