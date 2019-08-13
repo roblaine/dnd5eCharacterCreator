@@ -12,7 +12,7 @@ services:
     - 3000:3000
     volumes:
     - ../client:/client
-    - /client/node_modules
+    - client_nodemodules:/client/node_modules
     depends_on:
     - apiGateway
     links:
