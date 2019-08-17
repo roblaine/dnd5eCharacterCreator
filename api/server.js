@@ -49,10 +49,10 @@ app.use('/api/users', users);
 // app.use('/api/characters', characters);
 app.use('/api/campaigns', campaigns);
 
-// // Static character sheet for demo
-// app.get('/character', (req, res) => {
-//   res.sendFile(__dirname + '/public/character.html');
-// });
+// Static character sheet for demo
+app.get('/character', (req, res) => {
+	res.sendFile(__dirname + '/public/character.html');
+});
 
 // Initialize the app
 app.listen(port, host, () => {

@@ -11,5 +11,5 @@ COPY . ./
 # Make port 80 available to the world outside this container
 EXPOSE 3002
 # Run the app when the container launches
-ENTRYPOINT ["npm", "run"]
-CMD ["dev"]
+ENTRYPOINT ["node", "index.js"]
+
