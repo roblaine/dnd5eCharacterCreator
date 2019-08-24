@@ -79,10 +79,7 @@ services:
 
 volumes:
   character_nodemodules:
-    external: true
   apiGateway_nodemodules:
-    external: true
 
 networks:
   dndnet:
-    driver: bridge
