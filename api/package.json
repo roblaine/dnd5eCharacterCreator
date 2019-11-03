@@ -8,7 +8,6 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "debug": "node server.js --port 3001 --host 0.0.0.0",
     "dev": "node-env-run server.js --exec nodemon | pino-colada",
     "lint": "./node_modules/.bin/eslint"
   },

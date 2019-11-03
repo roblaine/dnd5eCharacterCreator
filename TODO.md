@@ -2,7 +2,8 @@
 DND Character Sheets &amp; more
 
 TODO:
- - [ ] Character creation form has class and subclass dropdowns
+ - [ ] Character creation form has class and subclass drop-downs
+ - [ ] Character creation is interactive and step by step
  - [ ] Character has an object in this.state.classes which contains
   each subclass list for a given class,
   ```
