@@ -6,17 +6,17 @@ services:
     build:
       context: ../client
     expose:
-    - 3000
+      - 3000
     restart: on-failure
     ports:
-    - 3000:3000
+      - 3000:3000
     volumes:
-    - ../client:/client
-    - /client/node_modules
+      - ../client:/client
+      - /client/node_modules
     depends_on:
-    - apiGateway
+      - apiGateway
     links:
-    - apiGateway
+      - apiGateway
     networks:
     - dndnet
     environment:
@@ -26,56 +26,56 @@ services:
     image: node:11
     restart: on-failure
     expose:
-    - 3001
+      - 3001
     ports:
-    - 3001:3001
+      - 3001:3001
     tty: true
     volumes:
-    - ../api:/usr/src/service
-    - apiGateway_nodemodules:/usr/src/service/node_modules
+      - ../api:/usr/src/service
+      - apiGateway_nodemodules:/usr/src/service/node_modules
     working_dir: /usr/src/service
     environment:
-    - APP_MONGO_URL=mongodb
-    - APP_MONGO_PORT=27017
+      - APP_MONGO_URL=mongodb
+      - APP_MONGO_PORT=27017
     depends_on:
-    - characterService
+      - characterService
     networks:
-    - dndnet
+      - dndnet
 
   characterService:
     image: node:11
     restart: on-failure
     expose:
-    - 3002
+      - 3002
     ports:
-    - 3002:3002
+      - 3002:3002
     tty: true
     volumes:
-    - ../characterService:/usr/src/service
-    - character_nodemodules:/usr/src/service/node_modules
+      - ../characterService:/usr/src/service
+      - character_nodemodules:/usr/src/service/node_modules
     working_dir: /usr/src/service
     environment:
-    - NODE_ENV=development
-    - PORT=3002
-    - HOST=0.0.0.0
-    - APP_MONGO_URL=mongodb
-    - APP_MONGO_PORT=27017
+      - NODE_ENV=development
+      - PORT=3002
+      - HOST=0.0.0.0
+      - APP_MONGO_URL=mongodb
+      - APP_MONGO_PORT=27017
     depends_on:
-    - mongodb
+      - mongodb
     networks:
-    - dndnet
+      - dndnet
 
   mongodb:
     image: mongo
     restart: on-failure
     container_name: mongodb
     volumes:
-    - ../data-node:/data/db
+      - ../data-node:/data/db
     ports:
-    - 27017:27017
+      - 27017:27017
     command: mongod --noauth --smallfiles
     networks:
-    - dndnet
+      - dndnet
 
 volumes:
   character_nodemodules:
