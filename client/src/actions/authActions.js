@@ -1,6 +1,7 @@
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
+import Log from "../utils/log";
 
 import {
   GET_ERRORS,
@@ -27,7 +28,7 @@ export const loginUser = userData => dispatch => {
   axios
   .post("/api/users/login", userData)
   .then(res => {
-    // Save to localStorage
+    Log.info(`Posting ${userData} to login endpoint`)
 
     // Set token to localStorage
     const { token } = res.data;

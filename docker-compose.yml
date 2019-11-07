@@ -2,85 +2,44 @@ version: '3'
 services:
 
   client:
-    image: dndtrackerclient
     build:
+      dockerfile: Dockerfile.dev
       context: ./client
-    expose:
-    - '3000'
-    restart: on-failure
-    ports:
-    - '3000:3000'
     volumes:
-    - './client:/client'
-    - '/client/node_modules'
+      - /app/node_modules
+      - ./client:/app
     depends_on:
-    - api
-    links:
-    - api
-    networks:
-    - dndtracker
-    environment:
-    - APP_SERVER_URL=api
+      - mongodb
 
   api:
-    image: dndtrackerapi
     build:
+      dockerfile: Dockerfile.dev
       context: ./api
-    restart: on-failure
-    expose:
-    - '3001'
-    ports:
-    - '3001:3001'
-    tty: true
+    env_file:
+      - .env
     volumes:
-    - './api:/usr/src/service'
-    - 'api_nodemodules:/usr/src/service/node_modules'
-    depends_on:
-    - characterService
-    networks:
-    - dndtracker
+      - /app/node_modules
+      - ./api:/app
     environment:
-    - APP_MONGO_URL=db
-    - APP_MONGO_PORT=27017
+      - APP_MONGO_URL=mongodb
+      - APP_MONGO_PORT=27017
+      - API_HOST=api
+    depends_on:
+      - mongodb
 
-  characterService:
-    image: node:12.2.0-alpine
-    restart: on-failure
-    expose:
-    - '3002'
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
     ports:
-    - '3002:3002'
-    tty: true
-    volumes:
-    - './characterService:/usr/src/service'
-    - 'character_nodemodules:/usr/src/service/node_modules'
-    working_dir: /usr/src/service
-    environment:
-    - NODE_ENV=development
-    - PORT=3002
-    - HOST=0.0.0.0
-    - APP_MONGO_URL=db
-    - APP_MONGO_PORT=27017
+      - '8080:80'
     depends_on:
-    - db
-    networks:
-    - dndtracker
+      - mongodb
 
-  db:
+  mongodb:
     image: mongo
-    restart: on-failure
-    container_name: db
+    restart: always
     volumes:
-    - './data-node:/data/db'
-    ports:
-    - '27017:27017'
+      - ./data-node:/data/db
     command: mongod --noauth --smallfiles
-    networks:
-    - dndtracker
-
-volumes:
-  character_nodemodules:
-  api_nodemodules:
-
-networks:
-  dndtracker:

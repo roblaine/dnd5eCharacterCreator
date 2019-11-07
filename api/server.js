@@ -15,7 +15,7 @@ const campaigns = require('./routes/api/campaigns');
 const app = express();
 
 // Load all of our env vars
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5000;
 const host = process.env.HOST || '0.0.0.0';
 
 // DB Config
@@ -49,10 +49,10 @@ app.use('/api/users', users);
 // app.use('/api/characters', characters);
 app.use('/api/campaigns', campaigns);
 
-// // Static character sheet for demo
-// app.get('/character', (req, res) => {
-//   res.sendFile(__dirname + '/public/character.html');
-// });
+// Static character sheet for demo
+app.get('/character', (req, res) => {
+	res.sendFile(__dirname + '/public/character.html');
+});
 
 // Initialize the app
 app.listen(port, host, () => {
