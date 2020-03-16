@@ -20,3 +20,5 @@ TODO:
  - [ ] DM Can see a list of all players and creatures ordered by current initiative and a log of changes for a campaign that they own
  - [x] Add timestamp for creating and updating a character
  - [ ] Display keep track of updates in a log style format (Maybe just pull data into the campaign on the fly)
+a
+a
