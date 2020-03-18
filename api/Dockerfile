@@ -1,15 +1,14 @@
-# Use a lighter version of Node as a parent image
-FROM mhart/alpine-node
-# Set the working directory to /server
-WORKDIR /api
-# copy package.json into the container at /server
-COPY package*.json /api/
-# install dependencies
-RUN npm install
-# Copy the current directory contents into the container at /server
-COPY . /api/
-# Make port 80 available to the world outside this container
-EXPOSE 3001
-# Run the app when the container launches
-ENTRYPOINT ["node", "server.js"]
+FROM mhart/alpine-node AS base
 
+FROM base AS builder
+WORKDIR /install
+COPY package.json .
+RUN npm install --prefix=/install
+
+FROM base
+COPY --from=builder /install/node_modules/ /usr/lib/node_modules/
+ENV NODE_PATH '/usr/lib/node_modules:/src/node_modules'
+WORKDIR /api
+ADD src .
+EXPOSE 3001
+ENTRYPOINT ["node", "app.js"]
