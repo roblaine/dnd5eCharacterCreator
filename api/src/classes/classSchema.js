@@ -15,7 +15,7 @@ const ClassSchema = new Schema({
       restRequired: String,
       usesPerRest: Number,
     }
-  ]
+  ],
   proficiency: {
     bonus: {
       value: Number,
