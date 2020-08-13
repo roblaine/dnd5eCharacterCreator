@@ -1,7 +1,7 @@
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 
-require('dotenv').config({ path: 'variables.env' });
+require('dotenv').config({ path: '.env' });
 const createServer = require('./createServer');
 const db = require('./db');
 
@@ -43,7 +43,7 @@ server.start(
       origin: process.env.FRONTEND_URL,
     },
   },
-  (deets) => {
+  deets => {
     console.log(`Server is now running on http://localhost:${deets.port}`);
   },
 );
