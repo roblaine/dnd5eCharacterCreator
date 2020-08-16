@@ -1,3 +1,15 @@
+type AggregateFeature {
+  count: Int!
+}
+
+type AggregateFolk {
+  count: Int!
+}
+
+type AggregateLanguage {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -6,20 +18,637 @@ type BatchPayload {
   count: Long!
 }
 
+type Feature {
+  id: ID!
+  name: String!
+  description: String!
+  class: Boolean!
+  race: Boolean!
+}
+
+type FeatureConnection {
+  pageInfo: PageInfo!
+  edges: [FeatureEdge]!
+  aggregate: AggregateFeature!
+}
+
+input FeatureCreateInput {
+  id: ID
+  name: String!
+  description: String!
+  class: Boolean
+  race: Boolean
+}
+
+input FeatureCreateManyInput {
+  create: [FeatureCreateInput!]
+  connect: [FeatureWhereUniqueInput!]
+}
+
+type FeatureEdge {
+  node: Feature!
+  cursor: String!
+}
+
+enum FeatureOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  class_ASC
+  class_DESC
+  race_ASC
+  race_DESC
+}
+
+type FeaturePreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  class: Boolean!
+  race: Boolean!
+}
+
+input FeatureScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  class: Boolean
+  class_not: Boolean
+  race: Boolean
+  race_not: Boolean
+  AND: [FeatureScalarWhereInput!]
+  OR: [FeatureScalarWhereInput!]
+  NOT: [FeatureScalarWhereInput!]
+}
+
+type FeatureSubscriptionPayload {
+  mutation: MutationType!
+  node: Feature
+  updatedFields: [String!]
+  previousValues: FeaturePreviousValues
+}
+
+input FeatureSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: FeatureWhereInput
+  AND: [FeatureSubscriptionWhereInput!]
+  OR: [FeatureSubscriptionWhereInput!]
+  NOT: [FeatureSubscriptionWhereInput!]
+}
+
+input FeatureUpdateDataInput {
+  name: String
+  description: String
+  class: Boolean
+  race: Boolean
+}
+
+input FeatureUpdateInput {
+  name: String
+  description: String
+  class: Boolean
+  race: Boolean
+}
+
+input FeatureUpdateManyDataInput {
+  name: String
+  description: String
+  class: Boolean
+  race: Boolean
+}
+
+input FeatureUpdateManyInput {
+  create: [FeatureCreateInput!]
+  update: [FeatureUpdateWithWhereUniqueNestedInput!]
+  upsert: [FeatureUpsertWithWhereUniqueNestedInput!]
+  delete: [FeatureWhereUniqueInput!]
+  connect: [FeatureWhereUniqueInput!]
+  set: [FeatureWhereUniqueInput!]
+  disconnect: [FeatureWhereUniqueInput!]
+  deleteMany: [FeatureScalarWhereInput!]
+  updateMany: [FeatureUpdateManyWithWhereNestedInput!]
+}
+
+input FeatureUpdateManyMutationInput {
+  name: String
+  description: String
+  class: Boolean
+  race: Boolean
+}
+
+input FeatureUpdateManyWithWhereNestedInput {
+  where: FeatureScalarWhereInput!
+  data: FeatureUpdateManyDataInput!
+}
+
+input FeatureUpdateWithWhereUniqueNestedInput {
+  where: FeatureWhereUniqueInput!
+  data: FeatureUpdateDataInput!
+}
+
+input FeatureUpsertWithWhereUniqueNestedInput {
+  where: FeatureWhereUniqueInput!
+  update: FeatureUpdateDataInput!
+  create: FeatureCreateInput!
+}
+
+input FeatureWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  class: Boolean
+  class_not: Boolean
+  race: Boolean
+  race_not: Boolean
+  AND: [FeatureWhereInput!]
+  OR: [FeatureWhereInput!]
+  NOT: [FeatureWhereInput!]
+}
+
+input FeatureWhereUniqueInput {
+  id: ID
+}
+
+type Folk {
+  id: ID!
+  name: String!
+  strMod: Int!
+  conMod: Int!
+  dexMod: Int!
+  chaMod: Int!
+  intMod: Int!
+  wisMod: Int!
+  languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language!]
+  features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature!]
+}
+
+type FolkConnection {
+  pageInfo: PageInfo!
+  edges: [FolkEdge]!
+  aggregate: AggregateFolk!
+}
+
+input FolkCreateInput {
+  id: ID
+  name: String!
+  strMod: Int!
+  conMod: Int!
+  dexMod: Int!
+  chaMod: Int!
+  intMod: Int!
+  wisMod: Int!
+  languages: LanguageCreateManyInput
+  features: FeatureCreateManyInput
+}
+
+type FolkEdge {
+  node: Folk!
+  cursor: String!
+}
+
+enum FolkOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  strMod_ASC
+  strMod_DESC
+  conMod_ASC
+  conMod_DESC
+  dexMod_ASC
+  dexMod_DESC
+  chaMod_ASC
+  chaMod_DESC
+  intMod_ASC
+  intMod_DESC
+  wisMod_ASC
+  wisMod_DESC
+}
+
+type FolkPreviousValues {
+  id: ID!
+  name: String!
+  strMod: Int!
+  conMod: Int!
+  dexMod: Int!
+  chaMod: Int!
+  intMod: Int!
+  wisMod: Int!
+}
+
+type FolkSubscriptionPayload {
+  mutation: MutationType!
+  node: Folk
+  updatedFields: [String!]
+  previousValues: FolkPreviousValues
+}
+
+input FolkSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: FolkWhereInput
+  AND: [FolkSubscriptionWhereInput!]
+  OR: [FolkSubscriptionWhereInput!]
+  NOT: [FolkSubscriptionWhereInput!]
+}
+
+input FolkUpdateInput {
+  name: String
+  strMod: Int
+  conMod: Int
+  dexMod: Int
+  chaMod: Int
+  intMod: Int
+  wisMod: Int
+  languages: LanguageUpdateManyInput
+  features: FeatureUpdateManyInput
+}
+
+input FolkUpdateManyMutationInput {
+  name: String
+  strMod: Int
+  conMod: Int
+  dexMod: Int
+  chaMod: Int
+  intMod: Int
+  wisMod: Int
+}
+
+input FolkWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  strMod: Int
+  strMod_not: Int
+  strMod_in: [Int!]
+  strMod_not_in: [Int!]
+  strMod_lt: Int
+  strMod_lte: Int
+  strMod_gt: Int
+  strMod_gte: Int
+  conMod: Int
+  conMod_not: Int
+  conMod_in: [Int!]
+  conMod_not_in: [Int!]
+  conMod_lt: Int
+  conMod_lte: Int
+  conMod_gt: Int
+  conMod_gte: Int
+  dexMod: Int
+  dexMod_not: Int
+  dexMod_in: [Int!]
+  dexMod_not_in: [Int!]
+  dexMod_lt: Int
+  dexMod_lte: Int
+  dexMod_gt: Int
+  dexMod_gte: Int
+  chaMod: Int
+  chaMod_not: Int
+  chaMod_in: [Int!]
+  chaMod_not_in: [Int!]
+  chaMod_lt: Int
+  chaMod_lte: Int
+  chaMod_gt: Int
+  chaMod_gte: Int
+  intMod: Int
+  intMod_not: Int
+  intMod_in: [Int!]
+  intMod_not_in: [Int!]
+  intMod_lt: Int
+  intMod_lte: Int
+  intMod_gt: Int
+  intMod_gte: Int
+  wisMod: Int
+  wisMod_not: Int
+  wisMod_in: [Int!]
+  wisMod_not_in: [Int!]
+  wisMod_lt: Int
+  wisMod_lte: Int
+  wisMod_gt: Int
+  wisMod_gte: Int
+  languages_every: LanguageWhereInput
+  languages_some: LanguageWhereInput
+  languages_none: LanguageWhereInput
+  features_every: FeatureWhereInput
+  features_some: FeatureWhereInput
+  features_none: FeatureWhereInput
+  AND: [FolkWhereInput!]
+  OR: [FolkWhereInput!]
+  NOT: [FolkWhereInput!]
+}
+
+input FolkWhereUniqueInput {
+  id: ID
+}
+
+type Language {
+  id: ID!
+  name: String!
+}
+
+type LanguageConnection {
+  pageInfo: PageInfo!
+  edges: [LanguageEdge]!
+  aggregate: AggregateLanguage!
+}
+
+input LanguageCreateInput {
+  id: ID
+  name: String!
+}
+
+input LanguageCreateManyInput {
+  create: [LanguageCreateInput!]
+  connect: [LanguageWhereUniqueInput!]
+}
+
+type LanguageEdge {
+  node: Language!
+  cursor: String!
+}
+
+enum LanguageOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type LanguagePreviousValues {
+  id: ID!
+  name: String!
+}
+
+input LanguageScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [LanguageScalarWhereInput!]
+  OR: [LanguageScalarWhereInput!]
+  NOT: [LanguageScalarWhereInput!]
+}
+
+type LanguageSubscriptionPayload {
+  mutation: MutationType!
+  node: Language
+  updatedFields: [String!]
+  previousValues: LanguagePreviousValues
+}
+
+input LanguageSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: LanguageWhereInput
+  AND: [LanguageSubscriptionWhereInput!]
+  OR: [LanguageSubscriptionWhereInput!]
+  NOT: [LanguageSubscriptionWhereInput!]
+}
+
+input LanguageUpdateDataInput {
+  name: String
+}
+
+input LanguageUpdateInput {
+  name: String
+}
+
+input LanguageUpdateManyDataInput {
+  name: String
+}
+
+input LanguageUpdateManyInput {
+  create: [LanguageCreateInput!]
+  update: [LanguageUpdateWithWhereUniqueNestedInput!]
+  upsert: [LanguageUpsertWithWhereUniqueNestedInput!]
+  delete: [LanguageWhereUniqueInput!]
+  connect: [LanguageWhereUniqueInput!]
+  set: [LanguageWhereUniqueInput!]
+  disconnect: [LanguageWhereUniqueInput!]
+  deleteMany: [LanguageScalarWhereInput!]
+  updateMany: [LanguageUpdateManyWithWhereNestedInput!]
+}
+
+input LanguageUpdateManyMutationInput {
+  name: String
+}
+
+input LanguageUpdateManyWithWhereNestedInput {
+  where: LanguageScalarWhereInput!
+  data: LanguageUpdateManyDataInput!
+}
+
+input LanguageUpdateWithWhereUniqueNestedInput {
+  where: LanguageWhereUniqueInput!
+  data: LanguageUpdateDataInput!
+}
+
+input LanguageUpsertWithWhereUniqueNestedInput {
+  where: LanguageWhereUniqueInput!
+  update: LanguageUpdateDataInput!
+  create: LanguageCreateInput!
+}
+
+input LanguageWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [LanguageWhereInput!]
+  OR: [LanguageWhereInput!]
+  NOT: [LanguageWhereInput!]
+}
+
+input LanguageWhereUniqueInput {
+  id: ID
+}
+
 scalar Long
 
 type Mutation {
+  createFeature(data: FeatureCreateInput!): Feature!
+  updateFeature(data: FeatureUpdateInput!, where: FeatureWhereUniqueInput!): Feature
+  updateManyFeatures(data: FeatureUpdateManyMutationInput!, where: FeatureWhereInput): BatchPayload!
+  upsertFeature(where: FeatureWhereUniqueInput!, create: FeatureCreateInput!, update: FeatureUpdateInput!): Feature!
+  deleteFeature(where: FeatureWhereUniqueInput!): Feature
+  deleteManyFeatures(where: FeatureWhereInput): BatchPayload!
+  createFolk(data: FolkCreateInput!): Folk!
+  updateFolk(data: FolkUpdateInput!, where: FolkWhereUniqueInput!): Folk
+  updateManyFolks(data: FolkUpdateManyMutationInput!, where: FolkWhereInput): BatchPayload!
+  upsertFolk(where: FolkWhereUniqueInput!, create: FolkCreateInput!, update: FolkUpdateInput!): Folk!
+  deleteFolk(where: FolkWhereUniqueInput!): Folk
+  deleteManyFolks(where: FolkWhereInput): BatchPayload!
+  createLanguage(data: LanguageCreateInput!): Language!
+  updateLanguage(data: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language
+  updateManyLanguages(data: LanguageUpdateManyMutationInput!, where: LanguageWhereInput): BatchPayload!
+  upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
+  deleteLanguage(where: LanguageWhereUniqueInput!): Language
+  deleteManyLanguages(where: LanguageWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateManyUsers(
-    data: UserUpdateManyMutationInput!
-    where: UserWhereInput
-  ): BatchPayload!
-  upsertUser(
-    where: UserWhereUniqueInput!
-    create: UserCreateInput!
-    update: UserUpdateInput!
-  ): User!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
@@ -42,35 +671,33 @@ type PageInfo {
 }
 
 type Query {
+  feature(where: FeatureWhereUniqueInput!): Feature
+  features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature]!
+  featuresConnection(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FeatureConnection!
+  folk(where: FolkWhereUniqueInput!): Folk
+  folks(where: FolkWhereInput, orderBy: FolkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Folk]!
+  folksConnection(where: FolkWhereInput, orderBy: FolkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FolkConnection!
+  language(where: LanguageWhereUniqueInput!): Language
+  languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language]!
+  languagesConnection(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LanguageConnection!
   user(where: UserWhereUniqueInput!): User
-  users(
-    where: UserWhereInput
-    orderBy: UserOrderByInput
-    skip: Int
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): [User]!
-  usersConnection(
-    where: UserWhereInput
-    orderBy: UserOrderByInput
-    skip: Int
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): UserConnection!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
 }
 
 type Subscription {
+  feature(where: FeatureSubscriptionWhereInput): FeatureSubscriptionPayload
+  folk(where: FolkSubscriptionWhereInput): FolkSubscriptionPayload
+  language(where: LanguageSubscriptionWhereInput): LanguageSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
 type User {
   id: ID!
   name: String!
+  email: String!
+  password: String!
 }
 
 type UserConnection {
@@ -82,6 +709,8 @@ type UserConnection {
 input UserCreateInput {
   id: ID
   name: String!
+  email: String!
+  password: String!
 }
 
 type UserEdge {
@@ -94,11 +723,17 @@ enum UserOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   name: String!
+  email: String!
+  password: String!
 }
 
 type UserSubscriptionPayload {
@@ -121,10 +756,14 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   name: String
+  email: String
+  password: String
 }
 
 input UserUpdateManyMutationInput {
   name: String
+  email: String
+  password: String
 }
 
 input UserWhereInput {
@@ -156,6 +795,34 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

@@ -1,0 +1,32 @@
+type User {
+  id: ID! @id @unique
+  name: String!
+  email: String!
+  password: String!
+}
+
+type Language {
+  id: ID! @id @unique
+  name: String!
+}
+
+type Feature {
+  id: ID! @id @unique
+  name: String!
+  description: String!
+  class: Boolean! @default(value: false)
+  race: Boolean! @default(value: false)
+}
+
+type Folk {
+  id: ID! @id @unique
+  name: String!
+  strMod: Int!
+  conMod: Int!
+  dexMod: Int!
+  chaMod: Int!
+  intMod: Int!
+  wisMod: Int!
+  languages: [Language!]!
+  features: [Feature]!
+}

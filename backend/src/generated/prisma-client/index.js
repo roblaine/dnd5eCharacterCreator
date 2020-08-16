@@ -7,11 +7,23 @@ var models = [
   {
     name: "User",
     embedded: false
+  },
+  {
+    name: "Language",
+    embedded: false
+  },
+  {
+    name: "Feature",
+    embedded: false
+  },
+  {
+    name: "Folk",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `http://localhost:4466/dndtracker/dev`
+  endpoint: `${process.env["PRISMA_ENDPOINT"]}`
 });
 exports.prisma = new exports.Prisma();

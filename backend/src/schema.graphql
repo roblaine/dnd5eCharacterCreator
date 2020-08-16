@@ -2,16 +2,29 @@
 
 type User {
   id: ID!
-  name: String!
-  email: String!
+  name: String
+  email: String
 }
 
 type Mutation {
   signup(email: String!, password: String!, name: String!): User!
+  addFolk(
+    name: String!
+    strMod: Int!
+    conMod: Int!
+    dexMod: Int!
+    chaMod: Int!
+    intMod: Int!
+    wisMod: Int!
+    languages: [Language!]!
+    features: [Feature]!
+  ): Folk!
 }
 
 type Query {
   user: User
   users: [User]
   me(name: String!): User
+  folk: Folk
+  folks: [Folk]!
 }
