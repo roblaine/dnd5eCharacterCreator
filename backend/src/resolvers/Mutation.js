@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { language } = require('./Query');
 
 const Mutations = {
   // async signup(parent, args, ctx, info) {
@@ -55,6 +56,21 @@ const Mutations = {
     );
 
     return folk;
+  },
+
+  async addLanguage(parent, args, ctx, info) {
+    console.log(args);
+
+    const language = await ctx.db.mutation.createLanguage(
+      {
+        data: {
+          ...args,
+        },
+      },
+      info,
+    );
+
+    return language;
   },
 };
 

@@ -5,6 +5,8 @@ const Query = {
   users: forwardTo('db'),
   folk: forwardTo('db'),
   folks: forwardTo('db'),
+  language: forwardTo('db'),
+  languages: forwardTo('db'),
 
   async me(parent, args, ctx, info) {
     // Return a promise containing the user that is currently logged in
