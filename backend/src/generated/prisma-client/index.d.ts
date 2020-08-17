@@ -382,6 +382,8 @@ export type StatBlockOrderByInput =
   | "wisMod_ASC"
   | "wisMod_DESC";
 
+export type Permission = "USER" | "ADMIN";
+
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -1253,18 +1255,29 @@ export interface UserCreateInput {
   name: String;
   email: String;
   password: String;
+  permissions?: Maybe<UserCreatepermissionsInput>;
+}
+
+export interface UserCreatepermissionsInput {
+  set?: Maybe<Permission[] | Permission>;
 }
 
 export interface UserUpdateInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  permissions?: Maybe<UserUpdatepermissionsInput>;
+}
+
+export interface UserUpdatepermissionsInput {
+  set?: Maybe<Permission[] | Permission>;
 }
 
 export interface UserUpdateManyMutationInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  permissions?: Maybe<UserUpdatepermissionsInput>;
 }
 
 export interface CharacterSubscriptionWhereInput {
@@ -1997,6 +2010,7 @@ export interface User {
   name: String;
   email: String;
   password: String;
+  permissions: Permission[];
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -2004,6 +2018,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  permissions: () => Promise<Permission[]>;
 }
 
 export interface UserSubscription
@@ -2013,6 +2028,7 @@ export interface UserSubscription
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  permissions: () => Promise<AsyncIterator<Permission[]>>;
 }
 
 export interface UserNullablePromise
@@ -2022,6 +2038,7 @@ export interface UserNullablePromise
   name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  permissions: () => Promise<Permission[]>;
 }
 
 export interface UserConnection {
@@ -2439,6 +2456,7 @@ export interface UserPreviousValues {
   name: String;
   email: String;
   password: String;
+  permissions: Permission[];
 }
 
 export interface UserPreviousValuesPromise
@@ -2448,6 +2466,7 @@ export interface UserPreviousValuesPromise
   name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  permissions: () => Promise<Permission[]>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -2457,6 +2476,7 @@ export interface UserPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  permissions: () => Promise<AsyncIterator<Permission[]>>;
 }
 
 /*
@@ -2487,6 +2507,10 @@ export type Long = string;
  */
 
 export const models: Model[] = [
+  {
+    name: "Permission",
+    embedded: false
+  },
   {
     name: "User",
     embedded: false

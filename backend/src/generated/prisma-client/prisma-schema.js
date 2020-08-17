@@ -919,6 +919,11 @@ type PageInfo {
   endCursor: String
 }
 
+enum Permission {
+  USER
+  ADMIN
+}
+
 type Query {
   character(where: CharacterWhereUniqueInput!): Character
   characters(where: CharacterWhereInput, orderBy: CharacterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Character]!
@@ -1247,6 +1252,7 @@ type User {
   name: String!
   email: String!
   password: String!
+  permissions: [Permission!]!
 }
 
 type UserConnection {
@@ -1260,6 +1266,11 @@ input UserCreateInput {
   name: String!
   email: String!
   password: String!
+  permissions: UserCreatepermissionsInput
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
 }
 
 type UserEdge {
@@ -1283,6 +1294,7 @@ type UserPreviousValues {
   name: String!
   email: String!
   password: String!
+  permissions: [Permission!]!
 }
 
 type UserSubscriptionPayload {
@@ -1307,12 +1319,18 @@ input UserUpdateInput {
   name: String
   email: String
   password: String
+  permissions: UserUpdatepermissionsInput
 }
 
 input UserUpdateManyMutationInput {
   name: String
   email: String
   password: String
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
 }
 
 input UserWhereInput {

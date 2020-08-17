@@ -1,7 +1,5 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { language } = require('./Query');
-const { argsToArgsConfig } = require('graphql/type/definition');
 
 const Mutations = {
   async signup(parent, args, ctx, info) {
@@ -10,8 +8,13 @@ const Mutations = {
     args.email = args.email.toLowerCase();
     args.name = args.name.trim();
 
+    if (args.passwordConf != args.password) {
+      return null;
+    }
+
     const saltLength = 10;
     const password = await bcrypt.hash(args.password, saltLength);
+    const passwordConf = await bcrypt.hash(args.passwordConf, saltLength);
     var permissions = null;
 
     // If first user, set them as an admin
@@ -25,7 +28,8 @@ const Mutations = {
     const user = await ctx.db.mutation.createUser(
       {
         data: {
-          ...args,
+          name: args.name,
+          email: args.email,
           password,
           permissions,
         },

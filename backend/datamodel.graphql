@@ -1,8 +1,14 @@
+enum Permission {
+  USER
+  ADMIN
+}
+
 type User {
   id: ID! @id @unique
   name: String!
   email: String! @unique
   password: String!
+  permissions: [Permission!]! @scalarList(strategy: RELATION)
 }
 
 type Language {
