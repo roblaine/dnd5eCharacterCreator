@@ -10,12 +10,6 @@ type Language {
   name: String!
 }
 
-# Describes the type of the feature
-enum FeatureType {
-  CLASS
-  FOLKAL
-}
-
 type Feature {
   id: ID! @id @unique
   name: String!

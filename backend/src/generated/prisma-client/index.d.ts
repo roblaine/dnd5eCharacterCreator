@@ -2495,10 +2495,6 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "FeatureType",
-    embedded: false
-  },
-  {
     name: "Feature",
     embedded: false
   },

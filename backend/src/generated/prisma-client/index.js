@@ -13,10 +13,6 @@ var models = [
     embedded: false
   },
   {
-    name: "FeatureType",
-    embedded: false
-  },
-  {
     name: "Feature",
     embedded: false
   },
