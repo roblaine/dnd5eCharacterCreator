@@ -17,6 +17,11 @@ type Mutation {
     wisMod: Int!
   ): Folk!
   addLanguage(name: String!): Language!
+  addFeature(
+    name: String!
+    description: String!
+    classFeature: FeatureType!
+  ): Feature!
 }
 
 type Query {

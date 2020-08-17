@@ -10,12 +10,16 @@ type Language {
   name: String!
 }
 
+enum FeatureType {
+  CLASS
+  FOLKAL
+}
+
 type Feature {
   id: ID! @id @unique
   name: String!
   description: String!
-  class: Boolean! @default(value: false)
-  race: Boolean! @default(value: false)
+  comesFrom: FeatureType!
 }
 
 type Folk {

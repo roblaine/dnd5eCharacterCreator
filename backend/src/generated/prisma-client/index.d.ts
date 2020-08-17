@@ -218,6 +218,8 @@ export interface ClientConstructor<T> {
  * Types
  */
 
+export type FeatureType = "CLASS" | "FOLKAL";
+
 export type FeatureOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -225,10 +227,8 @@ export type FeatureOrderByInput =
   | "name_DESC"
   | "description_ASC"
   | "description_DESC"
-  | "class_ASC"
-  | "class_DESC"
-  | "race_ASC"
-  | "race_DESC";
+  | "comesFrom_ASC"
+  | "comesFrom_DESC";
 
 export type LanguageOrderByInput =
   | "id_ASC"
@@ -313,10 +313,10 @@ export interface FeatureWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  class?: Maybe<Boolean>;
-  class_not?: Maybe<Boolean>;
-  race?: Maybe<Boolean>;
-  race_not?: Maybe<Boolean>;
+  comesFrom?: Maybe<FeatureType>;
+  comesFrom_not?: Maybe<FeatureType>;
+  comesFrom_in?: Maybe<FeatureType[] | FeatureType>;
+  comesFrom_not_in?: Maybe<FeatureType[] | FeatureType>;
   AND?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
   OR?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
   NOT?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
@@ -522,22 +522,19 @@ export interface FeatureCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   description: String;
-  class?: Maybe<Boolean>;
-  race?: Maybe<Boolean>;
+  comesFrom: FeatureType;
 }
 
 export interface FeatureUpdateInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
-  class?: Maybe<Boolean>;
-  race?: Maybe<Boolean>;
+  comesFrom?: Maybe<FeatureType>;
 }
 
 export interface FeatureUpdateManyMutationInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
-  class?: Maybe<Boolean>;
-  race?: Maybe<Boolean>;
+  comesFrom?: Maybe<FeatureType>;
 }
 
 export interface FolkCreateInput {
@@ -688,8 +685,7 @@ export interface FeatureUpdateWithWhereUniqueNestedInput {
 export interface FeatureUpdateDataInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
-  class?: Maybe<Boolean>;
-  race?: Maybe<Boolean>;
+  comesFrom?: Maybe<FeatureType>;
 }
 
 export interface FeatureUpsertWithWhereUniqueNestedInput {
@@ -741,10 +737,10 @@ export interface FeatureScalarWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  class?: Maybe<Boolean>;
-  class_not?: Maybe<Boolean>;
-  race?: Maybe<Boolean>;
-  race_not?: Maybe<Boolean>;
+  comesFrom?: Maybe<FeatureType>;
+  comesFrom_not?: Maybe<FeatureType>;
+  comesFrom_in?: Maybe<FeatureType[] | FeatureType>;
+  comesFrom_not_in?: Maybe<FeatureType[] | FeatureType>;
   AND?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
   OR?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
   NOT?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
@@ -758,8 +754,7 @@ export interface FeatureUpdateManyWithWhereNestedInput {
 export interface FeatureUpdateManyDataInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
-  class?: Maybe<Boolean>;
-  race?: Maybe<Boolean>;
+  comesFrom?: Maybe<FeatureType>;
 }
 
 export interface FolkUpdateManyMutationInput {
@@ -855,16 +850,14 @@ export interface Feature {
   id: ID_Output;
   name: String;
   description: String;
-  class: Boolean;
-  race: Boolean;
+  comesFrom: FeatureType;
 }
 
 export interface FeaturePromise extends Promise<Feature>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   description: () => Promise<String>;
-  class: () => Promise<Boolean>;
-  race: () => Promise<Boolean>;
+  comesFrom: () => Promise<FeatureType>;
 }
 
 export interface FeatureSubscription
@@ -873,8 +866,7 @@ export interface FeatureSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
-  class: () => Promise<AsyncIterator<Boolean>>;
-  race: () => Promise<AsyncIterator<Boolean>>;
+  comesFrom: () => Promise<AsyncIterator<FeatureType>>;
 }
 
 export interface FeatureNullablePromise
@@ -883,8 +875,7 @@ export interface FeatureNullablePromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   description: () => Promise<String>;
-  class: () => Promise<Boolean>;
-  race: () => Promise<Boolean>;
+  comesFrom: () => Promise<FeatureType>;
 }
 
 export interface FeatureConnection {
@@ -1331,8 +1322,7 @@ export interface FeaturePreviousValues {
   id: ID_Output;
   name: String;
   description: String;
-  class: Boolean;
-  race: Boolean;
+  comesFrom: FeatureType;
 }
 
 export interface FeaturePreviousValuesPromise
@@ -1341,8 +1331,7 @@ export interface FeaturePreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   description: () => Promise<String>;
-  class: () => Promise<Boolean>;
-  race: () => Promise<Boolean>;
+  comesFrom: () => Promise<FeatureType>;
 }
 
 export interface FeaturePreviousValuesSubscription
@@ -1351,8 +1340,7 @@ export interface FeaturePreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
-  class: () => Promise<AsyncIterator<Boolean>>;
-  race: () => Promise<AsyncIterator<Boolean>>;
+  comesFrom: () => Promise<AsyncIterator<FeatureType>>;
 }
 
 export interface FolkSubscriptionPayload {
@@ -1523,14 +1511,14 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
 export type Int = number;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 export type Long = string;
 
@@ -1545,6 +1533,10 @@ export const models: Model[] = [
   },
   {
     name: "Language",
+    embedded: false
+  },
+  {
+    name: "FeatureType",
     embedded: false
   },
   {

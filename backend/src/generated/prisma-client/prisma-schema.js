@@ -27,8 +27,7 @@ type Feature {
   id: ID!
   name: String!
   description: String!
-  class: Boolean!
-  race: Boolean!
+  comesFrom: FeatureType!
 }
 
 type FeatureConnection {
@@ -41,8 +40,7 @@ input FeatureCreateInput {
   id: ID
   name: String!
   description: String!
-  class: Boolean
-  race: Boolean
+  comesFrom: FeatureType!
 }
 
 input FeatureCreateManyInput {
@@ -62,18 +60,15 @@ enum FeatureOrderByInput {
   name_DESC
   description_ASC
   description_DESC
-  class_ASC
-  class_DESC
-  race_ASC
-  race_DESC
+  comesFrom_ASC
+  comesFrom_DESC
 }
 
 type FeaturePreviousValues {
   id: ID!
   name: String!
   description: String!
-  class: Boolean!
-  race: Boolean!
+  comesFrom: FeatureType!
 }
 
 input FeatureScalarWhereInput {
@@ -119,10 +114,10 @@ input FeatureScalarWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  class: Boolean
-  class_not: Boolean
-  race: Boolean
-  race_not: Boolean
+  comesFrom: FeatureType
+  comesFrom_not: FeatureType
+  comesFrom_in: [FeatureType!]
+  comesFrom_not_in: [FeatureType!]
   AND: [FeatureScalarWhereInput!]
   OR: [FeatureScalarWhereInput!]
   NOT: [FeatureScalarWhereInput!]
@@ -146,25 +141,27 @@ input FeatureSubscriptionWhereInput {
   NOT: [FeatureSubscriptionWhereInput!]
 }
 
+enum FeatureType {
+  CLASS
+  FOLKAL
+}
+
 input FeatureUpdateDataInput {
   name: String
   description: String
-  class: Boolean
-  race: Boolean
+  comesFrom: FeatureType
 }
 
 input FeatureUpdateInput {
   name: String
   description: String
-  class: Boolean
-  race: Boolean
+  comesFrom: FeatureType
 }
 
 input FeatureUpdateManyDataInput {
   name: String
   description: String
-  class: Boolean
-  race: Boolean
+  comesFrom: FeatureType
 }
 
 input FeatureUpdateManyInput {
@@ -182,8 +179,7 @@ input FeatureUpdateManyInput {
 input FeatureUpdateManyMutationInput {
   name: String
   description: String
-  class: Boolean
-  race: Boolean
+  comesFrom: FeatureType
 }
 
 input FeatureUpdateManyWithWhereNestedInput {
@@ -245,10 +241,10 @@ input FeatureWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  class: Boolean
-  class_not: Boolean
-  race: Boolean
-  race_not: Boolean
+  comesFrom: FeatureType
+  comesFrom_not: FeatureType
+  comesFrom_in: [FeatureType!]
+  comesFrom_not_in: [FeatureType!]
   AND: [FeatureWhereInput!]
   OR: [FeatureWhereInput!]
   NOT: [FeatureWhereInput!]
