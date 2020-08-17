@@ -7,6 +7,12 @@ type User {
 }
 
 type Mutation {
+  signup(
+    name: String!
+    email: String!
+    password: String!
+    passwordConf: String!
+  ): User
   addFolk(
     name: String!
     strMod: Int!
@@ -17,11 +23,7 @@ type Mutation {
     wisMod: Int!
   ): Folk!
   addLanguage(name: String!): Language!
-  addFeature(
-    name: String!
-    description: String!
-    classFeature: FeatureType!
-  ): Feature!
+  addFeature(name: String!, description: String!, effects: [String!]!): Feature!
 }
 
 type Query {

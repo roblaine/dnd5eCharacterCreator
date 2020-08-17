@@ -9,6 +9,8 @@
     "playground": "graphql playground --dotenv .env",
     "test": "jest",
     "deploy": "prisma deploy --env-file .env",
+    "seed": "prisma seed --env-file .env",
+    "reset": "prisma reset --env-file .env",
     "dev": "npm-run-all --parallel debug playground"
   },
   "dependencies": {
