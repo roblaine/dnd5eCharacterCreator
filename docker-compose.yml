@@ -3,6 +3,8 @@ services:
   prisma:
     image: prismagraphql/prisma:1.34
     restart: always
+    depends_on:
+      - db
     ports:
       - '4466:4466'
     environment:
