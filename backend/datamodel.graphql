@@ -10,6 +10,7 @@ type Language {
   name: String!
 }
 
+# Describes the type of the feature
 enum FeatureType {
   CLASS
   FOLKAL
@@ -19,7 +20,9 @@ type Feature {
   id: ID! @id @unique
   name: String!
   description: String!
-  comesFrom: FeatureType!
+  effects: [String] @scalarList(strategy: RELATION)
+  fromFolk: Folk @relation(name: "FolkFeatures")
+  fromClass: Class @relation(name: "ClassFeatures")
 }
 
 type Folk {
@@ -31,6 +34,31 @@ type Folk {
   chaMod: Int!
   intMod: Int!
   wisMod: Int!
-  languages: [Language!]!
-  features: [Feature]!
+  languages: [Language!]! @relation(name: "Languages")
+  features: [Feature]! @relation(name: "Features")
+}
+
+type StatBlock {
+  id: ID! @id @unique
+  str: Int!
+  con: Int!
+  dex: Int!
+  cha: Int!
+  int: Int!
+  wis: Int!
+  strMod: Int!
+  conMod: Int!
+  dexMod: Int!
+  chaMod: Int!
+  intMod: Int!
+  wisMod: Int!
+}
+
+type Class {
+  id: ID! @id @unique
+  stats: StatBlock!
+}
+
+type Character {
+  id: ID! @id @unique
 }

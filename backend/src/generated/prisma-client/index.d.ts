@@ -16,9 +16,12 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
+  character: (where?: CharacterWhereInput) => Promise<boolean>;
+  class: (where?: ClassWhereInput) => Promise<boolean>;
   feature: (where?: FeatureWhereInput) => Promise<boolean>;
   folk: (where?: FolkWhereInput) => Promise<boolean>;
   language: (where?: LanguageWhereInput) => Promise<boolean>;
+  statBlock: (where?: StatBlockWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -41,6 +44,44 @@ export interface Prisma {
    * Queries
    */
 
+  character: (where: CharacterWhereUniqueInput) => CharacterNullablePromise;
+  characters: (args?: {
+    where?: CharacterWhereInput;
+    orderBy?: CharacterOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Character>;
+  charactersConnection: (args?: {
+    where?: CharacterWhereInput;
+    orderBy?: CharacterOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => CharacterConnectionPromise;
+  class: (where: ClassWhereUniqueInput) => ClassNullablePromise;
+  classes: (args?: {
+    where?: ClassWhereInput;
+    orderBy?: ClassOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Class>;
+  classesConnection: (args?: {
+    where?: ClassWhereInput;
+    orderBy?: ClassOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ClassConnectionPromise;
   feature: (where: FeatureWhereUniqueInput) => FeatureNullablePromise;
   features: (args?: {
     where?: FeatureWhereInput;
@@ -98,6 +139,25 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => LanguageConnectionPromise;
+  statBlock: (where: StatBlockWhereUniqueInput) => StatBlockNullablePromise;
+  statBlocks: (args?: {
+    where?: StatBlockWhereInput;
+    orderBy?: StatBlockOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<StatBlock>;
+  statBlocksConnection: (args?: {
+    where?: StatBlockWhereInput;
+    orderBy?: StatBlockOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => StatBlockConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserNullablePromise;
   users: (args?: {
     where?: UserWhereInput;
@@ -123,6 +183,21 @@ export interface Prisma {
    * Mutations
    */
 
+  createCharacter: (data: CharacterCreateInput) => CharacterPromise;
+  deleteCharacter: (where: CharacterWhereUniqueInput) => CharacterPromise;
+  deleteManyCharacters: (where?: CharacterWhereInput) => BatchPayloadPromise;
+  createClass: (data: ClassCreateInput) => ClassPromise;
+  updateClass: (args: {
+    data: ClassUpdateInput;
+    where: ClassWhereUniqueInput;
+  }) => ClassPromise;
+  upsertClass: (args: {
+    where: ClassWhereUniqueInput;
+    create: ClassCreateInput;
+    update: ClassUpdateInput;
+  }) => ClassPromise;
+  deleteClass: (where: ClassWhereUniqueInput) => ClassPromise;
+  deleteManyClasses: (where?: ClassWhereInput) => BatchPayloadPromise;
   createFeature: (data: FeatureCreateInput) => FeaturePromise;
   updateFeature: (args: {
     data: FeatureUpdateInput;
@@ -171,6 +246,22 @@ export interface Prisma {
   }) => LanguagePromise;
   deleteLanguage: (where: LanguageWhereUniqueInput) => LanguagePromise;
   deleteManyLanguages: (where?: LanguageWhereInput) => BatchPayloadPromise;
+  createStatBlock: (data: StatBlockCreateInput) => StatBlockPromise;
+  updateStatBlock: (args: {
+    data: StatBlockUpdateInput;
+    where: StatBlockWhereUniqueInput;
+  }) => StatBlockPromise;
+  updateManyStatBlocks: (args: {
+    data: StatBlockUpdateManyMutationInput;
+    where?: StatBlockWhereInput;
+  }) => BatchPayloadPromise;
+  upsertStatBlock: (args: {
+    where: StatBlockWhereUniqueInput;
+    create: StatBlockCreateInput;
+    update: StatBlockUpdateInput;
+  }) => StatBlockPromise;
+  deleteStatBlock: (where: StatBlockWhereUniqueInput) => StatBlockPromise;
+  deleteManyStatBlocks: (where?: StatBlockWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (args: {
     data: UserUpdateInput;
@@ -196,6 +287,12 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  character: (
+    where?: CharacterSubscriptionWhereInput
+  ) => CharacterSubscriptionPayloadSubscription;
+  class: (
+    where?: ClassSubscriptionWhereInput
+  ) => ClassSubscriptionPayloadSubscription;
   feature: (
     where?: FeatureSubscriptionWhereInput
   ) => FeatureSubscriptionPayloadSubscription;
@@ -205,6 +302,9 @@ export interface Subscription {
   language: (
     where?: LanguageSubscriptionWhereInput
   ) => LanguageSubscriptionPayloadSubscription;
+  statBlock: (
+    where?: StatBlockSubscriptionWhereInput
+  ) => StatBlockSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -218,17 +318,9 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type FeatureType = "CLASS" | "FOLKAL";
+export type CharacterOrderByInput = "id_ASC" | "id_DESC";
 
-export type FeatureOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "description_ASC"
-  | "description_DESC"
-  | "comesFrom_ASC"
-  | "comesFrom_DESC";
+export type ClassOrderByInput = "id_ASC" | "id_DESC";
 
 export type LanguageOrderByInput =
   | "id_ASC"
@@ -236,11 +328,47 @@ export type LanguageOrderByInput =
   | "name_ASC"
   | "name_DESC";
 
+export type FeatureOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "description_ASC"
+  | "description_DESC";
+
 export type FolkOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "strMod_ASC"
+  | "strMod_DESC"
+  | "conMod_ASC"
+  | "conMod_DESC"
+  | "dexMod_ASC"
+  | "dexMod_DESC"
+  | "chaMod_ASC"
+  | "chaMod_DESC"
+  | "intMod_ASC"
+  | "intMod_DESC"
+  | "wisMod_ASC"
+  | "wisMod_DESC";
+
+export type StatBlockOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "str_ASC"
+  | "str_DESC"
+  | "con_ASC"
+  | "con_DESC"
+  | "dex_ASC"
+  | "dex_DESC"
+  | "cha_ASC"
+  | "cha_DESC"
+  | "int_ASC"
+  | "int_DESC"
+  | "wis_ASC"
+  | "wis_DESC"
   | "strMod_ASC"
   | "strMod_DESC"
   | "conMod_ASC"
@@ -266,9 +394,208 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
+export type CharacterWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface CharacterWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  AND?: Maybe<CharacterWhereInput[] | CharacterWhereInput>;
+  OR?: Maybe<CharacterWhereInput[] | CharacterWhereInput>;
+  NOT?: Maybe<CharacterWhereInput[] | CharacterWhereInput>;
+}
+
+export type ClassWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ClassWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  stats?: Maybe<StatBlockWhereInput>;
+  AND?: Maybe<ClassWhereInput[] | ClassWhereInput>;
+  OR?: Maybe<ClassWhereInput[] | ClassWhereInput>;
+  NOT?: Maybe<ClassWhereInput[] | ClassWhereInput>;
+}
+
+export interface StatBlockWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  str?: Maybe<Int>;
+  str_not?: Maybe<Int>;
+  str_in?: Maybe<Int[] | Int>;
+  str_not_in?: Maybe<Int[] | Int>;
+  str_lt?: Maybe<Int>;
+  str_lte?: Maybe<Int>;
+  str_gt?: Maybe<Int>;
+  str_gte?: Maybe<Int>;
+  con?: Maybe<Int>;
+  con_not?: Maybe<Int>;
+  con_in?: Maybe<Int[] | Int>;
+  con_not_in?: Maybe<Int[] | Int>;
+  con_lt?: Maybe<Int>;
+  con_lte?: Maybe<Int>;
+  con_gt?: Maybe<Int>;
+  con_gte?: Maybe<Int>;
+  dex?: Maybe<Int>;
+  dex_not?: Maybe<Int>;
+  dex_in?: Maybe<Int[] | Int>;
+  dex_not_in?: Maybe<Int[] | Int>;
+  dex_lt?: Maybe<Int>;
+  dex_lte?: Maybe<Int>;
+  dex_gt?: Maybe<Int>;
+  dex_gte?: Maybe<Int>;
+  cha?: Maybe<Int>;
+  cha_not?: Maybe<Int>;
+  cha_in?: Maybe<Int[] | Int>;
+  cha_not_in?: Maybe<Int[] | Int>;
+  cha_lt?: Maybe<Int>;
+  cha_lte?: Maybe<Int>;
+  cha_gt?: Maybe<Int>;
+  cha_gte?: Maybe<Int>;
+  int?: Maybe<Int>;
+  int_not?: Maybe<Int>;
+  int_in?: Maybe<Int[] | Int>;
+  int_not_in?: Maybe<Int[] | Int>;
+  int_lt?: Maybe<Int>;
+  int_lte?: Maybe<Int>;
+  int_gt?: Maybe<Int>;
+  int_gte?: Maybe<Int>;
+  wis?: Maybe<Int>;
+  wis_not?: Maybe<Int>;
+  wis_in?: Maybe<Int[] | Int>;
+  wis_not_in?: Maybe<Int[] | Int>;
+  wis_lt?: Maybe<Int>;
+  wis_lte?: Maybe<Int>;
+  wis_gt?: Maybe<Int>;
+  wis_gte?: Maybe<Int>;
+  strMod?: Maybe<Int>;
+  strMod_not?: Maybe<Int>;
+  strMod_in?: Maybe<Int[] | Int>;
+  strMod_not_in?: Maybe<Int[] | Int>;
+  strMod_lt?: Maybe<Int>;
+  strMod_lte?: Maybe<Int>;
+  strMod_gt?: Maybe<Int>;
+  strMod_gte?: Maybe<Int>;
+  conMod?: Maybe<Int>;
+  conMod_not?: Maybe<Int>;
+  conMod_in?: Maybe<Int[] | Int>;
+  conMod_not_in?: Maybe<Int[] | Int>;
+  conMod_lt?: Maybe<Int>;
+  conMod_lte?: Maybe<Int>;
+  conMod_gt?: Maybe<Int>;
+  conMod_gte?: Maybe<Int>;
+  dexMod?: Maybe<Int>;
+  dexMod_not?: Maybe<Int>;
+  dexMod_in?: Maybe<Int[] | Int>;
+  dexMod_not_in?: Maybe<Int[] | Int>;
+  dexMod_lt?: Maybe<Int>;
+  dexMod_lte?: Maybe<Int>;
+  dexMod_gt?: Maybe<Int>;
+  dexMod_gte?: Maybe<Int>;
+  chaMod?: Maybe<Int>;
+  chaMod_not?: Maybe<Int>;
+  chaMod_in?: Maybe<Int[] | Int>;
+  chaMod_not_in?: Maybe<Int[] | Int>;
+  chaMod_lt?: Maybe<Int>;
+  chaMod_lte?: Maybe<Int>;
+  chaMod_gt?: Maybe<Int>;
+  chaMod_gte?: Maybe<Int>;
+  intMod?: Maybe<Int>;
+  intMod_not?: Maybe<Int>;
+  intMod_in?: Maybe<Int[] | Int>;
+  intMod_not_in?: Maybe<Int[] | Int>;
+  intMod_lt?: Maybe<Int>;
+  intMod_lte?: Maybe<Int>;
+  intMod_gt?: Maybe<Int>;
+  intMod_gte?: Maybe<Int>;
+  wisMod?: Maybe<Int>;
+  wisMod_not?: Maybe<Int>;
+  wisMod_in?: Maybe<Int[] | Int>;
+  wisMod_not_in?: Maybe<Int[] | Int>;
+  wisMod_lt?: Maybe<Int>;
+  wisMod_lte?: Maybe<Int>;
+  wisMod_gt?: Maybe<Int>;
+  wisMod_gte?: Maybe<Int>;
+  AND?: Maybe<StatBlockWhereInput[] | StatBlockWhereInput>;
+  OR?: Maybe<StatBlockWhereInput[] | StatBlockWhereInput>;
+  NOT?: Maybe<StatBlockWhereInput[] | StatBlockWhereInput>;
+}
+
 export type FeatureWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
+
+export interface LanguageWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<LanguageWhereInput[] | LanguageWhereInput>;
+  OR?: Maybe<LanguageWhereInput[] | LanguageWhereInput>;
+  NOT?: Maybe<LanguageWhereInput[] | LanguageWhereInput>;
+}
 
 export interface FeatureWhereInput {
   id?: Maybe<ID_Input>;
@@ -313,51 +640,11 @@ export interface FeatureWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  comesFrom?: Maybe<FeatureType>;
-  comesFrom_not?: Maybe<FeatureType>;
-  comesFrom_in?: Maybe<FeatureType[] | FeatureType>;
-  comesFrom_not_in?: Maybe<FeatureType[] | FeatureType>;
+  fromFolk?: Maybe<FolkWhereInput>;
+  fromClass?: Maybe<ClassWhereInput>;
   AND?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
   OR?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
   NOT?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
-}
-
-export type FolkWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface LanguageWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<LanguageWhereInput[] | LanguageWhereInput>;
-  OR?: Maybe<LanguageWhereInput[] | LanguageWhereInput>;
-  NOT?: Maybe<LanguageWhereInput[] | LanguageWhereInput>;
 }
 
 export interface FolkWhereInput {
@@ -448,7 +735,15 @@ export interface FolkWhereInput {
   NOT?: Maybe<FolkWhereInput[] | FolkWhereInput>;
 }
 
+export type FolkWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
 export type LanguageWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type StatBlockWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
@@ -518,26 +813,86 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
+export interface CharacterCreateInput {
+  id?: Maybe<ID_Input>;
+}
+
+export interface ClassCreateInput {
+  id?: Maybe<ID_Input>;
+  stats: StatBlockCreateOneInput;
+}
+
+export interface StatBlockCreateOneInput {
+  create?: Maybe<StatBlockCreateInput>;
+  connect?: Maybe<StatBlockWhereUniqueInput>;
+}
+
+export interface StatBlockCreateInput {
+  id?: Maybe<ID_Input>;
+  str: Int;
+  con: Int;
+  dex: Int;
+  cha: Int;
+  int: Int;
+  wis: Int;
+  strMod: Int;
+  conMod: Int;
+  dexMod: Int;
+  chaMod: Int;
+  intMod: Int;
+  wisMod: Int;
+}
+
+export interface ClassUpdateInput {
+  stats?: Maybe<StatBlockUpdateOneRequiredInput>;
+}
+
+export interface StatBlockUpdateOneRequiredInput {
+  create?: Maybe<StatBlockCreateInput>;
+  update?: Maybe<StatBlockUpdateDataInput>;
+  upsert?: Maybe<StatBlockUpsertNestedInput>;
+  connect?: Maybe<StatBlockWhereUniqueInput>;
+}
+
+export interface StatBlockUpdateDataInput {
+  str?: Maybe<Int>;
+  con?: Maybe<Int>;
+  dex?: Maybe<Int>;
+  cha?: Maybe<Int>;
+  int?: Maybe<Int>;
+  wis?: Maybe<Int>;
+  strMod?: Maybe<Int>;
+  conMod?: Maybe<Int>;
+  dexMod?: Maybe<Int>;
+  chaMod?: Maybe<Int>;
+  intMod?: Maybe<Int>;
+  wisMod?: Maybe<Int>;
+}
+
+export interface StatBlockUpsertNestedInput {
+  update: StatBlockUpdateDataInput;
+  create: StatBlockCreateInput;
+}
+
 export interface FeatureCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   description: String;
-  comesFrom: FeatureType;
+  effects?: Maybe<FeatureCreateeffectsInput>;
+  fromFolk?: Maybe<FolkCreateOneWithoutFeaturesInput>;
+  fromClass?: Maybe<ClassCreateOneInput>;
 }
 
-export interface FeatureUpdateInput {
-  name?: Maybe<String>;
-  description?: Maybe<String>;
-  comesFrom?: Maybe<FeatureType>;
+export interface FeatureCreateeffectsInput {
+  set?: Maybe<String[] | String>;
 }
 
-export interface FeatureUpdateManyMutationInput {
-  name?: Maybe<String>;
-  description?: Maybe<String>;
-  comesFrom?: Maybe<FeatureType>;
+export interface FolkCreateOneWithoutFeaturesInput {
+  create?: Maybe<FolkCreateWithoutFeaturesInput>;
+  connect?: Maybe<FolkWhereUniqueInput>;
 }
 
-export interface FolkCreateInput {
+export interface FolkCreateWithoutFeaturesInput {
   id?: Maybe<ID_Input>;
   name: String;
   strMod: Int;
@@ -547,7 +902,6 @@ export interface FolkCreateInput {
   intMod: Int;
   wisMod: Int;
   languages?: Maybe<LanguageCreateManyInput>;
-  features?: Maybe<FeatureCreateManyInput>;
 }
 
 export interface LanguageCreateManyInput {
@@ -560,12 +914,33 @@ export interface LanguageCreateInput {
   name: String;
 }
 
-export interface FeatureCreateManyInput {
-  create?: Maybe<FeatureCreateInput[] | FeatureCreateInput>;
-  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+export interface ClassCreateOneInput {
+  create?: Maybe<ClassCreateInput>;
+  connect?: Maybe<ClassWhereUniqueInput>;
 }
 
-export interface FolkUpdateInput {
+export interface FeatureUpdateInput {
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+  effects?: Maybe<FeatureUpdateeffectsInput>;
+  fromFolk?: Maybe<FolkUpdateOneWithoutFeaturesInput>;
+  fromClass?: Maybe<ClassUpdateOneInput>;
+}
+
+export interface FeatureUpdateeffectsInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface FolkUpdateOneWithoutFeaturesInput {
+  create?: Maybe<FolkCreateWithoutFeaturesInput>;
+  update?: Maybe<FolkUpdateWithoutFeaturesDataInput>;
+  upsert?: Maybe<FolkUpsertWithoutFeaturesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<FolkWhereUniqueInput>;
+}
+
+export interface FolkUpdateWithoutFeaturesDataInput {
   name?: Maybe<String>;
   strMod?: Maybe<Int>;
   conMod?: Maybe<Int>;
@@ -574,7 +949,6 @@ export interface FolkUpdateInput {
   intMod?: Maybe<Int>;
   wisMod?: Maybe<Int>;
   languages?: Maybe<LanguageUpdateManyInput>;
-  features?: Maybe<FeatureUpdateManyInput>;
 }
 
 export interface LanguageUpdateManyInput {
@@ -656,20 +1030,91 @@ export interface LanguageUpdateManyDataInput {
   name?: Maybe<String>;
 }
 
-export interface FeatureUpdateManyInput {
-  create?: Maybe<FeatureCreateInput[] | FeatureCreateInput>;
-  update?: Maybe<
-    | FeatureUpdateWithWhereUniqueNestedInput[]
-    | FeatureUpdateWithWhereUniqueNestedInput
+export interface FolkUpsertWithoutFeaturesInput {
+  update: FolkUpdateWithoutFeaturesDataInput;
+  create: FolkCreateWithoutFeaturesInput;
+}
+
+export interface ClassUpdateOneInput {
+  create?: Maybe<ClassCreateInput>;
+  update?: Maybe<ClassUpdateDataInput>;
+  upsert?: Maybe<ClassUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<ClassWhereUniqueInput>;
+}
+
+export interface ClassUpdateDataInput {
+  stats?: Maybe<StatBlockUpdateOneRequiredInput>;
+}
+
+export interface ClassUpsertNestedInput {
+  update: ClassUpdateDataInput;
+  create: ClassCreateInput;
+}
+
+export interface FeatureUpdateManyMutationInput {
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+  effects?: Maybe<FeatureUpdateeffectsInput>;
+}
+
+export interface FolkCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  strMod: Int;
+  conMod: Int;
+  dexMod: Int;
+  chaMod: Int;
+  intMod: Int;
+  wisMod: Int;
+  languages?: Maybe<LanguageCreateManyInput>;
+  features?: Maybe<FeatureCreateManyWithoutFromFolkInput>;
+}
+
+export interface FeatureCreateManyWithoutFromFolkInput {
+  create?: Maybe<
+    FeatureCreateWithoutFromFolkInput[] | FeatureCreateWithoutFromFolkInput
   >;
-  upsert?: Maybe<
-    | FeatureUpsertWithWhereUniqueNestedInput[]
-    | FeatureUpsertWithWhereUniqueNestedInput
+  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+}
+
+export interface FeatureCreateWithoutFromFolkInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  description: String;
+  effects?: Maybe<FeatureCreateeffectsInput>;
+  fromClass?: Maybe<ClassCreateOneInput>;
+}
+
+export interface FolkUpdateInput {
+  name?: Maybe<String>;
+  strMod?: Maybe<Int>;
+  conMod?: Maybe<Int>;
+  dexMod?: Maybe<Int>;
+  chaMod?: Maybe<Int>;
+  intMod?: Maybe<Int>;
+  wisMod?: Maybe<Int>;
+  languages?: Maybe<LanguageUpdateManyInput>;
+  features?: Maybe<FeatureUpdateManyWithoutFromFolkInput>;
+}
+
+export interface FeatureUpdateManyWithoutFromFolkInput {
+  create?: Maybe<
+    FeatureCreateWithoutFromFolkInput[] | FeatureCreateWithoutFromFolkInput
   >;
   delete?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
   connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
   set?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
   disconnect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+  update?: Maybe<
+    | FeatureUpdateWithWhereUniqueWithoutFromFolkInput[]
+    | FeatureUpdateWithWhereUniqueWithoutFromFolkInput
+  >;
+  upsert?: Maybe<
+    | FeatureUpsertWithWhereUniqueWithoutFromFolkInput[]
+    | FeatureUpsertWithWhereUniqueWithoutFromFolkInput
+  >;
   deleteMany?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
   updateMany?: Maybe<
     | FeatureUpdateManyWithWhereNestedInput[]
@@ -677,21 +1122,22 @@ export interface FeatureUpdateManyInput {
   >;
 }
 
-export interface FeatureUpdateWithWhereUniqueNestedInput {
+export interface FeatureUpdateWithWhereUniqueWithoutFromFolkInput {
   where: FeatureWhereUniqueInput;
-  data: FeatureUpdateDataInput;
+  data: FeatureUpdateWithoutFromFolkDataInput;
 }
 
-export interface FeatureUpdateDataInput {
+export interface FeatureUpdateWithoutFromFolkDataInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
-  comesFrom?: Maybe<FeatureType>;
+  effects?: Maybe<FeatureUpdateeffectsInput>;
+  fromClass?: Maybe<ClassUpdateOneInput>;
 }
 
-export interface FeatureUpsertWithWhereUniqueNestedInput {
+export interface FeatureUpsertWithWhereUniqueWithoutFromFolkInput {
   where: FeatureWhereUniqueInput;
-  update: FeatureUpdateDataInput;
-  create: FeatureCreateInput;
+  update: FeatureUpdateWithoutFromFolkDataInput;
+  create: FeatureCreateWithoutFromFolkInput;
 }
 
 export interface FeatureScalarWhereInput {
@@ -737,10 +1183,6 @@ export interface FeatureScalarWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  comesFrom?: Maybe<FeatureType>;
-  comesFrom_not?: Maybe<FeatureType>;
-  comesFrom_in?: Maybe<FeatureType[] | FeatureType>;
-  comesFrom_not_in?: Maybe<FeatureType[] | FeatureType>;
   AND?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
   OR?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
   NOT?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
@@ -754,7 +1196,7 @@ export interface FeatureUpdateManyWithWhereNestedInput {
 export interface FeatureUpdateManyDataInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
-  comesFrom?: Maybe<FeatureType>;
+  effects?: Maybe<FeatureUpdateeffectsInput>;
 }
 
 export interface FolkUpdateManyMutationInput {
@@ -775,6 +1217,36 @@ export interface LanguageUpdateManyMutationInput {
   name?: Maybe<String>;
 }
 
+export interface StatBlockUpdateInput {
+  str?: Maybe<Int>;
+  con?: Maybe<Int>;
+  dex?: Maybe<Int>;
+  cha?: Maybe<Int>;
+  int?: Maybe<Int>;
+  wis?: Maybe<Int>;
+  strMod?: Maybe<Int>;
+  conMod?: Maybe<Int>;
+  dexMod?: Maybe<Int>;
+  chaMod?: Maybe<Int>;
+  intMod?: Maybe<Int>;
+  wisMod?: Maybe<Int>;
+}
+
+export interface StatBlockUpdateManyMutationInput {
+  str?: Maybe<Int>;
+  con?: Maybe<Int>;
+  dex?: Maybe<Int>;
+  cha?: Maybe<Int>;
+  int?: Maybe<Int>;
+  wis?: Maybe<Int>;
+  strMod?: Maybe<Int>;
+  conMod?: Maybe<Int>;
+  dexMod?: Maybe<Int>;
+  chaMod?: Maybe<Int>;
+  intMod?: Maybe<Int>;
+  wisMod?: Maybe<Int>;
+}
+
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
@@ -792,6 +1264,34 @@ export interface UserUpdateManyMutationInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+}
+
+export interface CharacterSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CharacterWhereInput>;
+  AND?: Maybe<
+    CharacterSubscriptionWhereInput[] | CharacterSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    CharacterSubscriptionWhereInput[] | CharacterSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    CharacterSubscriptionWhereInput[] | CharacterSubscriptionWhereInput
+  >;
+}
+
+export interface ClassSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ClassWhereInput>;
+  AND?: Maybe<ClassSubscriptionWhereInput[] | ClassSubscriptionWhereInput>;
+  OR?: Maybe<ClassSubscriptionWhereInput[] | ClassSubscriptionWhereInput>;
+  NOT?: Maybe<ClassSubscriptionWhereInput[] | ClassSubscriptionWhereInput>;
 }
 
 export interface FeatureSubscriptionWhereInput {
@@ -831,6 +1331,23 @@ export interface LanguageSubscriptionWhereInput {
   >;
 }
 
+export interface StatBlockSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<StatBlockWhereInput>;
+  AND?: Maybe<
+    StatBlockSubscriptionWhereInput[] | StatBlockSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    StatBlockSubscriptionWhereInput[] | StatBlockSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    StatBlockSubscriptionWhereInput[] | StatBlockSubscriptionWhereInput
+  >;
+}
+
 export interface UserSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -846,57 +1363,45 @@ export interface NodeNode {
   id: ID_Output;
 }
 
-export interface Feature {
+export interface Character {
   id: ID_Output;
-  name: String;
-  description: String;
-  comesFrom: FeatureType;
 }
 
-export interface FeaturePromise extends Promise<Feature>, Fragmentable {
+export interface CharacterPromise extends Promise<Character>, Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
-  comesFrom: () => Promise<FeatureType>;
 }
 
-export interface FeatureSubscription
-  extends Promise<AsyncIterator<Feature>>,
+export interface CharacterSubscription
+  extends Promise<AsyncIterator<Character>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  comesFrom: () => Promise<AsyncIterator<FeatureType>>;
 }
 
-export interface FeatureNullablePromise
-  extends Promise<Feature | null>,
+export interface CharacterNullablePromise
+  extends Promise<Character | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
-  comesFrom: () => Promise<FeatureType>;
 }
 
-export interface FeatureConnection {
+export interface CharacterConnection {
   pageInfo: PageInfo;
-  edges: FeatureEdge[];
+  edges: CharacterEdge[];
 }
 
-export interface FeatureConnectionPromise
-  extends Promise<FeatureConnection>,
+export interface CharacterConnectionPromise
+  extends Promise<CharacterConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<FeatureEdge>>() => T;
-  aggregate: <T = AggregateFeaturePromise>() => T;
+  edges: <T = FragmentableArray<CharacterEdge>>() => T;
+  aggregate: <T = AggregateCharacterPromise>() => T;
 }
 
-export interface FeatureConnectionSubscription
-  extends Promise<AsyncIterator<FeatureConnection>>,
+export interface CharacterConnectionSubscription
+  extends Promise<AsyncIterator<CharacterConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<FeatureEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateFeatureSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CharacterEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCharacterSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -922,37 +1427,222 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface FeatureEdge {
-  node: Feature;
+export interface CharacterEdge {
+  node: Character;
   cursor: String;
 }
 
-export interface FeatureEdgePromise extends Promise<FeatureEdge>, Fragmentable {
-  node: <T = FeaturePromise>() => T;
+export interface CharacterEdgePromise
+  extends Promise<CharacterEdge>,
+    Fragmentable {
+  node: <T = CharacterPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface FeatureEdgeSubscription
-  extends Promise<AsyncIterator<FeatureEdge>>,
+export interface CharacterEdgeSubscription
+  extends Promise<AsyncIterator<CharacterEdge>>,
     Fragmentable {
-  node: <T = FeatureSubscription>() => T;
+  node: <T = CharacterSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateFeature {
+export interface AggregateCharacter {
   count: Int;
 }
 
-export interface AggregateFeaturePromise
-  extends Promise<AggregateFeature>,
+export interface AggregateCharacterPromise
+  extends Promise<AggregateCharacter>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateFeatureSubscription
-  extends Promise<AsyncIterator<AggregateFeature>>,
+export interface AggregateCharacterSubscription
+  extends Promise<AsyncIterator<AggregateCharacter>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Class {
+  id: ID_Output;
+}
+
+export interface ClassPromise extends Promise<Class>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  stats: <T = StatBlockPromise>() => T;
+}
+
+export interface ClassSubscription
+  extends Promise<AsyncIterator<Class>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  stats: <T = StatBlockSubscription>() => T;
+}
+
+export interface ClassNullablePromise
+  extends Promise<Class | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  stats: <T = StatBlockPromise>() => T;
+}
+
+export interface StatBlock {
+  id: ID_Output;
+  str: Int;
+  con: Int;
+  dex: Int;
+  cha: Int;
+  int: Int;
+  wis: Int;
+  strMod: Int;
+  conMod: Int;
+  dexMod: Int;
+  chaMod: Int;
+  intMod: Int;
+  wisMod: Int;
+}
+
+export interface StatBlockPromise extends Promise<StatBlock>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  str: () => Promise<Int>;
+  con: () => Promise<Int>;
+  dex: () => Promise<Int>;
+  cha: () => Promise<Int>;
+  int: () => Promise<Int>;
+  wis: () => Promise<Int>;
+  strMod: () => Promise<Int>;
+  conMod: () => Promise<Int>;
+  dexMod: () => Promise<Int>;
+  chaMod: () => Promise<Int>;
+  intMod: () => Promise<Int>;
+  wisMod: () => Promise<Int>;
+}
+
+export interface StatBlockSubscription
+  extends Promise<AsyncIterator<StatBlock>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  str: () => Promise<AsyncIterator<Int>>;
+  con: () => Promise<AsyncIterator<Int>>;
+  dex: () => Promise<AsyncIterator<Int>>;
+  cha: () => Promise<AsyncIterator<Int>>;
+  int: () => Promise<AsyncIterator<Int>>;
+  wis: () => Promise<AsyncIterator<Int>>;
+  strMod: () => Promise<AsyncIterator<Int>>;
+  conMod: () => Promise<AsyncIterator<Int>>;
+  dexMod: () => Promise<AsyncIterator<Int>>;
+  chaMod: () => Promise<AsyncIterator<Int>>;
+  intMod: () => Promise<AsyncIterator<Int>>;
+  wisMod: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface StatBlockNullablePromise
+  extends Promise<StatBlock | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  str: () => Promise<Int>;
+  con: () => Promise<Int>;
+  dex: () => Promise<Int>;
+  cha: () => Promise<Int>;
+  int: () => Promise<Int>;
+  wis: () => Promise<Int>;
+  strMod: () => Promise<Int>;
+  conMod: () => Promise<Int>;
+  dexMod: () => Promise<Int>;
+  chaMod: () => Promise<Int>;
+  intMod: () => Promise<Int>;
+  wisMod: () => Promise<Int>;
+}
+
+export interface ClassConnection {
+  pageInfo: PageInfo;
+  edges: ClassEdge[];
+}
+
+export interface ClassConnectionPromise
+  extends Promise<ClassConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ClassEdge>>() => T;
+  aggregate: <T = AggregateClassPromise>() => T;
+}
+
+export interface ClassConnectionSubscription
+  extends Promise<AsyncIterator<ClassConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ClassEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateClassSubscription>() => T;
+}
+
+export interface ClassEdge {
+  node: Class;
+  cursor: String;
+}
+
+export interface ClassEdgePromise extends Promise<ClassEdge>, Fragmentable {
+  node: <T = ClassPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ClassEdgeSubscription
+  extends Promise<AsyncIterator<ClassEdge>>,
+    Fragmentable {
+  node: <T = ClassSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateClass {
+  count: Int;
+}
+
+export interface AggregateClassPromise
+  extends Promise<AggregateClass>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateClassSubscription
+  extends Promise<AsyncIterator<AggregateClass>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Feature {
+  id: ID_Output;
+  name: String;
+  description: String;
+  effects: String[];
+}
+
+export interface FeaturePromise extends Promise<Feature>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  effects: () => Promise<String[]>;
+  fromFolk: <T = FolkPromise>() => T;
+  fromClass: <T = ClassPromise>() => T;
+}
+
+export interface FeatureSubscription
+  extends Promise<AsyncIterator<Feature>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  effects: () => Promise<AsyncIterator<String[]>>;
+  fromFolk: <T = FolkSubscription>() => T;
+  fromClass: <T = ClassSubscription>() => T;
+}
+
+export interface FeatureNullablePromise
+  extends Promise<Feature | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  effects: () => Promise<String[]>;
+  fromFolk: <T = FolkPromise>() => T;
+  fromClass: <T = ClassPromise>() => T;
 }
 
 export interface Folk {
@@ -1081,6 +1771,60 @@ export interface LanguageNullablePromise
   name: () => Promise<String>;
 }
 
+export interface FeatureConnection {
+  pageInfo: PageInfo;
+  edges: FeatureEdge[];
+}
+
+export interface FeatureConnectionPromise
+  extends Promise<FeatureConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<FeatureEdge>>() => T;
+  aggregate: <T = AggregateFeaturePromise>() => T;
+}
+
+export interface FeatureConnectionSubscription
+  extends Promise<AsyncIterator<FeatureConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<FeatureEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateFeatureSubscription>() => T;
+}
+
+export interface FeatureEdge {
+  node: Feature;
+  cursor: String;
+}
+
+export interface FeatureEdgePromise extends Promise<FeatureEdge>, Fragmentable {
+  node: <T = FeaturePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FeatureEdgeSubscription
+  extends Promise<AsyncIterator<FeatureEdge>>,
+    Fragmentable {
+  node: <T = FeatureSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateFeature {
+  count: Int;
+}
+
+export interface AggregateFeaturePromise
+  extends Promise<AggregateFeature>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateFeatureSubscription
+  extends Promise<AsyncIterator<AggregateFeature>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface FolkConnection {
   pageInfo: PageInfo;
   edges: FolkEdge[];
@@ -1191,6 +1935,62 @@ export interface AggregateLanguageSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface StatBlockConnection {
+  pageInfo: PageInfo;
+  edges: StatBlockEdge[];
+}
+
+export interface StatBlockConnectionPromise
+  extends Promise<StatBlockConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<StatBlockEdge>>() => T;
+  aggregate: <T = AggregateStatBlockPromise>() => T;
+}
+
+export interface StatBlockConnectionSubscription
+  extends Promise<AsyncIterator<StatBlockConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<StatBlockEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateStatBlockSubscription>() => T;
+}
+
+export interface StatBlockEdge {
+  node: StatBlock;
+  cursor: String;
+}
+
+export interface StatBlockEdgePromise
+  extends Promise<StatBlockEdge>,
+    Fragmentable {
+  node: <T = StatBlockPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface StatBlockEdgeSubscription
+  extends Promise<AsyncIterator<StatBlockEdge>>,
+    Fragmentable {
+  node: <T = StatBlockSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateStatBlock {
+  count: Int;
+}
+
+export interface AggregateStatBlockPromise
+  extends Promise<AggregateStatBlock>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateStatBlockSubscription
+  extends Promise<AsyncIterator<AggregateStatBlock>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface User {
   id: ID_Output;
   name: String;
@@ -1293,6 +2093,88 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
+export interface CharacterSubscriptionPayload {
+  mutation: MutationType;
+  node: Character;
+  updatedFields: String[];
+  previousValues: CharacterPreviousValues;
+}
+
+export interface CharacterSubscriptionPayloadPromise
+  extends Promise<CharacterSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CharacterPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CharacterPreviousValuesPromise>() => T;
+}
+
+export interface CharacterSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CharacterSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CharacterSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CharacterPreviousValuesSubscription>() => T;
+}
+
+export interface CharacterPreviousValues {
+  id: ID_Output;
+}
+
+export interface CharacterPreviousValuesPromise
+  extends Promise<CharacterPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface CharacterPreviousValuesSubscription
+  extends Promise<AsyncIterator<CharacterPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
+export interface ClassSubscriptionPayload {
+  mutation: MutationType;
+  node: Class;
+  updatedFields: String[];
+  previousValues: ClassPreviousValues;
+}
+
+export interface ClassSubscriptionPayloadPromise
+  extends Promise<ClassSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ClassPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ClassPreviousValuesPromise>() => T;
+}
+
+export interface ClassSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ClassSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ClassSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ClassPreviousValuesSubscription>() => T;
+}
+
+export interface ClassPreviousValues {
+  id: ID_Output;
+}
+
+export interface ClassPreviousValuesPromise
+  extends Promise<ClassPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface ClassPreviousValuesSubscription
+  extends Promise<AsyncIterator<ClassPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
 export interface FeatureSubscriptionPayload {
   mutation: MutationType;
   node: Feature;
@@ -1322,7 +2204,7 @@ export interface FeaturePreviousValues {
   id: ID_Output;
   name: String;
   description: String;
-  comesFrom: FeatureType;
+  effects: String[];
 }
 
 export interface FeaturePreviousValuesPromise
@@ -1331,7 +2213,7 @@ export interface FeaturePreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   description: () => Promise<String>;
-  comesFrom: () => Promise<FeatureType>;
+  effects: () => Promise<String[]>;
 }
 
 export interface FeaturePreviousValuesSubscription
@@ -1340,7 +2222,7 @@ export interface FeaturePreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
-  comesFrom: () => Promise<AsyncIterator<FeatureType>>;
+  effects: () => Promise<AsyncIterator<String[]>>;
 }
 
 export interface FolkSubscriptionPayload {
@@ -1449,6 +2331,83 @@ export interface LanguagePreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
 }
 
+export interface StatBlockSubscriptionPayload {
+  mutation: MutationType;
+  node: StatBlock;
+  updatedFields: String[];
+  previousValues: StatBlockPreviousValues;
+}
+
+export interface StatBlockSubscriptionPayloadPromise
+  extends Promise<StatBlockSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = StatBlockPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = StatBlockPreviousValuesPromise>() => T;
+}
+
+export interface StatBlockSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<StatBlockSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = StatBlockSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = StatBlockPreviousValuesSubscription>() => T;
+}
+
+export interface StatBlockPreviousValues {
+  id: ID_Output;
+  str: Int;
+  con: Int;
+  dex: Int;
+  cha: Int;
+  int: Int;
+  wis: Int;
+  strMod: Int;
+  conMod: Int;
+  dexMod: Int;
+  chaMod: Int;
+  intMod: Int;
+  wisMod: Int;
+}
+
+export interface StatBlockPreviousValuesPromise
+  extends Promise<StatBlockPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  str: () => Promise<Int>;
+  con: () => Promise<Int>;
+  dex: () => Promise<Int>;
+  cha: () => Promise<Int>;
+  int: () => Promise<Int>;
+  wis: () => Promise<Int>;
+  strMod: () => Promise<Int>;
+  conMod: () => Promise<Int>;
+  dexMod: () => Promise<Int>;
+  chaMod: () => Promise<Int>;
+  intMod: () => Promise<Int>;
+  wisMod: () => Promise<Int>;
+}
+
+export interface StatBlockPreviousValuesSubscription
+  extends Promise<AsyncIterator<StatBlockPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  str: () => Promise<AsyncIterator<Int>>;
+  con: () => Promise<AsyncIterator<Int>>;
+  dex: () => Promise<AsyncIterator<Int>>;
+  cha: () => Promise<AsyncIterator<Int>>;
+  int: () => Promise<AsyncIterator<Int>>;
+  wis: () => Promise<AsyncIterator<Int>>;
+  strMod: () => Promise<AsyncIterator<Int>>;
+  conMod: () => Promise<AsyncIterator<Int>>;
+  dexMod: () => Promise<AsyncIterator<Int>>;
+  chaMod: () => Promise<AsyncIterator<Int>>;
+  intMod: () => Promise<AsyncIterator<Int>>;
+  wisMod: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface UserSubscriptionPayload {
   mutation: MutationType;
   node: User;
@@ -1506,14 +2465,14 @@ export type ID_Input = string | number;
 export type ID_Output = string;
 
 /*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
-
-/*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
 export type Int = number;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
@@ -1545,6 +2504,18 @@ export const models: Model[] = [
   },
   {
     name: "Folk",
+    embedded: false
+  },
+  {
+    name: "StatBlock",
+    embedded: false
+  },
+  {
+    name: "Class",
+    embedded: false
+  },
+  {
+    name: "Character",
     embedded: false
   }
 ];

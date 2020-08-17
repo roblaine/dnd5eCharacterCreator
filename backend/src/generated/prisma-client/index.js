@@ -23,6 +23,18 @@ var models = [
   {
     name: "Folk",
     embedded: false
+  },
+  {
+    name: "StatBlock",
+    embedded: false
+  },
+  {
+    name: "Class",
+    embedded: false
+  },
+  {
+    name: "Character",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
