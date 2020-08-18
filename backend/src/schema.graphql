@@ -8,12 +8,7 @@ type User {
 }
 
 type Mutation {
-  signup(
-    name: String!
-    email: String!
-    password: String!
-    passwordConf: String!
-  ): User
+  signup(name: String!, email: String!, password: String!): User!
   addFolk(
     name: String!
     strMod: Int!

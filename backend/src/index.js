@@ -10,14 +10,14 @@ const server = createServer();
 server.express.use(cookieParser());
 // decode the JWT to extract the user id
 server.express.use((req, res, next) => {
-  // const { token } = req.cookies;
+  const { token } = req.cookies;
+  console.log(token);
+  if (token) {
+    const { userId } = jwt.verify(token, process.env.APP_SECRET);
 
-  // if (token) {
-  //   const { userId } = jwt.verify(token, process.env.APP_SECRET);
-
-  //   // Put the userid on to further requests
-  //   req.userId = userId;
-  // }
+    // Put the userid on to further requests
+    req.userId = userId;
+  }
   next();
 });
 
@@ -44,7 +44,6 @@ server.start(
     },
   },
   deets => {
-    console.log(deets);
     console.log(`Server is now running on http://localhost:${deets.port}`);
   },
 );

@@ -3,8 +3,6 @@ const jwt = require('jsonwebtoken');
 
 const Mutations = {
   async signup(parent, args, ctx, info) {
-    console.log(args);
-
     args.email = args.email.toLowerCase();
     args.name = args.name.trim();
 
@@ -14,7 +12,6 @@ const Mutations = {
 
     const saltLength = 10;
     const password = await bcrypt.hash(args.password, saltLength);
-    const passwordConf = await bcrypt.hash(args.passwordConf, saltLength);
     var permissions = null;
 
     // If first user, set them as an admin
@@ -28,8 +25,7 @@ const Mutations = {
     const user = await ctx.db.mutation.createUser(
       {
         data: {
-          name: args.name,
-          email: args.email,
+          ...args,
           password,
           permissions,
         },

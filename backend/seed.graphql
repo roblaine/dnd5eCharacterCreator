@@ -3,7 +3,8 @@ mutation {
     data: {
       name: "Test User"
       email: "testuser@myemail.com"
-      password: "abc123"
+      password: "$2a$10$Ncaiv9wxvakdNL7MLOF2xOONp/b2D/jfFpfq7IUh8zP434VXAstIe"
+      permissions: { set: [USER, ADMIN] }
     }
   ) {
     id

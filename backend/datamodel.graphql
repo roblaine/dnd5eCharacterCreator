@@ -8,7 +8,9 @@ type User {
   name: String!
   email: String! @unique
   password: String!
-  permissions: [Permission!]! @scalarList(strategy: RELATION)
+  resetToken: String
+  resetTokenExpiry: String
+  permissions: [Permission] @scalarList(strategy: RELATION)
 }
 
 type Language {

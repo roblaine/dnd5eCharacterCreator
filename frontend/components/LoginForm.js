@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gql } from 'graphql-tag';
+import { useMutation, gql } from '@apollo/client';
 
 const StyledForm = styled.form`
   display: inline-flex;
@@ -11,8 +11,19 @@ const StyledForm = styled.form`
   }
 `;
 
+const LOGIN_MUTATION = gql`
+  mutation login {
+    login() {
+      id
+      name
+      email
+    }
+  }
+`;
+
 class LoginForm extends React.Component {
   render() {
+    const { loading, error, data } = useMutation(LOGIN_MUTATION);
     return (
       <StyledForm action="/" method="POST">
         <input key="email" type="text" placeholder="Email" />
