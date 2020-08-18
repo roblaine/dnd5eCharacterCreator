@@ -11,7 +11,6 @@ const LoginDiv = styled.div`
 `;
 
 const FormContainer = styled.div`
-  background-color: lightgrey;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
