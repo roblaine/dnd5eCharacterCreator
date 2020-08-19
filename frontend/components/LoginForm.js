@@ -12,8 +12,8 @@ const StyledForm = styled.form`
 `;
 
 const LOGIN_MUTATION = gql`
-  mutation login {
-    login() {
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
       id
       name
       email
@@ -21,23 +21,43 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-class LoginForm extends React.Component {
-  render() {
-    const { loading, error, data } = useMutation(LOGIN_MUTATION);
-    return (
-      <StyledForm action="/" method="POST">
-        <input key="email" type="text" placeholder="Email" />
-        <input key="pass" type="password" placeholder="Password" />
+const LoginForm = () => {
+  let email, password;
+  const [login, { data }] = useMutation(LOGIN_MUTATION);
 
-        <input
-          key="sibmit-button"
-          id="submit-button"
-          type="submit"
-          value="Login"
-        />
-      </StyledForm>
-    );
-  }
-}
+  return (
+    <StyledForm
+      onSubmit={(e) => {
+        e.preventDefault();
+        login({
+          variables: { email: email.value, password: password.value },
+        });
+        email.value = '';
+        password.value = '';
+      }}
+    >
+      <input
+        ref={(node) => {
+          email = node;
+        }}
+        id="email"
+        key="email"
+        type="text"
+        placeholder="Email"
+      />
+      <input
+        ref={(node) => {
+          password = node;
+        }}
+        id="password"
+        key="password"
+        type="password"
+        placeholder="Password"
+      />
+
+      <button type="submit">Login</button>
+    </StyledForm>
+  );
+};
 
 export default LoginForm;

@@ -1,4 +1,6 @@
 const { forwardTo } = require('prisma-binding');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const Query = {
   user: forwardTo('db'),
@@ -7,6 +9,7 @@ const Query = {
   folks: forwardTo('db'),
   language: forwardTo('db'),
   languages: forwardTo('db'),
+  characters: forwardTo('db'),
 
   async me(parent, args, ctx, info) {
     // Return a promise containing the user that is currently logged in
@@ -18,6 +21,5 @@ const Query = {
     );
   },
 };
-console.log(Query);
 
 module.exports = Query;

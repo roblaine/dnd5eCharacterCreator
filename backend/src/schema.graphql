@@ -8,6 +8,7 @@ type User {
 }
 
 type Mutation {
+  login(email: String!, password: String!): User
   signup(name: String!, email: String!, password: String!): User!
   addFolk(
     name: String!
@@ -30,4 +31,5 @@ type Query {
   folks: [Folk]!
   language: Language
   languages: [Language]!
+  characters: [Character]!
 }

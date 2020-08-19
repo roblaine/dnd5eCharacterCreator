@@ -24,18 +24,11 @@ const FormContainer = styled.div`
 `;
 
 class Home extends React.Component {
-  // const showLogin = () => {
-  //   console.log('Clicked me');
-  //   this.setState({
-  //     showSignup: false,
-  //   });
-  // };
-
   constructor(props) {
     super(props);
     this.state = { showSignup: false };
 
-    // This binding is necessary to make `this` work in the callback    this.handleClick = this.handleClick.bind(this);  }
+    // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -63,7 +56,6 @@ class Home extends React.Component {
                       key="loginButton"
                       path="/"
                       text="Login"
-                      // onClick={}
                     />
                   </p>
                 </LoginDiv>

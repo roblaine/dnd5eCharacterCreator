@@ -2,6 +2,28 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const Mutations = {
+  async login(parent, args, ctx, info) {
+    args.email = args.email.toLowerCase();
+    console.log(args);
+
+    const saltLength = 10;
+    const hashed = await bcrypt.hash(args.password, saltLength);
+    console.log(hashed);
+    const user = await ctx.db.query.user({
+      where: { email: args.email },
+    });
+
+    if (!user || user.password != hashed) {
+      console.log('Wrong password');
+      console.log(user.password);
+      console.log(hashed);
+
+      return 'Incorrect email or password entered.';
+    }
+
+    return user;
+  },
+
   async signup(parent, args, ctx, info) {
     args.email = args.email.toLowerCase();
     args.name = args.name.trim();

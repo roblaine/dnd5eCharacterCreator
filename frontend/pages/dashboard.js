@@ -20,7 +20,7 @@ const Dashboard = () => {
         {data.characters ? (
           data.characters.map((char) => <h1>char.name</h1>)
         ) : (
-          <p>You don't have any characters yet</p>
+          <p>You don't have any characters yet!</p>
         )}
       </>
     );

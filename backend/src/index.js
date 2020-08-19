@@ -9,17 +9,16 @@ const server = createServer();
 
 server.express.use(cookieParser());
 // decode the JWT to extract the user id
-server.express.use((req, res, next) => {
-  const { token } = req.cookies;
-  console.log(token);
-  if (token) {
-    const { userId } = jwt.verify(token, process.env.APP_SECRET);
+// server.express.use((req, res, next) => {
+//   const { token } = req.cookies;
+//   if (token) {
+//     const { userId } = jwt.verify(token, process.env.APP_SECRET);
 
-    // Put the userid on to further requests
-    req.userId = userId;
-  }
-  next();
-});
+//     // Put the userid on to further requests
+//     req.userId = userId;
+//   }
+//   next();
+// });
 
 // Middleware to populate the user on each request
 server.express.use(async (req, res, next) => {

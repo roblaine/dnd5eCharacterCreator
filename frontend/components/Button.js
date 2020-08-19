@@ -11,6 +11,10 @@ const StyledButton = styled.button`
   :hover {
     cursor: pointer;
   }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 class Button extends React.Component {
