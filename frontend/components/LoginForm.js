@@ -15,48 +15,49 @@ const LOGIN_MUTATION = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       id
-      name
-      email
     }
   }
 `;
 
 const LoginForm = () => {
   let email, password;
-  const [login, { data }] = useMutation(LOGIN_MUTATION);
+  const [login, { error, data, loading }] = useMutation(LOGIN_MUTATION);
 
   return (
-    <StyledForm
-      onSubmit={(e) => {
-        e.preventDefault();
-        login({
-          variables: { email: email.value, password: password.value },
-        });
-        email.value = '';
-        password.value = '';
-      }}
-    >
-      <input
-        ref={(node) => {
-          email = node;
+    <>
+      {error ? <p>{error.message}</p> : <></>}
+      <StyledForm
+        onSubmit={(e) => {
+          e.preventDefault();
+          login({
+            variables: { email: email.value, password: password.value },
+          });
+          email.value = '';
+          password.value = '';
         }}
-        id="email"
-        key="email"
-        type="text"
-        placeholder="Email"
-      />
-      <input
-        ref={(node) => {
-          password = node;
-        }}
-        id="password"
-        key="password"
-        type="password"
-        placeholder="Password"
-      />
+      >
+        <input
+          ref={(node) => {
+            email = node;
+          }}
+          id="email"
+          key="email"
+          type="text"
+          placeholder="Email"
+        />
+        <input
+          ref={(node) => {
+            password = node;
+          }}
+          id="password"
+          key="password"
+          type="password"
+          placeholder="Password"
+        />
 
-      <button type="submit">Login</button>
-    </StyledForm>
+        <button type="submit">Login</button>
+      </StyledForm>
+    </>
   );
 };
 

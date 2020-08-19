@@ -2,35 +2,38 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const Mutations = {
-  async login(parent, args, ctx, info) {
-    args.email = args.email.toLowerCase();
-    console.log(args);
+  async login(parent, { email, password }, ctx, info) {
+    email = email.toLowerCase();
+    console.log(email);
 
-    const saltLength = 10;
-    const hashed = await bcrypt.hash(args.password, saltLength);
-    console.log(hashed);
     const user = await ctx.db.query.user({
-      where: { email: args.email },
+      where: { email },
     });
 
-    if (!user || user.password != hashed) {
-      console.log('Wrong password');
-      console.log(user.password);
-      console.log(hashed);
-
-      return 'Incorrect email or password entered.';
+    if (!user) {
+      throw new Error(`Invalid username or password`);
     }
 
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      throw new Error(`Invalid username or password`);
+    }
+
+    // Create JWT for user
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    // Set jwt as response cookie to take with them
+    ctx.response.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 245 * 365,
+    });
+
+    // Return the user with their set cookie
     return user;
   },
 
   async signup(parent, args, ctx, info) {
-    args.email = args.email.toLowerCase();
-    args.name = args.name.trim();
-
-    if (args.passwordConf != args.password) {
-      return null;
-    }
+    email = args.email.toLowerCase();
+    name = args.name.trim();
 
     const saltLength = 10;
     const password = await bcrypt.hash(args.password, saltLength);
@@ -47,7 +50,8 @@ const Mutations = {
     const user = await ctx.db.mutation.createUser(
       {
         data: {
-          ...args,
+          name: args.name,
+          email: args.email,
           password,
           permissions,
         },
