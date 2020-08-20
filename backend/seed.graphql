@@ -1,12 +1,5 @@
-mutation {
-  createUser(
-    data: {
-      name: "Test User"
-      email: "testuser@myemail.com"
-      password: "$2a$10$Ncaiv9wxvakdNL7MLOF2xOONp/b2D/jfFpfq7IUh8zP434VXAstIe"
-      permissions: { set: [USER, ADMIN] }
-    }
-  ) {
+mutation createDie {
+  createManyDie(data: { faces: 4 }) {
     id
   }
 }

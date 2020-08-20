@@ -11,6 +11,7 @@ const Query = {
   languages: forwardTo('db'),
   async characters(parent, args, ctx, info) {
     console.log('Getting characters');
+    return await ctx.db.query.characters({}, info);
   },
 
   async me(parent, args, ctx, info) {

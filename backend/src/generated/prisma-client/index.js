@@ -9,6 +9,10 @@ var models = [
     embedded: false
   },
   {
+    name: "StatList",
+    embedded: false
+  },
+  {
     name: "User",
     embedded: false
   },
@@ -25,7 +29,15 @@ var models = [
     embedded: false
   },
   {
+    name: "Stat",
+    embedded: false
+  },
+  {
     name: "StatBlock",
+    embedded: false
+  },
+  {
+    name: "Skill",
     embedded: false
   },
   {
@@ -38,6 +50,10 @@ var models = [
   },
   {
     name: "Die",
+    embedded: false
+  },
+  {
+    name: "TemplateClass",
     embedded: false
   },
   {

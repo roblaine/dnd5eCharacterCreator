@@ -31,11 +31,23 @@ type AggregateSaveBlock {
   count: Int!
 }
 
+type AggregateSkill {
+  count: Int!
+}
+
 type AggregateSkillBlock {
   count: Int!
 }
 
+type AggregateStat {
+  count: Int!
+}
+
 type AggregateStatBlock {
+  count: Int!
+}
+
+type AggregateTemplateClass {
   count: Int!
 }
 
@@ -50,9 +62,9 @@ type BatchPayload {
 type Character {
   id: ID!
   name: String!
-  class: Class!
+  class(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Class!]
   folk: Folk!
-  statblock: StatBlock!
+  stats: StatBlock!
   skills: SkillBlock!
   saves: SaveBlock!
   acCalc: String!
@@ -70,9 +82,9 @@ type CharacterConnection {
 input CharacterCreateInput {
   id: ID
   name: String!
-  class: ClassCreateOneInput!
+  class: ClassCreateManyInput
   folk: FolkCreateOneInput!
-  statblock: StatBlockCreateOneInput!
+  stats: StatBlockCreateOneInput!
   skills: SkillBlockCreateOneInput!
   saves: SaveBlockCreateOneInput!
   acCalc: String!
@@ -127,9 +139,9 @@ input CharacterSubscriptionWhereInput {
 
 input CharacterUpdateInput {
   name: String
-  class: ClassUpdateOneRequiredInput
+  class: ClassUpdateManyInput
   folk: FolkUpdateOneRequiredInput
-  statblock: StatBlockUpdateOneRequiredInput
+  stats: StatBlockUpdateOneRequiredInput
   skills: SkillBlockUpdateOneRequiredInput
   saves: SaveBlockUpdateOneRequiredInput
   acCalc: String
@@ -174,9 +186,11 @@ input CharacterWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  class: ClassWhereInput
+  class_every: ClassWhereInput
+  class_some: ClassWhereInput
+  class_none: ClassWhereInput
   folk: FolkWhereInput
-  statblock: StatBlockWhereInput
+  stats: StatBlockWhereInput
   skills: SkillBlockWhereInput
   saves: SaveBlockWhereInput
   acCalc: String
@@ -222,6 +236,7 @@ input CharacterWhereUniqueInput {
 type Class {
   id: ID!
   name: String!
+  class: TemplateClass!
   level: Int!
 }
 
@@ -234,7 +249,13 @@ type ClassConnection {
 input ClassCreateInput {
   id: ID
   name: String!
+  class: TemplateClassCreateOneInput!
   level: Int
+}
+
+input ClassCreateManyInput {
+  create: [ClassCreateInput!]
+  connect: [ClassWhereUniqueInput!]
 }
 
 input ClassCreateOneInput {
@@ -262,6 +283,48 @@ type ClassPreviousValues {
   level: Int!
 }
 
+input ClassScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  level: Int
+  level_not: Int
+  level_in: [Int!]
+  level_not_in: [Int!]
+  level_lt: Int
+  level_lte: Int
+  level_gt: Int
+  level_gte: Int
+  AND: [ClassScalarWhereInput!]
+  OR: [ClassScalarWhereInput!]
+  NOT: [ClassScalarWhereInput!]
+}
+
 type ClassSubscriptionPayload {
   mutation: MutationType!
   node: Class
@@ -282,17 +345,41 @@ input ClassSubscriptionWhereInput {
 
 input ClassUpdateDataInput {
   name: String
+  class: TemplateClassUpdateOneRequiredInput
   level: Int
 }
 
 input ClassUpdateInput {
   name: String
+  class: TemplateClassUpdateOneRequiredInput
   level: Int
+}
+
+input ClassUpdateManyDataInput {
+  name: String
+  level: Int
+}
+
+input ClassUpdateManyInput {
+  create: [ClassCreateInput!]
+  update: [ClassUpdateWithWhereUniqueNestedInput!]
+  upsert: [ClassUpsertWithWhereUniqueNestedInput!]
+  delete: [ClassWhereUniqueInput!]
+  connect: [ClassWhereUniqueInput!]
+  set: [ClassWhereUniqueInput!]
+  disconnect: [ClassWhereUniqueInput!]
+  deleteMany: [ClassScalarWhereInput!]
+  updateMany: [ClassUpdateManyWithWhereNestedInput!]
 }
 
 input ClassUpdateManyMutationInput {
   name: String
   level: Int
+}
+
+input ClassUpdateManyWithWhereNestedInput {
+  where: ClassScalarWhereInput!
+  data: ClassUpdateManyDataInput!
 }
 
 input ClassUpdateOneInput {
@@ -304,14 +391,18 @@ input ClassUpdateOneInput {
   connect: ClassWhereUniqueInput
 }
 
-input ClassUpdateOneRequiredInput {
-  create: ClassCreateInput
-  update: ClassUpdateDataInput
-  upsert: ClassUpsertNestedInput
-  connect: ClassWhereUniqueInput
+input ClassUpdateWithWhereUniqueNestedInput {
+  where: ClassWhereUniqueInput!
+  data: ClassUpdateDataInput!
 }
 
 input ClassUpsertNestedInput {
+  update: ClassUpdateDataInput!
+  create: ClassCreateInput!
+}
+
+input ClassUpsertWithWhereUniqueNestedInput {
+  where: ClassWhereUniqueInput!
   update: ClassUpdateDataInput!
   create: ClassCreateInput!
 }
@@ -345,6 +436,7 @@ input ClassWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  class: TemplateClassWhereInput
   level: Int
   level_not: Int
   level_in: [Int!]
@@ -502,6 +594,11 @@ input FeatureCreateInput {
   fromClass: ClassCreateOneInput
 }
 
+input FeatureCreateManyInput {
+  create: [FeatureCreateInput!]
+  connect: [FeatureWhereUniqueInput!]
+}
+
 input FeatureCreateManyWithoutFromFolkInput {
   create: [FeatureCreateWithoutFromFolkInput!]
   connect: [FeatureWhereUniqueInput!]
@@ -602,6 +699,14 @@ input FeatureSubscriptionWhereInput {
   NOT: [FeatureSubscriptionWhereInput!]
 }
 
+input FeatureUpdateDataInput {
+  name: String
+  description: String
+  effects: FeatureUpdateeffectsInput
+  fromFolk: FolkUpdateOneWithoutFeaturesInput
+  fromClass: ClassUpdateOneInput
+}
+
 input FeatureUpdateeffectsInput {
   set: [String!]
 }
@@ -618,6 +723,18 @@ input FeatureUpdateManyDataInput {
   name: String
   description: String
   effects: FeatureUpdateeffectsInput
+}
+
+input FeatureUpdateManyInput {
+  create: [FeatureCreateInput!]
+  update: [FeatureUpdateWithWhereUniqueNestedInput!]
+  upsert: [FeatureUpsertWithWhereUniqueNestedInput!]
+  delete: [FeatureWhereUniqueInput!]
+  connect: [FeatureWhereUniqueInput!]
+  set: [FeatureWhereUniqueInput!]
+  disconnect: [FeatureWhereUniqueInput!]
+  deleteMany: [FeatureScalarWhereInput!]
+  updateMany: [FeatureUpdateManyWithWhereNestedInput!]
 }
 
 input FeatureUpdateManyMutationInput {
@@ -650,9 +767,20 @@ input FeatureUpdateWithoutFromFolkDataInput {
   fromClass: ClassUpdateOneInput
 }
 
+input FeatureUpdateWithWhereUniqueNestedInput {
+  where: FeatureWhereUniqueInput!
+  data: FeatureUpdateDataInput!
+}
+
 input FeatureUpdateWithWhereUniqueWithoutFromFolkInput {
   where: FeatureWhereUniqueInput!
   data: FeatureUpdateWithoutFromFolkDataInput!
+}
+
+input FeatureUpsertWithWhereUniqueNestedInput {
+  where: FeatureWhereUniqueInput!
+  update: FeatureUpdateDataInput!
+  create: FeatureCreateInput!
 }
 
 input FeatureUpsertWithWhereUniqueWithoutFromFolkInput {
@@ -1217,15 +1345,32 @@ type Mutation {
   createSaveBlock(data: SaveBlockCreateInput!): SaveBlock!
   deleteSaveBlock(where: SaveBlockWhereUniqueInput!): SaveBlock
   deleteManySaveBlocks(where: SaveBlockWhereInput): BatchPayload!
+  createSkill(data: SkillCreateInput!): Skill!
+  updateSkill(data: SkillUpdateInput!, where: SkillWhereUniqueInput!): Skill
+  updateManySkills(data: SkillUpdateManyMutationInput!, where: SkillWhereInput): BatchPayload!
+  upsertSkill(where: SkillWhereUniqueInput!, create: SkillCreateInput!, update: SkillUpdateInput!): Skill!
+  deleteSkill(where: SkillWhereUniqueInput!): Skill
+  deleteManySkills(where: SkillWhereInput): BatchPayload!
   createSkillBlock(data: SkillBlockCreateInput!): SkillBlock!
   deleteSkillBlock(where: SkillBlockWhereUniqueInput!): SkillBlock
   deleteManySkillBlocks(where: SkillBlockWhereInput): BatchPayload!
+  createStat(data: StatCreateInput!): Stat!
+  updateStat(data: StatUpdateInput!, where: StatWhereUniqueInput!): Stat
+  updateManyStats(data: StatUpdateManyMutationInput!, where: StatWhereInput): BatchPayload!
+  upsertStat(where: StatWhereUniqueInput!, create: StatCreateInput!, update: StatUpdateInput!): Stat!
+  deleteStat(where: StatWhereUniqueInput!): Stat
+  deleteManyStats(where: StatWhereInput): BatchPayload!
   createStatBlock(data: StatBlockCreateInput!): StatBlock!
   updateStatBlock(data: StatBlockUpdateInput!, where: StatBlockWhereUniqueInput!): StatBlock
-  updateManyStatBlocks(data: StatBlockUpdateManyMutationInput!, where: StatBlockWhereInput): BatchPayload!
   upsertStatBlock(where: StatBlockWhereUniqueInput!, create: StatBlockCreateInput!, update: StatBlockUpdateInput!): StatBlock!
   deleteStatBlock(where: StatBlockWhereUniqueInput!): StatBlock
   deleteManyStatBlocks(where: StatBlockWhereInput): BatchPayload!
+  createTemplateClass(data: TemplateClassCreateInput!): TemplateClass!
+  updateTemplateClass(data: TemplateClassUpdateInput!, where: TemplateClassWhereUniqueInput!): TemplateClass
+  updateManyTemplateClasses(data: TemplateClassUpdateManyMutationInput!, where: TemplateClassWhereInput): BatchPayload!
+  upsertTemplateClass(where: TemplateClassWhereUniqueInput!, create: TemplateClassCreateInput!, update: TemplateClassUpdateInput!): TemplateClass!
+  deleteTemplateClass(where: TemplateClassWhereUniqueInput!): TemplateClass
+  deleteManyTemplateClasses(where: TemplateClassWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -1278,12 +1423,21 @@ type Query {
   saveBlock(where: SaveBlockWhereUniqueInput!): SaveBlock
   saveBlocks(where: SaveBlockWhereInput, orderBy: SaveBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SaveBlock]!
   saveBlocksConnection(where: SaveBlockWhereInput, orderBy: SaveBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SaveBlockConnection!
+  skill(where: SkillWhereUniqueInput!): Skill
+  skills(where: SkillWhereInput, orderBy: SkillOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Skill]!
+  skillsConnection(where: SkillWhereInput, orderBy: SkillOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SkillConnection!
   skillBlock(where: SkillBlockWhereUniqueInput!): SkillBlock
   skillBlocks(where: SkillBlockWhereInput, orderBy: SkillBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SkillBlock]!
   skillBlocksConnection(where: SkillBlockWhereInput, orderBy: SkillBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SkillBlockConnection!
+  stat(where: StatWhereUniqueInput!): Stat
+  stats(where: StatWhereInput, orderBy: StatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Stat]!
+  statsConnection(where: StatWhereInput, orderBy: StatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StatConnection!
   statBlock(where: StatBlockWhereUniqueInput!): StatBlock
   statBlocks(where: StatBlockWhereInput, orderBy: StatBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StatBlock]!
   statBlocksConnection(where: StatBlockWhereInput, orderBy: StatBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StatBlockConnection!
+  templateClass(where: TemplateClassWhereUniqueInput!): TemplateClass
+  templateClasses(where: TemplateClassWhereInput, orderBy: TemplateClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TemplateClass]!
+  templateClassesConnection(where: TemplateClassWhereInput, orderBy: TemplateClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TemplateClassConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -1370,6 +1524,13 @@ input SaveBlockWhereUniqueInput {
   id: ID
 }
 
+type Skill {
+  id: ID!
+  name: String!
+  stat: Stat!
+  proficient: Boolean
+}
+
 type SkillBlock {
   id: ID!
 }
@@ -1450,20 +1611,119 @@ input SkillBlockWhereUniqueInput {
   id: ID
 }
 
+type SkillConnection {
+  pageInfo: PageInfo!
+  edges: [SkillEdge]!
+  aggregate: AggregateSkill!
+}
+
+input SkillCreateInput {
+  id: ID
+  name: String!
+  stat: StatCreateOneInput!
+  proficient: Boolean
+}
+
+type SkillEdge {
+  node: Skill!
+  cursor: String!
+}
+
+enum SkillOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  proficient_ASC
+  proficient_DESC
+}
+
+type SkillPreviousValues {
+  id: ID!
+  name: String!
+  proficient: Boolean
+}
+
+type SkillSubscriptionPayload {
+  mutation: MutationType!
+  node: Skill
+  updatedFields: [String!]
+  previousValues: SkillPreviousValues
+}
+
+input SkillSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SkillWhereInput
+  AND: [SkillSubscriptionWhereInput!]
+  OR: [SkillSubscriptionWhereInput!]
+  NOT: [SkillSubscriptionWhereInput!]
+}
+
+input SkillUpdateInput {
+  name: String
+  stat: StatUpdateOneRequiredInput
+  proficient: Boolean
+}
+
+input SkillUpdateManyMutationInput {
+  name: String
+  proficient: Boolean
+}
+
+input SkillWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  stat: StatWhereInput
+  proficient: Boolean
+  proficient_not: Boolean
+  AND: [SkillWhereInput!]
+  OR: [SkillWhereInput!]
+  NOT: [SkillWhereInput!]
+}
+
+input SkillWhereUniqueInput {
+  id: ID
+}
+
+type Stat {
+  id: ID!
+  name: StatList!
+  score: Int!
+  mod: Int!
+}
+
 type StatBlock {
   id: ID!
-  str: Int!
-  con: Int!
-  dex: Int!
-  cha: Int!
-  int: Int!
-  wis: Int!
-  strMod: Int!
-  conMod: Int!
-  dexMod: Int!
-  chaMod: Int!
-  intMod: Int!
-  wisMod: Int!
+  stats(where: StatWhereInput, orderBy: StatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Stat!]
 }
 
 type StatBlockConnection {
@@ -1474,18 +1734,7 @@ type StatBlockConnection {
 
 input StatBlockCreateInput {
   id: ID
-  str: Int!
-  con: Int!
-  dex: Int!
-  cha: Int!
-  int: Int!
-  wis: Int!
-  strMod: Int!
-  conMod: Int!
-  dexMod: Int!
-  chaMod: Int!
-  intMod: Int!
-  wisMod: Int!
+  stats: StatCreateManyInput
 }
 
 input StatBlockCreateOneInput {
@@ -1501,46 +1750,10 @@ type StatBlockEdge {
 enum StatBlockOrderByInput {
   id_ASC
   id_DESC
-  str_ASC
-  str_DESC
-  con_ASC
-  con_DESC
-  dex_ASC
-  dex_DESC
-  cha_ASC
-  cha_DESC
-  int_ASC
-  int_DESC
-  wis_ASC
-  wis_DESC
-  strMod_ASC
-  strMod_DESC
-  conMod_ASC
-  conMod_DESC
-  dexMod_ASC
-  dexMod_DESC
-  chaMod_ASC
-  chaMod_DESC
-  intMod_ASC
-  intMod_DESC
-  wisMod_ASC
-  wisMod_DESC
 }
 
 type StatBlockPreviousValues {
   id: ID!
-  str: Int!
-  con: Int!
-  dex: Int!
-  cha: Int!
-  int: Int!
-  wis: Int!
-  strMod: Int!
-  conMod: Int!
-  dexMod: Int!
-  chaMod: Int!
-  intMod: Int!
-  wisMod: Int!
 }
 
 type StatBlockSubscriptionPayload {
@@ -1562,48 +1775,11 @@ input StatBlockSubscriptionWhereInput {
 }
 
 input StatBlockUpdateDataInput {
-  str: Int
-  con: Int
-  dex: Int
-  cha: Int
-  int: Int
-  wis: Int
-  strMod: Int
-  conMod: Int
-  dexMod: Int
-  chaMod: Int
-  intMod: Int
-  wisMod: Int
+  stats: StatUpdateManyInput
 }
 
 input StatBlockUpdateInput {
-  str: Int
-  con: Int
-  dex: Int
-  cha: Int
-  int: Int
-  wis: Int
-  strMod: Int
-  conMod: Int
-  dexMod: Int
-  chaMod: Int
-  intMod: Int
-  wisMod: Int
-}
-
-input StatBlockUpdateManyMutationInput {
-  str: Int
-  con: Int
-  dex: Int
-  cha: Int
-  int: Int
-  wis: Int
-  strMod: Int
-  conMod: Int
-  dexMod: Int
-  chaMod: Int
-  intMod: Int
-  wisMod: Int
+  stats: StatUpdateManyInput
 }
 
 input StatBlockUpdateOneRequiredInput {
@@ -1633,108 +1809,236 @@ input StatBlockWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  str: Int
-  str_not: Int
-  str_in: [Int!]
-  str_not_in: [Int!]
-  str_lt: Int
-  str_lte: Int
-  str_gt: Int
-  str_gte: Int
-  con: Int
-  con_not: Int
-  con_in: [Int!]
-  con_not_in: [Int!]
-  con_lt: Int
-  con_lte: Int
-  con_gt: Int
-  con_gte: Int
-  dex: Int
-  dex_not: Int
-  dex_in: [Int!]
-  dex_not_in: [Int!]
-  dex_lt: Int
-  dex_lte: Int
-  dex_gt: Int
-  dex_gte: Int
-  cha: Int
-  cha_not: Int
-  cha_in: [Int!]
-  cha_not_in: [Int!]
-  cha_lt: Int
-  cha_lte: Int
-  cha_gt: Int
-  cha_gte: Int
-  int: Int
-  int_not: Int
-  int_in: [Int!]
-  int_not_in: [Int!]
-  int_lt: Int
-  int_lte: Int
-  int_gt: Int
-  int_gte: Int
-  wis: Int
-  wis_not: Int
-  wis_in: [Int!]
-  wis_not_in: [Int!]
-  wis_lt: Int
-  wis_lte: Int
-  wis_gt: Int
-  wis_gte: Int
-  strMod: Int
-  strMod_not: Int
-  strMod_in: [Int!]
-  strMod_not_in: [Int!]
-  strMod_lt: Int
-  strMod_lte: Int
-  strMod_gt: Int
-  strMod_gte: Int
-  conMod: Int
-  conMod_not: Int
-  conMod_in: [Int!]
-  conMod_not_in: [Int!]
-  conMod_lt: Int
-  conMod_lte: Int
-  conMod_gt: Int
-  conMod_gte: Int
-  dexMod: Int
-  dexMod_not: Int
-  dexMod_in: [Int!]
-  dexMod_not_in: [Int!]
-  dexMod_lt: Int
-  dexMod_lte: Int
-  dexMod_gt: Int
-  dexMod_gte: Int
-  chaMod: Int
-  chaMod_not: Int
-  chaMod_in: [Int!]
-  chaMod_not_in: [Int!]
-  chaMod_lt: Int
-  chaMod_lte: Int
-  chaMod_gt: Int
-  chaMod_gte: Int
-  intMod: Int
-  intMod_not: Int
-  intMod_in: [Int!]
-  intMod_not_in: [Int!]
-  intMod_lt: Int
-  intMod_lte: Int
-  intMod_gt: Int
-  intMod_gte: Int
-  wisMod: Int
-  wisMod_not: Int
-  wisMod_in: [Int!]
-  wisMod_not_in: [Int!]
-  wisMod_lt: Int
-  wisMod_lte: Int
-  wisMod_gt: Int
-  wisMod_gte: Int
+  stats_every: StatWhereInput
+  stats_some: StatWhereInput
+  stats_none: StatWhereInput
   AND: [StatBlockWhereInput!]
   OR: [StatBlockWhereInput!]
   NOT: [StatBlockWhereInput!]
 }
 
 input StatBlockWhereUniqueInput {
+  id: ID
+}
+
+type StatConnection {
+  pageInfo: PageInfo!
+  edges: [StatEdge]!
+  aggregate: AggregateStat!
+}
+
+input StatCreateInput {
+  id: ID
+  name: StatList!
+  score: Int
+  mod: Int
+}
+
+input StatCreateManyInput {
+  create: [StatCreateInput!]
+  connect: [StatWhereUniqueInput!]
+}
+
+input StatCreateOneInput {
+  create: StatCreateInput
+  connect: StatWhereUniqueInput
+}
+
+type StatEdge {
+  node: Stat!
+  cursor: String!
+}
+
+enum StatList {
+  STR
+  CON
+  DEX
+  CHA
+  WIS
+  INT
+}
+
+enum StatOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  score_ASC
+  score_DESC
+  mod_ASC
+  mod_DESC
+}
+
+type StatPreviousValues {
+  id: ID!
+  name: StatList!
+  score: Int!
+  mod: Int!
+}
+
+input StatScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: StatList
+  name_not: StatList
+  name_in: [StatList!]
+  name_not_in: [StatList!]
+  score: Int
+  score_not: Int
+  score_in: [Int!]
+  score_not_in: [Int!]
+  score_lt: Int
+  score_lte: Int
+  score_gt: Int
+  score_gte: Int
+  mod: Int
+  mod_not: Int
+  mod_in: [Int!]
+  mod_not_in: [Int!]
+  mod_lt: Int
+  mod_lte: Int
+  mod_gt: Int
+  mod_gte: Int
+  AND: [StatScalarWhereInput!]
+  OR: [StatScalarWhereInput!]
+  NOT: [StatScalarWhereInput!]
+}
+
+type StatSubscriptionPayload {
+  mutation: MutationType!
+  node: Stat
+  updatedFields: [String!]
+  previousValues: StatPreviousValues
+}
+
+input StatSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: StatWhereInput
+  AND: [StatSubscriptionWhereInput!]
+  OR: [StatSubscriptionWhereInput!]
+  NOT: [StatSubscriptionWhereInput!]
+}
+
+input StatUpdateDataInput {
+  name: StatList
+  score: Int
+  mod: Int
+}
+
+input StatUpdateInput {
+  name: StatList
+  score: Int
+  mod: Int
+}
+
+input StatUpdateManyDataInput {
+  name: StatList
+  score: Int
+  mod: Int
+}
+
+input StatUpdateManyInput {
+  create: [StatCreateInput!]
+  update: [StatUpdateWithWhereUniqueNestedInput!]
+  upsert: [StatUpsertWithWhereUniqueNestedInput!]
+  delete: [StatWhereUniqueInput!]
+  connect: [StatWhereUniqueInput!]
+  set: [StatWhereUniqueInput!]
+  disconnect: [StatWhereUniqueInput!]
+  deleteMany: [StatScalarWhereInput!]
+  updateMany: [StatUpdateManyWithWhereNestedInput!]
+}
+
+input StatUpdateManyMutationInput {
+  name: StatList
+  score: Int
+  mod: Int
+}
+
+input StatUpdateManyWithWhereNestedInput {
+  where: StatScalarWhereInput!
+  data: StatUpdateManyDataInput!
+}
+
+input StatUpdateOneRequiredInput {
+  create: StatCreateInput
+  update: StatUpdateDataInput
+  upsert: StatUpsertNestedInput
+  connect: StatWhereUniqueInput
+}
+
+input StatUpdateWithWhereUniqueNestedInput {
+  where: StatWhereUniqueInput!
+  data: StatUpdateDataInput!
+}
+
+input StatUpsertNestedInput {
+  update: StatUpdateDataInput!
+  create: StatCreateInput!
+}
+
+input StatUpsertWithWhereUniqueNestedInput {
+  where: StatWhereUniqueInput!
+  update: StatUpdateDataInput!
+  create: StatCreateInput!
+}
+
+input StatWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: StatList
+  name_not: StatList
+  name_in: [StatList!]
+  name_not_in: [StatList!]
+  score: Int
+  score_not: Int
+  score_in: [Int!]
+  score_not_in: [Int!]
+  score_lt: Int
+  score_lte: Int
+  score_gt: Int
+  score_gte: Int
+  mod: Int
+  mod_not: Int
+  mod_in: [Int!]
+  mod_not_in: [Int!]
+  mod_lt: Int
+  mod_lte: Int
+  mod_gt: Int
+  mod_gte: Int
+  AND: [StatWhereInput!]
+  OR: [StatWhereInput!]
+  NOT: [StatWhereInput!]
+}
+
+input StatWhereUniqueInput {
   id: ID
 }
 
@@ -1746,9 +2050,137 @@ type Subscription {
   folk(where: FolkSubscriptionWhereInput): FolkSubscriptionPayload
   language(where: LanguageSubscriptionWhereInput): LanguageSubscriptionPayload
   saveBlock(where: SaveBlockSubscriptionWhereInput): SaveBlockSubscriptionPayload
+  skill(where: SkillSubscriptionWhereInput): SkillSubscriptionPayload
   skillBlock(where: SkillBlockSubscriptionWhereInput): SkillBlockSubscriptionPayload
+  stat(where: StatSubscriptionWhereInput): StatSubscriptionPayload
   statBlock(where: StatBlockSubscriptionWhereInput): StatBlockSubscriptionPayload
+  templateClass(where: TemplateClassSubscriptionWhereInput): TemplateClassSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type TemplateClass {
+  id: ID!
+  name: String!
+  features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature!]
+}
+
+type TemplateClassConnection {
+  pageInfo: PageInfo!
+  edges: [TemplateClassEdge]!
+  aggregate: AggregateTemplateClass!
+}
+
+input TemplateClassCreateInput {
+  id: ID
+  name: String!
+  features: FeatureCreateManyInput
+}
+
+input TemplateClassCreateOneInput {
+  create: TemplateClassCreateInput
+  connect: TemplateClassWhereUniqueInput
+}
+
+type TemplateClassEdge {
+  node: TemplateClass!
+  cursor: String!
+}
+
+enum TemplateClassOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type TemplateClassPreviousValues {
+  id: ID!
+  name: String!
+}
+
+type TemplateClassSubscriptionPayload {
+  mutation: MutationType!
+  node: TemplateClass
+  updatedFields: [String!]
+  previousValues: TemplateClassPreviousValues
+}
+
+input TemplateClassSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TemplateClassWhereInput
+  AND: [TemplateClassSubscriptionWhereInput!]
+  OR: [TemplateClassSubscriptionWhereInput!]
+  NOT: [TemplateClassSubscriptionWhereInput!]
+}
+
+input TemplateClassUpdateDataInput {
+  name: String
+  features: FeatureUpdateManyInput
+}
+
+input TemplateClassUpdateInput {
+  name: String
+  features: FeatureUpdateManyInput
+}
+
+input TemplateClassUpdateManyMutationInput {
+  name: String
+}
+
+input TemplateClassUpdateOneRequiredInput {
+  create: TemplateClassCreateInput
+  update: TemplateClassUpdateDataInput
+  upsert: TemplateClassUpsertNestedInput
+  connect: TemplateClassWhereUniqueInput
+}
+
+input TemplateClassUpsertNestedInput {
+  update: TemplateClassUpdateDataInput!
+  create: TemplateClassCreateInput!
+}
+
+input TemplateClassWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  features_every: FeatureWhereInput
+  features_some: FeatureWhereInput
+  features_none: FeatureWhereInput
+  AND: [TemplateClassWhereInput!]
+  OR: [TemplateClassWhereInput!]
+  NOT: [TemplateClassWhereInput!]
+}
+
+input TemplateClassWhereUniqueInput {
+  id: ID
 }
 
 type User {

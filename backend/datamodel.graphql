@@ -3,6 +3,15 @@ enum Permission {
   ADMIN
 }
 
+enum StatList {
+  STR
+  CON
+  DEX
+  CHA
+  WIS
+  INT
+}
+
 type User {
   id: ID! @id @unique
   name: String!
@@ -41,20 +50,23 @@ type Folk {
   features: [Feature]! @relation(name: "Features")
 }
 
+type Stat {
+  id: ID! @id @unique
+  name: StatList!
+  score: Int! @default(value: 10)
+  mod: Int! @default(value: 0)
+}
+
 type StatBlock {
   id: ID! @id @unique
-  str: Int!
-  con: Int!
-  dex: Int!
-  cha: Int!
-  int: Int!
-  wis: Int!
-  strMod: Int!
-  conMod: Int!
-  dexMod: Int!
-  chaMod: Int!
-  intMod: Int!
-  wisMod: Int!
+  stats: [Stat!]! @relation(name: "CharacterStats")
+}
+
+type Skill {
+  id: ID! @id @unique
+  name: String!
+  stat: Stat!
+  proficient: Boolean @default(value: false)
 }
 
 type SkillBlock {
@@ -71,18 +83,27 @@ type Die {
   faces: Int!
 }
 
+# This is the rules for the class. Is not editable by users, only admins
+type TemplateClass {
+  id: ID! @id @unique
+  name: String!
+  features: [Feature!]!
+}
+
+# Contains a reference to the rules for the class + character's current level
 type Class {
   id: ID! @id @unique
   name: String!
+  class: TemplateClass!
   level: Int! @default(value: 1)
 }
 
 type Character {
   id: ID! @id @unique
   name: String!
-  class: Class!
+  class: [Class!]!
   folk: Folk!
-  statblock: StatBlock!
+  stats: StatBlock!
   skills: SkillBlock!
   saves: SaveBlock!
   acCalc: String!
