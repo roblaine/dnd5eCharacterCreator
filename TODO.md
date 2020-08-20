@@ -1,11 +1,11 @@
 # Character Creator
 
-1. Backend for retrieving characters
+### Backend for retrieving characters
 
-   - User signup/auth
-   - Backend for creating a new character
-   - Storage of folkal traits/class features?
-     - Creation of languages
-     - Creation of features (Class & Folk)
+- [x] User signup/auth
+- [x] Backend for creating a new character
+- [x] Storage of folkal traits/class features?
+  - [x] Creation of languages
+  - [x] Creation of features (Class & Folk)
 
-2. FE for all above
+### FE for all above

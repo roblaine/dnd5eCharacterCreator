@@ -28,7 +28,6 @@ const GET_ALL_CHARACTERS_QUERY = gql`
 `;
 
 const Characters = () => {
-  // TODO: Move this to a component
   function getCharacters() {
     const { loading, error, data } = useQuery(GET_ALL_CHARACTERS_QUERY);
 
