@@ -9,7 +9,9 @@ const Query = {
   folks: forwardTo('db'),
   language: forwardTo('db'),
   languages: forwardTo('db'),
-  characters: forwardTo('db'),
+  async characters(parent, args, ctx, info) {
+    console.log('Getting characters');
+  },
 
   async me(parent, args, ctx, info) {
     // Return a promise containing the user that is currently logged in

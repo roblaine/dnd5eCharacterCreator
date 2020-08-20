@@ -30,12 +30,13 @@ type Feature {
 type Folk {
   id: ID! @id @unique
   name: String!
-  strMod: Int!
-  conMod: Int!
-  dexMod: Int!
-  chaMod: Int!
-  intMod: Int!
-  wisMod: Int!
+  strMod: Int @default(value: 0)
+  conMod: Int @default(value: 0)
+  dexMod: Int @default(value: 0)
+  chaMod: Int @default(value: 0)
+  intMod: Int @default(value: 0)
+  wisMod: Int @default(value: 0)
+  speed: Int!
   languages: [Language!]! @relation(name: "Languages")
   features: [Feature]! @relation(name: "Features")
 }
@@ -56,11 +57,36 @@ type StatBlock {
   wisMod: Int!
 }
 
+type SkillBlock {
+  id: ID! @id @unique
+}
+
+type SaveBlock {
+  id: ID! @id @unique
+}
+
+# Assume numbers on die range from [1 - faces]
+type Die {
+  id: ID! @id @unique
+  faces: Int!
+}
+
 type Class {
   id: ID! @id @unique
-  stats: StatBlock!
+  name: String!
+  level: Int! @default(value: 1)
 }
 
 type Character {
   id: ID! @id @unique
+  name: String!
+  class: Class!
+  folk: Folk!
+  statblock: StatBlock!
+  skills: SkillBlock!
+  saves: SaveBlock!
+  acCalc: String!
+  hitDie: Die!
+  maxHp: Int!
+  profBonus: Int!
 }

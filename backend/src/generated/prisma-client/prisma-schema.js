@@ -11,6 +11,10 @@ type AggregateClass {
   count: Int!
 }
 
+type AggregateDie {
+  count: Int!
+}
+
 type AggregateFeature {
   count: Int!
 }
@@ -20,6 +24,14 @@ type AggregateFolk {
 }
 
 type AggregateLanguage {
+  count: Int!
+}
+
+type AggregateSaveBlock {
+  count: Int!
+}
+
+type AggregateSkillBlock {
   count: Int!
 }
 
@@ -37,6 +49,16 @@ type BatchPayload {
 
 type Character {
   id: ID!
+  name: String!
+  class: Class!
+  folk: Folk!
+  statblock: StatBlock!
+  skills: SkillBlock!
+  saves: SaveBlock!
+  acCalc: String!
+  hitDie: Die!
+  maxHp: Int!
+  profBonus: Int!
 }
 
 type CharacterConnection {
@@ -47,6 +69,16 @@ type CharacterConnection {
 
 input CharacterCreateInput {
   id: ID
+  name: String!
+  class: ClassCreateOneInput!
+  folk: FolkCreateOneInput!
+  statblock: StatBlockCreateOneInput!
+  skills: SkillBlockCreateOneInput!
+  saves: SaveBlockCreateOneInput!
+  acCalc: String!
+  hitDie: DieCreateOneInput!
+  maxHp: Int!
+  profBonus: Int!
 }
 
 type CharacterEdge {
@@ -57,10 +89,22 @@ type CharacterEdge {
 enum CharacterOrderByInput {
   id_ASC
   id_DESC
+  name_ASC
+  name_DESC
+  acCalc_ASC
+  acCalc_DESC
+  maxHp_ASC
+  maxHp_DESC
+  profBonus_ASC
+  profBonus_DESC
 }
 
 type CharacterPreviousValues {
   id: ID!
+  name: String!
+  acCalc: String!
+  maxHp: Int!
+  profBonus: Int!
 }
 
 type CharacterSubscriptionPayload {
@@ -81,6 +125,26 @@ input CharacterSubscriptionWhereInput {
   NOT: [CharacterSubscriptionWhereInput!]
 }
 
+input CharacterUpdateInput {
+  name: String
+  class: ClassUpdateOneRequiredInput
+  folk: FolkUpdateOneRequiredInput
+  statblock: StatBlockUpdateOneRequiredInput
+  skills: SkillBlockUpdateOneRequiredInput
+  saves: SaveBlockUpdateOneRequiredInput
+  acCalc: String
+  hitDie: DieUpdateOneRequiredInput
+  maxHp: Int
+  profBonus: Int
+}
+
+input CharacterUpdateManyMutationInput {
+  name: String
+  acCalc: String
+  maxHp: Int
+  profBonus: Int
+}
+
 input CharacterWhereInput {
   id: ID
   id_not: ID
@@ -96,6 +160,56 @@ input CharacterWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  class: ClassWhereInput
+  folk: FolkWhereInput
+  statblock: StatBlockWhereInput
+  skills: SkillBlockWhereInput
+  saves: SaveBlockWhereInput
+  acCalc: String
+  acCalc_not: String
+  acCalc_in: [String!]
+  acCalc_not_in: [String!]
+  acCalc_lt: String
+  acCalc_lte: String
+  acCalc_gt: String
+  acCalc_gte: String
+  acCalc_contains: String
+  acCalc_not_contains: String
+  acCalc_starts_with: String
+  acCalc_not_starts_with: String
+  acCalc_ends_with: String
+  acCalc_not_ends_with: String
+  hitDie: DieWhereInput
+  maxHp: Int
+  maxHp_not: Int
+  maxHp_in: [Int!]
+  maxHp_not_in: [Int!]
+  maxHp_lt: Int
+  maxHp_lte: Int
+  maxHp_gt: Int
+  maxHp_gte: Int
+  profBonus: Int
+  profBonus_not: Int
+  profBonus_in: [Int!]
+  profBonus_not_in: [Int!]
+  profBonus_lt: Int
+  profBonus_lte: Int
+  profBonus_gt: Int
+  profBonus_gte: Int
   AND: [CharacterWhereInput!]
   OR: [CharacterWhereInput!]
   NOT: [CharacterWhereInput!]
@@ -107,7 +221,8 @@ input CharacterWhereUniqueInput {
 
 type Class {
   id: ID!
-  stats: StatBlock!
+  name: String!
+  level: Int!
 }
 
 type ClassConnection {
@@ -118,7 +233,8 @@ type ClassConnection {
 
 input ClassCreateInput {
   id: ID
-  stats: StatBlockCreateOneInput!
+  name: String!
+  level: Int
 }
 
 input ClassCreateOneInput {
@@ -134,10 +250,16 @@ type ClassEdge {
 enum ClassOrderByInput {
   id_ASC
   id_DESC
+  name_ASC
+  name_DESC
+  level_ASC
+  level_DESC
 }
 
 type ClassPreviousValues {
   id: ID!
+  name: String!
+  level: Int!
 }
 
 type ClassSubscriptionPayload {
@@ -159,11 +281,18 @@ input ClassSubscriptionWhereInput {
 }
 
 input ClassUpdateDataInput {
-  stats: StatBlockUpdateOneRequiredInput
+  name: String
+  level: Int
 }
 
 input ClassUpdateInput {
-  stats: StatBlockUpdateOneRequiredInput
+  name: String
+  level: Int
+}
+
+input ClassUpdateManyMutationInput {
+  name: String
+  level: Int
 }
 
 input ClassUpdateOneInput {
@@ -172,6 +301,13 @@ input ClassUpdateOneInput {
   upsert: ClassUpsertNestedInput
   delete: Boolean
   disconnect: Boolean
+  connect: ClassWhereUniqueInput
+}
+
+input ClassUpdateOneRequiredInput {
+  create: ClassCreateInput
+  update: ClassUpdateDataInput
+  upsert: ClassUpsertNestedInput
   connect: ClassWhereUniqueInput
 }
 
@@ -195,13 +331,146 @@ input ClassWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  stats: StatBlockWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  level: Int
+  level_not: Int
+  level_in: [Int!]
+  level_not_in: [Int!]
+  level_lt: Int
+  level_lte: Int
+  level_gt: Int
+  level_gte: Int
   AND: [ClassWhereInput!]
   OR: [ClassWhereInput!]
   NOT: [ClassWhereInput!]
 }
 
 input ClassWhereUniqueInput {
+  id: ID
+}
+
+type Die {
+  id: ID!
+  faces: Int!
+}
+
+type DieConnection {
+  pageInfo: PageInfo!
+  edges: [DieEdge]!
+  aggregate: AggregateDie!
+}
+
+input DieCreateInput {
+  id: ID
+  faces: Int!
+}
+
+input DieCreateOneInput {
+  create: DieCreateInput
+  connect: DieWhereUniqueInput
+}
+
+type DieEdge {
+  node: Die!
+  cursor: String!
+}
+
+enum DieOrderByInput {
+  id_ASC
+  id_DESC
+  faces_ASC
+  faces_DESC
+}
+
+type DiePreviousValues {
+  id: ID!
+  faces: Int!
+}
+
+type DieSubscriptionPayload {
+  mutation: MutationType!
+  node: Die
+  updatedFields: [String!]
+  previousValues: DiePreviousValues
+}
+
+input DieSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DieWhereInput
+  AND: [DieSubscriptionWhereInput!]
+  OR: [DieSubscriptionWhereInput!]
+  NOT: [DieSubscriptionWhereInput!]
+}
+
+input DieUpdateDataInput {
+  faces: Int
+}
+
+input DieUpdateInput {
+  faces: Int
+}
+
+input DieUpdateManyMutationInput {
+  faces: Int
+}
+
+input DieUpdateOneRequiredInput {
+  create: DieCreateInput
+  update: DieUpdateDataInput
+  upsert: DieUpsertNestedInput
+  connect: DieWhereUniqueInput
+}
+
+input DieUpsertNestedInput {
+  update: DieUpdateDataInput!
+  create: DieCreateInput!
+}
+
+input DieWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  faces: Int
+  faces_not: Int
+  faces_in: [Int!]
+  faces_not_in: [Int!]
+  faces_lt: Int
+  faces_lte: Int
+  faces_gt: Int
+  faces_gte: Int
+  AND: [DieWhereInput!]
+  OR: [DieWhereInput!]
+  NOT: [DieWhereInput!]
+}
+
+input DieWhereUniqueInput {
   id: ID
 }
 
@@ -449,12 +718,13 @@ input FeatureWhereUniqueInput {
 type Folk {
   id: ID!
   name: String!
-  strMod: Int!
-  conMod: Int!
-  dexMod: Int!
-  chaMod: Int!
-  intMod: Int!
-  wisMod: Int!
+  strMod: Int
+  conMod: Int
+  dexMod: Int
+  chaMod: Int
+  intMod: Int
+  wisMod: Int
+  speed: Int!
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language!]
   features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature!]
 }
@@ -468,14 +738,20 @@ type FolkConnection {
 input FolkCreateInput {
   id: ID
   name: String!
-  strMod: Int!
-  conMod: Int!
-  dexMod: Int!
-  chaMod: Int!
-  intMod: Int!
-  wisMod: Int!
+  strMod: Int
+  conMod: Int
+  dexMod: Int
+  chaMod: Int
+  intMod: Int
+  wisMod: Int
+  speed: Int!
   languages: LanguageCreateManyInput
   features: FeatureCreateManyWithoutFromFolkInput
+}
+
+input FolkCreateOneInput {
+  create: FolkCreateInput
+  connect: FolkWhereUniqueInput
 }
 
 input FolkCreateOneWithoutFeaturesInput {
@@ -486,12 +762,13 @@ input FolkCreateOneWithoutFeaturesInput {
 input FolkCreateWithoutFeaturesInput {
   id: ID
   name: String!
-  strMod: Int!
-  conMod: Int!
-  dexMod: Int!
-  chaMod: Int!
-  intMod: Int!
-  wisMod: Int!
+  strMod: Int
+  conMod: Int
+  dexMod: Int
+  chaMod: Int
+  intMod: Int
+  wisMod: Int
+  speed: Int!
   languages: LanguageCreateManyInput
 }
 
@@ -517,17 +794,20 @@ enum FolkOrderByInput {
   intMod_DESC
   wisMod_ASC
   wisMod_DESC
+  speed_ASC
+  speed_DESC
 }
 
 type FolkPreviousValues {
   id: ID!
   name: String!
-  strMod: Int!
-  conMod: Int!
-  dexMod: Int!
-  chaMod: Int!
-  intMod: Int!
-  wisMod: Int!
+  strMod: Int
+  conMod: Int
+  dexMod: Int
+  chaMod: Int
+  intMod: Int
+  wisMod: Int
+  speed: Int!
 }
 
 type FolkSubscriptionPayload {
@@ -548,6 +828,19 @@ input FolkSubscriptionWhereInput {
   NOT: [FolkSubscriptionWhereInput!]
 }
 
+input FolkUpdateDataInput {
+  name: String
+  strMod: Int
+  conMod: Int
+  dexMod: Int
+  chaMod: Int
+  intMod: Int
+  wisMod: Int
+  speed: Int
+  languages: LanguageUpdateManyInput
+  features: FeatureUpdateManyWithoutFromFolkInput
+}
+
 input FolkUpdateInput {
   name: String
   strMod: Int
@@ -556,6 +849,7 @@ input FolkUpdateInput {
   chaMod: Int
   intMod: Int
   wisMod: Int
+  speed: Int
   languages: LanguageUpdateManyInput
   features: FeatureUpdateManyWithoutFromFolkInput
 }
@@ -568,6 +862,14 @@ input FolkUpdateManyMutationInput {
   chaMod: Int
   intMod: Int
   wisMod: Int
+  speed: Int
+}
+
+input FolkUpdateOneRequiredInput {
+  create: FolkCreateInput
+  update: FolkUpdateDataInput
+  upsert: FolkUpsertNestedInput
+  connect: FolkWhereUniqueInput
 }
 
 input FolkUpdateOneWithoutFeaturesInput {
@@ -587,7 +889,13 @@ input FolkUpdateWithoutFeaturesDataInput {
   chaMod: Int
   intMod: Int
   wisMod: Int
+  speed: Int
   languages: LanguageUpdateManyInput
+}
+
+input FolkUpsertNestedInput {
+  update: FolkUpdateDataInput!
+  create: FolkCreateInput!
 }
 
 input FolkUpsertWithoutFeaturesInput {
@@ -672,6 +980,14 @@ input FolkWhereInput {
   wisMod_lte: Int
   wisMod_gt: Int
   wisMod_gte: Int
+  speed: Int
+  speed_not: Int
+  speed_in: [Int!]
+  speed_not_in: [Int!]
+  speed_lt: Int
+  speed_lte: Int
+  speed_gt: Int
+  speed_gte: Int
   languages_every: LanguageWhereInput
   languages_some: LanguageWhereInput
   languages_none: LanguageWhereInput
@@ -863,13 +1179,23 @@ scalar Long
 
 type Mutation {
   createCharacter(data: CharacterCreateInput!): Character!
+  updateCharacter(data: CharacterUpdateInput!, where: CharacterWhereUniqueInput!): Character
+  updateManyCharacters(data: CharacterUpdateManyMutationInput!, where: CharacterWhereInput): BatchPayload!
+  upsertCharacter(where: CharacterWhereUniqueInput!, create: CharacterCreateInput!, update: CharacterUpdateInput!): Character!
   deleteCharacter(where: CharacterWhereUniqueInput!): Character
   deleteManyCharacters(where: CharacterWhereInput): BatchPayload!
   createClass(data: ClassCreateInput!): Class!
   updateClass(data: ClassUpdateInput!, where: ClassWhereUniqueInput!): Class
+  updateManyClasses(data: ClassUpdateManyMutationInput!, where: ClassWhereInput): BatchPayload!
   upsertClass(where: ClassWhereUniqueInput!, create: ClassCreateInput!, update: ClassUpdateInput!): Class!
   deleteClass(where: ClassWhereUniqueInput!): Class
   deleteManyClasses(where: ClassWhereInput): BatchPayload!
+  createDie(data: DieCreateInput!): Die!
+  updateDie(data: DieUpdateInput!, where: DieWhereUniqueInput!): Die
+  updateManyDies(data: DieUpdateManyMutationInput!, where: DieWhereInput): BatchPayload!
+  upsertDie(where: DieWhereUniqueInput!, create: DieCreateInput!, update: DieUpdateInput!): Die!
+  deleteDie(where: DieWhereUniqueInput!): Die
+  deleteManyDies(where: DieWhereInput): BatchPayload!
   createFeature(data: FeatureCreateInput!): Feature!
   updateFeature(data: FeatureUpdateInput!, where: FeatureWhereUniqueInput!): Feature
   updateManyFeatures(data: FeatureUpdateManyMutationInput!, where: FeatureWhereInput): BatchPayload!
@@ -888,6 +1214,12 @@ type Mutation {
   upsertLanguage(where: LanguageWhereUniqueInput!, create: LanguageCreateInput!, update: LanguageUpdateInput!): Language!
   deleteLanguage(where: LanguageWhereUniqueInput!): Language
   deleteManyLanguages(where: LanguageWhereInput): BatchPayload!
+  createSaveBlock(data: SaveBlockCreateInput!): SaveBlock!
+  deleteSaveBlock(where: SaveBlockWhereUniqueInput!): SaveBlock
+  deleteManySaveBlocks(where: SaveBlockWhereInput): BatchPayload!
+  createSkillBlock(data: SkillBlockCreateInput!): SkillBlock!
+  deleteSkillBlock(where: SkillBlockWhereUniqueInput!): SkillBlock
+  deleteManySkillBlocks(where: SkillBlockWhereInput): BatchPayload!
   createStatBlock(data: StatBlockCreateInput!): StatBlock!
   updateStatBlock(data: StatBlockUpdateInput!, where: StatBlockWhereUniqueInput!): StatBlock
   updateManyStatBlocks(data: StatBlockUpdateManyMutationInput!, where: StatBlockWhereInput): BatchPayload!
@@ -931,6 +1263,9 @@ type Query {
   class(where: ClassWhereUniqueInput!): Class
   classes(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Class]!
   classesConnection(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ClassConnection!
+  die(where: DieWhereUniqueInput!): Die
+  dies(where: DieWhereInput, orderBy: DieOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Die]!
+  diesConnection(where: DieWhereInput, orderBy: DieOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DieConnection!
   feature(where: FeatureWhereUniqueInput!): Feature
   features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature]!
   featuresConnection(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FeatureConnection!
@@ -940,6 +1275,12 @@ type Query {
   language(where: LanguageWhereUniqueInput!): Language
   languages(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Language]!
   languagesConnection(where: LanguageWhereInput, orderBy: LanguageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LanguageConnection!
+  saveBlock(where: SaveBlockWhereUniqueInput!): SaveBlock
+  saveBlocks(where: SaveBlockWhereInput, orderBy: SaveBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SaveBlock]!
+  saveBlocksConnection(where: SaveBlockWhereInput, orderBy: SaveBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SaveBlockConnection!
+  skillBlock(where: SkillBlockWhereUniqueInput!): SkillBlock
+  skillBlocks(where: SkillBlockWhereInput, orderBy: SkillBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SkillBlock]!
+  skillBlocksConnection(where: SkillBlockWhereInput, orderBy: SkillBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SkillBlockConnection!
   statBlock(where: StatBlockWhereUniqueInput!): StatBlock
   statBlocks(where: StatBlockWhereInput, orderBy: StatBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StatBlock]!
   statBlocksConnection(where: StatBlockWhereInput, orderBy: StatBlockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StatBlockConnection!
@@ -947,6 +1288,166 @@ type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
+}
+
+type SaveBlock {
+  id: ID!
+}
+
+type SaveBlockConnection {
+  pageInfo: PageInfo!
+  edges: [SaveBlockEdge]!
+  aggregate: AggregateSaveBlock!
+}
+
+input SaveBlockCreateInput {
+  id: ID
+}
+
+input SaveBlockCreateOneInput {
+  create: SaveBlockCreateInput
+  connect: SaveBlockWhereUniqueInput
+}
+
+type SaveBlockEdge {
+  node: SaveBlock!
+  cursor: String!
+}
+
+enum SaveBlockOrderByInput {
+  id_ASC
+  id_DESC
+}
+
+type SaveBlockPreviousValues {
+  id: ID!
+}
+
+type SaveBlockSubscriptionPayload {
+  mutation: MutationType!
+  node: SaveBlock
+  updatedFields: [String!]
+  previousValues: SaveBlockPreviousValues
+}
+
+input SaveBlockSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SaveBlockWhereInput
+  AND: [SaveBlockSubscriptionWhereInput!]
+  OR: [SaveBlockSubscriptionWhereInput!]
+  NOT: [SaveBlockSubscriptionWhereInput!]
+}
+
+input SaveBlockUpdateOneRequiredInput {
+  create: SaveBlockCreateInput
+  connect: SaveBlockWhereUniqueInput
+}
+
+input SaveBlockWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  AND: [SaveBlockWhereInput!]
+  OR: [SaveBlockWhereInput!]
+  NOT: [SaveBlockWhereInput!]
+}
+
+input SaveBlockWhereUniqueInput {
+  id: ID
+}
+
+type SkillBlock {
+  id: ID!
+}
+
+type SkillBlockConnection {
+  pageInfo: PageInfo!
+  edges: [SkillBlockEdge]!
+  aggregate: AggregateSkillBlock!
+}
+
+input SkillBlockCreateInput {
+  id: ID
+}
+
+input SkillBlockCreateOneInput {
+  create: SkillBlockCreateInput
+  connect: SkillBlockWhereUniqueInput
+}
+
+type SkillBlockEdge {
+  node: SkillBlock!
+  cursor: String!
+}
+
+enum SkillBlockOrderByInput {
+  id_ASC
+  id_DESC
+}
+
+type SkillBlockPreviousValues {
+  id: ID!
+}
+
+type SkillBlockSubscriptionPayload {
+  mutation: MutationType!
+  node: SkillBlock
+  updatedFields: [String!]
+  previousValues: SkillBlockPreviousValues
+}
+
+input SkillBlockSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SkillBlockWhereInput
+  AND: [SkillBlockSubscriptionWhereInput!]
+  OR: [SkillBlockSubscriptionWhereInput!]
+  NOT: [SkillBlockSubscriptionWhereInput!]
+}
+
+input SkillBlockUpdateOneRequiredInput {
+  create: SkillBlockCreateInput
+  connect: SkillBlockWhereUniqueInput
+}
+
+input SkillBlockWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  AND: [SkillBlockWhereInput!]
+  OR: [SkillBlockWhereInput!]
+  NOT: [SkillBlockWhereInput!]
+}
+
+input SkillBlockWhereUniqueInput {
+  id: ID
 }
 
 type StatBlock {
@@ -1240,9 +1741,12 @@ input StatBlockWhereUniqueInput {
 type Subscription {
   character(where: CharacterSubscriptionWhereInput): CharacterSubscriptionPayload
   class(where: ClassSubscriptionWhereInput): ClassSubscriptionPayload
+  die(where: DieSubscriptionWhereInput): DieSubscriptionPayload
   feature(where: FeatureSubscriptionWhereInput): FeatureSubscriptionPayload
   folk(where: FolkSubscriptionWhereInput): FolkSubscriptionPayload
   language(where: LanguageSubscriptionWhereInput): LanguageSubscriptionPayload
+  saveBlock(where: SaveBlockSubscriptionWhereInput): SaveBlockSubscriptionPayload
+  skillBlock(where: SkillBlockSubscriptionWhereInput): SkillBlockSubscriptionPayload
   statBlock(where: StatBlockSubscriptionWhereInput): StatBlockSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }

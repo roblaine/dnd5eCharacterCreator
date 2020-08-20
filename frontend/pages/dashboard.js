@@ -3,12 +3,24 @@ import { gql, useQuery } from '@apollo/client';
 const GET_ALL_CHARACTERS_QUERY = gql`
   query getCharacters {
     characters {
+      id
       name
+      statblock
+      skills
+      saves
+      acCalc
+      class
+      level
+      hitDie
+      maxHp
+      profBonus
+      speed
     }
   }
 `;
 
 const Dashboard = () => {
+  // TODO: Move this to a component
   function getCharacters() {
     const { loading, error, data } = useQuery(GET_ALL_CHARACTERS_QUERY);
 

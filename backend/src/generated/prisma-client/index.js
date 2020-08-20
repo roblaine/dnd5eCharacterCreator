@@ -29,6 +29,18 @@ var models = [
     embedded: false
   },
   {
+    name: "SkillBlock",
+    embedded: false
+  },
+  {
+    name: "SaveBlock",
+    embedded: false
+  },
+  {
+    name: "Die",
+    embedded: false
+  },
+  {
     name: "Class",
     embedded: false
   },
