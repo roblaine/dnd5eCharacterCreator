@@ -1296,16 +1296,16 @@ export interface UserWhereInput {
 
 export interface CharacterCreateInput {
   id?: Maybe<ID_Input>;
-  name: String;
+  name?: Maybe<String>;
   class?: Maybe<ClassCreateManyInput>;
-  folk: FolkCreateOneInput;
-  stats: StatBlockCreateOneInput;
-  skills: SkillBlockCreateOneInput;
-  saves: SaveBlockCreateOneInput;
-  acCalc: String;
-  hitDie: DieCreateOneInput;
-  maxHp: Int;
-  profBonus: Int;
+  folk?: Maybe<FolkCreateOneInput>;
+  stats?: Maybe<StatBlockCreateOneInput>;
+  skills?: Maybe<SkillBlockCreateOneInput>;
+  saves?: Maybe<SaveBlockCreateOneInput>;
+  acCalc?: Maybe<String>;
+  hitDie?: Maybe<DieCreateOneInput>;
+  maxHp?: Maybe<Int>;
+  profBonus?: Maybe<Int>;
 }
 
 export interface ClassCreateManyInput {
@@ -1469,12 +1469,12 @@ export interface DieCreateInput {
 export interface CharacterUpdateInput {
   name?: Maybe<String>;
   class?: Maybe<ClassUpdateManyInput>;
-  folk?: Maybe<FolkUpdateOneRequiredInput>;
-  stats?: Maybe<StatBlockUpdateOneRequiredInput>;
-  skills?: Maybe<SkillBlockUpdateOneRequiredInput>;
-  saves?: Maybe<SaveBlockUpdateOneRequiredInput>;
+  folk?: Maybe<FolkUpdateOneInput>;
+  stats?: Maybe<StatBlockUpdateOneInput>;
+  skills?: Maybe<SkillBlockUpdateOneInput>;
+  saves?: Maybe<SaveBlockUpdateOneInput>;
   acCalc?: Maybe<String>;
-  hitDie?: Maybe<DieUpdateOneRequiredInput>;
+  hitDie?: Maybe<DieUpdateOneInput>;
   maxHp?: Maybe<Int>;
   profBonus?: Maybe<Int>;
 }
@@ -1807,10 +1807,12 @@ export interface ClassUpdateManyDataInput {
   level?: Maybe<Int>;
 }
 
-export interface FolkUpdateOneRequiredInput {
+export interface FolkUpdateOneInput {
   create?: Maybe<FolkCreateInput>;
   update?: Maybe<FolkUpdateDataInput>;
   upsert?: Maybe<FolkUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<FolkWhereUniqueInput>;
 }
 
@@ -1873,10 +1875,12 @@ export interface FolkUpsertNestedInput {
   create: FolkCreateInput;
 }
 
-export interface StatBlockUpdateOneRequiredInput {
+export interface StatBlockUpdateOneInput {
   create?: Maybe<StatBlockCreateInput>;
   update?: Maybe<StatBlockUpdateDataInput>;
   upsert?: Maybe<StatBlockUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<StatBlockWhereUniqueInput>;
 }
 
@@ -1977,20 +1981,26 @@ export interface StatBlockUpsertNestedInput {
   create: StatBlockCreateInput;
 }
 
-export interface SkillBlockUpdateOneRequiredInput {
+export interface SkillBlockUpdateOneInput {
   create?: Maybe<SkillBlockCreateInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<SkillBlockWhereUniqueInput>;
 }
 
-export interface SaveBlockUpdateOneRequiredInput {
+export interface SaveBlockUpdateOneInput {
   create?: Maybe<SaveBlockCreateInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<SaveBlockWhereUniqueInput>;
 }
 
-export interface DieUpdateOneRequiredInput {
+export interface DieUpdateOneInput {
   create?: Maybe<DieCreateInput>;
   update?: Maybe<DieUpdateDataInput>;
   upsert?: Maybe<DieUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<DieWhereUniqueInput>;
 }
 
@@ -2354,10 +2364,10 @@ export interface NodeNode {
 
 export interface Character {
   id: ID_Output;
-  name: String;
-  acCalc: String;
-  maxHp: Int;
-  profBonus: Int;
+  name?: String;
+  acCalc?: String;
+  maxHp?: Int;
+  profBonus?: Int;
 }
 
 export interface CharacterPromise extends Promise<Character>, Fragmentable {
@@ -3678,10 +3688,10 @@ export interface CharacterSubscriptionPayloadSubscription
 
 export interface CharacterPreviousValues {
   id: ID_Output;
-  name: String;
-  acCalc: String;
-  maxHp: Int;
-  profBonus: Int;
+  name?: String;
+  acCalc?: String;
+  maxHp?: Int;
+  profBonus?: Int;
 }
 
 export interface CharacterPreviousValuesPromise

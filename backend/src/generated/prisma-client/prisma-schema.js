@@ -61,16 +61,16 @@ type BatchPayload {
 
 type Character {
   id: ID!
-  name: String!
+  name: String
   class(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Class!]
-  folk: Folk!
-  stats: StatBlock!
-  skills: SkillBlock!
-  saves: SaveBlock!
-  acCalc: String!
-  hitDie: Die!
-  maxHp: Int!
-  profBonus: Int!
+  folk: Folk
+  stats: StatBlock
+  skills: SkillBlock
+  saves: SaveBlock
+  acCalc: String
+  hitDie: Die
+  maxHp: Int
+  profBonus: Int
 }
 
 type CharacterConnection {
@@ -81,16 +81,16 @@ type CharacterConnection {
 
 input CharacterCreateInput {
   id: ID
-  name: String!
+  name: String
   class: ClassCreateManyInput
-  folk: FolkCreateOneInput!
-  stats: StatBlockCreateOneInput!
-  skills: SkillBlockCreateOneInput!
-  saves: SaveBlockCreateOneInput!
-  acCalc: String!
-  hitDie: DieCreateOneInput!
-  maxHp: Int!
-  profBonus: Int!
+  folk: FolkCreateOneInput
+  stats: StatBlockCreateOneInput
+  skills: SkillBlockCreateOneInput
+  saves: SaveBlockCreateOneInput
+  acCalc: String
+  hitDie: DieCreateOneInput
+  maxHp: Int
+  profBonus: Int
 }
 
 type CharacterEdge {
@@ -113,10 +113,10 @@ enum CharacterOrderByInput {
 
 type CharacterPreviousValues {
   id: ID!
-  name: String!
-  acCalc: String!
-  maxHp: Int!
-  profBonus: Int!
+  name: String
+  acCalc: String
+  maxHp: Int
+  profBonus: Int
 }
 
 type CharacterSubscriptionPayload {
@@ -140,12 +140,12 @@ input CharacterSubscriptionWhereInput {
 input CharacterUpdateInput {
   name: String
   class: ClassUpdateManyInput
-  folk: FolkUpdateOneRequiredInput
-  stats: StatBlockUpdateOneRequiredInput
-  skills: SkillBlockUpdateOneRequiredInput
-  saves: SaveBlockUpdateOneRequiredInput
+  folk: FolkUpdateOneInput
+  stats: StatBlockUpdateOneInput
+  skills: SkillBlockUpdateOneInput
+  saves: SaveBlockUpdateOneInput
   acCalc: String
-  hitDie: DieUpdateOneRequiredInput
+  hitDie: DieUpdateOneInput
   maxHp: Int
   profBonus: Int
 }
@@ -522,10 +522,12 @@ input DieUpdateManyMutationInput {
   faces: Int
 }
 
-input DieUpdateOneRequiredInput {
+input DieUpdateOneInput {
   create: DieCreateInput
   update: DieUpdateDataInput
   upsert: DieUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
   connect: DieWhereUniqueInput
 }
 
@@ -993,10 +995,12 @@ input FolkUpdateManyMutationInput {
   speed: Int
 }
 
-input FolkUpdateOneRequiredInput {
+input FolkUpdateOneInput {
   create: FolkCreateInput
   update: FolkUpdateDataInput
   upsert: FolkUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
   connect: FolkWhereUniqueInput
 }
 
@@ -1495,8 +1499,10 @@ input SaveBlockSubscriptionWhereInput {
   NOT: [SaveBlockSubscriptionWhereInput!]
 }
 
-input SaveBlockUpdateOneRequiredInput {
+input SaveBlockUpdateOneInput {
   create: SaveBlockCreateInput
+  delete: Boolean
+  disconnect: Boolean
   connect: SaveBlockWhereUniqueInput
 }
 
@@ -1582,8 +1588,10 @@ input SkillBlockSubscriptionWhereInput {
   NOT: [SkillBlockSubscriptionWhereInput!]
 }
 
-input SkillBlockUpdateOneRequiredInput {
+input SkillBlockUpdateOneInput {
   create: SkillBlockCreateInput
+  delete: Boolean
+  disconnect: Boolean
   connect: SkillBlockWhereUniqueInput
 }
 
@@ -1782,10 +1790,12 @@ input StatBlockUpdateInput {
   stats: StatUpdateManyInput
 }
 
-input StatBlockUpdateOneRequiredInput {
+input StatBlockUpdateOneInput {
   create: StatBlockCreateInput
   update: StatBlockUpdateDataInput
   upsert: StatBlockUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
   connect: StatBlockWhereUniqueInput
 }
 

@@ -100,14 +100,14 @@ type Class {
 
 type Character {
   id: ID! @id @unique
-  name: String!
-  class: [Class!]!
-  folk: Folk!
-  stats: StatBlock!
-  skills: SkillBlock!
-  saves: SaveBlock!
-  acCalc: String!
-  hitDie: Die!
-  maxHp: Int!
-  profBonus: Int!
+  name: String
+  class: [Class]
+  folk: Folk
+  stats: StatBlock
+  skills: SkillBlock
+  saves: SaveBlock
+  acCalc: String
+  hitDie: Die
+  maxHp: Int
+  profBonus: Int
 }

@@ -1,5 +1,30 @@
-mutation createDie {
-  createManyDie(data: { faces: 4 }) {
+mutation createD4 {
+  createDie(data: { faces: 4 }) {
+    id
+  }
+}
+mutation createD6 {
+  createDie(data: { faces: 6 }) {
+    id
+  }
+}
+mutation createD8 {
+  createDie(data: { faces: 8 }) {
+    id
+  }
+}
+mutation createD10 {
+  createDie(data: { faces: 10 }) {
+    id
+  }
+}
+mutation createD12 {
+  createDie(data: { faces: 12 }) {
+    id
+  }
+}
+mutation createD20 {
+  createDie(data: { faces: 20 }) {
     id
   }
 }
