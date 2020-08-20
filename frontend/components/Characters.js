@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 
+//TODO: Have this retrieve all of the required information
 const GET_ALL_CHARACTERS_QUERY = gql`
   query getCharacters {
     characters {
@@ -33,7 +34,6 @@ const Characters = () => {
 
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
-    console.log(data);
 
     return (
       <>

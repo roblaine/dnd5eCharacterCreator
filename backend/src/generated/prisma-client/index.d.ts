@@ -1120,14 +1120,17 @@ export interface DieWhereInput {
 
 export type ClassWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  name?: Maybe<String>;
 }>;
 
 export type DieWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  faces?: Maybe<Int>;
 }>;
 
 export type FeatureWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  name?: Maybe<String>;
 }>;
 
 export type FolkWhereUniqueInput = AtLeastOne<{
@@ -1197,6 +1200,7 @@ export type StatBlockWhereUniqueInput = AtLeastOne<{
 
 export type TemplateClassWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  name?: Maybe<String>;
 }>;
 
 export type UserWhereUniqueInput = AtLeastOne<{

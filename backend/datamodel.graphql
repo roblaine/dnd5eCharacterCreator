@@ -29,7 +29,7 @@ type Language {
 
 type Feature {
   id: ID! @id @unique
-  name: String!
+  name: String! @unique
   description: String!
   effects: [String] @scalarList(strategy: RELATION)
   fromFolk: Folk @relation(name: "FolkFeatures")
@@ -80,20 +80,20 @@ type SaveBlock {
 # Assume numbers on die range from [1 - faces]
 type Die {
   id: ID! @id @unique
-  faces: Int!
+  faces: Int! @unique
 }
 
 # This is the rules for the class. Is not editable by users, only admins
 type TemplateClass {
   id: ID! @id @unique
-  name: String!
+  name: String! @unique
   features: [Feature!]!
 }
 
 # Contains a reference to the rules for the class + character's current level
 type Class {
   id: ID! @id @unique
-  name: String!
+  name: String! @unique
   class: TemplateClass!
   level: Int! @default(value: 1)
 }

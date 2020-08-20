@@ -452,6 +452,7 @@ input ClassWhereInput {
 
 input ClassWhereUniqueInput {
   id: ID
+  name: String
 }
 
 type Die {
@@ -566,6 +567,7 @@ input DieWhereInput {
 
 input DieWhereUniqueInput {
   id: ID
+  faces: Int
 }
 
 type Feature {
@@ -843,6 +845,7 @@ input FeatureWhereInput {
 
 input FeatureWhereUniqueInput {
   id: ID
+  name: String
 }
 
 type Folk {
@@ -2191,6 +2194,7 @@ input TemplateClassWhereInput {
 
 input TemplateClassWhereUniqueInput {
   id: ID
+  name: String
 }
 
 type User {
