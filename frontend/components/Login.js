@@ -1,15 +1,5 @@
-import styled from 'styled-components';
 import { useMutation, gql } from '@apollo/client';
-
-const StyledForm = styled.form`
-  display: inline-flex;
-  flex-direction: column;
-
-  input {
-    flex-grow: 1;
-    margin: 0.2em 0 0.2em 0;
-  }
-`;
+import Form from './styles/Form';
 
 const LOGIN_MUTATION = gql`
   mutation login($email: String!, $password: String!) {
@@ -19,21 +9,18 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-const LoginForm = () => {
-  let email, password;
-  const [login, { error, data, loading }] = useMutation(LOGIN_MUTATION);
+const Login = () => {
+  const [login, { error, loading }] = useMutation(LOGIN_MUTATION);
 
   return (
     <>
       {error ? <p>{error.message}</p> : <></>}
-      <StyledForm
+      <Form
         onSubmit={(e) => {
           e.preventDefault();
           login({
             variables: { email: email.value, password: password.value },
           });
-          email.value = '';
-          password.value = '';
         }}
       >
         <input
@@ -54,11 +41,12 @@ const LoginForm = () => {
           type="password"
           placeholder="Password"
         />
-
         <button type="submit">Login</button>
-      </StyledForm>
+
+        {loading ? <p>Loading...</p> : <p></p>}
+      </Form>
     </>
   );
 };
 
-export default LoginForm;
+export default Login;

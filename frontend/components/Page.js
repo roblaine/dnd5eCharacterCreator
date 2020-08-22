@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
-// import Header from '../components/Header';
-// import Meta from '../components/Meta';
+import Header from '../components/Header';
+import Meta from '../components/Meta';
 
 const theme = {
   red: '#FF0000',
@@ -56,8 +56,8 @@ class Page extends Component {
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
-          {/* <Meta />
-          <Header /> */}
+          <Meta />
+          <Header />
           <Inner>{this.props.children}</Inner>
         </StyledPage>
       </ThemeProvider>

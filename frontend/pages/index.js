@@ -3,8 +3,8 @@ import styles from '../styles/Home.module.css';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import CustomHead from '../components/CustomHead';
-import RegisterForm from '../components/RegisterForm';
-import LoginForm from '../components/LoginForm';
+import Signup from '../components/Signup';
+import Login from '../components/Login';
 
 const LoginDiv = styled.div`
   font-size: 0.7em;
@@ -59,7 +59,7 @@ class Home extends React.Component {
                     />
                   </p>
                 </LoginDiv>
-                <RegisterForm />
+                <Signup />
               </>
             ) : (
               <>
@@ -74,7 +74,7 @@ class Home extends React.Component {
                     />
                   </p>
                 </LoginDiv>
-                <LoginForm />
+                <Login />
               </>
             )}
           </FormContainer>
