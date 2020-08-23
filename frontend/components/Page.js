@@ -7,6 +7,7 @@ const theme = {
   red: '#FF0000',
   black: '#393939',
   slateGrey: '#CBC4C2',
+  headingColor: '#606060',
   lightGrey: '#E1E1E1',
   offWhite: '#EDEDED',
   maxWidth: '1000px',
@@ -24,7 +25,7 @@ const Inner = styled.div`
   padding: 2-rem;
 `;
 
-createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'radnika_next';
     src: url('/static/radnikanext-medium-webfont.woff2') format('woff2');
@@ -42,7 +43,6 @@ createGlobalStyle`
   }
 
   body {
-    padding: 0;
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
@@ -53,23 +53,21 @@ createGlobalStyle`
 		text-decoration: none;
 		color: ${theme.black};
   }
-  
-  #__next {
-    padding: 0;
-    maring: 0;
-  }
 `;
 
 class Page extends Component {
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        <StyledPage>
-          <Meta />
-          <Header />
-          <Inner>{this.props.children}</Inner>
-        </StyledPage>
-      </ThemeProvider>
+      <>
+        <GlobalStyle />
+        <ThemeProvider theme={theme}>
+          <StyledPage>
+            <Meta />
+            <Header />
+            <Inner>{this.props.children}</Inner>
+          </StyledPage>
+        </ThemeProvider>
+      </>
     );
   }
 }

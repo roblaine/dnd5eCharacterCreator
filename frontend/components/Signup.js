@@ -34,6 +34,7 @@ const Signup = () => {
         passwordConf.value = '';
       }}
     >
+      {error ? <div>{error.message}</div> : <></>}
       <fieldset>
         <input
           ref={(node) => {

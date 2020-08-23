@@ -29,7 +29,7 @@ const Logo = styled.h1`
   a {
     padding: 0.5rem 1rem;
     background: ${(props) => props.theme.slateGrey};
-    color: white;
+    color: ${(props) => props.theme.headingColor};
     text-transform: uppercase;
     text-decoration: none;
   }
@@ -48,6 +48,7 @@ const StyledHeader = styled.header`
     grid-template-columns: auto 1fr;
     justify-content: space-between;
     align-items: stretch;
+    margin-bottom: 10px;
 
     @media (max-width: 1300px) {
       grid-template-columns: 1fr;
