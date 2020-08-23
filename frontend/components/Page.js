@@ -6,7 +6,7 @@ import Meta from '../components/Meta';
 const theme = {
   red: '#FF0000',
   black: '#393939',
-  grey: '#3A3A3A',
+  slateGrey: '#CBC4C2',
   lightGrey: '#E1E1E1',
   offWhite: '#EDEDED',
   maxWidth: '1000px',
@@ -31,13 +31,16 @@ createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
+  
   html {
     box-sizing: border-box;
     font-size: 10px;
   }
+  
   *, *:before, *:after {
     box-sizing: inherit;
   }
+
   body {
     padding: 0;
     margin: 0;
@@ -45,10 +48,16 @@ createGlobalStyle`
     line-height: 2;
     font-family: 'radnika_next';
   }
-	a {
+  
+  a {
 		text-decoration: none;
 		color: ${theme.black};
-	}
+  }
+  
+  #__next {
+    padding: 0;
+    maring: 0;
+  }
 `;
 
 class Page extends Component {

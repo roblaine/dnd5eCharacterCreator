@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import styles from '../styles/Home.module.css';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
-import CustomHead from '../components/CustomHead';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
 
@@ -40,8 +39,6 @@ class Home extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <CustomHead />
-
         <main className={styles.main}>
           <FormContainer>
             {this.state.showSignup ? <h1>Register</h1> : <h1>Login</h1>}
