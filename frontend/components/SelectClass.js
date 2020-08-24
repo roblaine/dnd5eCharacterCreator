@@ -12,6 +12,17 @@ const GET_ALL_TEMPLATE_CLASSES_QUERY = gql`
   }
 `;
 
+// TODO Fix this mutation
+const CREATE_CLASS_FOR_CHARACTER_MUTATION = gql`
+  mutation createClassForCharacter($characterClassName: String!) {
+    createClass() {
+      id
+      class: { connect: { name: characterClassName } }
+      level
+    }
+  }
+`;
+
 const SelectClass = () => {
   function classSelection() {
     const { loading, error, data } = useQuery(GET_ALL_TEMPLATE_CLASSES_QUERY);

@@ -94,7 +94,6 @@ type TemplateClass {
 # Contains a reference to the rules for the class + character's current level
 type CharacterClass {
   id: ID! @id @unique
-  name: String! @unique
   class: TemplateClass!
   level: Int! @default(value: 1)
 }
