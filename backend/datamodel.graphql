@@ -20,6 +20,7 @@ type User {
   resetToken: String
   resetTokenExpiry: String
   permissions: [Permission] @scalarList(strategy: RELATION)
+  characters: [Character]
 }
 
 type Language {
@@ -110,4 +111,5 @@ type Character {
   hitDie: Die
   maxHp: Int
   profBonus: Int
+  belongsTo: User!
 }

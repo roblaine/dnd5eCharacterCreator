@@ -579,6 +579,8 @@ export type StatOrderByInput =
   | "mod_ASC"
   | "mod_DESC";
 
+export type Permission = "USER" | "ADMIN";
+
 export type CharacterOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -632,8 +634,6 @@ export type TemplateClassOrderByInput =
   | "id_DESC"
   | "name_ASC"
   | "name_DESC";
-
-export type Permission = "USER" | "ADMIN";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -1022,6 +1022,7 @@ export interface CharacterWhereInput {
   profBonus_lte?: Maybe<Int>;
   profBonus_gt?: Maybe<Int>;
   profBonus_gte?: Maybe<Int>;
+  belongsTo?: Maybe<UserWhereInput>;
   AND?: Maybe<CharacterWhereInput[] | CharacterWhereInput>;
   OR?: Maybe<CharacterWhereInput[] | CharacterWhereInput>;
   NOT?: Maybe<CharacterWhereInput[] | CharacterWhereInput>;
@@ -1118,6 +1119,99 @@ export interface DieWhereInput {
   NOT?: Maybe<DieWhereInput[] | DieWhereInput>;
 }
 
+export interface UserWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  password?: Maybe<String>;
+  password_not?: Maybe<String>;
+  password_in?: Maybe<String[] | String>;
+  password_not_in?: Maybe<String[] | String>;
+  password_lt?: Maybe<String>;
+  password_lte?: Maybe<String>;
+  password_gt?: Maybe<String>;
+  password_gte?: Maybe<String>;
+  password_contains?: Maybe<String>;
+  password_not_contains?: Maybe<String>;
+  password_starts_with?: Maybe<String>;
+  password_not_starts_with?: Maybe<String>;
+  password_ends_with?: Maybe<String>;
+  password_not_ends_with?: Maybe<String>;
+  resetToken?: Maybe<String>;
+  resetToken_not?: Maybe<String>;
+  resetToken_in?: Maybe<String[] | String>;
+  resetToken_not_in?: Maybe<String[] | String>;
+  resetToken_lt?: Maybe<String>;
+  resetToken_lte?: Maybe<String>;
+  resetToken_gt?: Maybe<String>;
+  resetToken_gte?: Maybe<String>;
+  resetToken_contains?: Maybe<String>;
+  resetToken_not_contains?: Maybe<String>;
+  resetToken_starts_with?: Maybe<String>;
+  resetToken_not_starts_with?: Maybe<String>;
+  resetToken_ends_with?: Maybe<String>;
+  resetToken_not_ends_with?: Maybe<String>;
+  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry_not?: Maybe<String>;
+  resetTokenExpiry_in?: Maybe<String[] | String>;
+  resetTokenExpiry_not_in?: Maybe<String[] | String>;
+  resetTokenExpiry_lt?: Maybe<String>;
+  resetTokenExpiry_lte?: Maybe<String>;
+  resetTokenExpiry_gt?: Maybe<String>;
+  resetTokenExpiry_gte?: Maybe<String>;
+  resetTokenExpiry_contains?: Maybe<String>;
+  resetTokenExpiry_not_contains?: Maybe<String>;
+  resetTokenExpiry_starts_with?: Maybe<String>;
+  resetTokenExpiry_not_starts_with?: Maybe<String>;
+  resetTokenExpiry_ends_with?: Maybe<String>;
+  resetTokenExpiry_not_ends_with?: Maybe<String>;
+  characters_every?: Maybe<CharacterWhereInput>;
+  characters_some?: Maybe<CharacterWhereInput>;
+  characters_none?: Maybe<CharacterWhereInput>;
+  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
+  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
+  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
+}
+
 export type ClassWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   name?: Maybe<String>;
@@ -1208,96 +1302,6 @@ export type UserWhereUniqueInput = AtLeastOne<{
   email?: Maybe<String>;
 }>;
 
-export interface UserWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  password?: Maybe<String>;
-  password_not?: Maybe<String>;
-  password_in?: Maybe<String[] | String>;
-  password_not_in?: Maybe<String[] | String>;
-  password_lt?: Maybe<String>;
-  password_lte?: Maybe<String>;
-  password_gt?: Maybe<String>;
-  password_gte?: Maybe<String>;
-  password_contains?: Maybe<String>;
-  password_not_contains?: Maybe<String>;
-  password_starts_with?: Maybe<String>;
-  password_not_starts_with?: Maybe<String>;
-  password_ends_with?: Maybe<String>;
-  password_not_ends_with?: Maybe<String>;
-  resetToken?: Maybe<String>;
-  resetToken_not?: Maybe<String>;
-  resetToken_in?: Maybe<String[] | String>;
-  resetToken_not_in?: Maybe<String[] | String>;
-  resetToken_lt?: Maybe<String>;
-  resetToken_lte?: Maybe<String>;
-  resetToken_gt?: Maybe<String>;
-  resetToken_gte?: Maybe<String>;
-  resetToken_contains?: Maybe<String>;
-  resetToken_not_contains?: Maybe<String>;
-  resetToken_starts_with?: Maybe<String>;
-  resetToken_not_starts_with?: Maybe<String>;
-  resetToken_ends_with?: Maybe<String>;
-  resetToken_not_ends_with?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
-  resetTokenExpiry_not?: Maybe<String>;
-  resetTokenExpiry_in?: Maybe<String[] | String>;
-  resetTokenExpiry_not_in?: Maybe<String[] | String>;
-  resetTokenExpiry_lt?: Maybe<String>;
-  resetTokenExpiry_lte?: Maybe<String>;
-  resetTokenExpiry_gt?: Maybe<String>;
-  resetTokenExpiry_gte?: Maybe<String>;
-  resetTokenExpiry_contains?: Maybe<String>;
-  resetTokenExpiry_not_contains?: Maybe<String>;
-  resetTokenExpiry_starts_with?: Maybe<String>;
-  resetTokenExpiry_not_starts_with?: Maybe<String>;
-  resetTokenExpiry_ends_with?: Maybe<String>;
-  resetTokenExpiry_not_ends_with?: Maybe<String>;
-  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
-  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
-  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
-}
-
 export interface CharacterCreateInput {
   id?: Maybe<ID_Input>;
   name?: Maybe<String>;
@@ -1310,6 +1314,7 @@ export interface CharacterCreateInput {
   hitDie?: Maybe<DieCreateOneInput>;
   maxHp?: Maybe<Int>;
   profBonus?: Maybe<Int>;
+  belongsTo: UserCreateOneWithoutCharactersInput;
 }
 
 export interface ClassCreateManyInput {
@@ -1470,6 +1475,25 @@ export interface DieCreateInput {
   faces: Int;
 }
 
+export interface UserCreateOneWithoutCharactersInput {
+  create?: Maybe<UserCreateWithoutCharactersInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutCharactersInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  password: String;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<String>;
+  permissions?: Maybe<UserCreatepermissionsInput>;
+}
+
+export interface UserCreatepermissionsInput {
+  set?: Maybe<Permission[] | Permission>;
+}
+
 export interface CharacterUpdateInput {
   name?: Maybe<String>;
   class?: Maybe<ClassUpdateManyInput>;
@@ -1481,6 +1505,7 @@ export interface CharacterUpdateInput {
   hitDie?: Maybe<DieUpdateOneInput>;
   maxHp?: Maybe<Int>;
   profBonus?: Maybe<Int>;
+  belongsTo?: Maybe<UserUpdateOneRequiredWithoutCharactersInput>;
 }
 
 export interface ClassUpdateManyInput {
@@ -2017,6 +2042,31 @@ export interface DieUpsertNestedInput {
   create: DieCreateInput;
 }
 
+export interface UserUpdateOneRequiredWithoutCharactersInput {
+  create?: Maybe<UserCreateWithoutCharactersInput>;
+  update?: Maybe<UserUpdateWithoutCharactersDataInput>;
+  upsert?: Maybe<UserUpsertWithoutCharactersInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutCharactersDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<String>;
+  permissions?: Maybe<UserUpdatepermissionsInput>;
+}
+
+export interface UserUpdatepermissionsInput {
+  set?: Maybe<Permission[] | Permission>;
+}
+
+export interface UserUpsertWithoutCharactersInput {
+  update: UserUpdateWithoutCharactersDataInput;
+  create: UserCreateWithoutCharactersInput;
+}
+
 export interface CharacterUpdateManyMutationInput {
   name?: Maybe<String>;
   acCalc?: Maybe<String>;
@@ -2157,10 +2207,29 @@ export interface UserCreateInput {
   resetToken?: Maybe<String>;
   resetTokenExpiry?: Maybe<String>;
   permissions?: Maybe<UserCreatepermissionsInput>;
+  characters?: Maybe<CharacterCreateManyWithoutBelongsToInput>;
 }
 
-export interface UserCreatepermissionsInput {
-  set?: Maybe<Permission[] | Permission>;
+export interface CharacterCreateManyWithoutBelongsToInput {
+  create?: Maybe<
+    | CharacterCreateWithoutBelongsToInput[]
+    | CharacterCreateWithoutBelongsToInput
+  >;
+  connect?: Maybe<CharacterWhereUniqueInput[] | CharacterWhereUniqueInput>;
+}
+
+export interface CharacterCreateWithoutBelongsToInput {
+  id?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  class?: Maybe<ClassCreateManyInput>;
+  folk?: Maybe<FolkCreateOneInput>;
+  stats?: Maybe<StatBlockCreateOneInput>;
+  skills?: Maybe<SkillBlockCreateOneInput>;
+  saves?: Maybe<SaveBlockCreateOneInput>;
+  acCalc?: Maybe<String>;
+  hitDie?: Maybe<DieCreateOneInput>;
+  maxHp?: Maybe<Int>;
+  profBonus?: Maybe<Int>;
 }
 
 export interface UserUpdateInput {
@@ -2170,10 +2239,131 @@ export interface UserUpdateInput {
   resetToken?: Maybe<String>;
   resetTokenExpiry?: Maybe<String>;
   permissions?: Maybe<UserUpdatepermissionsInput>;
+  characters?: Maybe<CharacterUpdateManyWithoutBelongsToInput>;
 }
 
-export interface UserUpdatepermissionsInput {
-  set?: Maybe<Permission[] | Permission>;
+export interface CharacterUpdateManyWithoutBelongsToInput {
+  create?: Maybe<
+    | CharacterCreateWithoutBelongsToInput[]
+    | CharacterCreateWithoutBelongsToInput
+  >;
+  delete?: Maybe<CharacterWhereUniqueInput[] | CharacterWhereUniqueInput>;
+  connect?: Maybe<CharacterWhereUniqueInput[] | CharacterWhereUniqueInput>;
+  set?: Maybe<CharacterWhereUniqueInput[] | CharacterWhereUniqueInput>;
+  disconnect?: Maybe<CharacterWhereUniqueInput[] | CharacterWhereUniqueInput>;
+  update?: Maybe<
+    | CharacterUpdateWithWhereUniqueWithoutBelongsToInput[]
+    | CharacterUpdateWithWhereUniqueWithoutBelongsToInput
+  >;
+  upsert?: Maybe<
+    | CharacterUpsertWithWhereUniqueWithoutBelongsToInput[]
+    | CharacterUpsertWithWhereUniqueWithoutBelongsToInput
+  >;
+  deleteMany?: Maybe<CharacterScalarWhereInput[] | CharacterScalarWhereInput>;
+  updateMany?: Maybe<
+    | CharacterUpdateManyWithWhereNestedInput[]
+    | CharacterUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface CharacterUpdateWithWhereUniqueWithoutBelongsToInput {
+  where: CharacterWhereUniqueInput;
+  data: CharacterUpdateWithoutBelongsToDataInput;
+}
+
+export interface CharacterUpdateWithoutBelongsToDataInput {
+  name?: Maybe<String>;
+  class?: Maybe<ClassUpdateManyInput>;
+  folk?: Maybe<FolkUpdateOneInput>;
+  stats?: Maybe<StatBlockUpdateOneInput>;
+  skills?: Maybe<SkillBlockUpdateOneInput>;
+  saves?: Maybe<SaveBlockUpdateOneInput>;
+  acCalc?: Maybe<String>;
+  hitDie?: Maybe<DieUpdateOneInput>;
+  maxHp?: Maybe<Int>;
+  profBonus?: Maybe<Int>;
+}
+
+export interface CharacterUpsertWithWhereUniqueWithoutBelongsToInput {
+  where: CharacterWhereUniqueInput;
+  update: CharacterUpdateWithoutBelongsToDataInput;
+  create: CharacterCreateWithoutBelongsToInput;
+}
+
+export interface CharacterScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  acCalc?: Maybe<String>;
+  acCalc_not?: Maybe<String>;
+  acCalc_in?: Maybe<String[] | String>;
+  acCalc_not_in?: Maybe<String[] | String>;
+  acCalc_lt?: Maybe<String>;
+  acCalc_lte?: Maybe<String>;
+  acCalc_gt?: Maybe<String>;
+  acCalc_gte?: Maybe<String>;
+  acCalc_contains?: Maybe<String>;
+  acCalc_not_contains?: Maybe<String>;
+  acCalc_starts_with?: Maybe<String>;
+  acCalc_not_starts_with?: Maybe<String>;
+  acCalc_ends_with?: Maybe<String>;
+  acCalc_not_ends_with?: Maybe<String>;
+  maxHp?: Maybe<Int>;
+  maxHp_not?: Maybe<Int>;
+  maxHp_in?: Maybe<Int[] | Int>;
+  maxHp_not_in?: Maybe<Int[] | Int>;
+  maxHp_lt?: Maybe<Int>;
+  maxHp_lte?: Maybe<Int>;
+  maxHp_gt?: Maybe<Int>;
+  maxHp_gte?: Maybe<Int>;
+  profBonus?: Maybe<Int>;
+  profBonus_not?: Maybe<Int>;
+  profBonus_in?: Maybe<Int[] | Int>;
+  profBonus_not_in?: Maybe<Int[] | Int>;
+  profBonus_lt?: Maybe<Int>;
+  profBonus_lte?: Maybe<Int>;
+  profBonus_gt?: Maybe<Int>;
+  profBonus_gte?: Maybe<Int>;
+  AND?: Maybe<CharacterScalarWhereInput[] | CharacterScalarWhereInput>;
+  OR?: Maybe<CharacterScalarWhereInput[] | CharacterScalarWhereInput>;
+  NOT?: Maybe<CharacterScalarWhereInput[] | CharacterScalarWhereInput>;
+}
+
+export interface CharacterUpdateManyWithWhereNestedInput {
+  where: CharacterScalarWhereInput;
+  data: CharacterUpdateManyDataInput;
+}
+
+export interface CharacterUpdateManyDataInput {
+  name?: Maybe<String>;
+  acCalc?: Maybe<String>;
+  maxHp?: Maybe<Int>;
+  profBonus?: Maybe<Int>;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -2394,6 +2584,7 @@ export interface CharacterPromise extends Promise<Character>, Fragmentable {
   hitDie: <T = DiePromise>() => T;
   maxHp: () => Promise<Int>;
   profBonus: () => Promise<Int>;
+  belongsTo: <T = UserPromise>() => T;
 }
 
 export interface CharacterSubscription
@@ -2418,6 +2609,7 @@ export interface CharacterSubscription
   hitDie: <T = DieSubscription>() => T;
   maxHp: () => Promise<AsyncIterator<Int>>;
   profBonus: () => Promise<AsyncIterator<Int>>;
+  belongsTo: <T = UserSubscription>() => T;
 }
 
 export interface CharacterNullablePromise
@@ -2442,6 +2634,7 @@ export interface CharacterNullablePromise
   hitDie: <T = DiePromise>() => T;
   maxHp: () => Promise<Int>;
   profBonus: () => Promise<Int>;
+  belongsTo: <T = UserPromise>() => T;
 }
 
 export interface Class {
@@ -2835,6 +3028,77 @@ export interface DieSubscription
 export interface DieNullablePromise extends Promise<Die | null>, Fragmentable {
   id: () => Promise<ID_Output>;
   faces: () => Promise<Int>;
+}
+
+export interface User {
+  id: ID_Output;
+  name: String;
+  email: String;
+  password: String;
+  resetToken?: String;
+  resetTokenExpiry?: String;
+  permissions: Permission[];
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  resetToken: () => Promise<String>;
+  resetTokenExpiry: () => Promise<String>;
+  permissions: () => Promise<Permission[]>;
+  characters: <T = FragmentableArray<Character>>(args?: {
+    where?: CharacterWhereInput;
+    orderBy?: CharacterOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  resetToken: () => Promise<AsyncIterator<String>>;
+  resetTokenExpiry: () => Promise<AsyncIterator<String>>;
+  permissions: () => Promise<AsyncIterator<Permission[]>>;
+  characters: <T = Promise<AsyncIterator<CharacterSubscription>>>(args?: {
+    where?: CharacterWhereInput;
+    orderBy?: CharacterOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface UserNullablePromise
+  extends Promise<User | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  resetToken: () => Promise<String>;
+  resetTokenExpiry: () => Promise<String>;
+  permissions: () => Promise<Permission[]>;
+  characters: <T = FragmentableArray<Character>>(args?: {
+    where?: CharacterWhereInput;
+    orderBy?: CharacterOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface CharacterConnection {
@@ -3549,50 +3813,6 @@ export interface AggregateTemplateClassSubscription
   extends Promise<AsyncIterator<AggregateTemplateClass>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface User {
-  id: ID_Output;
-  name: String;
-  email: String;
-  password: String;
-  resetToken?: String;
-  resetTokenExpiry?: String;
-  permissions: Permission[];
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-  resetToken: () => Promise<String>;
-  resetTokenExpiry: () => Promise<String>;
-  permissions: () => Promise<Permission[]>;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  resetToken: () => Promise<AsyncIterator<String>>;
-  resetTokenExpiry: () => Promise<AsyncIterator<String>>;
-  permissions: () => Promise<AsyncIterator<Permission[]>>;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-  resetToken: () => Promise<String>;
-  resetTokenExpiry: () => Promise<String>;
-  permissions: () => Promise<Permission[]>;
 }
 
 export interface UserConnection {

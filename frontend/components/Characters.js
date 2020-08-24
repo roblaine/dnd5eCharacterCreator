@@ -49,7 +49,7 @@ const Characters = () => {
   return (
     <div>
       <h1>Your Characters</h1>
-      <p>{getCharacters()}</p>
+      <div>{getCharacters()}</div>
     </div>
   );
 };

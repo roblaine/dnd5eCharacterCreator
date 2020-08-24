@@ -9,9 +9,22 @@ const Query = {
   folks: forwardTo('db'),
   language: forwardTo('db'),
   languages: forwardTo('db'),
+
   async characters(parent, args, ctx, info) {
     console.log('Getting characters');
-    return await ctx.db.query.characters({}, info);
+    const userId = ctx.request.userId;
+
+    if (!userId) {
+      throw new Error(`You must be logged in to do that.`);
+    }
+
+    const characters = await ctx.db.query.characters(
+      {
+        where: { createdBy: userId },
+      },
+      info,
+    );
+    return characters;
   },
 
   async me(parent, args, ctx, info) {
