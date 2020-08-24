@@ -9,9 +9,18 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
-function validateForm(username, email, password, passwordConf) {
-  if (!username.length || !email.length || !password.length || !passwordConf.length) {
-    alert('Please fill out all fields')!
+function formIsValid(username, email, password, passwordConf) {
+  if (
+    !username.value.length ||
+    !email.value.length ||
+    !password.value.length ||
+    !passwordConf.value.length
+  ) {
+    alert('Please fill out all fields');
+    return false;
+  }
+  if (password.value != passwordConf.value) {
+    alert('Entered passwords do not match.');
     return false;
   }
   return true;
@@ -31,9 +40,7 @@ const Signup = () => {
     <Form
       onSubmit={(e) => {
         e.preventDefault();
-        if (password.value != passwordConf.value) {
-          alert('Passwords do not match.');
-        } else {
+        if (formIsValid(username, email, password, passwordConf)) {
           signup({
             variables: {
               username: username.value,
@@ -49,8 +56,7 @@ const Signup = () => {
         }
       }}
     >
-      {error ? <div>{displayError}</div> : <></>}
-      {displayError.length > 0 ? <div>{displayError}</div> : <></>}
+      {displayError ? <div>{displayError}</div> : <></>}
       <fieldset>
         <input
           ref={(node) => {

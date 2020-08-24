@@ -10,11 +10,14 @@ const LOGIN_MUTATION = gql`
 `;
 
 const Login = () => {
+  let displayError = '';
   const [login, { error, loading }] = useMutation(LOGIN_MUTATION);
-
+  if (error) {
+    displayError = error.message.split('error:')[1];
+  }
   return (
     <>
-      {error ? <p>{error.message}</p> : <></>}
+      {displayError ? <p>{displayError}</p> : <></>}
       <Form
         onSubmit={(e) => {
           e.preventDefault();
