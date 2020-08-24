@@ -32,4 +32,6 @@ type Query {
   language: Language
   languages: [Language]!
   characters: [Character]!
+  templateClass: TemplateClass
+  templateClasses: [TemplateClass]!
 }

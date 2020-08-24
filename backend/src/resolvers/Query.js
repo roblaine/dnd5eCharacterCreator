@@ -9,6 +9,8 @@ const Query = {
   folks: forwardTo('db'),
   language: forwardTo('db'),
   languages: forwardTo('db'),
+  templateClass: forwardTo('db'),
+  templateClasses: forwardTo('db'),
 
   async characters(parent, args, ctx, info) {
     console.log('Getting characters');
@@ -20,7 +22,7 @@ const Query = {
 
     const characters = await ctx.db.query.characters(
       {
-        where: { user: userId },
+        where: { user: { id: userId } },
       },
       info,
     );

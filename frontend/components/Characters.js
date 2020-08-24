@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
 
 //TODO: Have this retrieve all of the required information
-const GET_ALL_CHARACTERS_QUERY = gql`
-  query getCharacters {
+const GET_USERS_CHARACTERS_QUERY = gql`
+  query getUsersCharacters {
     characters {
       id
       name
@@ -18,6 +18,8 @@ const GET_ALL_CHARACTERS_QUERY = gql`
       acCalc
       class {
         id
+        level
+        name
       }
       hitDie {
         id
@@ -30,15 +32,20 @@ const GET_ALL_CHARACTERS_QUERY = gql`
 
 const Characters = () => {
   function getCharacters() {
-    const { loading, error, data } = useQuery(GET_ALL_CHARACTERS_QUERY);
+    const { loading, error, data } = useQuery(GET_USERS_CHARACTERS_QUERY);
 
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
+    console.log(data.characters);
 
     return (
       <>
         {data.characters.length > 0 ? (
-          data.characters.map((char) => <h1>char.name</h1>)
+          data.characters.map((char) => (
+            <div key={char.id}>
+              <h1>{char.name}</h1>
+            </div>
+          ))
         ) : (
           <p>You don't have any characters yet!</p>
         )}
