@@ -1,7 +1,7 @@
 import { useQuery, gql } from '@apollo/client';
 import styled from 'styled-components';
 
-const ClassDropdown = stled.div``;
+const ClassDropdown = styled.div``;
 
 const GET_ALL_TEMPLATE_CLASSES_QUERY = gql`
   query getAllTemplateClasses {
@@ -20,7 +20,7 @@ const SelectClass = () => {
     if (error) return `Error! ${error.message}`;
 
     return (
-      <ClassDropdown>
+      <>
         <label for="class-select">Choose a Class:</label>
         <select name="class" id="class-select">
           <option value="">Please choose an option</option>
@@ -30,9 +30,10 @@ const SelectClass = () => {
             </option>
           ))}
         </select>
-      </ClassDropdown>
+      </>
     );
   }
+  return <ClassDropdown>{classSelection()}</ClassDropdown>;
 };
 
 export default SelectClass;

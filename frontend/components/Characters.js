@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import SelectClass from './SelectClass';
 
 //TODO: Have this retrieve all of the required information
 const GET_USERS_CHARACTERS_QUERY = gql`
@@ -57,6 +58,7 @@ const Characters = () => {
     <div>
       <h1>Your Characters</h1>
       <div>{getCharacters()}</div>
+      <SelectClass />
     </div>
   );
 };
