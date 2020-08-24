@@ -57,7 +57,7 @@ var models = [
     embedded: false
   },
   {
-    name: "Class",
+    name: "CharacterClass",
     embedded: false
   },
   {

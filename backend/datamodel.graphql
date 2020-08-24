@@ -34,7 +34,7 @@ type Feature {
   description: String!
   effects: [String] @scalarList(strategy: RELATION)
   fromFolk: Folk @relation(name: "FolkFeatures")
-  fromClass: Class @relation(name: "ClassFeatures")
+  fromClass: CharacterClass @relation(name: "ClassFeatures")
 }
 
 type Folk {
@@ -92,7 +92,7 @@ type TemplateClass {
 }
 
 # Contains a reference to the rules for the class + character's current level
-type Class {
+type CharacterClass {
   id: ID! @id @unique
   name: String! @unique
   class: TemplateClass!
@@ -102,7 +102,7 @@ type Class {
 type Character {
   id: ID! @id @unique
   name: String
-  class: [Class]
+  class: [CharacterClass]
   folk: Folk
   stats: StatBlock
   skills: SkillBlock

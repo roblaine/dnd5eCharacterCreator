@@ -2,7 +2,7 @@ type AggregateCharacter {
   count: Int!
 }
 
-type AggregateClass {
+type AggregateCharacterClass {
   count: Int!
 }
 
@@ -57,7 +57,7 @@ type BatchPayload {
 type Character {
   id: ID!
   name: String
-  class(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Class!]
+  class(where: CharacterClassWhereInput, orderBy: CharacterClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CharacterClass!]
   folk: Folk
   stats: StatBlock
   skills: SkillBlock
@@ -69,6 +69,228 @@ type Character {
   user: User!
 }
 
+type CharacterClass {
+  id: ID!
+  name: String!
+  class: TemplateClass!
+  level: Int!
+}
+
+type CharacterClassConnection {
+  pageInfo: PageInfo!
+  edges: [CharacterClassEdge]!
+  aggregate: AggregateCharacterClass!
+}
+
+input CharacterClassCreateInput {
+  id: ID
+  name: String!
+  class: TemplateClassCreateOneInput!
+  level: Int
+}
+
+input CharacterClassCreateManyInput {
+  create: [CharacterClassCreateInput!]
+  connect: [CharacterClassWhereUniqueInput!]
+}
+
+input CharacterClassCreateOneInput {
+  create: CharacterClassCreateInput
+  connect: CharacterClassWhereUniqueInput
+}
+
+type CharacterClassEdge {
+  node: CharacterClass!
+  cursor: String!
+}
+
+enum CharacterClassOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  level_ASC
+  level_DESC
+}
+
+type CharacterClassPreviousValues {
+  id: ID!
+  name: String!
+  level: Int!
+}
+
+input CharacterClassScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  level: Int
+  level_not: Int
+  level_in: [Int!]
+  level_not_in: [Int!]
+  level_lt: Int
+  level_lte: Int
+  level_gt: Int
+  level_gte: Int
+  AND: [CharacterClassScalarWhereInput!]
+  OR: [CharacterClassScalarWhereInput!]
+  NOT: [CharacterClassScalarWhereInput!]
+}
+
+type CharacterClassSubscriptionPayload {
+  mutation: MutationType!
+  node: CharacterClass
+  updatedFields: [String!]
+  previousValues: CharacterClassPreviousValues
+}
+
+input CharacterClassSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CharacterClassWhereInput
+  AND: [CharacterClassSubscriptionWhereInput!]
+  OR: [CharacterClassSubscriptionWhereInput!]
+  NOT: [CharacterClassSubscriptionWhereInput!]
+}
+
+input CharacterClassUpdateDataInput {
+  name: String
+  class: TemplateClassUpdateOneRequiredInput
+  level: Int
+}
+
+input CharacterClassUpdateInput {
+  name: String
+  class: TemplateClassUpdateOneRequiredInput
+  level: Int
+}
+
+input CharacterClassUpdateManyDataInput {
+  name: String
+  level: Int
+}
+
+input CharacterClassUpdateManyInput {
+  create: [CharacterClassCreateInput!]
+  update: [CharacterClassUpdateWithWhereUniqueNestedInput!]
+  upsert: [CharacterClassUpsertWithWhereUniqueNestedInput!]
+  delete: [CharacterClassWhereUniqueInput!]
+  connect: [CharacterClassWhereUniqueInput!]
+  set: [CharacterClassWhereUniqueInput!]
+  disconnect: [CharacterClassWhereUniqueInput!]
+  deleteMany: [CharacterClassScalarWhereInput!]
+  updateMany: [CharacterClassUpdateManyWithWhereNestedInput!]
+}
+
+input CharacterClassUpdateManyMutationInput {
+  name: String
+  level: Int
+}
+
+input CharacterClassUpdateManyWithWhereNestedInput {
+  where: CharacterClassScalarWhereInput!
+  data: CharacterClassUpdateManyDataInput!
+}
+
+input CharacterClassUpdateOneInput {
+  create: CharacterClassCreateInput
+  update: CharacterClassUpdateDataInput
+  upsert: CharacterClassUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: CharacterClassWhereUniqueInput
+}
+
+input CharacterClassUpdateWithWhereUniqueNestedInput {
+  where: CharacterClassWhereUniqueInput!
+  data: CharacterClassUpdateDataInput!
+}
+
+input CharacterClassUpsertNestedInput {
+  update: CharacterClassUpdateDataInput!
+  create: CharacterClassCreateInput!
+}
+
+input CharacterClassUpsertWithWhereUniqueNestedInput {
+  where: CharacterClassWhereUniqueInput!
+  update: CharacterClassUpdateDataInput!
+  create: CharacterClassCreateInput!
+}
+
+input CharacterClassWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  class: TemplateClassWhereInput
+  level: Int
+  level_not: Int
+  level_in: [Int!]
+  level_not_in: [Int!]
+  level_lt: Int
+  level_lte: Int
+  level_gt: Int
+  level_gte: Int
+  AND: [CharacterClassWhereInput!]
+  OR: [CharacterClassWhereInput!]
+  NOT: [CharacterClassWhereInput!]
+}
+
+input CharacterClassWhereUniqueInput {
+  id: ID
+  name: String
+}
+
 type CharacterConnection {
   pageInfo: PageInfo!
   edges: [CharacterEdge]!
@@ -78,7 +300,7 @@ type CharacterConnection {
 input CharacterCreateInput {
   id: ID
   name: String
-  class: ClassCreateManyInput
+  class: CharacterClassCreateManyInput
   folk: FolkCreateOneInput
   stats: StatBlockCreateOneInput
   skills: SkillBlockCreateOneInput
@@ -98,7 +320,7 @@ input CharacterCreateManyWithoutUserInput {
 input CharacterCreateWithoutUserInput {
   id: ID
   name: String
-  class: ClassCreateManyInput
+  class: CharacterClassCreateManyInput
   folk: FolkCreateOneInput
   stats: StatBlockCreateOneInput
   skills: SkillBlockCreateOneInput
@@ -219,7 +441,7 @@ input CharacterSubscriptionWhereInput {
 
 input CharacterUpdateInput {
   name: String
-  class: ClassUpdateManyInput
+  class: CharacterClassUpdateManyInput
   folk: FolkUpdateOneInput
   stats: StatBlockUpdateOneInput
   skills: SkillBlockUpdateOneInput
@@ -264,7 +486,7 @@ input CharacterUpdateManyWithWhereNestedInput {
 
 input CharacterUpdateWithoutUserDataInput {
   name: String
-  class: ClassUpdateManyInput
+  class: CharacterClassUpdateManyInput
   folk: FolkUpdateOneInput
   stats: StatBlockUpdateOneInput
   skills: SkillBlockUpdateOneInput
@@ -315,9 +537,9 @@ input CharacterWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  class_every: ClassWhereInput
-  class_some: ClassWhereInput
-  class_none: ClassWhereInput
+  class_every: CharacterClassWhereInput
+  class_some: CharacterClassWhereInput
+  class_none: CharacterClassWhereInput
   folk: FolkWhereInput
   stats: StatBlockWhereInput
   skills: SkillBlockWhereInput
@@ -361,228 +583,6 @@ input CharacterWhereInput {
 
 input CharacterWhereUniqueInput {
   id: ID
-}
-
-type Class {
-  id: ID!
-  name: String!
-  class: TemplateClass!
-  level: Int!
-}
-
-type ClassConnection {
-  pageInfo: PageInfo!
-  edges: [ClassEdge]!
-  aggregate: AggregateClass!
-}
-
-input ClassCreateInput {
-  id: ID
-  name: String!
-  class: TemplateClassCreateOneInput!
-  level: Int
-}
-
-input ClassCreateManyInput {
-  create: [ClassCreateInput!]
-  connect: [ClassWhereUniqueInput!]
-}
-
-input ClassCreateOneInput {
-  create: ClassCreateInput
-  connect: ClassWhereUniqueInput
-}
-
-type ClassEdge {
-  node: Class!
-  cursor: String!
-}
-
-enum ClassOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  level_ASC
-  level_DESC
-}
-
-type ClassPreviousValues {
-  id: ID!
-  name: String!
-  level: Int!
-}
-
-input ClassScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  level: Int
-  level_not: Int
-  level_in: [Int!]
-  level_not_in: [Int!]
-  level_lt: Int
-  level_lte: Int
-  level_gt: Int
-  level_gte: Int
-  AND: [ClassScalarWhereInput!]
-  OR: [ClassScalarWhereInput!]
-  NOT: [ClassScalarWhereInput!]
-}
-
-type ClassSubscriptionPayload {
-  mutation: MutationType!
-  node: Class
-  updatedFields: [String!]
-  previousValues: ClassPreviousValues
-}
-
-input ClassSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: ClassWhereInput
-  AND: [ClassSubscriptionWhereInput!]
-  OR: [ClassSubscriptionWhereInput!]
-  NOT: [ClassSubscriptionWhereInput!]
-}
-
-input ClassUpdateDataInput {
-  name: String
-  class: TemplateClassUpdateOneRequiredInput
-  level: Int
-}
-
-input ClassUpdateInput {
-  name: String
-  class: TemplateClassUpdateOneRequiredInput
-  level: Int
-}
-
-input ClassUpdateManyDataInput {
-  name: String
-  level: Int
-}
-
-input ClassUpdateManyInput {
-  create: [ClassCreateInput!]
-  update: [ClassUpdateWithWhereUniqueNestedInput!]
-  upsert: [ClassUpsertWithWhereUniqueNestedInput!]
-  delete: [ClassWhereUniqueInput!]
-  connect: [ClassWhereUniqueInput!]
-  set: [ClassWhereUniqueInput!]
-  disconnect: [ClassWhereUniqueInput!]
-  deleteMany: [ClassScalarWhereInput!]
-  updateMany: [ClassUpdateManyWithWhereNestedInput!]
-}
-
-input ClassUpdateManyMutationInput {
-  name: String
-  level: Int
-}
-
-input ClassUpdateManyWithWhereNestedInput {
-  where: ClassScalarWhereInput!
-  data: ClassUpdateManyDataInput!
-}
-
-input ClassUpdateOneInput {
-  create: ClassCreateInput
-  update: ClassUpdateDataInput
-  upsert: ClassUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: ClassWhereUniqueInput
-}
-
-input ClassUpdateWithWhereUniqueNestedInput {
-  where: ClassWhereUniqueInput!
-  data: ClassUpdateDataInput!
-}
-
-input ClassUpsertNestedInput {
-  update: ClassUpdateDataInput!
-  create: ClassCreateInput!
-}
-
-input ClassUpsertWithWhereUniqueNestedInput {
-  where: ClassWhereUniqueInput!
-  update: ClassUpdateDataInput!
-  create: ClassCreateInput!
-}
-
-input ClassWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  class: TemplateClassWhereInput
-  level: Int
-  level_not: Int
-  level_in: [Int!]
-  level_not_in: [Int!]
-  level_lt: Int
-  level_lte: Int
-  level_gt: Int
-  level_gte: Int
-  AND: [ClassWhereInput!]
-  OR: [ClassWhereInput!]
-  NOT: [ClassWhereInput!]
-}
-
-input ClassWhereUniqueInput {
-  id: ID
-  name: String
 }
 
 type Die {
@@ -706,7 +706,7 @@ type Feature {
   description: String!
   effects: [String!]!
   fromFolk: Folk
-  fromClass: Class
+  fromClass: CharacterClass
 }
 
 type FeatureConnection {
@@ -725,7 +725,7 @@ input FeatureCreateInput {
   description: String!
   effects: FeatureCreateeffectsInput
   fromFolk: FolkCreateOneWithoutFeaturesInput
-  fromClass: ClassCreateOneInput
+  fromClass: CharacterClassCreateOneInput
 }
 
 input FeatureCreateManyInput {
@@ -743,7 +743,7 @@ input FeatureCreateWithoutFromFolkInput {
   name: String!
   description: String!
   effects: FeatureCreateeffectsInput
-  fromClass: ClassCreateOneInput
+  fromClass: CharacterClassCreateOneInput
 }
 
 type FeatureEdge {
@@ -838,7 +838,7 @@ input FeatureUpdateDataInput {
   description: String
   effects: FeatureUpdateeffectsInput
   fromFolk: FolkUpdateOneWithoutFeaturesInput
-  fromClass: ClassUpdateOneInput
+  fromClass: CharacterClassUpdateOneInput
 }
 
 input FeatureUpdateeffectsInput {
@@ -850,7 +850,7 @@ input FeatureUpdateInput {
   description: String
   effects: FeatureUpdateeffectsInput
   fromFolk: FolkUpdateOneWithoutFeaturesInput
-  fromClass: ClassUpdateOneInput
+  fromClass: CharacterClassUpdateOneInput
 }
 
 input FeatureUpdateManyDataInput {
@@ -898,7 +898,7 @@ input FeatureUpdateWithoutFromFolkDataInput {
   name: String
   description: String
   effects: FeatureUpdateeffectsInput
-  fromClass: ClassUpdateOneInput
+  fromClass: CharacterClassUpdateOneInput
 }
 
 input FeatureUpdateWithWhereUniqueNestedInput {
@@ -967,7 +967,7 @@ input FeatureWhereInput {
   description_ends_with: String
   description_not_ends_with: String
   fromFolk: FolkWhereInput
-  fromClass: ClassWhereInput
+  fromClass: CharacterClassWhereInput
   AND: [FeatureWhereInput!]
   OR: [FeatureWhereInput!]
   NOT: [FeatureWhereInput!]
@@ -1449,12 +1449,12 @@ type Mutation {
   upsertCharacter(where: CharacterWhereUniqueInput!, create: CharacterCreateInput!, update: CharacterUpdateInput!): Character!
   deleteCharacter(where: CharacterWhereUniqueInput!): Character
   deleteManyCharacters(where: CharacterWhereInput): BatchPayload!
-  createClass(data: ClassCreateInput!): Class!
-  updateClass(data: ClassUpdateInput!, where: ClassWhereUniqueInput!): Class
-  updateManyClasses(data: ClassUpdateManyMutationInput!, where: ClassWhereInput): BatchPayload!
-  upsertClass(where: ClassWhereUniqueInput!, create: ClassCreateInput!, update: ClassUpdateInput!): Class!
-  deleteClass(where: ClassWhereUniqueInput!): Class
-  deleteManyClasses(where: ClassWhereInput): BatchPayload!
+  createCharacterClass(data: CharacterClassCreateInput!): CharacterClass!
+  updateCharacterClass(data: CharacterClassUpdateInput!, where: CharacterClassWhereUniqueInput!): CharacterClass
+  updateManyCharacterClasses(data: CharacterClassUpdateManyMutationInput!, where: CharacterClassWhereInput): BatchPayload!
+  upsertCharacterClass(where: CharacterClassWhereUniqueInput!, create: CharacterClassCreateInput!, update: CharacterClassUpdateInput!): CharacterClass!
+  deleteCharacterClass(where: CharacterClassWhereUniqueInput!): CharacterClass
+  deleteManyCharacterClasses(where: CharacterClassWhereInput): BatchPayload!
   createDie(data: DieCreateInput!): Die!
   updateDie(data: DieUpdateInput!, where: DieWhereUniqueInput!): Die
   updateManyDies(data: DieUpdateManyMutationInput!, where: DieWhereInput): BatchPayload!
@@ -1542,9 +1542,9 @@ type Query {
   character(where: CharacterWhereUniqueInput!): Character
   characters(where: CharacterWhereInput, orderBy: CharacterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Character]!
   charactersConnection(where: CharacterWhereInput, orderBy: CharacterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CharacterConnection!
-  class(where: ClassWhereUniqueInput!): Class
-  classes(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Class]!
-  classesConnection(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ClassConnection!
+  characterClass(where: CharacterClassWhereUniqueInput!): CharacterClass
+  characterClasses(where: CharacterClassWhereInput, orderBy: CharacterClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CharacterClass]!
+  characterClassesConnection(where: CharacterClassWhereInput, orderBy: CharacterClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CharacterClassConnection!
   die(where: DieWhereUniqueInput!): Die
   dies(where: DieWhereInput, orderBy: DieOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Die]!
   diesConnection(where: DieWhereInput, orderBy: DieOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DieConnection!
@@ -2187,7 +2187,7 @@ input StatWhereUniqueInput {
 
 type Subscription {
   character(where: CharacterSubscriptionWhereInput): CharacterSubscriptionPayload
-  class(where: ClassSubscriptionWhereInput): ClassSubscriptionPayload
+  characterClass(where: CharacterClassSubscriptionWhereInput): CharacterClassSubscriptionPayload
   die(where: DieSubscriptionWhereInput): DieSubscriptionPayload
   feature(where: FeatureSubscriptionWhereInput): FeatureSubscriptionPayload
   folk(where: FolkSubscriptionWhereInput): FolkSubscriptionPayload

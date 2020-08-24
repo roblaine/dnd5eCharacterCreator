@@ -17,7 +17,7 @@ export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
   character: (where?: CharacterWhereInput) => Promise<boolean>;
-  class: (where?: ClassWhereInput) => Promise<boolean>;
+  characterClass: (where?: CharacterClassWhereInput) => Promise<boolean>;
   die: (where?: DieWhereInput) => Promise<boolean>;
   feature: (where?: FeatureWhereInput) => Promise<boolean>;
   folk: (where?: FolkWhereInput) => Promise<boolean>;
@@ -69,25 +69,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => CharacterConnectionPromise;
-  class: (where: ClassWhereUniqueInput) => ClassNullablePromise;
-  classes: (args?: {
-    where?: ClassWhereInput;
-    orderBy?: ClassOrderByInput;
+  characterClass: (
+    where: CharacterClassWhereUniqueInput
+  ) => CharacterClassNullablePromise;
+  characterClasses: (args?: {
+    where?: CharacterClassWhereInput;
+    orderBy?: CharacterClassOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => FragmentableArray<Class>;
-  classesConnection: (args?: {
-    where?: ClassWhereInput;
-    orderBy?: ClassOrderByInput;
+  }) => FragmentableArray<CharacterClass>;
+  characterClassesConnection: (args?: {
+    where?: CharacterClassWhereInput;
+    orderBy?: CharacterClassOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => ClassConnectionPromise;
+  }) => CharacterClassConnectionPromise;
   die: (where: DieWhereUniqueInput) => DieNullablePromise;
   dies: (args?: {
     where?: DieWhereInput;
@@ -321,22 +323,28 @@ export interface Prisma {
   }) => CharacterPromise;
   deleteCharacter: (where: CharacterWhereUniqueInput) => CharacterPromise;
   deleteManyCharacters: (where?: CharacterWhereInput) => BatchPayloadPromise;
-  createClass: (data: ClassCreateInput) => ClassPromise;
-  updateClass: (args: {
-    data: ClassUpdateInput;
-    where: ClassWhereUniqueInput;
-  }) => ClassPromise;
-  updateManyClasses: (args: {
-    data: ClassUpdateManyMutationInput;
-    where?: ClassWhereInput;
+  createCharacterClass: (
+    data: CharacterClassCreateInput
+  ) => CharacterClassPromise;
+  updateCharacterClass: (args: {
+    data: CharacterClassUpdateInput;
+    where: CharacterClassWhereUniqueInput;
+  }) => CharacterClassPromise;
+  updateManyCharacterClasses: (args: {
+    data: CharacterClassUpdateManyMutationInput;
+    where?: CharacterClassWhereInput;
   }) => BatchPayloadPromise;
-  upsertClass: (args: {
-    where: ClassWhereUniqueInput;
-    create: ClassCreateInput;
-    update: ClassUpdateInput;
-  }) => ClassPromise;
-  deleteClass: (where: ClassWhereUniqueInput) => ClassPromise;
-  deleteManyClasses: (where?: ClassWhereInput) => BatchPayloadPromise;
+  upsertCharacterClass: (args: {
+    where: CharacterClassWhereUniqueInput;
+    create: CharacterClassCreateInput;
+    update: CharacterClassUpdateInput;
+  }) => CharacterClassPromise;
+  deleteCharacterClass: (
+    where: CharacterClassWhereUniqueInput
+  ) => CharacterClassPromise;
+  deleteManyCharacterClasses: (
+    where?: CharacterClassWhereInput
+  ) => BatchPayloadPromise;
   createDie: (data: DieCreateInput) => DiePromise;
   updateDie: (args: {
     data: DieUpdateInput;
@@ -499,9 +507,9 @@ export interface Subscription {
   character: (
     where?: CharacterSubscriptionWhereInput
   ) => CharacterSubscriptionPayloadSubscription;
-  class: (
-    where?: ClassSubscriptionWhereInput
-  ) => ClassSubscriptionPayloadSubscription;
+  characterClass: (
+    where?: CharacterClassSubscriptionWhereInput
+  ) => CharacterClassSubscriptionPayloadSubscription;
   die: (
     where?: DieSubscriptionWhereInput
   ) => DieSubscriptionPayloadSubscription;
@@ -545,7 +553,7 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type ClassOrderByInput =
+export type CharacterClassOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "name_ASC"
@@ -655,7 +663,7 @@ export type CharacterWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface ClassWhereInput {
+export interface CharacterClassWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -693,9 +701,9 @@ export interface ClassWhereInput {
   level_lte?: Maybe<Int>;
   level_gt?: Maybe<Int>;
   level_gte?: Maybe<Int>;
-  AND?: Maybe<ClassWhereInput[] | ClassWhereInput>;
-  OR?: Maybe<ClassWhereInput[] | ClassWhereInput>;
-  NOT?: Maybe<ClassWhereInput[] | ClassWhereInput>;
+  AND?: Maybe<CharacterClassWhereInput[] | CharacterClassWhereInput>;
+  OR?: Maybe<CharacterClassWhereInput[] | CharacterClassWhereInput>;
+  NOT?: Maybe<CharacterClassWhereInput[] | CharacterClassWhereInput>;
 }
 
 export interface TemplateClassWhereInput {
@@ -779,7 +787,7 @@ export interface FeatureWhereInput {
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
   fromFolk?: Maybe<FolkWhereInput>;
-  fromClass?: Maybe<ClassWhereInput>;
+  fromClass?: Maybe<CharacterClassWhereInput>;
   AND?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
   OR?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
   NOT?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
@@ -984,9 +992,9 @@ export interface CharacterWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
-  class_every?: Maybe<ClassWhereInput>;
-  class_some?: Maybe<ClassWhereInput>;
-  class_none?: Maybe<ClassWhereInput>;
+  class_every?: Maybe<CharacterClassWhereInput>;
+  class_some?: Maybe<CharacterClassWhereInput>;
+  class_none?: Maybe<CharacterClassWhereInput>;
   folk?: Maybe<FolkWhereInput>;
   stats?: Maybe<StatBlockWhereInput>;
   skills?: Maybe<SkillBlockWhereInput>;
@@ -1212,7 +1220,7 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export type ClassWhereUniqueInput = AtLeastOne<{
+export type CharacterClassWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   name?: Maybe<String>;
 }>;
@@ -1305,7 +1313,7 @@ export type UserWhereUniqueInput = AtLeastOne<{
 export interface CharacterCreateInput {
   id?: Maybe<ID_Input>;
   name?: Maybe<String>;
-  class?: Maybe<ClassCreateManyInput>;
+  class?: Maybe<CharacterClassCreateManyInput>;
   folk?: Maybe<FolkCreateOneInput>;
   stats?: Maybe<StatBlockCreateOneInput>;
   skills?: Maybe<SkillBlockCreateOneInput>;
@@ -1317,12 +1325,14 @@ export interface CharacterCreateInput {
   user: UserCreateOneWithoutCharactersInput;
 }
 
-export interface ClassCreateManyInput {
-  create?: Maybe<ClassCreateInput[] | ClassCreateInput>;
-  connect?: Maybe<ClassWhereUniqueInput[] | ClassWhereUniqueInput>;
+export interface CharacterClassCreateManyInput {
+  create?: Maybe<CharacterClassCreateInput[] | CharacterClassCreateInput>;
+  connect?: Maybe<
+    CharacterClassWhereUniqueInput[] | CharacterClassWhereUniqueInput
+  >;
 }
 
-export interface ClassCreateInput {
+export interface CharacterClassCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   class: TemplateClassCreateOneInput;
@@ -1351,7 +1361,7 @@ export interface FeatureCreateInput {
   description: String;
   effects?: Maybe<FeatureCreateeffectsInput>;
   fromFolk?: Maybe<FolkCreateOneWithoutFeaturesInput>;
-  fromClass?: Maybe<ClassCreateOneInput>;
+  fromClass?: Maybe<CharacterClassCreateOneInput>;
 }
 
 export interface FeatureCreateeffectsInput {
@@ -1386,9 +1396,9 @@ export interface LanguageCreateInput {
   name: String;
 }
 
-export interface ClassCreateOneInput {
-  create?: Maybe<ClassCreateInput>;
-  connect?: Maybe<ClassWhereUniqueInput>;
+export interface CharacterClassCreateOneInput {
+  create?: Maybe<CharacterClassCreateInput>;
+  connect?: Maybe<CharacterClassWhereUniqueInput>;
 }
 
 export interface FolkCreateOneInput {
@@ -1422,7 +1432,7 @@ export interface FeatureCreateWithoutFromFolkInput {
   name: String;
   description: String;
   effects?: Maybe<FeatureCreateeffectsInput>;
-  fromClass?: Maybe<ClassCreateOneInput>;
+  fromClass?: Maybe<CharacterClassCreateOneInput>;
 }
 
 export interface StatBlockCreateOneInput {
@@ -1496,7 +1506,7 @@ export interface UserCreatepermissionsInput {
 
 export interface CharacterUpdateInput {
   name?: Maybe<String>;
-  class?: Maybe<ClassUpdateManyInput>;
+  class?: Maybe<CharacterClassUpdateManyInput>;
   folk?: Maybe<FolkUpdateOneInput>;
   stats?: Maybe<StatBlockUpdateOneInput>;
   skills?: Maybe<SkillBlockUpdateOneInput>;
@@ -1508,32 +1518,43 @@ export interface CharacterUpdateInput {
   user?: Maybe<UserUpdateOneRequiredWithoutCharactersInput>;
 }
 
-export interface ClassUpdateManyInput {
-  create?: Maybe<ClassCreateInput[] | ClassCreateInput>;
+export interface CharacterClassUpdateManyInput {
+  create?: Maybe<CharacterClassCreateInput[] | CharacterClassCreateInput>;
   update?: Maybe<
-    | ClassUpdateWithWhereUniqueNestedInput[]
-    | ClassUpdateWithWhereUniqueNestedInput
+    | CharacterClassUpdateWithWhereUniqueNestedInput[]
+    | CharacterClassUpdateWithWhereUniqueNestedInput
   >;
   upsert?: Maybe<
-    | ClassUpsertWithWhereUniqueNestedInput[]
-    | ClassUpsertWithWhereUniqueNestedInput
+    | CharacterClassUpsertWithWhereUniqueNestedInput[]
+    | CharacterClassUpsertWithWhereUniqueNestedInput
   >;
-  delete?: Maybe<ClassWhereUniqueInput[] | ClassWhereUniqueInput>;
-  connect?: Maybe<ClassWhereUniqueInput[] | ClassWhereUniqueInput>;
-  set?: Maybe<ClassWhereUniqueInput[] | ClassWhereUniqueInput>;
-  disconnect?: Maybe<ClassWhereUniqueInput[] | ClassWhereUniqueInput>;
-  deleteMany?: Maybe<ClassScalarWhereInput[] | ClassScalarWhereInput>;
+  delete?: Maybe<
+    CharacterClassWhereUniqueInput[] | CharacterClassWhereUniqueInput
+  >;
+  connect?: Maybe<
+    CharacterClassWhereUniqueInput[] | CharacterClassWhereUniqueInput
+  >;
+  set?: Maybe<
+    CharacterClassWhereUniqueInput[] | CharacterClassWhereUniqueInput
+  >;
+  disconnect?: Maybe<
+    CharacterClassWhereUniqueInput[] | CharacterClassWhereUniqueInput
+  >;
+  deleteMany?: Maybe<
+    CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput
+  >;
   updateMany?: Maybe<
-    ClassUpdateManyWithWhereNestedInput[] | ClassUpdateManyWithWhereNestedInput
+    | CharacterClassUpdateManyWithWhereNestedInput[]
+    | CharacterClassUpdateManyWithWhereNestedInput
   >;
 }
 
-export interface ClassUpdateWithWhereUniqueNestedInput {
-  where: ClassWhereUniqueInput;
-  data: ClassUpdateDataInput;
+export interface CharacterClassUpdateWithWhereUniqueNestedInput {
+  where: CharacterClassWhereUniqueInput;
+  data: CharacterClassUpdateDataInput;
 }
 
-export interface ClassUpdateDataInput {
+export interface CharacterClassUpdateDataInput {
   name?: Maybe<String>;
   class?: Maybe<TemplateClassUpdateOneRequiredInput>;
   level?: Maybe<Int>;
@@ -1582,7 +1603,7 @@ export interface FeatureUpdateDataInput {
   description?: Maybe<String>;
   effects?: Maybe<FeatureUpdateeffectsInput>;
   fromFolk?: Maybe<FolkUpdateOneWithoutFeaturesInput>;
-  fromClass?: Maybe<ClassUpdateOneInput>;
+  fromClass?: Maybe<CharacterClassUpdateOneInput>;
 }
 
 export interface FeatureUpdateeffectsInput {
@@ -1694,18 +1715,18 @@ export interface FolkUpsertWithoutFeaturesInput {
   create: FolkCreateWithoutFeaturesInput;
 }
 
-export interface ClassUpdateOneInput {
-  create?: Maybe<ClassCreateInput>;
-  update?: Maybe<ClassUpdateDataInput>;
-  upsert?: Maybe<ClassUpsertNestedInput>;
+export interface CharacterClassUpdateOneInput {
+  create?: Maybe<CharacterClassCreateInput>;
+  update?: Maybe<CharacterClassUpdateDataInput>;
+  upsert?: Maybe<CharacterClassUpsertNestedInput>;
   delete?: Maybe<Boolean>;
   disconnect?: Maybe<Boolean>;
-  connect?: Maybe<ClassWhereUniqueInput>;
+  connect?: Maybe<CharacterClassWhereUniqueInput>;
 }
 
-export interface ClassUpsertNestedInput {
-  update: ClassUpdateDataInput;
-  create: ClassCreateInput;
+export interface CharacterClassUpsertNestedInput {
+  update: CharacterClassUpdateDataInput;
+  create: CharacterClassCreateInput;
 }
 
 export interface FeatureUpsertWithWhereUniqueNestedInput {
@@ -1778,13 +1799,13 @@ export interface TemplateClassUpsertNestedInput {
   create: TemplateClassCreateInput;
 }
 
-export interface ClassUpsertWithWhereUniqueNestedInput {
-  where: ClassWhereUniqueInput;
-  update: ClassUpdateDataInput;
-  create: ClassCreateInput;
+export interface CharacterClassUpsertWithWhereUniqueNestedInput {
+  where: CharacterClassWhereUniqueInput;
+  update: CharacterClassUpdateDataInput;
+  create: CharacterClassCreateInput;
 }
 
-export interface ClassScalarWhereInput {
+export interface CharacterClassScalarWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -1821,17 +1842,21 @@ export interface ClassScalarWhereInput {
   level_lte?: Maybe<Int>;
   level_gt?: Maybe<Int>;
   level_gte?: Maybe<Int>;
-  AND?: Maybe<ClassScalarWhereInput[] | ClassScalarWhereInput>;
-  OR?: Maybe<ClassScalarWhereInput[] | ClassScalarWhereInput>;
-  NOT?: Maybe<ClassScalarWhereInput[] | ClassScalarWhereInput>;
+  AND?: Maybe<
+    CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput
+  >;
+  OR?: Maybe<CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput>;
+  NOT?: Maybe<
+    CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput
+  >;
 }
 
-export interface ClassUpdateManyWithWhereNestedInput {
-  where: ClassScalarWhereInput;
-  data: ClassUpdateManyDataInput;
+export interface CharacterClassUpdateManyWithWhereNestedInput {
+  where: CharacterClassScalarWhereInput;
+  data: CharacterClassUpdateManyDataInput;
 }
 
-export interface ClassUpdateManyDataInput {
+export interface CharacterClassUpdateManyDataInput {
   name?: Maybe<String>;
   level?: Maybe<Int>;
 }
@@ -1890,7 +1915,7 @@ export interface FeatureUpdateWithoutFromFolkDataInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
   effects?: Maybe<FeatureUpdateeffectsInput>;
-  fromClass?: Maybe<ClassUpdateOneInput>;
+  fromClass?: Maybe<CharacterClassUpdateOneInput>;
 }
 
 export interface FeatureUpsertWithWhereUniqueWithoutFromFolkInput {
@@ -2074,13 +2099,13 @@ export interface CharacterUpdateManyMutationInput {
   profBonus?: Maybe<Int>;
 }
 
-export interface ClassUpdateInput {
+export interface CharacterClassUpdateInput {
   name?: Maybe<String>;
   class?: Maybe<TemplateClassUpdateOneRequiredInput>;
   level?: Maybe<Int>;
 }
 
-export interface ClassUpdateManyMutationInput {
+export interface CharacterClassUpdateManyMutationInput {
   name?: Maybe<String>;
   level?: Maybe<Int>;
 }
@@ -2098,7 +2123,7 @@ export interface FeatureUpdateInput {
   description?: Maybe<String>;
   effects?: Maybe<FeatureUpdateeffectsInput>;
   fromFolk?: Maybe<FolkUpdateOneWithoutFeaturesInput>;
-  fromClass?: Maybe<ClassUpdateOneInput>;
+  fromClass?: Maybe<CharacterClassUpdateOneInput>;
 }
 
 export interface FeatureUpdateManyMutationInput {
@@ -2220,7 +2245,7 @@ export interface CharacterCreateManyWithoutUserInput {
 export interface CharacterCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
   name?: Maybe<String>;
-  class?: Maybe<ClassCreateManyInput>;
+  class?: Maybe<CharacterClassCreateManyInput>;
   folk?: Maybe<FolkCreateOneInput>;
   stats?: Maybe<StatBlockCreateOneInput>;
   skills?: Maybe<SkillBlockCreateOneInput>;
@@ -2271,7 +2296,7 @@ export interface CharacterUpdateWithWhereUniqueWithoutUserInput {
 
 export interface CharacterUpdateWithoutUserDataInput {
   name?: Maybe<String>;
-  class?: Maybe<ClassUpdateManyInput>;
+  class?: Maybe<CharacterClassUpdateManyInput>;
   folk?: Maybe<FolkUpdateOneInput>;
   stats?: Maybe<StatBlockUpdateOneInput>;
   skills?: Maybe<SkillBlockUpdateOneInput>;
@@ -2390,15 +2415,24 @@ export interface CharacterSubscriptionWhereInput {
   >;
 }
 
-export interface ClassSubscriptionWhereInput {
+export interface CharacterClassSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ClassWhereInput>;
-  AND?: Maybe<ClassSubscriptionWhereInput[] | ClassSubscriptionWhereInput>;
-  OR?: Maybe<ClassSubscriptionWhereInput[] | ClassSubscriptionWhereInput>;
-  NOT?: Maybe<ClassSubscriptionWhereInput[] | ClassSubscriptionWhereInput>;
+  node?: Maybe<CharacterClassWhereInput>;
+  AND?: Maybe<
+    | CharacterClassSubscriptionWhereInput[]
+    | CharacterClassSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | CharacterClassSubscriptionWhereInput[]
+    | CharacterClassSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | CharacterClassSubscriptionWhereInput[]
+    | CharacterClassSubscriptionWhereInput
+  >;
 }
 
 export interface DieSubscriptionWhereInput {
@@ -2565,9 +2599,9 @@ export interface Character {
 export interface CharacterPromise extends Promise<Character>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
-  class: <T = FragmentableArray<Class>>(args?: {
-    where?: ClassWhereInput;
-    orderBy?: ClassOrderByInput;
+  class: <T = FragmentableArray<CharacterClass>>(args?: {
+    where?: CharacterClassWhereInput;
+    orderBy?: CharacterClassOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -2590,9 +2624,9 @@ export interface CharacterSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
-  class: <T = Promise<AsyncIterator<ClassSubscription>>>(args?: {
-    where?: ClassWhereInput;
-    orderBy?: ClassOrderByInput;
+  class: <T = Promise<AsyncIterator<CharacterClassSubscription>>>(args?: {
+    where?: CharacterClassWhereInput;
+    orderBy?: CharacterClassOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -2615,9 +2649,9 @@ export interface CharacterNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
-  class: <T = FragmentableArray<Class>>(args?: {
-    where?: ClassWhereInput;
-    orderBy?: ClassOrderByInput;
+  class: <T = FragmentableArray<CharacterClass>>(args?: {
+    where?: CharacterClassWhereInput;
+    orderBy?: CharacterClassOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -2635,21 +2669,23 @@ export interface CharacterNullablePromise
   user: <T = UserPromise>() => T;
 }
 
-export interface Class {
+export interface CharacterClass {
   id: ID_Output;
   name: String;
   level: Int;
 }
 
-export interface ClassPromise extends Promise<Class>, Fragmentable {
+export interface CharacterClassPromise
+  extends Promise<CharacterClass>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   class: <T = TemplateClassPromise>() => T;
   level: () => Promise<Int>;
 }
 
-export interface ClassSubscription
-  extends Promise<AsyncIterator<Class>>,
+export interface CharacterClassSubscription
+  extends Promise<AsyncIterator<CharacterClass>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
@@ -2657,8 +2693,8 @@ export interface ClassSubscription
   level: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface ClassNullablePromise
-  extends Promise<Class | null>,
+export interface CharacterClassNullablePromise
+  extends Promise<CharacterClass | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
@@ -2732,7 +2768,7 @@ export interface FeaturePromise extends Promise<Feature>, Fragmentable {
   description: () => Promise<String>;
   effects: () => Promise<String[]>;
   fromFolk: <T = FolkPromise>() => T;
-  fromClass: <T = ClassPromise>() => T;
+  fromClass: <T = CharacterClassPromise>() => T;
 }
 
 export interface FeatureSubscription
@@ -2743,7 +2779,7 @@ export interface FeatureSubscription
   description: () => Promise<AsyncIterator<String>>;
   effects: () => Promise<AsyncIterator<String[]>>;
   fromFolk: <T = FolkSubscription>() => T;
-  fromClass: <T = ClassSubscription>() => T;
+  fromClass: <T = CharacterClassSubscription>() => T;
 }
 
 export interface FeatureNullablePromise
@@ -2754,7 +2790,7 @@ export interface FeatureNullablePromise
   description: () => Promise<String>;
   effects: () => Promise<String[]>;
   fromFolk: <T = FolkPromise>() => T;
-  fromClass: <T = ClassPromise>() => T;
+  fromClass: <T = CharacterClassPromise>() => T;
 }
 
 export interface Folk {
@@ -3178,56 +3214,58 @@ export interface AggregateCharacterSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface ClassConnection {
+export interface CharacterClassConnection {
   pageInfo: PageInfo;
-  edges: ClassEdge[];
+  edges: CharacterClassEdge[];
 }
 
-export interface ClassConnectionPromise
-  extends Promise<ClassConnection>,
+export interface CharacterClassConnectionPromise
+  extends Promise<CharacterClassConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ClassEdge>>() => T;
-  aggregate: <T = AggregateClassPromise>() => T;
+  edges: <T = FragmentableArray<CharacterClassEdge>>() => T;
+  aggregate: <T = AggregateCharacterClassPromise>() => T;
 }
 
-export interface ClassConnectionSubscription
-  extends Promise<AsyncIterator<ClassConnection>>,
+export interface CharacterClassConnectionSubscription
+  extends Promise<AsyncIterator<CharacterClassConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ClassEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateClassSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CharacterClassEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCharacterClassSubscription>() => T;
 }
 
-export interface ClassEdge {
-  node: Class;
+export interface CharacterClassEdge {
+  node: CharacterClass;
   cursor: String;
 }
 
-export interface ClassEdgePromise extends Promise<ClassEdge>, Fragmentable {
-  node: <T = ClassPromise>() => T;
+export interface CharacterClassEdgePromise
+  extends Promise<CharacterClassEdge>,
+    Fragmentable {
+  node: <T = CharacterClassPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface ClassEdgeSubscription
-  extends Promise<AsyncIterator<ClassEdge>>,
+export interface CharacterClassEdgeSubscription
+  extends Promise<AsyncIterator<CharacterClassEdge>>,
     Fragmentable {
-  node: <T = ClassSubscription>() => T;
+  node: <T = CharacterClassSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateClass {
+export interface AggregateCharacterClass {
   count: Int;
 }
 
-export interface AggregateClassPromise
-  extends Promise<AggregateClass>,
+export interface AggregateCharacterClassPromise
+  extends Promise<AggregateCharacterClass>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateClassSubscription
-  extends Promise<AsyncIterator<AggregateClass>>,
+export interface AggregateCharacterClassSubscription
+  extends Promise<AsyncIterator<AggregateCharacterClass>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -3936,47 +3974,47 @@ export interface CharacterPreviousValuesSubscription
   profBonus: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface ClassSubscriptionPayload {
+export interface CharacterClassSubscriptionPayload {
   mutation: MutationType;
-  node: Class;
+  node: CharacterClass;
   updatedFields: String[];
-  previousValues: ClassPreviousValues;
+  previousValues: CharacterClassPreviousValues;
 }
 
-export interface ClassSubscriptionPayloadPromise
-  extends Promise<ClassSubscriptionPayload>,
+export interface CharacterClassSubscriptionPayloadPromise
+  extends Promise<CharacterClassSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = ClassPromise>() => T;
+  node: <T = CharacterClassPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = ClassPreviousValuesPromise>() => T;
+  previousValues: <T = CharacterClassPreviousValuesPromise>() => T;
 }
 
-export interface ClassSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ClassSubscriptionPayload>>,
+export interface CharacterClassSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CharacterClassSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ClassSubscription>() => T;
+  node: <T = CharacterClassSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ClassPreviousValuesSubscription>() => T;
+  previousValues: <T = CharacterClassPreviousValuesSubscription>() => T;
 }
 
-export interface ClassPreviousValues {
+export interface CharacterClassPreviousValues {
   id: ID_Output;
   name: String;
   level: Int;
 }
 
-export interface ClassPreviousValuesPromise
-  extends Promise<ClassPreviousValues>,
+export interface CharacterClassPreviousValuesPromise
+  extends Promise<CharacterClassPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   level: () => Promise<Int>;
 }
 
-export interface ClassPreviousValuesSubscription
-  extends Promise<AsyncIterator<ClassPreviousValues>>,
+export interface CharacterClassPreviousValuesSubscription
+  extends Promise<AsyncIterator<CharacterClassPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
@@ -4590,7 +4628,7 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "Class",
+    name: "CharacterClass",
     embedded: false
   },
   {
