@@ -9,32 +9,48 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
-const Signup = () => {
-  let username, email, password, passwordConf;
-  const [signup, { error, data }] = useMutation(SIGNUP_MUTATION);
+function validateForm(username, email, password, passwordConf) {
+  if (!username.length || !email.length || !password.length || !passwordConf.length) {
+    alert('Please fill out all fields')!
+    return false;
+  }
+  return true;
+}
 
+const Signup = () => {
+  let username,
+    email,
+    password,
+    passwordConf,
+    displayError = '';
+  const [signup, { error, data }] = useMutation(SIGNUP_MUTATION);
+  if (error) {
+    displayError = error.message.split('error:')[1];
+  }
   return (
     <Form
       onSubmit={(e) => {
         e.preventDefault();
-        if (passwordConf.value != password.value) {
-          throw new Error(`Passwords dont match`);
+        if (password.value != passwordConf.value) {
+          alert('Passwords do not match.');
+        } else {
+          signup({
+            variables: {
+              username: username.value,
+              email: email.value,
+              password: password.value,
+              passwordConf: passwordConf.value,
+            },
+          });
+          username.value = '';
+          email.value = '';
+          password.value = '';
+          passwordConf.value = '';
         }
-        signup({
-          variables: {
-            username: username.value,
-            email: email.value,
-            password: password.value,
-            passwordConf: passwordConf.value,
-          },
-        });
-        username.value = '';
-        email.value = '';
-        password.value = '';
-        passwordConf.value = '';
       }}
     >
-      {error ? <div>{error.message}</div> : <></>}
+      {error ? <div>{displayError}</div> : <></>}
+      {displayError.length > 0 ? <div>{displayError}</div> : <></>}
       <fieldset>
         <input
           ref={(node) => {

@@ -17,6 +17,14 @@ const Mutations = {
       ? (permissions = { set: ['USER', 'ADMIN'] })
       : (permissions = { set: ['USER'] });
 
+    const checkEmail = await ctx.db.query.user({
+      where: { email },
+    });
+
+    if (checkEmail && checkEmail.email) {
+      throw new Error(`The entered email address is already in use.`);
+    }
+
     const user = await ctx.db.mutation.createUser(
       {
         data: {
