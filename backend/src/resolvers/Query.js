@@ -20,7 +20,7 @@ const Query = {
 
     const characters = await ctx.db.query.characters(
       {
-        where: { createdBy: userId },
+        where: { user: userId },
       },
       info,
     );

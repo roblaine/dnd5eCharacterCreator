@@ -111,5 +111,5 @@ type Character {
   hitDie: Die
   maxHp: Int
   profBonus: Int
-  belongsTo: User!
+  user: User!
 }

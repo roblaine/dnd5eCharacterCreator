@@ -71,7 +71,7 @@ type Character {
   hitDie: Die
   maxHp: Int
   profBonus: Int
-  belongsTo: User!
+  user: User!
 }
 
 type CharacterConnection {
@@ -92,15 +92,15 @@ input CharacterCreateInput {
   hitDie: DieCreateOneInput
   maxHp: Int
   profBonus: Int
-  belongsTo: UserCreateOneWithoutCharactersInput!
+  user: UserCreateOneWithoutCharactersInput!
 }
 
-input CharacterCreateManyWithoutBelongsToInput {
-  create: [CharacterCreateWithoutBelongsToInput!]
+input CharacterCreateManyWithoutUserInput {
+  create: [CharacterCreateWithoutUserInput!]
   connect: [CharacterWhereUniqueInput!]
 }
 
-input CharacterCreateWithoutBelongsToInput {
+input CharacterCreateWithoutUserInput {
   id: ID
   name: String
   class: ClassCreateManyInput
@@ -233,7 +233,7 @@ input CharacterUpdateInput {
   hitDie: DieUpdateOneInput
   maxHp: Int
   profBonus: Int
-  belongsTo: UserUpdateOneRequiredWithoutCharactersInput
+  user: UserUpdateOneRequiredWithoutCharactersInput
 }
 
 input CharacterUpdateManyDataInput {
@@ -250,14 +250,14 @@ input CharacterUpdateManyMutationInput {
   profBonus: Int
 }
 
-input CharacterUpdateManyWithoutBelongsToInput {
-  create: [CharacterCreateWithoutBelongsToInput!]
+input CharacterUpdateManyWithoutUserInput {
+  create: [CharacterCreateWithoutUserInput!]
   delete: [CharacterWhereUniqueInput!]
   connect: [CharacterWhereUniqueInput!]
   set: [CharacterWhereUniqueInput!]
   disconnect: [CharacterWhereUniqueInput!]
-  update: [CharacterUpdateWithWhereUniqueWithoutBelongsToInput!]
-  upsert: [CharacterUpsertWithWhereUniqueWithoutBelongsToInput!]
+  update: [CharacterUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [CharacterUpsertWithWhereUniqueWithoutUserInput!]
   deleteMany: [CharacterScalarWhereInput!]
   updateMany: [CharacterUpdateManyWithWhereNestedInput!]
 }
@@ -267,7 +267,7 @@ input CharacterUpdateManyWithWhereNestedInput {
   data: CharacterUpdateManyDataInput!
 }
 
-input CharacterUpdateWithoutBelongsToDataInput {
+input CharacterUpdateWithoutUserDataInput {
   name: String
   class: ClassUpdateManyInput
   folk: FolkUpdateOneInput
@@ -280,15 +280,15 @@ input CharacterUpdateWithoutBelongsToDataInput {
   profBonus: Int
 }
 
-input CharacterUpdateWithWhereUniqueWithoutBelongsToInput {
+input CharacterUpdateWithWhereUniqueWithoutUserInput {
   where: CharacterWhereUniqueInput!
-  data: CharacterUpdateWithoutBelongsToDataInput!
+  data: CharacterUpdateWithoutUserDataInput!
 }
 
-input CharacterUpsertWithWhereUniqueWithoutBelongsToInput {
+input CharacterUpsertWithWhereUniqueWithoutUserInput {
   where: CharacterWhereUniqueInput!
-  update: CharacterUpdateWithoutBelongsToDataInput!
-  create: CharacterCreateWithoutBelongsToInput!
+  update: CharacterUpdateWithoutUserDataInput!
+  create: CharacterCreateWithoutUserInput!
 }
 
 input CharacterWhereInput {
@@ -358,7 +358,7 @@ input CharacterWhereInput {
   profBonus_lte: Int
   profBonus_gt: Int
   profBonus_gte: Int
-  belongsTo: UserWhereInput
+  user: UserWhereInput
   AND: [CharacterWhereInput!]
   OR: [CharacterWhereInput!]
   NOT: [CharacterWhereInput!]
@@ -2357,7 +2357,7 @@ input UserCreateInput {
   resetToken: String
   resetTokenExpiry: String
   permissions: UserCreatepermissionsInput
-  characters: CharacterCreateManyWithoutBelongsToInput
+  characters: CharacterCreateManyWithoutUserInput
 }
 
 input UserCreateOneWithoutCharactersInput {
@@ -2434,7 +2434,7 @@ input UserUpdateInput {
   resetToken: String
   resetTokenExpiry: String
   permissions: UserUpdatepermissionsInput
-  characters: CharacterUpdateManyWithoutBelongsToInput
+  characters: CharacterUpdateManyWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {

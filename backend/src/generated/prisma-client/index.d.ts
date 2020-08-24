@@ -1022,7 +1022,7 @@ export interface CharacterWhereInput {
   profBonus_lte?: Maybe<Int>;
   profBonus_gt?: Maybe<Int>;
   profBonus_gte?: Maybe<Int>;
-  belongsTo?: Maybe<UserWhereInput>;
+  user?: Maybe<UserWhereInput>;
   AND?: Maybe<CharacterWhereInput[] | CharacterWhereInput>;
   OR?: Maybe<CharacterWhereInput[] | CharacterWhereInput>;
   NOT?: Maybe<CharacterWhereInput[] | CharacterWhereInput>;
@@ -1314,7 +1314,7 @@ export interface CharacterCreateInput {
   hitDie?: Maybe<DieCreateOneInput>;
   maxHp?: Maybe<Int>;
   profBonus?: Maybe<Int>;
-  belongsTo: UserCreateOneWithoutCharactersInput;
+  user: UserCreateOneWithoutCharactersInput;
 }
 
 export interface ClassCreateManyInput {
@@ -1505,7 +1505,7 @@ export interface CharacterUpdateInput {
   hitDie?: Maybe<DieUpdateOneInput>;
   maxHp?: Maybe<Int>;
   profBonus?: Maybe<Int>;
-  belongsTo?: Maybe<UserUpdateOneRequiredWithoutCharactersInput>;
+  user?: Maybe<UserUpdateOneRequiredWithoutCharactersInput>;
 }
 
 export interface ClassUpdateManyInput {
@@ -2207,18 +2207,17 @@ export interface UserCreateInput {
   resetToken?: Maybe<String>;
   resetTokenExpiry?: Maybe<String>;
   permissions?: Maybe<UserCreatepermissionsInput>;
-  characters?: Maybe<CharacterCreateManyWithoutBelongsToInput>;
+  characters?: Maybe<CharacterCreateManyWithoutUserInput>;
 }
 
-export interface CharacterCreateManyWithoutBelongsToInput {
+export interface CharacterCreateManyWithoutUserInput {
   create?: Maybe<
-    | CharacterCreateWithoutBelongsToInput[]
-    | CharacterCreateWithoutBelongsToInput
+    CharacterCreateWithoutUserInput[] | CharacterCreateWithoutUserInput
   >;
   connect?: Maybe<CharacterWhereUniqueInput[] | CharacterWhereUniqueInput>;
 }
 
-export interface CharacterCreateWithoutBelongsToInput {
+export interface CharacterCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
   name?: Maybe<String>;
   class?: Maybe<ClassCreateManyInput>;
@@ -2239,25 +2238,24 @@ export interface UserUpdateInput {
   resetToken?: Maybe<String>;
   resetTokenExpiry?: Maybe<String>;
   permissions?: Maybe<UserUpdatepermissionsInput>;
-  characters?: Maybe<CharacterUpdateManyWithoutBelongsToInput>;
+  characters?: Maybe<CharacterUpdateManyWithoutUserInput>;
 }
 
-export interface CharacterUpdateManyWithoutBelongsToInput {
+export interface CharacterUpdateManyWithoutUserInput {
   create?: Maybe<
-    | CharacterCreateWithoutBelongsToInput[]
-    | CharacterCreateWithoutBelongsToInput
+    CharacterCreateWithoutUserInput[] | CharacterCreateWithoutUserInput
   >;
   delete?: Maybe<CharacterWhereUniqueInput[] | CharacterWhereUniqueInput>;
   connect?: Maybe<CharacterWhereUniqueInput[] | CharacterWhereUniqueInput>;
   set?: Maybe<CharacterWhereUniqueInput[] | CharacterWhereUniqueInput>;
   disconnect?: Maybe<CharacterWhereUniqueInput[] | CharacterWhereUniqueInput>;
   update?: Maybe<
-    | CharacterUpdateWithWhereUniqueWithoutBelongsToInput[]
-    | CharacterUpdateWithWhereUniqueWithoutBelongsToInput
+    | CharacterUpdateWithWhereUniqueWithoutUserInput[]
+    | CharacterUpdateWithWhereUniqueWithoutUserInput
   >;
   upsert?: Maybe<
-    | CharacterUpsertWithWhereUniqueWithoutBelongsToInput[]
-    | CharacterUpsertWithWhereUniqueWithoutBelongsToInput
+    | CharacterUpsertWithWhereUniqueWithoutUserInput[]
+    | CharacterUpsertWithWhereUniqueWithoutUserInput
   >;
   deleteMany?: Maybe<CharacterScalarWhereInput[] | CharacterScalarWhereInput>;
   updateMany?: Maybe<
@@ -2266,12 +2264,12 @@ export interface CharacterUpdateManyWithoutBelongsToInput {
   >;
 }
 
-export interface CharacterUpdateWithWhereUniqueWithoutBelongsToInput {
+export interface CharacterUpdateWithWhereUniqueWithoutUserInput {
   where: CharacterWhereUniqueInput;
-  data: CharacterUpdateWithoutBelongsToDataInput;
+  data: CharacterUpdateWithoutUserDataInput;
 }
 
-export interface CharacterUpdateWithoutBelongsToDataInput {
+export interface CharacterUpdateWithoutUserDataInput {
   name?: Maybe<String>;
   class?: Maybe<ClassUpdateManyInput>;
   folk?: Maybe<FolkUpdateOneInput>;
@@ -2284,10 +2282,10 @@ export interface CharacterUpdateWithoutBelongsToDataInput {
   profBonus?: Maybe<Int>;
 }
 
-export interface CharacterUpsertWithWhereUniqueWithoutBelongsToInput {
+export interface CharacterUpsertWithWhereUniqueWithoutUserInput {
   where: CharacterWhereUniqueInput;
-  update: CharacterUpdateWithoutBelongsToDataInput;
-  create: CharacterCreateWithoutBelongsToInput;
+  update: CharacterUpdateWithoutUserDataInput;
+  create: CharacterCreateWithoutUserInput;
 }
 
 export interface CharacterScalarWhereInput {
@@ -2584,7 +2582,7 @@ export interface CharacterPromise extends Promise<Character>, Fragmentable {
   hitDie: <T = DiePromise>() => T;
   maxHp: () => Promise<Int>;
   profBonus: () => Promise<Int>;
-  belongsTo: <T = UserPromise>() => T;
+  user: <T = UserPromise>() => T;
 }
 
 export interface CharacterSubscription
@@ -2609,7 +2607,7 @@ export interface CharacterSubscription
   hitDie: <T = DieSubscription>() => T;
   maxHp: () => Promise<AsyncIterator<Int>>;
   profBonus: () => Promise<AsyncIterator<Int>>;
-  belongsTo: <T = UserSubscription>() => T;
+  user: <T = UserSubscription>() => T;
 }
 
 export interface CharacterNullablePromise
@@ -2634,7 +2632,7 @@ export interface CharacterNullablePromise
   hitDie: <T = DiePromise>() => T;
   maxHp: () => Promise<Int>;
   profBonus: () => Promise<Int>;
-  belongsTo: <T = UserPromise>() => T;
+  user: <T = UserPromise>() => T;
 }
 
 export interface Class {
