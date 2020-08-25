@@ -44,9 +44,18 @@ const Characters = () => {
     return (
       <>
         {data.characters.length > 0 ? (
-          data.characters.map((char) => (
-            <div key={char.id}>
-              <h1>{char.name}</h1>
+          data.characters.map((character) => (
+            // Move this to its own component
+            <div key={character.id}>
+              <h1>
+                {character.name} <button>Delete 🗑️</button>
+              </h1>
+              {character.classes.map((characterClass) => (
+                <div>
+                  Level {characterClass.level}{' '}
+                  {characterClass.templatedFrom.name}
+                </div>
+              ))}
             </div>
           ))
         ) : (
@@ -59,8 +68,8 @@ const Characters = () => {
   return (
     <div>
       <h1>Your Characters</h1>
-      <div>{getCharacters()}</div>
       <CreateCharacter />
+      <div>{getCharacters()}</div>
     </div>
   );
 };
