@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import CreateCharacter from './CreateCharacter';
+import SingleCharacter from './SingleCharacter';
 
 //TODO: Have this retrieve all of the required information
 const GET_USERS_CHARACTERS_QUERY = gql`
@@ -45,18 +46,7 @@ const Characters = () => {
       <>
         {data.characters.length > 0 ? (
           data.characters.map((character) => (
-            // Move this to its own component
-            <div key={character.id}>
-              <h1>
-                {character.name} <button>Delete 🗑️</button>
-              </h1>
-              {character.classes.map((characterClass) => (
-                <div>
-                  Level {characterClass.level}{' '}
-                  {characterClass.templatedFrom.name}
-                </div>
-              ))}
-            </div>
+            <SingleCharacter key={character.id} character={character} />
           ))
         ) : (
           <p>You don't have any characters yet!</p>
