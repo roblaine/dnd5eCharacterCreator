@@ -17,10 +17,10 @@ const GET_USERS_CHARACTERS_QUERY = gql`
         id
       }
       acCalc
-      class {
+      classes {
         id
         level
-        class {
+        templatedFrom {
           name
         }
       }
