@@ -7,7 +7,7 @@ const SingleCharacter = (props) => {
         {character.name} <button>Delete 🗑️</button>
       </h1>
       {character.classes.map((characterClass) => (
-        <div>
+        <div key={characterClass.id}>
           Level {characterClass.level} {characterClass.templatedFrom.name}
         </div>
       ))}

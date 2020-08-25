@@ -21,6 +21,7 @@ const GET_USERS_CHARACTERS_QUERY = gql`
       classes {
         id
         level
+        belongsTo
         templatedFrom {
           name
         }

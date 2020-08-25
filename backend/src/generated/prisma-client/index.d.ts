@@ -553,6 +553,8 @@ export interface ClientConstructor<T> {
  * Types
  */
 
+export type StatList = "STR" | "CON" | "DEX" | "CHA" | "WIS" | "INT";
+
 export type CharacterClassOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -572,8 +574,6 @@ export type LanguageOrderByInput =
   | "id_DESC"
   | "name_ASC"
   | "name_DESC";
-
-export type StatList = "STR" | "CON" | "DEX" | "CHA" | "WIS" | "INT";
 
 export type StatOrderByInput =
   | "id_ASC"
@@ -685,6 +685,7 @@ export interface CharacterClassWhereInput {
   level_lte?: Maybe<Int>;
   level_gt?: Maybe<Int>;
   level_gte?: Maybe<Int>;
+  belongsTo?: Maybe<CharacterWhereInput>;
   AND?: Maybe<CharacterClassWhereInput[] | CharacterClassWhereInput>;
   OR?: Maybe<CharacterClassWhereInput[] | CharacterClassWhereInput>;
   NOT?: Maybe<CharacterClassWhereInput[] | CharacterClassWhereInput>;
@@ -907,46 +908,6 @@ export interface LanguageWhereInput {
   NOT?: Maybe<LanguageWhereInput[] | LanguageWhereInput>;
 }
 
-export interface StatWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<StatList>;
-  name_not?: Maybe<StatList>;
-  name_in?: Maybe<StatList[] | StatList>;
-  name_not_in?: Maybe<StatList[] | StatList>;
-  score?: Maybe<Int>;
-  score_not?: Maybe<Int>;
-  score_in?: Maybe<Int[] | Int>;
-  score_not_in?: Maybe<Int[] | Int>;
-  score_lt?: Maybe<Int>;
-  score_lte?: Maybe<Int>;
-  score_gt?: Maybe<Int>;
-  score_gte?: Maybe<Int>;
-  mod?: Maybe<Int>;
-  mod_not?: Maybe<Int>;
-  mod_in?: Maybe<Int[] | Int>;
-  mod_not_in?: Maybe<Int[] | Int>;
-  mod_lt?: Maybe<Int>;
-  mod_lte?: Maybe<Int>;
-  mod_gt?: Maybe<Int>;
-  mod_gte?: Maybe<Int>;
-  AND?: Maybe<StatWhereInput[] | StatWhereInput>;
-  OR?: Maybe<StatWhereInput[] | StatWhereInput>;
-  NOT?: Maybe<StatWhereInput[] | StatWhereInput>;
-}
-
 export interface CharacterWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
@@ -1041,6 +1002,46 @@ export interface StatBlockWhereInput {
   AND?: Maybe<StatBlockWhereInput[] | StatBlockWhereInput>;
   OR?: Maybe<StatBlockWhereInput[] | StatBlockWhereInput>;
   NOT?: Maybe<StatBlockWhereInput[] | StatBlockWhereInput>;
+}
+
+export interface StatWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<StatList>;
+  name_not?: Maybe<StatList>;
+  name_in?: Maybe<StatList[] | StatList>;
+  name_not_in?: Maybe<StatList[] | StatList>;
+  score?: Maybe<Int>;
+  score_not?: Maybe<Int>;
+  score_in?: Maybe<Int[] | Int>;
+  score_not_in?: Maybe<Int[] | Int>;
+  score_lt?: Maybe<Int>;
+  score_lte?: Maybe<Int>;
+  score_gt?: Maybe<Int>;
+  score_gte?: Maybe<Int>;
+  mod?: Maybe<Int>;
+  mod_not?: Maybe<Int>;
+  mod_in?: Maybe<Int[] | Int>;
+  mod_not_in?: Maybe<Int[] | Int>;
+  mod_lt?: Maybe<Int>;
+  mod_lte?: Maybe<Int>;
+  mod_gt?: Maybe<Int>;
+  mod_gte?: Maybe<Int>;
+  AND?: Maybe<StatWhereInput[] | StatWhereInput>;
+  OR?: Maybe<StatWhereInput[] | StatWhereInput>;
+  NOT?: Maybe<StatWhereInput[] | StatWhereInput>;
 }
 
 export interface SkillBlockWhereInput {
@@ -1296,7 +1297,7 @@ export type UserWhereUniqueInput = AtLeastOne<{
 export interface CharacterCreateInput {
   id?: Maybe<ID_Input>;
   name?: Maybe<String>;
-  classes?: Maybe<CharacterClassCreateManyInput>;
+  classes?: Maybe<CharacterClassCreateManyWithoutBelongsToInput>;
   folk?: Maybe<FolkCreateOneInput>;
   stats?: Maybe<StatBlockCreateOneInput>;
   skills?: Maybe<SkillBlockCreateOneInput>;
@@ -1308,14 +1309,17 @@ export interface CharacterCreateInput {
   user: UserCreateOneWithoutCharactersInput;
 }
 
-export interface CharacterClassCreateManyInput {
-  create?: Maybe<CharacterClassCreateInput[] | CharacterClassCreateInput>;
+export interface CharacterClassCreateManyWithoutBelongsToInput {
+  create?: Maybe<
+    | CharacterClassCreateWithoutBelongsToInput[]
+    | CharacterClassCreateWithoutBelongsToInput
+  >;
   connect?: Maybe<
     CharacterClassWhereUniqueInput[] | CharacterClassWhereUniqueInput
   >;
 }
 
-export interface CharacterClassCreateInput {
+export interface CharacterClassCreateWithoutBelongsToInput {
   id?: Maybe<ID_Input>;
   templatedFrom: TemplateClassCreateOneInput;
   level?: Maybe<Int>;
@@ -1381,6 +1385,32 @@ export interface LanguageCreateInput {
 export interface CharacterClassCreateOneInput {
   create?: Maybe<CharacterClassCreateInput>;
   connect?: Maybe<CharacterClassWhereUniqueInput>;
+}
+
+export interface CharacterClassCreateInput {
+  id?: Maybe<ID_Input>;
+  templatedFrom: TemplateClassCreateOneInput;
+  level?: Maybe<Int>;
+  belongsTo?: Maybe<CharacterCreateOneWithoutClassesInput>;
+}
+
+export interface CharacterCreateOneWithoutClassesInput {
+  create?: Maybe<CharacterCreateWithoutClassesInput>;
+  connect?: Maybe<CharacterWhereUniqueInput>;
+}
+
+export interface CharacterCreateWithoutClassesInput {
+  id?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  folk?: Maybe<FolkCreateOneInput>;
+  stats?: Maybe<StatBlockCreateOneInput>;
+  skills?: Maybe<SkillBlockCreateOneInput>;
+  saves?: Maybe<SaveBlockCreateOneInput>;
+  acCalc?: Maybe<String>;
+  hitDie?: Maybe<DieCreateOneInput>;
+  maxHp?: Maybe<Int>;
+  profBonus?: Maybe<Int>;
+  user: UserCreateOneWithoutCharactersInput;
 }
 
 export interface FolkCreateOneInput {
@@ -1488,7 +1518,7 @@ export interface UserCreatepermissionsInput {
 
 export interface CharacterUpdateInput {
   name?: Maybe<String>;
-  classes?: Maybe<CharacterClassUpdateManyInput>;
+  classes?: Maybe<CharacterClassUpdateManyWithoutBelongsToInput>;
   folk?: Maybe<FolkUpdateOneInput>;
   stats?: Maybe<StatBlockUpdateOneInput>;
   skills?: Maybe<SkillBlockUpdateOneInput>;
@@ -1500,15 +1530,10 @@ export interface CharacterUpdateInput {
   user?: Maybe<UserUpdateOneRequiredWithoutCharactersInput>;
 }
 
-export interface CharacterClassUpdateManyInput {
-  create?: Maybe<CharacterClassCreateInput[] | CharacterClassCreateInput>;
-  update?: Maybe<
-    | CharacterClassUpdateWithWhereUniqueNestedInput[]
-    | CharacterClassUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | CharacterClassUpsertWithWhereUniqueNestedInput[]
-    | CharacterClassUpsertWithWhereUniqueNestedInput
+export interface CharacterClassUpdateManyWithoutBelongsToInput {
+  create?: Maybe<
+    | CharacterClassCreateWithoutBelongsToInput[]
+    | CharacterClassCreateWithoutBelongsToInput
   >;
   delete?: Maybe<
     CharacterClassWhereUniqueInput[] | CharacterClassWhereUniqueInput
@@ -1522,6 +1547,14 @@ export interface CharacterClassUpdateManyInput {
   disconnect?: Maybe<
     CharacterClassWhereUniqueInput[] | CharacterClassWhereUniqueInput
   >;
+  update?: Maybe<
+    | CharacterClassUpdateWithWhereUniqueWithoutBelongsToInput[]
+    | CharacterClassUpdateWithWhereUniqueWithoutBelongsToInput
+  >;
+  upsert?: Maybe<
+    | CharacterClassUpsertWithWhereUniqueWithoutBelongsToInput[]
+    | CharacterClassUpsertWithWhereUniqueWithoutBelongsToInput
+  >;
   deleteMany?: Maybe<
     CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput
   >;
@@ -1531,12 +1564,12 @@ export interface CharacterClassUpdateManyInput {
   >;
 }
 
-export interface CharacterClassUpdateWithWhereUniqueNestedInput {
+export interface CharacterClassUpdateWithWhereUniqueWithoutBelongsToInput {
   where: CharacterClassWhereUniqueInput;
-  data: CharacterClassUpdateDataInput;
+  data: CharacterClassUpdateWithoutBelongsToDataInput;
 }
 
-export interface CharacterClassUpdateDataInput {
+export interface CharacterClassUpdateWithoutBelongsToDataInput {
   templatedFrom?: Maybe<TemplateClassUpdateOneRequiredInput>;
   level?: Maybe<Int>;
 }
@@ -1705,126 +1738,32 @@ export interface CharacterClassUpdateOneInput {
   connect?: Maybe<CharacterClassWhereUniqueInput>;
 }
 
-export interface CharacterClassUpsertNestedInput {
-  update: CharacterClassUpdateDataInput;
-  create: CharacterClassCreateInput;
-}
-
-export interface FeatureUpsertWithWhereUniqueNestedInput {
-  where: FeatureWhereUniqueInput;
-  update: FeatureUpdateDataInput;
-  create: FeatureCreateInput;
-}
-
-export interface FeatureScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  AND?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-  OR?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-  NOT?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-}
-
-export interface FeatureUpdateManyWithWhereNestedInput {
-  where: FeatureScalarWhereInput;
-  data: FeatureUpdateManyDataInput;
-}
-
-export interface FeatureUpdateManyDataInput {
-  name?: Maybe<String>;
-  description?: Maybe<String>;
-  effects?: Maybe<FeatureUpdateeffectsInput>;
-}
-
-export interface TemplateClassUpsertNestedInput {
-  update: TemplateClassUpdateDataInput;
-  create: TemplateClassCreateInput;
-}
-
-export interface CharacterClassUpsertWithWhereUniqueNestedInput {
-  where: CharacterClassWhereUniqueInput;
-  update: CharacterClassUpdateDataInput;
-  create: CharacterClassCreateInput;
-}
-
-export interface CharacterClassScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
+export interface CharacterClassUpdateDataInput {
+  templatedFrom?: Maybe<TemplateClassUpdateOneRequiredInput>;
   level?: Maybe<Int>;
-  level_not?: Maybe<Int>;
-  level_in?: Maybe<Int[] | Int>;
-  level_not_in?: Maybe<Int[] | Int>;
-  level_lt?: Maybe<Int>;
-  level_lte?: Maybe<Int>;
-  level_gt?: Maybe<Int>;
-  level_gte?: Maybe<Int>;
-  AND?: Maybe<
-    CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput
-  >;
-  OR?: Maybe<CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput>;
-  NOT?: Maybe<
-    CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput
-  >;
+  belongsTo?: Maybe<CharacterUpdateOneWithoutClassesInput>;
 }
 
-export interface CharacterClassUpdateManyWithWhereNestedInput {
-  where: CharacterClassScalarWhereInput;
-  data: CharacterClassUpdateManyDataInput;
+export interface CharacterUpdateOneWithoutClassesInput {
+  create?: Maybe<CharacterCreateWithoutClassesInput>;
+  update?: Maybe<CharacterUpdateWithoutClassesDataInput>;
+  upsert?: Maybe<CharacterUpsertWithoutClassesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<CharacterWhereUniqueInput>;
 }
 
-export interface CharacterClassUpdateManyDataInput {
-  level?: Maybe<Int>;
+export interface CharacterUpdateWithoutClassesDataInput {
+  name?: Maybe<String>;
+  folk?: Maybe<FolkUpdateOneInput>;
+  stats?: Maybe<StatBlockUpdateOneInput>;
+  skills?: Maybe<SkillBlockUpdateOneInput>;
+  saves?: Maybe<SaveBlockUpdateOneInput>;
+  acCalc?: Maybe<String>;
+  hitDie?: Maybe<DieUpdateOneInput>;
+  maxHp?: Maybe<Int>;
+  profBonus?: Maybe<Int>;
+  user?: Maybe<UserUpdateOneRequiredWithoutCharactersInput>;
 }
 
 export interface FolkUpdateOneInput {
@@ -1888,6 +1827,65 @@ export interface FeatureUpsertWithWhereUniqueWithoutFromFolkInput {
   where: FeatureWhereUniqueInput;
   update: FeatureUpdateWithoutFromFolkDataInput;
   create: FeatureCreateWithoutFromFolkInput;
+}
+
+export interface FeatureScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  AND?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
+  OR?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
+  NOT?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
+}
+
+export interface FeatureUpdateManyWithWhereNestedInput {
+  where: FeatureScalarWhereInput;
+  data: FeatureUpdateManyDataInput;
+}
+
+export interface FeatureUpdateManyDataInput {
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+  effects?: Maybe<FeatureUpdateeffectsInput>;
 }
 
 export interface FolkUpsertNestedInput {
@@ -2058,6 +2056,74 @@ export interface UserUpsertWithoutCharactersInput {
   create: UserCreateWithoutCharactersInput;
 }
 
+export interface CharacterUpsertWithoutClassesInput {
+  update: CharacterUpdateWithoutClassesDataInput;
+  create: CharacterCreateWithoutClassesInput;
+}
+
+export interface CharacterClassUpsertNestedInput {
+  update: CharacterClassUpdateDataInput;
+  create: CharacterClassCreateInput;
+}
+
+export interface FeatureUpsertWithWhereUniqueNestedInput {
+  where: FeatureWhereUniqueInput;
+  update: FeatureUpdateDataInput;
+  create: FeatureCreateInput;
+}
+
+export interface TemplateClassUpsertNestedInput {
+  update: TemplateClassUpdateDataInput;
+  create: TemplateClassCreateInput;
+}
+
+export interface CharacterClassUpsertWithWhereUniqueWithoutBelongsToInput {
+  where: CharacterClassWhereUniqueInput;
+  update: CharacterClassUpdateWithoutBelongsToDataInput;
+  create: CharacterClassCreateWithoutBelongsToInput;
+}
+
+export interface CharacterClassScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  level?: Maybe<Int>;
+  level_not?: Maybe<Int>;
+  level_in?: Maybe<Int[] | Int>;
+  level_not_in?: Maybe<Int[] | Int>;
+  level_lt?: Maybe<Int>;
+  level_lte?: Maybe<Int>;
+  level_gt?: Maybe<Int>;
+  level_gte?: Maybe<Int>;
+  AND?: Maybe<
+    CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput
+  >;
+  OR?: Maybe<CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput>;
+  NOT?: Maybe<
+    CharacterClassScalarWhereInput[] | CharacterClassScalarWhereInput
+  >;
+}
+
+export interface CharacterClassUpdateManyWithWhereNestedInput {
+  where: CharacterClassScalarWhereInput;
+  data: CharacterClassUpdateManyDataInput;
+}
+
+export interface CharacterClassUpdateManyDataInput {
+  level?: Maybe<Int>;
+}
+
 export interface CharacterUpdateManyMutationInput {
   name?: Maybe<String>;
   acCalc?: Maybe<String>;
@@ -2068,6 +2134,7 @@ export interface CharacterUpdateManyMutationInput {
 export interface CharacterClassUpdateInput {
   templatedFrom?: Maybe<TemplateClassUpdateOneRequiredInput>;
   level?: Maybe<Int>;
+  belongsTo?: Maybe<CharacterUpdateOneWithoutClassesInput>;
 }
 
 export interface CharacterClassUpdateManyMutationInput {
@@ -2209,7 +2276,7 @@ export interface CharacterCreateManyWithoutUserInput {
 export interface CharacterCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
   name?: Maybe<String>;
-  classes?: Maybe<CharacterClassCreateManyInput>;
+  classes?: Maybe<CharacterClassCreateManyWithoutBelongsToInput>;
   folk?: Maybe<FolkCreateOneInput>;
   stats?: Maybe<StatBlockCreateOneInput>;
   skills?: Maybe<SkillBlockCreateOneInput>;
@@ -2260,7 +2327,7 @@ export interface CharacterUpdateWithWhereUniqueWithoutUserInput {
 
 export interface CharacterUpdateWithoutUserDataInput {
   name?: Maybe<String>;
-  classes?: Maybe<CharacterClassUpdateManyInput>;
+  classes?: Maybe<CharacterClassUpdateManyWithoutBelongsToInput>;
   folk?: Maybe<FolkUpdateOneInput>;
   stats?: Maybe<StatBlockUpdateOneInput>;
   skills?: Maybe<SkillBlockUpdateOneInput>;
@@ -2644,6 +2711,7 @@ export interface CharacterClassPromise
   id: () => Promise<ID_Output>;
   templatedFrom: <T = TemplateClassPromise>() => T;
   level: () => Promise<Int>;
+  belongsTo: <T = CharacterPromise>() => T;
 }
 
 export interface CharacterClassSubscription
@@ -2652,6 +2720,7 @@ export interface CharacterClassSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   templatedFrom: <T = TemplateClassSubscription>() => T;
   level: () => Promise<AsyncIterator<Int>>;
+  belongsTo: <T = CharacterSubscription>() => T;
 }
 
 export interface CharacterClassNullablePromise
@@ -2660,6 +2729,7 @@ export interface CharacterClassNullablePromise
   id: () => Promise<ID_Output>;
   templatedFrom: <T = TemplateClassPromise>() => T;
   level: () => Promise<Int>;
+  belongsTo: <T = CharacterPromise>() => T;
 }
 
 export interface TemplateClass {

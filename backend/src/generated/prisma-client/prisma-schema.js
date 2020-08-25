@@ -78,6 +78,7 @@ type CharacterClass {
   id: ID!
   templatedFrom: TemplateClass!
   level: Int!
+  belongsTo: Character
 }
 
 type CharacterClassConnection {
@@ -90,16 +91,23 @@ input CharacterClassCreateInput {
   id: ID
   templatedFrom: TemplateClassCreateOneInput!
   level: Int
+  belongsTo: CharacterCreateOneWithoutClassesInput
 }
 
-input CharacterClassCreateManyInput {
-  create: [CharacterClassCreateInput!]
+input CharacterClassCreateManyWithoutBelongsToInput {
+  create: [CharacterClassCreateWithoutBelongsToInput!]
   connect: [CharacterClassWhereUniqueInput!]
 }
 
 input CharacterClassCreateOneInput {
   create: CharacterClassCreateInput
   connect: CharacterClassWhereUniqueInput
+}
+
+input CharacterClassCreateWithoutBelongsToInput {
+  id: ID
+  templatedFrom: TemplateClassCreateOneInput!
+  level: Int
 }
 
 type CharacterClassEdge {
@@ -168,31 +176,33 @@ input CharacterClassSubscriptionWhereInput {
 input CharacterClassUpdateDataInput {
   templatedFrom: TemplateClassUpdateOneRequiredInput
   level: Int
+  belongsTo: CharacterUpdateOneWithoutClassesInput
 }
 
 input CharacterClassUpdateInput {
   templatedFrom: TemplateClassUpdateOneRequiredInput
   level: Int
+  belongsTo: CharacterUpdateOneWithoutClassesInput
 }
 
 input CharacterClassUpdateManyDataInput {
   level: Int
 }
 
-input CharacterClassUpdateManyInput {
-  create: [CharacterClassCreateInput!]
-  update: [CharacterClassUpdateWithWhereUniqueNestedInput!]
-  upsert: [CharacterClassUpsertWithWhereUniqueNestedInput!]
+input CharacterClassUpdateManyMutationInput {
+  level: Int
+}
+
+input CharacterClassUpdateManyWithoutBelongsToInput {
+  create: [CharacterClassCreateWithoutBelongsToInput!]
   delete: [CharacterClassWhereUniqueInput!]
   connect: [CharacterClassWhereUniqueInput!]
   set: [CharacterClassWhereUniqueInput!]
   disconnect: [CharacterClassWhereUniqueInput!]
+  update: [CharacterClassUpdateWithWhereUniqueWithoutBelongsToInput!]
+  upsert: [CharacterClassUpsertWithWhereUniqueWithoutBelongsToInput!]
   deleteMany: [CharacterClassScalarWhereInput!]
   updateMany: [CharacterClassUpdateManyWithWhereNestedInput!]
-}
-
-input CharacterClassUpdateManyMutationInput {
-  level: Int
 }
 
 input CharacterClassUpdateManyWithWhereNestedInput {
@@ -209,9 +219,14 @@ input CharacterClassUpdateOneInput {
   connect: CharacterClassWhereUniqueInput
 }
 
-input CharacterClassUpdateWithWhereUniqueNestedInput {
+input CharacterClassUpdateWithoutBelongsToDataInput {
+  templatedFrom: TemplateClassUpdateOneRequiredInput
+  level: Int
+}
+
+input CharacterClassUpdateWithWhereUniqueWithoutBelongsToInput {
   where: CharacterClassWhereUniqueInput!
-  data: CharacterClassUpdateDataInput!
+  data: CharacterClassUpdateWithoutBelongsToDataInput!
 }
 
 input CharacterClassUpsertNestedInput {
@@ -219,10 +234,10 @@ input CharacterClassUpsertNestedInput {
   create: CharacterClassCreateInput!
 }
 
-input CharacterClassUpsertWithWhereUniqueNestedInput {
+input CharacterClassUpsertWithWhereUniqueWithoutBelongsToInput {
   where: CharacterClassWhereUniqueInput!
-  update: CharacterClassUpdateDataInput!
-  create: CharacterClassCreateInput!
+  update: CharacterClassUpdateWithoutBelongsToDataInput!
+  create: CharacterClassCreateWithoutBelongsToInput!
 }
 
 input CharacterClassWhereInput {
@@ -249,6 +264,7 @@ input CharacterClassWhereInput {
   level_lte: Int
   level_gt: Int
   level_gte: Int
+  belongsTo: CharacterWhereInput
   AND: [CharacterClassWhereInput!]
   OR: [CharacterClassWhereInput!]
   NOT: [CharacterClassWhereInput!]
@@ -267,7 +283,7 @@ type CharacterConnection {
 input CharacterCreateInput {
   id: ID
   name: String
-  classes: CharacterClassCreateManyInput
+  classes: CharacterClassCreateManyWithoutBelongsToInput
   folk: FolkCreateOneInput
   stats: StatBlockCreateOneInput
   skills: SkillBlockCreateOneInput
@@ -284,10 +300,29 @@ input CharacterCreateManyWithoutUserInput {
   connect: [CharacterWhereUniqueInput!]
 }
 
+input CharacterCreateOneWithoutClassesInput {
+  create: CharacterCreateWithoutClassesInput
+  connect: CharacterWhereUniqueInput
+}
+
+input CharacterCreateWithoutClassesInput {
+  id: ID
+  name: String
+  folk: FolkCreateOneInput
+  stats: StatBlockCreateOneInput
+  skills: SkillBlockCreateOneInput
+  saves: SaveBlockCreateOneInput
+  acCalc: String
+  hitDie: DieCreateOneInput
+  maxHp: Int
+  profBonus: Int
+  user: UserCreateOneWithoutCharactersInput!
+}
+
 input CharacterCreateWithoutUserInput {
   id: ID
   name: String
-  classes: CharacterClassCreateManyInput
+  classes: CharacterClassCreateManyWithoutBelongsToInput
   folk: FolkCreateOneInput
   stats: StatBlockCreateOneInput
   skills: SkillBlockCreateOneInput
@@ -408,7 +443,7 @@ input CharacterSubscriptionWhereInput {
 
 input CharacterUpdateInput {
   name: String
-  classes: CharacterClassUpdateManyInput
+  classes: CharacterClassUpdateManyWithoutBelongsToInput
   folk: FolkUpdateOneInput
   stats: StatBlockUpdateOneInput
   skills: SkillBlockUpdateOneInput
@@ -451,9 +486,31 @@ input CharacterUpdateManyWithWhereNestedInput {
   data: CharacterUpdateManyDataInput!
 }
 
+input CharacterUpdateOneWithoutClassesInput {
+  create: CharacterCreateWithoutClassesInput
+  update: CharacterUpdateWithoutClassesDataInput
+  upsert: CharacterUpsertWithoutClassesInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: CharacterWhereUniqueInput
+}
+
+input CharacterUpdateWithoutClassesDataInput {
+  name: String
+  folk: FolkUpdateOneInput
+  stats: StatBlockUpdateOneInput
+  skills: SkillBlockUpdateOneInput
+  saves: SaveBlockUpdateOneInput
+  acCalc: String
+  hitDie: DieUpdateOneInput
+  maxHp: Int
+  profBonus: Int
+  user: UserUpdateOneRequiredWithoutCharactersInput
+}
+
 input CharacterUpdateWithoutUserDataInput {
   name: String
-  classes: CharacterClassUpdateManyInput
+  classes: CharacterClassUpdateManyWithoutBelongsToInput
   folk: FolkUpdateOneInput
   stats: StatBlockUpdateOneInput
   skills: SkillBlockUpdateOneInput
@@ -467,6 +524,11 @@ input CharacterUpdateWithoutUserDataInput {
 input CharacterUpdateWithWhereUniqueWithoutUserInput {
   where: CharacterWhereUniqueInput!
   data: CharacterUpdateWithoutUserDataInput!
+}
+
+input CharacterUpsertWithoutClassesInput {
+  update: CharacterUpdateWithoutClassesDataInput!
+  create: CharacterCreateWithoutClassesInput!
 }
 
 input CharacterUpsertWithWhereUniqueWithoutUserInput {

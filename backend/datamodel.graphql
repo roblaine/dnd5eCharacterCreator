@@ -96,6 +96,7 @@ type CharacterClass {
   id: ID! @id @unique
   templatedFrom: TemplateClass!
   level: Int! @default(value: 1)
+  belongsTo: Character
 }
 
 # TODO Rework the location of some of the fields

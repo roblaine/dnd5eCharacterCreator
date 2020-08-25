@@ -135,25 +135,42 @@ const Mutations = {
 
   // args needs to contain {folkId, characterClassId, characterName, ...}
   async addCharacter(parent, args, ctx, info) {
-    const userId = args.userId; //ctx.request.userId;
-    console.log(args);
-    if (!userId) {
+    const userId = ctx.request.userId;
+
+    if (process.env.ENV == PROD && !userId) {
       return new Error(`You must be logged in to do that.`);
     }
 
-    const characterClassId = args.characterClassId;
+    const characterClass = await ctx.db.query.characterClass({
+      where: { id: args.characterClassId },
+    });
+
     // Create a new character with reference to the characterClass
     const character = await ctx.db.mutation.createCharacter({
       data: {
         user: { connect: { id: userId } },
         name: args.characterName,
-        classes: { connect: [{ id: characterClassId }] },
+        classes: { connect: [{ id: characterClass.id }] },
         // folk: { connect: {id: characterFolkId } },
         //
       },
     });
+    // Create the link to character in characterClass' belongsTo field
+    const updatedCharacterClass = await ctx.db.mutation.updateCharacterClass({
+      data: {
+        belongsTo: { connect: { id: character.id } },
+      },
+      where: { id: characterClass.id },
+    });
+    console.log(updatedCharacterClass);
+    console.log(character.id);
+    // if (updatedCharacterClass.belongsTo != character.id) {
+    //   throw new Error(
+    //     `Something went wrong with the character creation. Please try again later.`,
+    //   );
+    // }
     // If error: remove the associated characterClass, and characterFolk, throw error
-    console.log(character);
+    // console.log(character);
     return character;
   },
 };
