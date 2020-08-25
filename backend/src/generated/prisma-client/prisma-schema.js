@@ -76,7 +76,6 @@ type Character {
 
 type CharacterClass {
   id: ID!
-  name: String!
   class: TemplateClass!
   level: Int!
 }
@@ -89,7 +88,6 @@ type CharacterClassConnection {
 
 input CharacterClassCreateInput {
   id: ID
-  name: String!
   class: TemplateClassCreateOneInput!
   level: Int
 }
@@ -112,15 +110,12 @@ type CharacterClassEdge {
 enum CharacterClassOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
   level_ASC
   level_DESC
 }
 
 type CharacterClassPreviousValues {
   id: ID!
-  name: String!
   level: Int!
 }
 
@@ -139,20 +134,6 @@ input CharacterClassScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
   level: Int
   level_not: Int
   level_in: [Int!]
@@ -185,19 +166,16 @@ input CharacterClassSubscriptionWhereInput {
 }
 
 input CharacterClassUpdateDataInput {
-  name: String
   class: TemplateClassUpdateOneRequiredInput
   level: Int
 }
 
 input CharacterClassUpdateInput {
-  name: String
   class: TemplateClassUpdateOneRequiredInput
   level: Int
 }
 
 input CharacterClassUpdateManyDataInput {
-  name: String
   level: Int
 }
 
@@ -214,7 +192,6 @@ input CharacterClassUpdateManyInput {
 }
 
 input CharacterClassUpdateManyMutationInput {
-  name: String
   level: Int
 }
 
@@ -263,20 +240,6 @@ input CharacterClassWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
   class: TemplateClassWhereInput
   level: Int
   level_not: Int
@@ -293,7 +256,6 @@ input CharacterClassWhereInput {
 
 input CharacterClassWhereUniqueInput {
   id: ID
-  name: String
 }
 
 type CharacterConnection {

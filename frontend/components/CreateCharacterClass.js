@@ -14,24 +14,24 @@ const GET_ALL_TEMPLATE_CLASSES_QUERY = gql`
 
 // TODO Fix this mutation
 const CREATE_CLASS_FOR_CHARACTER_MUTATION = gql`
-  mutation createClassForCharacter($characterClassName: String!) {
-    createClass() {
+  mutation createClassForCharacter($templateClassName: String!) {
+    createClass(templateClassName: $templateClassName) {
       id
-      class: { connect: { name: characterClassName } }
+      class
       level
     }
   }
 `;
 
-const SelectClass = () => {
+const CreateCharacterClass = () => {
   function classSelection() {
     const { loading, error, data } = useQuery(GET_ALL_TEMPLATE_CLASSES_QUERY);
 
     if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
+    if (error) return `${error.message}`;
 
     return (
-      <>
+      <form>
         <label for="class-select">Choose a Class:</label>
         <select name="class" id="class-select">
           <option value="">Please choose an option</option>
@@ -41,10 +41,10 @@ const SelectClass = () => {
             </option>
           ))}
         </select>
-      </>
+      </form>
     );
   }
   return <ClassDropdown>{classSelection()}</ClassDropdown>;
 };
 
-export default SelectClass;
+export default CreateCharacterClass;

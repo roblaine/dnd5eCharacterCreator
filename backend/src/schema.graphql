@@ -21,7 +21,7 @@ type Mutation {
   ): Folk!
   addLanguage(name: String!): Language!
   addFeature(name: String!, description: String!, effects: [String!]!): Feature!
-  addCharacterClass(templateClassName: String!, level: Int): CharacterClass!
+  addCharacterClass(templateClassName: String, level: Int): CharacterClass!
 }
 
 type Query {

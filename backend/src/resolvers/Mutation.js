@@ -107,7 +107,7 @@ const Mutations = {
   },
 
   async addFeature(parent, args, ctx, info) {
-    const feautre = await ctx.db.mutation.createFeature(
+    const feature = await ctx.db.mutation.createFeature(
       {
         data: {
           ...args,
@@ -119,10 +119,16 @@ const Mutations = {
   },
 
   async addCharacterClass(parent, args, ctx, info) {
-    console.log(args);
-    const characterClass = await ctx.db.mutation.createCharacterClass({
-      data: {},
+    const templateClass = await ctx.db.query.templateClass({
+      where: { name: args.templateClassName },
     });
+    // Create a reference to the template class for this new class
+    const characterClass = await ctx.db.mutation.createCharacterClass({
+      data: {
+        class: { connect: { id: templateClass.id } },
+      },
+    });
+
     return characterClass;
   },
 };

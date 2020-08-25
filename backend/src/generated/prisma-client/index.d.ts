@@ -556,8 +556,6 @@ export interface ClientConstructor<T> {
 export type CharacterClassOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
   | "level_ASC"
   | "level_DESC";
 
@@ -678,20 +676,6 @@ export interface CharacterClassWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
   class?: Maybe<TemplateClassWhereInput>;
   level?: Maybe<Int>;
   level_not?: Maybe<Int>;
@@ -1222,7 +1206,6 @@ export interface UserWhereInput {
 
 export type CharacterClassWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
-  name?: Maybe<String>;
 }>;
 
 export type DieWhereUniqueInput = AtLeastOne<{
@@ -1334,7 +1317,6 @@ export interface CharacterClassCreateManyInput {
 
 export interface CharacterClassCreateInput {
   id?: Maybe<ID_Input>;
-  name: String;
   class: TemplateClassCreateOneInput;
   level?: Maybe<Int>;
 }
@@ -1555,7 +1537,6 @@ export interface CharacterClassUpdateWithWhereUniqueNestedInput {
 }
 
 export interface CharacterClassUpdateDataInput {
-  name?: Maybe<String>;
   class?: Maybe<TemplateClassUpdateOneRequiredInput>;
   level?: Maybe<Int>;
 }
@@ -1820,20 +1801,6 @@ export interface CharacterClassScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
   level?: Maybe<Int>;
   level_not?: Maybe<Int>;
   level_in?: Maybe<Int[] | Int>;
@@ -1857,7 +1824,6 @@ export interface CharacterClassUpdateManyWithWhereNestedInput {
 }
 
 export interface CharacterClassUpdateManyDataInput {
-  name?: Maybe<String>;
   level?: Maybe<Int>;
 }
 
@@ -2100,13 +2066,11 @@ export interface CharacterUpdateManyMutationInput {
 }
 
 export interface CharacterClassUpdateInput {
-  name?: Maybe<String>;
   class?: Maybe<TemplateClassUpdateOneRequiredInput>;
   level?: Maybe<Int>;
 }
 
 export interface CharacterClassUpdateManyMutationInput {
-  name?: Maybe<String>;
   level?: Maybe<Int>;
 }
 
@@ -2671,7 +2635,6 @@ export interface CharacterNullablePromise
 
 export interface CharacterClass {
   id: ID_Output;
-  name: String;
   level: Int;
 }
 
@@ -2679,7 +2642,6 @@ export interface CharacterClassPromise
   extends Promise<CharacterClass>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
   class: <T = TemplateClassPromise>() => T;
   level: () => Promise<Int>;
 }
@@ -2688,7 +2650,6 @@ export interface CharacterClassSubscription
   extends Promise<AsyncIterator<CharacterClass>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
   class: <T = TemplateClassSubscription>() => T;
   level: () => Promise<AsyncIterator<Int>>;
 }
@@ -2697,7 +2658,6 @@ export interface CharacterClassNullablePromise
   extends Promise<CharacterClass | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
   class: <T = TemplateClassPromise>() => T;
   level: () => Promise<Int>;
 }
@@ -4001,7 +3961,6 @@ export interface CharacterClassSubscriptionPayloadSubscription
 
 export interface CharacterClassPreviousValues {
   id: ID_Output;
-  name: String;
   level: Int;
 }
 
@@ -4009,7 +3968,6 @@ export interface CharacterClassPreviousValuesPromise
   extends Promise<CharacterClassPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
   level: () => Promise<Int>;
 }
 
@@ -4017,7 +3975,6 @@ export interface CharacterClassPreviousValuesSubscription
   extends Promise<AsyncIterator<CharacterClassPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
   level: () => Promise<AsyncIterator<Int>>;
 }
 
