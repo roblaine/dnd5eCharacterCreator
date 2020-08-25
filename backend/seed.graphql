@@ -51,13 +51,12 @@ mutation createFeature {
   }
 }
 
-# Create tempalteClasses
-#mutation createBarbarian {
-#  createTemplateClass(data: {
-#    name: "Barbarian",
-#    features: []
-#  }) {
-#    id
-#    name
-#  }
-#}
+# Create templateClasses
+mutation createBarbarian {
+  createTemplateClass(
+    data: { name: "Barbarian", features: { connect: { name: "Rage" } } }
+  ) {
+    id
+    name
+  }
+}
