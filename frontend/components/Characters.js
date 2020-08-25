@@ -20,7 +20,9 @@ const GET_USERS_CHARACTERS_QUERY = gql`
       class {
         id
         level
-        name
+        class {
+          name
+        }
       }
       hitDie {
         id

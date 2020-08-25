@@ -101,7 +101,7 @@ type CharacterClass {
 type Character {
   id: ID! @id @unique
   name: String
-  class: [CharacterClass]
+  class: [CharacterClass!]!
   folk: Folk
   stats: StatBlock
   skills: SkillBlock

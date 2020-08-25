@@ -14,7 +14,7 @@ const Query = {
 
   async characters(parent, args, ctx, info) {
     const userId = ctx.request.userId;
-
+    console.log(userId);
     if (!userId) {
       throw new Error(`You must be logged in to do that.`);
     }

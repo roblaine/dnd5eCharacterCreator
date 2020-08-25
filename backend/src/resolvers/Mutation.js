@@ -122,6 +122,7 @@ const Mutations = {
     const templateClass = await ctx.db.query.templateClass({
       where: { name: args.templateClassName },
     });
+
     // Create a reference to the template class for this new class
     const characterClass = await ctx.db.mutation.createCharacterClass({
       data: {
@@ -130,6 +131,28 @@ const Mutations = {
     });
 
     return characterClass;
+  },
+
+  async addCharacter(parent, args, ctx, info) {
+    const userId = args.userId; //ctx.request.userId;
+    console.log(args);
+    if (!userId) {
+      return new Error(`You must be logged in to do that.`);
+    }
+
+    // Create the characterClass, args needs to contain templateClass reference
+    // Create a reference to the template class for this new class
+    const characterClass = { id: 'cke9al32u004n0703s0vdm67l' };
+    // console.log(characterClass);
+    // Create a new character with reference to the above characterClass
+    const character = await ctx.db.mutation.createCharacter({
+      data: {
+        user: { connect: { id: userId } },
+        name: args.name,
+        class: { connect: { id: characterClass.id } },
+      },
+    });
+    return character;
   },
 };
 
