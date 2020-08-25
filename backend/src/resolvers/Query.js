@@ -13,7 +13,6 @@ const Query = {
   templateClasses: forwardTo('db'),
 
   async characters(parent, args, ctx, info) {
-    console.log('Getting characters');
     const userId = ctx.request.userId;
 
     if (!userId) {

@@ -94,8 +94,6 @@ const Mutations = {
   },
 
   async addLanguage(parent, args, ctx, info) {
-    console.log(args);
-
     const language = await ctx.db.mutation.createLanguage(
       {
         data: {
@@ -109,7 +107,6 @@ const Mutations = {
   },
 
   async addFeature(parent, args, ctx, info) {
-    console.log(args);
     const feautre = await ctx.db.mutation.createFeature(
       {
         data: {
@@ -119,6 +116,14 @@ const Mutations = {
       info,
     );
     return feature;
+  },
+
+  async addCharacterClass(parent, args, ctx, info) {
+    console.log(args);
+    const characterClass = await ctx.db.mutation.createCharacterClass({
+      data: {},
+    });
+    return characterClass;
   },
 };
 
