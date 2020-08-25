@@ -17,9 +17,9 @@ const Query = {
 
   async characters(parent, args, ctx, info) {
     const userId = ctx.request.userId;
-    // if (!userId) {
-    //   throw new Error(`You must be logged in to do that.`);
-    // }
+    if (process.env.ENV == 'PROD' && !userId) {
+      return new Error(`You must be logged in to do that.`);
+    }
 
     const characters = await ctx.db.query.characters(
       {
