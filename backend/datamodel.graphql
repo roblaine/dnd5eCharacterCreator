@@ -103,6 +103,7 @@ type CharacterClass {
 type Character {
   id: ID! @id @unique
   name: String!
+  metaName: String! @unique
   classes: [CharacterClass!]!
   folk: Folk
   stats: StatBlock

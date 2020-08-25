@@ -592,6 +592,8 @@ export type CharacterOrderByInput =
   | "id_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "metaName_ASC"
+  | "metaName_DESC"
   | "acCalc_ASC"
   | "acCalc_DESC"
   | "maxHp_ASC"
@@ -659,6 +661,7 @@ export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export type CharacterWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  metaName?: Maybe<String>;
 }>;
 
 export interface CharacterClassWhereInput {
@@ -937,6 +940,20 @@ export interface CharacterWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  metaName?: Maybe<String>;
+  metaName_not?: Maybe<String>;
+  metaName_in?: Maybe<String[] | String>;
+  metaName_not_in?: Maybe<String[] | String>;
+  metaName_lt?: Maybe<String>;
+  metaName_lte?: Maybe<String>;
+  metaName_gt?: Maybe<String>;
+  metaName_gte?: Maybe<String>;
+  metaName_contains?: Maybe<String>;
+  metaName_not_contains?: Maybe<String>;
+  metaName_starts_with?: Maybe<String>;
+  metaName_not_starts_with?: Maybe<String>;
+  metaName_ends_with?: Maybe<String>;
+  metaName_not_ends_with?: Maybe<String>;
   classes_every?: Maybe<CharacterClassWhereInput>;
   classes_some?: Maybe<CharacterClassWhereInput>;
   classes_none?: Maybe<CharacterClassWhereInput>;
@@ -1296,7 +1313,8 @@ export type UserWhereUniqueInput = AtLeastOne<{
 
 export interface CharacterCreateInput {
   id?: Maybe<ID_Input>;
-  name?: Maybe<String>;
+  name: String;
+  metaName: String;
   classes?: Maybe<CharacterClassCreateManyWithoutBelongsToInput>;
   folk?: Maybe<FolkCreateOneInput>;
   stats?: Maybe<StatBlockCreateOneInput>;
@@ -1401,7 +1419,8 @@ export interface CharacterCreateOneWithoutClassesInput {
 
 export interface CharacterCreateWithoutClassesInput {
   id?: Maybe<ID_Input>;
-  name?: Maybe<String>;
+  name: String;
+  metaName: String;
   folk?: Maybe<FolkCreateOneInput>;
   stats?: Maybe<StatBlockCreateOneInput>;
   skills?: Maybe<SkillBlockCreateOneInput>;
@@ -1518,6 +1537,7 @@ export interface UserCreatepermissionsInput {
 
 export interface CharacterUpdateInput {
   name?: Maybe<String>;
+  metaName?: Maybe<String>;
   classes?: Maybe<CharacterClassUpdateManyWithoutBelongsToInput>;
   folk?: Maybe<FolkUpdateOneInput>;
   stats?: Maybe<StatBlockUpdateOneInput>;
@@ -1755,6 +1775,7 @@ export interface CharacterUpdateOneWithoutClassesInput {
 
 export interface CharacterUpdateWithoutClassesDataInput {
   name?: Maybe<String>;
+  metaName?: Maybe<String>;
   folk?: Maybe<FolkUpdateOneInput>;
   stats?: Maybe<StatBlockUpdateOneInput>;
   skills?: Maybe<SkillBlockUpdateOneInput>;
@@ -2126,6 +2147,7 @@ export interface CharacterClassUpdateManyDataInput {
 
 export interface CharacterUpdateManyMutationInput {
   name?: Maybe<String>;
+  metaName?: Maybe<String>;
   acCalc?: Maybe<String>;
   maxHp?: Maybe<Int>;
   profBonus?: Maybe<Int>;
@@ -2275,7 +2297,8 @@ export interface CharacterCreateManyWithoutUserInput {
 
 export interface CharacterCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
-  name?: Maybe<String>;
+  name: String;
+  metaName: String;
   classes?: Maybe<CharacterClassCreateManyWithoutBelongsToInput>;
   folk?: Maybe<FolkCreateOneInput>;
   stats?: Maybe<StatBlockCreateOneInput>;
@@ -2327,6 +2350,7 @@ export interface CharacterUpdateWithWhereUniqueWithoutUserInput {
 
 export interface CharacterUpdateWithoutUserDataInput {
   name?: Maybe<String>;
+  metaName?: Maybe<String>;
   classes?: Maybe<CharacterClassUpdateManyWithoutBelongsToInput>;
   folk?: Maybe<FolkUpdateOneInput>;
   stats?: Maybe<StatBlockUpdateOneInput>;
@@ -2373,6 +2397,20 @@ export interface CharacterScalarWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  metaName?: Maybe<String>;
+  metaName_not?: Maybe<String>;
+  metaName_in?: Maybe<String[] | String>;
+  metaName_not_in?: Maybe<String[] | String>;
+  metaName_lt?: Maybe<String>;
+  metaName_lte?: Maybe<String>;
+  metaName_gt?: Maybe<String>;
+  metaName_gte?: Maybe<String>;
+  metaName_contains?: Maybe<String>;
+  metaName_not_contains?: Maybe<String>;
+  metaName_starts_with?: Maybe<String>;
+  metaName_not_starts_with?: Maybe<String>;
+  metaName_ends_with?: Maybe<String>;
+  metaName_not_ends_with?: Maybe<String>;
   acCalc?: Maybe<String>;
   acCalc_not?: Maybe<String>;
   acCalc_in?: Maybe<String[] | String>;
@@ -2415,6 +2453,7 @@ export interface CharacterUpdateManyWithWhereNestedInput {
 
 export interface CharacterUpdateManyDataInput {
   name?: Maybe<String>;
+  metaName?: Maybe<String>;
   acCalc?: Maybe<String>;
   maxHp?: Maybe<Int>;
   profBonus?: Maybe<Int>;
@@ -2621,7 +2660,8 @@ export interface NodeNode {
 
 export interface Character {
   id: ID_Output;
-  name?: String;
+  name: String;
+  metaName: String;
   acCalc?: String;
   maxHp?: Int;
   profBonus?: Int;
@@ -2630,6 +2670,7 @@ export interface Character {
 export interface CharacterPromise extends Promise<Character>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  metaName: () => Promise<String>;
   classes: <T = FragmentableArray<CharacterClass>>(args?: {
     where?: CharacterClassWhereInput;
     orderBy?: CharacterClassOrderByInput;
@@ -2655,6 +2696,7 @@ export interface CharacterSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
   classes: <T = Promise<AsyncIterator<CharacterClassSubscription>>>(args?: {
     where?: CharacterClassWhereInput;
     orderBy?: CharacterClassOrderByInput;
@@ -2680,6 +2722,7 @@ export interface CharacterNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  metaName: () => Promise<String>;
   classes: <T = FragmentableArray<CharacterClass>>(args?: {
     where?: CharacterClassWhereInput;
     orderBy?: CharacterClassOrderByInput;
@@ -3978,7 +4021,8 @@ export interface CharacterSubscriptionPayloadSubscription
 
 export interface CharacterPreviousValues {
   id: ID_Output;
-  name?: String;
+  name: String;
+  metaName: String;
   acCalc?: String;
   maxHp?: Int;
   profBonus?: Int;
@@ -3989,6 +4033,7 @@ export interface CharacterPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  metaName: () => Promise<String>;
   acCalc: () => Promise<String>;
   maxHp: () => Promise<Int>;
   profBonus: () => Promise<Int>;
@@ -3999,6 +4044,7 @@ export interface CharacterPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
   acCalc: () => Promise<AsyncIterator<String>>;
   maxHp: () => Promise<AsyncIterator<Int>>;
   profBonus: () => Promise<AsyncIterator<Int>>;

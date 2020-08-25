@@ -29,6 +29,18 @@ mutation createD20 {
   }
 }
 
+mutation createDemoUser {
+  createUser(
+    data: {
+      name: "Demo User"
+      email: "demouser@myemail.com"
+      password: "demo123"
+    }
+  ) {
+    id
+  }
+}
+
 mutation createFeature {
   createFeature(
     data: {
@@ -46,8 +58,6 @@ mutation createFeature {
     }
   ) {
     id
-    name
-    description
   }
 }
 
@@ -57,7 +67,6 @@ mutation createBarbarian {
     data: { name: "Barbarian", features: { connect: { name: "Rage" } } }
   ) {
     id
-    name
   }
 }
 
@@ -72,17 +81,20 @@ mutation createCharacterClass {
 mutation createCharacter {
   createCharacter(
     data: {
+      metaName: "Demo Users_Jabroni"
       name: "Jabroni"
-      user: { connect: { email: "testuser@myemail.com" } }
-      classes: { connect: { email: "testuser@myemail.com" } }
+      user: { connect: { email: "demouser@myemail.com" } }
     }
   ) {
-    name
-    classes {
-      id
-      belongsTo {
-        id
-      }
-    }
+    id
+  }
+}
+
+mutation updateCharacterClass {
+  updateCharacterClass(
+    data: { belongsTo: { connect: { metaName: "Demo Users_Jabroni" } } }
+    where: { id: "cke9iuids00fp0828psqk7mlz" }
+  ) {
+    id
   }
 }

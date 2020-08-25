@@ -61,7 +61,8 @@ type BatchPayload {
 
 type Character {
   id: ID!
-  name: String
+  name: String!
+  metaName: String!
   classes(where: CharacterClassWhereInput, orderBy: CharacterClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CharacterClass!]
   folk: Folk
   stats: StatBlock
@@ -282,7 +283,8 @@ type CharacterConnection {
 
 input CharacterCreateInput {
   id: ID
-  name: String
+  name: String!
+  metaName: String!
   classes: CharacterClassCreateManyWithoutBelongsToInput
   folk: FolkCreateOneInput
   stats: StatBlockCreateOneInput
@@ -307,7 +309,8 @@ input CharacterCreateOneWithoutClassesInput {
 
 input CharacterCreateWithoutClassesInput {
   id: ID
-  name: String
+  name: String!
+  metaName: String!
   folk: FolkCreateOneInput
   stats: StatBlockCreateOneInput
   skills: SkillBlockCreateOneInput
@@ -321,7 +324,8 @@ input CharacterCreateWithoutClassesInput {
 
 input CharacterCreateWithoutUserInput {
   id: ID
-  name: String
+  name: String!
+  metaName: String!
   classes: CharacterClassCreateManyWithoutBelongsToInput
   folk: FolkCreateOneInput
   stats: StatBlockCreateOneInput
@@ -343,6 +347,8 @@ enum CharacterOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  metaName_ASC
+  metaName_DESC
   acCalc_ASC
   acCalc_DESC
   maxHp_ASC
@@ -353,7 +359,8 @@ enum CharacterOrderByInput {
 
 type CharacterPreviousValues {
   id: ID!
-  name: String
+  name: String!
+  metaName: String!
   acCalc: String
   maxHp: Int
   profBonus: Int
@@ -388,6 +395,20 @@ input CharacterScalarWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
   acCalc: String
   acCalc_not: String
   acCalc_in: [String!]
@@ -443,6 +464,7 @@ input CharacterSubscriptionWhereInput {
 
 input CharacterUpdateInput {
   name: String
+  metaName: String
   classes: CharacterClassUpdateManyWithoutBelongsToInput
   folk: FolkUpdateOneInput
   stats: StatBlockUpdateOneInput
@@ -457,6 +479,7 @@ input CharacterUpdateInput {
 
 input CharacterUpdateManyDataInput {
   name: String
+  metaName: String
   acCalc: String
   maxHp: Int
   profBonus: Int
@@ -464,6 +487,7 @@ input CharacterUpdateManyDataInput {
 
 input CharacterUpdateManyMutationInput {
   name: String
+  metaName: String
   acCalc: String
   maxHp: Int
   profBonus: Int
@@ -497,6 +521,7 @@ input CharacterUpdateOneWithoutClassesInput {
 
 input CharacterUpdateWithoutClassesDataInput {
   name: String
+  metaName: String
   folk: FolkUpdateOneInput
   stats: StatBlockUpdateOneInput
   skills: SkillBlockUpdateOneInput
@@ -510,6 +535,7 @@ input CharacterUpdateWithoutClassesDataInput {
 
 input CharacterUpdateWithoutUserDataInput {
   name: String
+  metaName: String
   classes: CharacterClassUpdateManyWithoutBelongsToInput
   folk: FolkUpdateOneInput
   stats: StatBlockUpdateOneInput
@@ -566,6 +592,20 @@ input CharacterWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
   classes_every: CharacterClassWhereInput
   classes_some: CharacterClassWhereInput
   classes_none: CharacterClassWhereInput
@@ -612,6 +652,7 @@ input CharacterWhereInput {
 
 input CharacterWhereUniqueInput {
   id: ID
+  metaName: String
 }
 
 type Die {
