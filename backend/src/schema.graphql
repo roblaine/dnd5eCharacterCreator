@@ -22,11 +22,13 @@ type Mutation {
   addLanguage(name: String!): Language!
   addFeature(name: String!, description: String!, effects: [String!]!): Feature!
   addCharacterClass(templateClassName: String!, level: Int): CharacterClass!
+  # TODO Remove the userId as an arg after you finish testing
   addCharacter(
     userId: String
     characterName: String!
     characterClassId: String!
   ): Character!
+  addTemplateClass(name: String!, features: [String]!): TemplateClass!
 }
 
 type Query {

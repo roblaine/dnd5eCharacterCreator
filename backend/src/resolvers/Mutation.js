@@ -132,7 +132,10 @@ const Mutations = {
 
     const templateClass = await ctx.db.mutation.createTemplateClass(
       {
-        data: { ...args },
+        data: {
+          name: args.name,
+          connect: [{ id: args.features }],
+        },
       },
       info,
     );
@@ -147,7 +150,9 @@ const Mutations = {
     // Create a reference to the template class for this new class
     const characterClass = await ctx.db.mutation.createCharacterClass({
       data: {
-        class: { connect: { id: templateClass.id } },
+        class: {
+          connect: { id: templateClass.id },
+        },
       },
     });
 

@@ -84,7 +84,7 @@ type Die {
   faces: Int! @unique
 }
 
-# This is the rules for the class. Is not editable by users, only admins
+# This is the rules for the class. It is not editable by users, only admins
 type TemplateClass {
   id: ID! @id @unique
   name: String! @unique
@@ -102,7 +102,7 @@ type CharacterClass {
 # TODO Rework the location of some of the fields
 type Character {
   id: ID! @id @unique
-  name: String
+  name: String!
   classes: [CharacterClass!]!
   folk: Folk
   stats: StatBlock

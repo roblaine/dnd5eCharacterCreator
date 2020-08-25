@@ -60,3 +60,29 @@ mutation createBarbarian {
     name
   }
 }
+
+mutation createCharacterClass {
+  createCharacterClass(
+    data: { templatedFrom: { connect: { name: "Barbarian" } } }
+  ) {
+    id
+  }
+}
+
+mutation createCharacter {
+  createCharacter(
+    data: {
+      name: "Jabroni"
+      user: { connect: { email: "testuser@myemail.com" } }
+      classes: { connect: { email: "testuser@myemail.com" } }
+    }
+  ) {
+    name
+    classes {
+      id
+      belongsTo {
+        id
+      }
+    }
+  }
+}
