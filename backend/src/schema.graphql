@@ -24,8 +24,8 @@ type Mutation {
   addCharacterClass(templateClassName: String!, level: Int): CharacterClass!
   addCharacter(
     userId: String
-    name: String!
-    templateClassName: String!
+    characterName: String!
+    characterClassId: String!
   ): Character!
 }
 
@@ -40,4 +40,6 @@ type Query {
   characters: [Character]!
   templateClass: TemplateClass
   templateClasses: [TemplateClass]!
+  characterClass: CharacterClass
+  characterClasses: [CharacterClass]!
 }

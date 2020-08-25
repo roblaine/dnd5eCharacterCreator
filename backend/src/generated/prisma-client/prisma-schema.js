@@ -62,7 +62,7 @@ type BatchPayload {
 type Character {
   id: ID!
   name: String
-  class(where: CharacterClassWhereInput, orderBy: CharacterClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CharacterClass!]
+  classes(where: CharacterClassWhereInput, orderBy: CharacterClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CharacterClass!]
   folk: Folk
   stats: StatBlock
   skills: SkillBlock
@@ -76,7 +76,7 @@ type Character {
 
 type CharacterClass {
   id: ID!
-  class: TemplateClass!
+  templatedFrom: TemplateClass!
   level: Int!
 }
 
@@ -88,7 +88,7 @@ type CharacterClassConnection {
 
 input CharacterClassCreateInput {
   id: ID
-  class: TemplateClassCreateOneInput!
+  templatedFrom: TemplateClassCreateOneInput!
   level: Int
 }
 
@@ -166,12 +166,12 @@ input CharacterClassSubscriptionWhereInput {
 }
 
 input CharacterClassUpdateDataInput {
-  class: TemplateClassUpdateOneRequiredInput
+  templatedFrom: TemplateClassUpdateOneRequiredInput
   level: Int
 }
 
 input CharacterClassUpdateInput {
-  class: TemplateClassUpdateOneRequiredInput
+  templatedFrom: TemplateClassUpdateOneRequiredInput
   level: Int
 }
 
@@ -240,7 +240,7 @@ input CharacterClassWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  class: TemplateClassWhereInput
+  templatedFrom: TemplateClassWhereInput
   level: Int
   level_not: Int
   level_in: [Int!]
@@ -267,7 +267,7 @@ type CharacterConnection {
 input CharacterCreateInput {
   id: ID
   name: String
-  class: CharacterClassCreateManyInput
+  classes: CharacterClassCreateManyInput
   folk: FolkCreateOneInput
   stats: StatBlockCreateOneInput
   skills: SkillBlockCreateOneInput
@@ -287,7 +287,7 @@ input CharacterCreateManyWithoutUserInput {
 input CharacterCreateWithoutUserInput {
   id: ID
   name: String
-  class: CharacterClassCreateManyInput
+  classes: CharacterClassCreateManyInput
   folk: FolkCreateOneInput
   stats: StatBlockCreateOneInput
   skills: SkillBlockCreateOneInput
@@ -408,7 +408,7 @@ input CharacterSubscriptionWhereInput {
 
 input CharacterUpdateInput {
   name: String
-  class: CharacterClassUpdateManyInput
+  classes: CharacterClassUpdateManyInput
   folk: FolkUpdateOneInput
   stats: StatBlockUpdateOneInput
   skills: SkillBlockUpdateOneInput
@@ -453,7 +453,7 @@ input CharacterUpdateManyWithWhereNestedInput {
 
 input CharacterUpdateWithoutUserDataInput {
   name: String
-  class: CharacterClassUpdateManyInput
+  classes: CharacterClassUpdateManyInput
   folk: FolkUpdateOneInput
   stats: StatBlockUpdateOneInput
   skills: SkillBlockUpdateOneInput
@@ -504,9 +504,9 @@ input CharacterWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  class_every: CharacterClassWhereInput
-  class_some: CharacterClassWhereInput
-  class_none: CharacterClassWhereInput
+  classes_every: CharacterClassWhereInput
+  classes_some: CharacterClassWhereInput
+  classes_none: CharacterClassWhereInput
   folk: FolkWhereInput
   stats: StatBlockWhereInput
   skills: SkillBlockWhereInput

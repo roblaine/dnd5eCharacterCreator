@@ -133,6 +133,7 @@ const Mutations = {
     return characterClass;
   },
 
+  // args needs to contain {folkId, characterClassId, characterName, ...}
   async addCharacter(parent, args, ctx, info) {
     const userId = args.userId; //ctx.request.userId;
     console.log(args);
@@ -140,18 +141,19 @@ const Mutations = {
       return new Error(`You must be logged in to do that.`);
     }
 
-    // Create the characterClass, args needs to contain templateClass reference
-    // Create a reference to the template class for this new class
-    const characterClass = { id: 'cke9al32u004n0703s0vdm67l' };
-    // console.log(characterClass);
-    // Create a new character with reference to the above characterClass
+    const characterClassId = args.characterClassId;
+    // Create a new character with reference to the characterClass
     const character = await ctx.db.mutation.createCharacter({
       data: {
         user: { connect: { id: userId } },
-        name: args.name,
-        class: { connect: { id: characterClass.id } },
+        name: args.characterName,
+        classes: { connect: [{ id: characterClassId }] },
+        // folk: { connect: {id: characterFolkId } },
+        //
       },
     });
+    // If error: remove the associated characterClass, and characterFolk, throw error
+    console.log(character);
     return character;
   },
 };

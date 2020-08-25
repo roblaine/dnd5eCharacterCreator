@@ -11,10 +11,14 @@ const Query = {
   languages: forwardTo('db'),
   templateClass: forwardTo('db'),
   templateClasses: forwardTo('db'),
+  // TODO make these queries require a logged in user and retrieve only their characters
+  characterClass: forwardTo('db'),
+  characterClasses: forwardTo('db'),
 
   async characters(parent, args, ctx, info) {
     const userId = ctx.request.userId;
     console.log(userId);
+
     if (!userId) {
       throw new Error(`You must be logged in to do that.`);
     }
