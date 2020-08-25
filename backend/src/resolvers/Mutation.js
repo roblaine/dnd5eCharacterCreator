@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { templateClass } = require('./Query');
 
 const Mutations = {
   async signup(parent, args, ctx, info) {
@@ -118,6 +119,26 @@ const Mutations = {
     return feature;
   },
 
+  async addTemplateClass(parent, args, ctx, info) {
+    const userId = ctx.request.userId;
+    if (!userId) {
+      throw new Error(`You must be logged in to do that.`);
+    }
+
+    const user = await ctx.db.query.user({ where: { id: userId } });
+    if (!user.permissions.includes('ADMIN')) {
+      throw new Error(`You aren't permitted to do that.`);
+    }
+
+    const templateClass = await ctx.db.mutation.createTemplateClass(
+      {
+        data: { ...args },
+      },
+      info,
+    );
+    return templateClass;
+  },
+
   async addCharacterClass(parent, args, ctx, info) {
     const templateClass = await ctx.db.query.templateClass({
       where: { name: args.templateClassName },
@@ -135,9 +156,9 @@ const Mutations = {
 
   // args needs to contain {folkId, characterClassId, characterName, ...}
   async addCharacter(parent, args, ctx, info) {
-    const userId = ctx.request.userId;
+    const userId = args.userId; // = ctx.request.userId;
 
-    if (process.env.ENV == 'PROD' && !userId) {
+    if (!userId) {
       return new Error(`You must be logged in to do that.`);
     }
 
@@ -152,7 +173,6 @@ const Mutations = {
         name: args.characterName,
         classes: { connect: [{ id: characterClass.id }] },
         // folk: { connect: {id: characterFolkId } },
-        //
       },
     });
     // Create the link to character in characterClass' belongsTo field
@@ -163,7 +183,7 @@ const Mutations = {
       where: { id: characterClass.id },
     });
     console.log(updatedCharacterClass);
-    console.log(character.id);
+    console.log(character);
     // if (updatedCharacterClass.belongsTo != character.id) {
     //   throw new Error(
     //     `Something went wrong with the character creation. Please try again later.`,
