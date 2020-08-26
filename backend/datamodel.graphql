@@ -88,6 +88,7 @@ type Die {
 type TemplateClass {
   id: ID! @id @unique
   name: String! @unique
+  hitDie: Die
   features: [Feature!]!
 }
 
@@ -110,9 +111,9 @@ type Character {
   folk: Folk
   stats: StatBlock
   skills: SkillBlock
-  saves: SaveBlock # Should come from classes
-  acCalc: String # Should come from classes
-  hitDie: Die # Should come from classes
+  saves: SaveBlock # Should come from class
+  acCalc: String # Should come from class
+  hitDie: Die # Should come from class, count comes from level in that class
   maxHp: Int
   profBonus: Int
   user: User!
