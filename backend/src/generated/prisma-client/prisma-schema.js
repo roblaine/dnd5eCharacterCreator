@@ -2353,6 +2353,7 @@ type Subscription {
 type TemplateClass {
   id: ID!
   name: String!
+  hitDie: Die
   features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature!]
 }
 
@@ -2365,6 +2366,7 @@ type TemplateClassConnection {
 input TemplateClassCreateInput {
   id: ID
   name: String!
+  hitDie: DieCreateOneInput
   features: FeatureCreateManyInput
 }
 
@@ -2410,11 +2412,13 @@ input TemplateClassSubscriptionWhereInput {
 
 input TemplateClassUpdateDataInput {
   name: String
+  hitDie: DieUpdateOneInput
   features: FeatureUpdateManyInput
 }
 
 input TemplateClassUpdateInput {
   name: String
+  hitDie: DieUpdateOneInput
   features: FeatureUpdateManyInput
 }
 
@@ -2463,6 +2467,7 @@ input TemplateClassWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  hitDie: DieWhereInput
   features_every: FeatureWhereInput
   features_some: FeatureWhereInput
   features_none: FeatureWhereInput

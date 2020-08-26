@@ -9,11 +9,13 @@ const SIGNOUT_MUTATION = gql`
 const Signout = (props) => {
   const [signout, { loading, error }] = useMutation(SIGNOUT_MUTATION);
   if (loading) {
-    <p>Loading...</p>;
+    return `Loading...`;
   }
+
   if (error) {
-    <p>{error.message}</p>;
+    return `${error.message.split('error:')[1]}`;
   }
+
   return (
     <form
       onSubmit={(e) => {

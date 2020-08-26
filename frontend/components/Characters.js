@@ -43,8 +43,7 @@ const Characters = () => {
     const { loading, error, data } = useQuery(GET_USERS_CHARACTERS_QUERY);
 
     if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
-    console.log(data.characters);
+    if (error) return `${error.message.split('error:')[1]}`;
 
     return (
       <>

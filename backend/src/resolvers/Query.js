@@ -17,7 +17,7 @@ const Query = {
 
   async characters(parent, args, ctx, info) {
     const userId = ctx.request.userId;
-    if (process.env.ENV == 'PROD' && !userId) {
+    if (!userId) {
       return new Error(`You must be logged in to do that.`);
     }
 

@@ -755,12 +755,41 @@ export interface TemplateClassWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  hitDie?: Maybe<DieWhereInput>;
   features_every?: Maybe<FeatureWhereInput>;
   features_some?: Maybe<FeatureWhereInput>;
   features_none?: Maybe<FeatureWhereInput>;
   AND?: Maybe<TemplateClassWhereInput[] | TemplateClassWhereInput>;
   OR?: Maybe<TemplateClassWhereInput[] | TemplateClassWhereInput>;
   NOT?: Maybe<TemplateClassWhereInput[] | TemplateClassWhereInput>;
+}
+
+export interface DieWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  faces?: Maybe<Int>;
+  faces_not?: Maybe<Int>;
+  faces_in?: Maybe<Int[] | Int>;
+  faces_not_in?: Maybe<Int[] | Int>;
+  faces_lt?: Maybe<Int>;
+  faces_lte?: Maybe<Int>;
+  faces_gt?: Maybe<Int>;
+  faces_gte?: Maybe<Int>;
+  AND?: Maybe<DieWhereInput[] | DieWhereInput>;
+  OR?: Maybe<DieWhereInput[] | DieWhereInput>;
+  NOT?: Maybe<DieWhereInput[] | DieWhereInput>;
 }
 
 export interface FeatureWhereInput {
@@ -1133,34 +1162,6 @@ export interface SaveBlockWhereInput {
   NOT?: Maybe<SaveBlockWhereInput[] | SaveBlockWhereInput>;
 }
 
-export interface DieWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  faces?: Maybe<Int>;
-  faces_not?: Maybe<Int>;
-  faces_in?: Maybe<Int[] | Int>;
-  faces_not_in?: Maybe<Int[] | Int>;
-  faces_lt?: Maybe<Int>;
-  faces_lte?: Maybe<Int>;
-  faces_gt?: Maybe<Int>;
-  faces_gte?: Maybe<Int>;
-  AND?: Maybe<DieWhereInput[] | DieWhereInput>;
-  OR?: Maybe<DieWhereInput[] | DieWhereInput>;
-  NOT?: Maybe<DieWhereInput[] | DieWhereInput>;
-}
-
 export interface UserWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
@@ -1386,7 +1387,18 @@ export interface TemplateClassCreateOneInput {
 export interface TemplateClassCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
+  hitDie?: Maybe<DieCreateOneInput>;
   features?: Maybe<FeatureCreateManyInput>;
+}
+
+export interface DieCreateOneInput {
+  create?: Maybe<DieCreateInput>;
+  connect?: Maybe<DieWhereUniqueInput>;
+}
+
+export interface DieCreateInput {
+  id?: Maybe<ID_Input>;
+  faces: Int;
 }
 
 export interface FeatureCreateManyInput {
@@ -1543,16 +1555,6 @@ export interface SaveBlockCreateInput {
   id?: Maybe<ID_Input>;
 }
 
-export interface DieCreateOneInput {
-  create?: Maybe<DieCreateInput>;
-  connect?: Maybe<DieWhereUniqueInput>;
-}
-
-export interface DieCreateInput {
-  id?: Maybe<ID_Input>;
-  faces: Int;
-}
-
 export interface UserCreateOneWithoutCharactersInput {
   create?: Maybe<UserCreateWithoutCharactersInput>;
   connect?: Maybe<UserWhereUniqueInput>;
@@ -1642,7 +1644,26 @@ export interface TemplateClassUpdateOneRequiredInput {
 
 export interface TemplateClassUpdateDataInput {
   name?: Maybe<String>;
+  hitDie?: Maybe<DieUpdateOneInput>;
   features?: Maybe<FeatureUpdateManyInput>;
+}
+
+export interface DieUpdateOneInput {
+  create?: Maybe<DieCreateInput>;
+  update?: Maybe<DieUpdateDataInput>;
+  upsert?: Maybe<DieUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<DieWhereUniqueInput>;
+}
+
+export interface DieUpdateDataInput {
+  faces?: Maybe<Int>;
+}
+
+export interface DieUpsertNestedInput {
+  update: DieUpdateDataInput;
+  create: DieCreateInput;
 }
 
 export interface FeatureUpdateManyInput {
@@ -2075,24 +2096,6 @@ export interface SaveBlockUpdateOneInput {
   connect?: Maybe<SaveBlockWhereUniqueInput>;
 }
 
-export interface DieUpdateOneInput {
-  create?: Maybe<DieCreateInput>;
-  update?: Maybe<DieUpdateDataInput>;
-  upsert?: Maybe<DieUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<DieWhereUniqueInput>;
-}
-
-export interface DieUpdateDataInput {
-  faces?: Maybe<Int>;
-}
-
-export interface DieUpsertNestedInput {
-  update: DieUpdateDataInput;
-  create: DieCreateInput;
-}
-
 export interface UserUpdateOneRequiredWithoutCharactersInput {
   create?: Maybe<UserCreateWithoutCharactersInput>;
   update?: Maybe<UserUpdateWithoutCharactersDataInput>;
@@ -2345,6 +2348,7 @@ export interface StatBlockUpdateInput {
 
 export interface TemplateClassUpdateInput {
   name?: Maybe<String>;
+  hitDie?: Maybe<DieUpdateOneInput>;
   features?: Maybe<FeatureUpdateManyInput>;
 }
 
@@ -2868,6 +2872,7 @@ export interface TemplateClassPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  hitDie: <T = DiePromise>() => T;
   features: <T = FragmentableArray<Feature>>(args?: {
     where?: FeatureWhereInput;
     orderBy?: FeatureOrderByInput;
@@ -2884,6 +2889,7 @@ export interface TemplateClassSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  hitDie: <T = DieSubscription>() => T;
   features: <T = Promise<AsyncIterator<FeatureSubscription>>>(args?: {
     where?: FeatureWhereInput;
     orderBy?: FeatureOrderByInput;
@@ -2900,6 +2906,7 @@ export interface TemplateClassNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  hitDie: <T = DiePromise>() => T;
   features: <T = FragmentableArray<Feature>>(args?: {
     where?: FeatureWhereInput;
     orderBy?: FeatureOrderByInput;
@@ -2909,6 +2916,28 @@ export interface TemplateClassNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+}
+
+export interface Die {
+  id: ID_Output;
+  faces: Int;
+}
+
+export interface DiePromise extends Promise<Die>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  faces: () => Promise<Int>;
+}
+
+export interface DieSubscription
+  extends Promise<AsyncIterator<Die>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  faces: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface DieNullablePromise extends Promise<Die | null>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  faces: () => Promise<Int>;
 }
 
 export interface Feature {
@@ -3196,28 +3225,6 @@ export interface SaveBlockNullablePromise
   extends Promise<SaveBlock | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-}
-
-export interface Die {
-  id: ID_Output;
-  faces: Int;
-}
-
-export interface DiePromise extends Promise<Die>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  faces: () => Promise<Int>;
-}
-
-export interface DieSubscription
-  extends Promise<AsyncIterator<Die>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  faces: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface DieNullablePromise extends Promise<Die | null>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  faces: () => Promise<Int>;
 }
 
 export interface User {

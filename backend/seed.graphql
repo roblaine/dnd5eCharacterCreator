@@ -34,7 +34,7 @@ mutation createDemoUser {
     data: {
       name: "Demo User"
       email: "demouser@myemail.com"
-      password: "demo123"
+      password: "$2a$10$EaXAdbbj8QiOk41gqmhTl.dM3AwafKIX1Z73xMXwfK0LJgkgSRLh6" # hashed + salted `demo123`
     }
   ) {
     id
