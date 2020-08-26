@@ -78,6 +78,12 @@ const Mutations = {
     return user;
   },
 
+  signout(parents, args, ctx, info) {
+    ctx.response.clearCookie('token');
+
+    return { message: 'You have been signed out.' };
+  },
+
   async addFolk(parent, args, ctx, info) {
     console.log(args);
 

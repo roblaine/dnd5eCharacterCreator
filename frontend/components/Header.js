@@ -5,6 +5,7 @@ import styled from 'styled-components';
 // import Nav from './Nav';
 // import Cart from './Cart';
 // import Search from './Search';
+import Signout from './Signout';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -72,6 +73,7 @@ const Header = () => (
         </Link>
       </Logo>
       {/* <Nav /> */}
+      <Signout />
     </div>
     <div className="sub-bar">{/* <Search /> */}</div>
   </StyledHeader>

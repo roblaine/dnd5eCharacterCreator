@@ -7,8 +7,13 @@ type User {
   permissions: [Permission!]!
 }
 
+type SuccessMessage {
+  message: String
+}
+
 type Mutation {
   login(email: String!, password: String!): User
+  signout: SuccessMessage
   signup(name: String!, email: String!, password: String!): User!
   addFolk(
     name: String!
