@@ -20,8 +20,11 @@ const GET_USERS_CHARACTERS_QUERY = gql`
       acCalc
       classes {
         id
+        name
         level
-        belongsTo
+        belongsTo {
+          name
+        }
         templatedFrom {
           name
         }

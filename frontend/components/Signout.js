@@ -14,6 +14,15 @@ const Signout = (props) => {
   if (error) {
     <p>{error.message}</p>;
   }
-  return <button>Sign out</button>;
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        signout();
+      }}
+    >
+      <button>Sign out</button>
+    </form>
+  );
 };
 export default Signout;
