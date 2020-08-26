@@ -72,7 +72,11 @@ mutation createBarbarian {
 
 mutation createCharacterClass {
   createCharacterClass(
-    data: { templatedFrom: { connect: { name: "Barbarian" } } }
+    data: {
+      name: "Barbarian"
+      templatedFrom: { connect: { name: "Barbarian" } }
+      metaName: "Demo Users_Jabronis_Barbarian"
+    }
   ) {
     id
   }
@@ -93,7 +97,7 @@ mutation createCharacter {
 mutation updateCharacterClass {
   updateCharacterClass(
     data: { belongsTo: { connect: { metaName: "Demo Users_Jabroni" } } }
-    where: { id: "cke9iuids00fp0828psqk7mlz" }
+    where: { metaName: "Demo Users_Jabronis_Barbarian" }
   ) {
     id
   }

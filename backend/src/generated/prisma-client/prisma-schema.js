@@ -77,7 +77,9 @@ type Character {
 
 type CharacterClass {
   id: ID!
+  name: String!
   templatedFrom: TemplateClass!
+  metaName: String!
   level: Int!
   belongsTo: Character
 }
@@ -90,7 +92,9 @@ type CharacterClassConnection {
 
 input CharacterClassCreateInput {
   id: ID
+  name: String!
   templatedFrom: TemplateClassCreateOneInput!
+  metaName: String!
   level: Int
   belongsTo: CharacterCreateOneWithoutClassesInput
 }
@@ -107,7 +111,9 @@ input CharacterClassCreateOneInput {
 
 input CharacterClassCreateWithoutBelongsToInput {
   id: ID
+  name: String!
   templatedFrom: TemplateClassCreateOneInput!
+  metaName: String!
   level: Int
 }
 
@@ -119,12 +125,18 @@ type CharacterClassEdge {
 enum CharacterClassOrderByInput {
   id_ASC
   id_DESC
+  name_ASC
+  name_DESC
+  metaName_ASC
+  metaName_DESC
   level_ASC
   level_DESC
 }
 
 type CharacterClassPreviousValues {
   id: ID!
+  name: String!
+  metaName: String!
   level: Int!
 }
 
@@ -143,6 +155,34 @@ input CharacterClassScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
   level: Int
   level_not: Int
   level_in: [Int!]
@@ -175,22 +215,30 @@ input CharacterClassSubscriptionWhereInput {
 }
 
 input CharacterClassUpdateDataInput {
+  name: String
   templatedFrom: TemplateClassUpdateOneRequiredInput
+  metaName: String
   level: Int
   belongsTo: CharacterUpdateOneWithoutClassesInput
 }
 
 input CharacterClassUpdateInput {
+  name: String
   templatedFrom: TemplateClassUpdateOneRequiredInput
+  metaName: String
   level: Int
   belongsTo: CharacterUpdateOneWithoutClassesInput
 }
 
 input CharacterClassUpdateManyDataInput {
+  name: String
+  metaName: String
   level: Int
 }
 
 input CharacterClassUpdateManyMutationInput {
+  name: String
+  metaName: String
   level: Int
 }
 
@@ -221,7 +269,9 @@ input CharacterClassUpdateOneInput {
 }
 
 input CharacterClassUpdateWithoutBelongsToDataInput {
+  name: String
   templatedFrom: TemplateClassUpdateOneRequiredInput
+  metaName: String
   level: Int
 }
 
@@ -256,7 +306,35 @@ input CharacterClassWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
   templatedFrom: TemplateClassWhereInput
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
   level: Int
   level_not: Int
   level_in: [Int!]
@@ -273,6 +351,7 @@ input CharacterClassWhereInput {
 
 input CharacterClassWhereUniqueInput {
   id: ID
+  metaName: String
 }
 
 type CharacterConnection {
