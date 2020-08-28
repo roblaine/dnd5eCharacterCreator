@@ -1,4 +1,6 @@
 import { gql, useMutation } from '@apollo/client';
+import client from './Client';
+
 const SIGNOUT_MUTATION = gql`
   mutation signout {
     signout {
@@ -6,8 +8,20 @@ const SIGNOUT_MUTATION = gql`
     }
   }
 `;
+
+const REMOVE_USER_ID_FROM_CACHE_QUERY = gql`
+  query readUserID {
+    user {
+      id
+    }
+  }
+`;
+
 const Signout = (props) => {
   const [signout, { loading, error }] = useMutation(SIGNOUT_MUTATION);
+  const userID = client.readQuery({
+    query: REMOVE_USER_ID_FROM_CACHE_QUERY,
+  });
   if (loading) {
     return `Loading...`;
   }
@@ -20,6 +34,7 @@ const Signout = (props) => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        console.log(userID);
         signout();
       }}
     >
@@ -27,4 +42,5 @@ const Signout = (props) => {
     </form>
   );
 };
+
 export default Signout;

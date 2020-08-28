@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import client from './Client';
 import Form from './styles/Form';
 
 const SIGNUP_MUTATION = gql`
@@ -33,9 +34,11 @@ const Signup = () => {
     passwordConf,
     displayError = '';
   const [signup, { error, data }] = useMutation(SIGNUP_MUTATION);
+
   if (error) {
     displayError = error.message.split('error:')[1];
   }
+
   return (
     <Form
       onSubmit={(e) => {

@@ -9,7 +9,7 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-const Login = () => {
+const Signin = () => {
   let displayError = '';
   const [login, { error, loading }] = useMutation(LOGIN_MUTATION);
   if (error) {
@@ -44,7 +44,7 @@ const Login = () => {
           type="password"
           placeholder="Password"
         />
-        <button type="submit">Login</button>
+        <button type="submit">Signin</button>
 
         {loading ? <p>Loading...</p> : <p></p>}
       </Form>
@@ -52,4 +52,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signin;
