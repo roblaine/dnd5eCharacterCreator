@@ -5,6 +5,7 @@ orbs:
 jobs:
   build-backend:
     executor: node/default
+    steps:
       - checkout
 
   build-frontend:
