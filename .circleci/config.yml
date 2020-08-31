@@ -16,21 +16,21 @@ jobs:
       - image: circleci/node@3.0.0
     steps:
       - checkout
-      - yarn build
+      - run: yarn build
 
   run-backend-tests:
     working_directory: ~/project/backend
     docker:
       - image: circleci/node@3.0.0
     steps:
-      - yarn test
+      - run: yarn test
 
   run-frontend-tests:
     working_directory: ~/project/frontend
     docker:
       - image: circleci/node@3.0.0
     steps:
-      - yarn test
+      - run: yarn test
 
 workflows:
   node-tests:
