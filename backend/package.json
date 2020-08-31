@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@prisma/client": "^2.4.1",
-    "apollo-server": "^2.16.1",
     "aws-lambda": "^1.0.6",
     "aws-sdk": "^2.686.0",
     "bcryptjs": "2.4.3",

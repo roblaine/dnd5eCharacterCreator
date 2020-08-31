@@ -6,9 +6,10 @@ const createServer = require('./createServer');
 const db = require('./db');
 const logger = require('./utils/logger');
 
-logger.warn({
+logger.info({
   message: 'Starting Server',
 });
+
 const server = createServer();
 
 server.express.use(cookieParser());
@@ -20,6 +21,10 @@ server.express.use((req, res, next) => {
     const { userId } = jwt.verify(token, process.env.APP_SECRET);
     // Put the userid on to further requests
     req.userId = userId;
+
+    logger.info({
+      message: `Current userID set to ${userId}`,
+    });
   }
   next();
 });
@@ -35,9 +40,15 @@ server.express.use(async (req, res, next) => {
     `{ id, email, name }`,
   );
 
+  logger.info({
+    message: `Current user set to ${user}`,
+  });
+
   req.user = user;
   next();
 });
+
+console.log(server.express);
 
 server.start(
   {
