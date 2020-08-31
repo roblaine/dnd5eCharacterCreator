@@ -35,9 +35,9 @@ workflows:
     jobs:
       - build-backend
       - build-frontend
-      - run-backend-tests
-        requires:
-          - build-backend
-      - run-frontend-tests
-      requires:
-        - build-frontend
+      - run-backend-tests:
+          requires:
+            - build-backend
+      - run-frontend-tests:
+          requires:
+            - build-frontend
