@@ -22,6 +22,7 @@ jobs:
       - checkout
       - run: |
           cd backend
+          yarn
           yarn test
 
   run-frontend-tests:
@@ -30,6 +31,7 @@ jobs:
       - checkout
       - run: |
           cd frontend
+          yarn
           yarn test
 
 workflows:
