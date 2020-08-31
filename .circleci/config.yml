@@ -5,30 +5,26 @@ orbs:
 jobs:
   build-backend:
     working_directory: ~/project/backend
-    docker:
-      - image: circleci/node@3.0.0
+    executor: node/default
     steps:
       - checkout
 
   build-frontend:
     working_directory: ~/project/frontend
-    docker:
-      - image: circleci/node@3.0.0
+    executor: node/default
     steps:
       - checkout
       - run: yarn build
 
   run-backend-tests:
     working_directory: ~/project/backend
-    docker:
-      - image: circleci/node@3.0.0
+    executor: node/default
     steps:
       - run: yarn test
 
   run-frontend-tests:
     working_directory: ~/project/frontend
-    docker:
-      - image: circleci/node@3.0.0
+    executor: node/default
     steps:
       - run: yarn test
 
