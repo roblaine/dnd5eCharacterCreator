@@ -7,14 +7,18 @@ jobs:
     working_directory: ~/project/backend
     executor: node/default
     steps:
-      - run: ls && pwd
+      - run: |
+          pwd
+          ls
       - checkout
 
   build-frontend:
     working_directory: ~/project/frontend
     executor: node/default
     steps:
-      - run: ls && pwd
+      - run: |
+          pwd
+          ls
       - checkout
       - run: yarn build
 
@@ -22,14 +26,18 @@ jobs:
     working_directory: ~/project/backend
     executor: node/default
     steps:
-      - run: ls && pwd
+      - run: |
+          pwd
+          ls
       - run: yarn test
 
   run-frontend-tests:
     working_directory: ~/project/frontend
     executor: node/default
     steps:
-      - run: ls && pwd
+      - run: |
+          pwd
+          ls
       - run: yarn test
 
 workflows:
