@@ -19,6 +19,7 @@ jobs:
   run-backend-tests:
     executor: node/default
     steps:
+      - checkout
       - run: |
           cd backend
           yarn test
@@ -26,6 +27,7 @@ jobs:
   run-frontend-tests:
     executor: node/default
     steps:
+      - checkout
       - run: |
           cd frontend
           yarn test
@@ -33,11 +35,5 @@ jobs:
 workflows:
   node-tests:
     jobs:
-      - build-backend
-      - build-frontend
-      - run-backend-tests:
-          requires:
-            - build-backend
-      - run-frontend-tests:
-          requires:
-            - build-frontend
+      - run-backend-tests
+      - run-frontend-tests
