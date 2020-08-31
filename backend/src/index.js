@@ -4,7 +4,12 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: '.env' });
 const createServer = require('./createServer');
 const db = require('./db');
+const logger = require('./utils/logger');
 
+logger.log({
+  level: 'info',
+  message: 'Starting Server',
+});
 const server = createServer();
 
 server.express.use(cookieParser());
