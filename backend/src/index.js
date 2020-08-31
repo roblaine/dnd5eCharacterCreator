@@ -6,8 +6,7 @@ const createServer = require('./createServer');
 const db = require('./db');
 const logger = require('./utils/logger');
 
-logger.log({
-  level: 'info',
+logger.warn({
   message: 'Starting Server',
 });
 const server = createServer();
