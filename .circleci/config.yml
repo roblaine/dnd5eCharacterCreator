@@ -1,7 +1,37 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
+
+jobs:
+  build-backend:
+    working_directory: ~/project/backend
+    docker:
+      - image: circleci/node@3.0.0
+    steps:
+      - checkout
+
+  build-frontend:
+    working_directory: ~/project/frontend
+    docker:
+      - image: circleci/node@3.0.0
+    steps:
+      - checkout
+      - yarn build
+
+  run-backend-tests:
+    working_directory: ~/project/backend
+    steps:
+      - yarn test
+
+  run-frontend-tests:
+    working_directory: ~/project/frontend
+    steps:
+      - yarn test
+
 workflows:
   node-tests:
     jobs:
-      - node/test
+      - build-backend
+      - build-frontend
+      - run-backend-tests
+      - run-frontend-tests
