@@ -4,41 +4,30 @@ orbs:
 
 jobs:
   build-backend:
-    working_directory: ~/project/backend
     executor: node/default
-    steps:
-      - run: |
-          pwd
-          ls
       - checkout
 
   build-frontend:
-    working_directory: ~/project/frontend
     executor: node/default
     steps:
-      - run: |
-          pwd
-          ls
       - checkout
-      - run: yarn build
+      - run: |
+          cd frontend
+          yarn build
 
   run-backend-tests:
-    working_directory: ~/project/backend
     executor: node/default
     steps:
       - run: |
-          pwd
-          ls
-      - run: yarn test
+          cd backend
+          yarn test
 
   run-frontend-tests:
-    working_directory: ~/project/frontend
     executor: node/default
     steps:
       - run: |
-          pwd
-          ls
-      - run: yarn test
+          cd frontend
+          yarn test
 
 workflows:
   node-tests:
