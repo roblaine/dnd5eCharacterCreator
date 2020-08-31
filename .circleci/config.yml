@@ -1,0 +1,41 @@
+version: 2.1
+orbs:
+  node: circleci/node@3.0.0
+
+jobs:
+  build-backend:
+    executor: node/default
+    steps:
+      - checkout
+
+  build-frontend:
+    executor: node/default
+    steps:
+      - checkout
+      - run: |
+          cd frontend
+          yarn build
+
+  run-backend-tests:
+    executor: node/default
+    steps:
+      - checkout
+      - run: |
+          cd backend
+          yarn
+          yarn test
+
+  run-frontend-tests:
+    executor: node/default
+    steps:
+      - checkout
+      - run: |
+          cd frontend
+          yarn
+          yarn test
+
+workflows:
+  node-tests:
+    jobs:
+      - run-backend-tests
+      - run-frontend-tests
