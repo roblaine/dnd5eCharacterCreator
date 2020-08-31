@@ -1,5 +1,6 @@
 import { useMutation, gql } from '@apollo/client';
 import Form from './styles/Form';
+import client from './Client';
 
 const LOGIN_MUTATION = gql`
   mutation login($email: String!, $password: String!) {
@@ -9,9 +10,43 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
+const LOGGED_IN_QUERY = gql`
+  query loggedInUser {
+    user {
+      id
+      loggedIn
+    }
+  }
+`;
+
 const Signin = () => {
   let displayError = '';
-  const [login, { error, loading }] = useMutation(LOGIN_MUTATION);
+  const [login, { data: returnedData, error, loading }] = useMutation(
+    LOGIN_MUTATION,
+    // TODO Implement a cache update on signin, redirect user to the dashboard upon signin
+    // {
+    //   onCompleted: (returnedData) => {
+    //     console.log(
+    //       `Successfully completed the signin! Updating Cache with user id ${returnedData.login.id}`,
+    //     );
+
+    //     client.writeQuery({
+    //       query: LOGGED_IN_QUERY,
+    //       variables: {
+    //         id: returnedData.login.id,
+    //       },
+    //       data: {
+    //         loggedIn: true,
+    //       },
+    //     });
+
+    //     const loggedIn = client.readQuery({
+    //       query: LOGGED_IN_QUERY,
+    //     });
+    //     console.log(loggedIn);
+    //   },
+    // },
+  );
   if (error) {
     displayError = error.message.split('error:')[1];
   }
@@ -52,4 +87,5 @@ const Signin = () => {
   );
 };
 
+export { LOGGED_IN_QUERY };
 export default Signin;

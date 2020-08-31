@@ -75,6 +75,8 @@ const Mutations = {
     });
 
     // Return the user with their set cookie
+    console.log(`Returning user:`);
+    console.log(user);
     return user;
   },
 
