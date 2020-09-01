@@ -1,13 +1,12 @@
+require('dotenv').config({ path: '.env' });
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-
-require('dotenv').config({ path: '.env' });
 const createServer = require('./createServer');
 const db = require('./db');
 const logger = require('./utils/logger');
 
 logger.info({
-  message: 'Starting Server',
+  message: 'Starting server',
 });
 
 const server = createServer();
@@ -32,6 +31,7 @@ server.express.use((req, res, next) => {
 // Middleware to populate the user on each request
 server.express.use(async (req, res, next) => {
   if (!req.userId) {
+    logger.info(`No userID is set yet.`);
     return next();
   }
 
@@ -48,8 +48,6 @@ server.express.use(async (req, res, next) => {
   next();
 });
 
-console.log(server.express);
-
 server.start(
   {
     cors: {
@@ -58,6 +56,6 @@ server.start(
     },
   },
   deets => {
-    console.log(`Server is now running on http://localhost:${deets.port}`);
+    logger.info(`Server is now running on http://localhost:${deets.port}`);
   },
 );
