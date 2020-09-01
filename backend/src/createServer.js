@@ -35,4 +35,4 @@ function createApolloServer() {
   });
 }
 
-module.exports = createServer;
+module.exports = { createServer, createApolloServer };

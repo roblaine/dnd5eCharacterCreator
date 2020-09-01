@@ -1,7 +1,7 @@
 require('dotenv').config({ path: '.env' });
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-const createServer = require('./createServer');
+const { createServer, createApolloServer } = require('./createServer');
 const db = require('./db');
 const logger = require('./utils/logger');
 
@@ -10,7 +10,7 @@ logger.info({
 });
 
 const server = createServer();
-
+console.log(server);
 server.express.use(cookieParser());
 
 // decode the JWT to extract the user id
